@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\teacherController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,3 +23,11 @@ Route::get('/dashboard', function () {
 })->middleware(['auth'])->name('dashboard');
 
 require __DIR__.'/auth.php';
+
+
+
+// teacherDashboard
+Route::get("tdashboard", [teacherController::class,"index"]);
+Route::get("index", [teacherController::class,"login"]);
+Route::get("register", [teacherController::class,"reg"]);
+Route::get("forgot", [teacherController::class,"forgetpass"]);

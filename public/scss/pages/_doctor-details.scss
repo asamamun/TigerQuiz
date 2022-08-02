@@ -1,0 +1,169 @@
+//doctor details card
+.doctor-details-card{
+	.bg-img-bx{
+		position:relative;
+		z-index:1;
+		a{
+			position:absolute;
+			top:30px;
+			right:30px;
+		}
+		.bg-img{
+			width:100%;
+		}
+	}
+	.img-card{
+		width: 330px;
+		z-index:1;
+		position:relative;
+		margin-top: -175px;
+		margin-right: 30px;
+		border: 18px solid $white;
+		img{
+			width:100%;
+		}
+	}
+	.card-info{
+		margin-top:15px;
+		flex-grow: 1;
+		h2{
+			font-size:34px;
+		}
+		p{
+			font-size:22px;
+		}
+		.date{
+			font-size: 16px;
+			display: flex;
+			align-items: center;
+			i{
+				font-size: 27px;
+				margin-right: 10px;
+			}
+		}
+		.mr-ico{
+			height:75px;
+			width:75px;
+			line-height:75px;
+			text-align:center;
+			color:white;
+			min-width: 75px;
+			font-size: 40px;
+		}
+	}
+	@include respond ('tab-land'){
+		.img-card{
+			width: 230px;
+			margin-top: -125px;
+			margin-right: 20px;
+			border-width: 10px;
+		}
+		.card-info{
+			margin-top:0;
+				h2 {
+					font-size: 24px;
+			}
+			p{
+				font-size:16px;
+			}
+			.date{
+				font-size:14px;
+				i{
+					font-size: 20px;
+					margin-right: 5px;
+				}	
+			}
+			.mr-ico{
+				height:60px;
+				width:60px;
+				font-size: 30px;
+				min-width: 60px;
+				line-height:60px;
+			}
+		}
+		.card-info p {
+			font-size: 18px;
+		}
+	}
+	@include respond ('phone-land'){
+		.img-card{
+			margin-top: -130px;
+		}
+	}
+	@include respond ('phone'){
+		.bg-img-bx{
+			a{
+				top: 10px;
+				right: 10px;
+
+			}
+			.bg-img{
+				height: 170px;
+				object-fit: cover;
+			}
+		}
+		.img-card {
+			width: 100%;
+			border-width: 5px;
+			margin-right:auto;
+			margin-left:auto;
+			position:relative;
+			z-index:1;
+			margin-top: -90px;
+			img{
+				height: 300px;
+				object-fit: cover;
+			}
+		}
+		.card-info{
+			margin-top:0;
+			.mr-ico{
+				height:45px;
+				width:45px;
+				min-width: 45px;
+				font-size: 25px;
+				line-height:45px;
+			}
+			h2 {
+				font-size: 18px;
+			}
+			.date{
+				font-size:12px;
+				i{
+					font-size: 18px;
+					margin-right: 5px;
+				}
+			}
+		}
+	}
+}
+
+//Patient List
+.patient-list{
+	img{
+		width:80px;
+		height:80px;
+	}	
+}
+
+//recent-review
+.recent-review{
+	img{
+		width:90px;
+		height:90px;
+		border-radius:0;
+	}	
+	@include respond ('phone'){
+		img{
+			width:60px;
+			height:60px;
+			float:left;
+		}
+		.media{
+			display:block;
+		}
+		.media-body{
+			display:block;
+		}
+	}
+}

@@ -1,0 +1,738 @@
+.items-table{
+
+	 tbody{
+		
+		tr{
+			padding:0;
+			border-radius: $radius;
+			position: relative;
+			box-shadow: 0 1px 0 0 #f8f8f8;
+			@include transitionMedium;
+			.dropdown{
+				opacity:0;
+			}
+			&.active,
+			&:hover{
+				box-shadow: 0 4px 4px 0 rgba(0,0,0,0.25);
+				z-index: 1;
+				.dropdown{
+					opacity:1;
+				}	
+			}
+			th,
+			td{
+				border: 0;
+				padding:18px 8px;
+			}
+		}
+	}
+	@include respond('phone') {
+		width:500px;
+	}	
+}
+
+.star-review{
+	i{
+		font-size:16px;
+		&.text-gray{
+			color:#d9d9d9;
+		}
+	}
+	span{
+		color:$black;
+	}
+}
+
+
+// Form Head
+.form-head{
+
+	.breadcrumb{
+		background:transparent;
+		padding:0;
+	}
+	.search-area{
+		max-width:300px;
+		border-radius: 0;
+		@include respond('laptop') {
+			max-width:250px;
+		}
+		@include respond('phone') {
+			max-width:250px;
+		}
+		.form-control{
+			border: 0;
+			height: 56px;
+			padding: 10px 15px;
+			font-size: 16px;
+			background:#f1f1f1;
+			border-radius:0;
+			@include respond('laptop') {
+				height: 41px;
+				padding: 10px 15px;
+				font-size: 13px;
+			}
+		}
+		.input-group-append .input-group-text{
+			background:#f1f1f1;
+			padding: 0 5px  0 30px;
+			@include respond('laptop') {
+				padding: 0 5px  0 30px;
+			}
+			i {
+				font-size: 20px;
+				color:$body-color;
+				@include respond('laptop') {
+					font-size: 18px;
+				}
+			}
+		}
+	}
+	.dropdown {
+		.btn{
+			
+			i{
+				transform: scale(1.3);
+				-moz-transform: scale(1.3);
+				-webkit-transform: scale(1.3);
+				-ms-transform: scale(1.3);
+				-o-transform: scale(1.3);
+				display: inline-block;
+			}
+		}
+		&:after{
+			color:$primary;
+			font-size:25px;
+		}
+	}
+	/* .btn i{
+		line-height: 1;
+		transform: scale(1.3);
+		display: inline-block;
+		margin-right: 5px;
+	} */
+	/* .btn-outline-primary{
+		border-color:#eee;
+		&:hover{
+			border-color:$primary;
+		}
+	} */
+	& > *{
+		@include respond('phone-land') {
+			margin-right:5px !important;
+			margin-bottom:10px;	
+			vertical-align: baseline;
+			margin-left:0 !important;
+		}
+	}
+	@include respond('phone-land') {
+		display:block !important;
+	}
+}
+.rounded{
+	border-radius:$radius !important;
+}
+.btn-link{
+    font-weight: 500;
+    font-size: 16px;
+	@include respond('laptop') {
+		font-size: 14px;
+	}
+}
+.deznav .copyright{
+	font-size:14px;
+	padding: 0 45px 60px;
+	margin-top: 40px;
+	color: #969BA0;
+	margin-bottom: 40px;
+	
+	p{
+		margin-bottom:10px;
+	}
+	strong{
+		display:block;
+	}
+	
+	@include respond('laptop') {
+		padding:0 25px 60px;
+	}
+	@include respond ('phone-land'){
+		padding-bottom: 60px;
+	}
+}
+.widget-buyer {
+    .media {
+        img {
+            width: 30px;
+        }
+        .media-body {
+            h5 {
+                font-size: 14px;
+                margin-bottom: 0px;
+            }
+            p {
+                font-size: 13px;
+            }
+        }
+    }
+}
+
+.recentOrderTable {
+    table {
+        margin-bottom: 0;
+        overflow: hidden;
+        thead {
+            th {
+                font-size: 12px;
+            }
+        }
+        tbody {
+            td {
+                color: $dark;
+                font-weight: 500;
+                line-height: 40px;
+                @at-root [data-theme-version="dark"] & {
+                    color: $d-ctl;
+                }
+                img {
+                    border-radius: 50px;
+                }
+                .custom-dropdown {
+                    i {
+                        padding: 0 10px;
+                        cursor: pointer;
+                    }
+                }
+            }
+        }
+    }
+}
+.activity_overview{
+	.nav-tabs{
+		border-bottom:1px solid rgba(255,255,255,0.2) !important;
+	}
+	.custom-tab-1 .nav-link{
+		color:rgba(255,255,255,0.5);
+		padding-left: 0;
+		padding-right: 0;
+		margin-right: 30px;
+		
+		&:hover,
+		&.active{
+			background:transparent;
+			color:#fff;
+			border-color: #fff;
+		}
+	}
+}
+.ps .ps__rail-x:hover,
+.ps .ps__rail-y:hover,
+.ps .ps__rail-x:focus,
+.ps .ps__rail-y:focus,
+.ps .ps__rail-x.ps--clicking,
+.ps .ps__rail-y.ps--clicking {
+    background-color: transparent!important;
+    opacity: 0.9;
+}
+
+.chart-link {
+    @include respond('phone') {
+        display: flex;
+        align-items: center;
+    }
+    @include respond('tab-land') {
+        display: flex;
+        align-items: center;
+    }
+    @include respond('desktop') {
+        display: flex;
+        align-items: center;
+    }
+    .week-link {
+        display: inline-block;
+        // @include respond('tab-land'){
+        //     display: flex;
+        // }
+    }
+    a {
+        display: inline-block;
+        font-size: 12px;
+        font-weight: 500;
+        margin-right: 10px;
+        i {
+            font-size: 13px;
+            &.text-primary {
+                color: $primary;
+            }
+            &.text-muted {
+                color: #DAE2F3!important;
+            }
+        }
+    }
+    .form-control {
+        max-width: 97px;
+        display: inline-block;
+    }
+}
+.input-group {
+	&.input-group-lg{
+		.form-control,.input-group-text{
+			height:80px;
+			padding:10px 30px;
+			@include respond('phone') {
+				height:50px;
+				padding: 10px 15px;
+				font-size:14px;
+			}
+		}
+		.input-group-text{
+			width:200px;
+			text-align:left;
+			@include respond('phone') {
+				width:120px;
+				padding: 10px 15px;
+				height:50px;
+				font-size:14px;
+			}
+		}
+	}
+}
+.card-tabs {
+    .nav-tabs {
+		border-bottom: 0px;
+		background: transparent;
+		padding: 0;
+		border-radius: 0;
+		flex-wrap: unset;
+			
+        .nav-link {
+            border-radius:0;
+		    padding: 12px 20px;
+			font-weight: 500;
+			font-size:14px;
+			border:1px solid $border-color;
+			color:$primary;
+            &.active {
+                background: $light;
+            }
+			@include respond('laptop') {
+				padding: 8px 15px;
+				font-weight: 400;
+				font-size: 13px;
+			}
+        }
+		&.tabs-lg{
+			.nav-link {
+				padding:23px 30px;
+				font-size:16px;
+				@include respond('phone-land') {
+					padding:10px 15px;
+					font-size:14px;
+				}	
+			}
+		}	
+    }
+	&.icontabs{
+		.nav-tabs{
+			background:transparent;
+			.nav-item{
+				.nav-link{
+					height:42px;
+					width:42px;
+					line-height:42px;
+					text-align:center;
+					background:rgba($gray,0.6);
+					color:$white;
+					margin-right:15px;
+					border-radius:	50px;
+					padding:0;
+					&.active{
+						background:$warning;
+					}
+					i{
+						font-size:25px;
+						line-height:42px;
+					}
+				}
+			}
+		}
+	}
+}
+
+.revenue-chart .apexcharts-legend.apexcharts-align-left .apexcharts-legend-series{
+	display:flex !important;
+	margin-right: 30px !important;
+	margin-bottom: 30px !important;
+}
+.revenue-chart-bar{
+	margin-bottom:-30px;
+	
+	@include respond('phone') {
+		margin-bottom: 20px;
+		float: none;
+		padding-left: 20px;
+	}
+}
+@media only screen and (min-width: 1200px) and (max-width: 1600px) {
+	.revenue-chart-bar{
+		margin-bottom: 20px;
+		float: none;
+		padding-left: 20px;
+	}
+}
+#activeUser {
+    height: 215px!important;
+}
+#activeUser {
+    height: 180px!important;
+}
+span#counter {
+    font-size: 30px;
+    font-weight: 700;
+    color: $primary;
+}
+.social-graph-wrapper {
+    text-align: center;
+    padding: 20px;
+    position: relative;
+    color: $white;
+    border-top-left-radius: 0.25rem;
+    border-top-right-radius: 0.25rem;
+	
+    &.widget-facebook {
+        background-color: $facebook;
+    }
+    &.widget-twitter {
+        background-color: $twitter;
+    }
+    &.widget-linkedin {
+        background-color: $linkedin;
+    }
+    &.widget-googleplus {
+        background-color: $google-plus;
+    }
+    .s-icon {
+        font-size: 24px;
+        position: relative;
+        // top: 0.625rem;
+        padding: 0 10px;
+    }
+}
+.recent-stats i{
+    font-size: 11px;
+    position: relative;
+    top: -1px;
+}
+@media only screen and (min-width: 1200px) and (max-width: 1600px) {
+	#lineChart_3Kk{
+		height: 140px !important;
+	}
+}
+/* add menu sidebar */
+.add-menu-sidebar{
+	background: $primary; 
+	padding: 40px 20px 20px;
+    border-radius: 0;
+	position:relative;
+    margin: 50px 50px 30px;
+	@include respond('laptop') {
+		 margin: 50px 25px 30px;
+	}
+	@include respond('phone') {
+		 margin: 20px 25px 30px;
+	}
+	
+	p{
+		font-size:16px;
+		line-height:1.4;
+		font-weight:300;
+		color:#fff;
+	}
+	&:after{
+		position:absolute;
+		background-image:url('../images/dots.svg');
+		background-repeat:no-repeat;
+		bottom:10px;
+		right:20px;
+		content:"";
+		height:30px;
+		width:25px;
+	}
+}
+
+.donut-chart-sale {
+	position:relative;
+	small {
+		font-size: 16px;
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		left: 0;
+		display: flex;
+		align-items: center;
+		top: 0;
+		justify-content: center;
+		font-weight: 600;
+	}
+}
+ .profile-bx{
+	.profile-image{
+		background-image:url('../images/circle.png');
+		background-repeat: no-repeat;
+		background-size: contain;
+		background-position: center;
+		img{
+			margin: 18px;
+			width: 118px;
+		}
+	}
+ }
+ 
+ //search-area
+ .search-area{
+	width: 300px;
+	.form-control{
+		background:$white!important;
+		border-width:0px;
+		padding-left: 20px;
+		min-height: 55px;
+		border-radius:0;
+		&::placeholder{
+			color:#757575;
+		}
+	}
+	.input-group-text{
+		background:$white;
+		border-width:0px;
+		padding-left: 0;		
+		padding-right: 20px;
+		i{
+			font-size:25px;
+		}
+		
+	}
+	@include respond('laptop'){
+		.form-control{
+			min-height:45px;
+		}
+		.input-group-text i{
+			font-size:18px;
+		}
+	}
+	@include respond('tab-port'){
+		width:200px;
+	}
+ }
+ 
+ .min-w24{
+	min-width:24px;
+ } .min-w30{
+	min-width:30px;
+ }
+ .min-w32{
+	min-width:32px;
+ }
+ .min-w42{
+	min-width:42px;
+ }
+ .min-w46{
+	min-width:46px;
+ }
+ .min-w50{
+	min-width:50px;
+ }
+.line-chart-demo{
+
+} 
+
+.form-group.style-1{
+	.form-control{
+		border-color:transparent;
+		margin-right: -45px;
+		z-index: 0;
+		color:$black;
+		background:#F0F0F0;
+		border-radius:$radius;
+	}
+}
+
+.previous-transactions{
+	tbody{
+		tr{
+			td:first-child{
+				width:100px;
+			}
+		}
+	}
+}
+
+
+//star rating
+.rating-widget .rating-stars ul li i {
+    font-size: 25px !important;
+}
+
+.heart-ai{
+	height:70px;
+	width:70px;
+	line-height:70px;
+	text-align:center;
+	font-size:35px;
+	color:$white;
+}
+
+//users
+
+.users{
+	display:flex;
+	li{
+		margin-left:-20px;
+		img{
+			width:60px;
+			border-radius:100%;
+			border: 4px solid $light;
+		}
+	}
+}
+.users-sm{
+	display:flex;
+	li{
+		margin-right:-15px;
+		border: 4px solid $light;
+		border-radius:100%;
+		img{
+			width:40px;
+			border-radius:100%;
+		}
+	}
+}
+//rated-doctors
+.rated-doctors{
+	.card-body{
+		h4{
+			font-size:18px;
+			@include respond ('phone'){
+				font-size:15px;
+			}
+		}
+		.num{
+			font-size:22px;
+			@include respond ('phone'){
+				font-size:16px;
+			}
+		}
+	}
+	.img-1{
+		width:90px;
+		@include respond ('phone'){
+			width:60px;	
+		}
+	}
+	.star-review{
+		ul{
+			display:flex;
+			li{
+				margin:0px 2px;
+				i{
+					color:#FF4D00;
+				}
+			}
+		}
+		@include respond ('phone'){
+			margin-left:42px;
+		}
+	}
+}
+
+.appointment-schedule{
+	ul{
+		li{
+			font-size:12px;
+			display:flex;
+			align-items:center;
+			margin-bottom: 3px;
+			&>i{
+				font-size: 22px;
+				margin-right: 10px;
+			}
+		}
+	}
+	
+	//calendar
+	.appointment-calender{
+		.bootstrap-datetimepicker-widget table th{
+			font-size:14px;
+			font-weight:400;
+			padding-top: 25px;
+			&.picker-switch{
+				font-size:20px;
+				font-weight:500;
+				line-height: 30px;
+				color:$black;
+				padding-top: 8px;
+			}
+			&.prev,&.next{
+				padding-top: 8px;
+				font-size:15px;
+				text-align:center;
+			}
+		}
+		.datepicker{
+			width:100%;
+		}
+		.bootstrap-datetimepicker-widget table td span{
+			width:32%;
+			font-size: 14px;
+		}
+		.bootstrap-datetimepicker-widget .picker-switch td i{
+			font-size: 18px;
+		}
+		.bootstrap-datetimepicker-widget .timepicker{
+			width: 100%;
+		}
+		.bootstrap-datetimepicker-widget .timepicker-minutes tr td{
+			font-size: 14px;
+		}
+		.bootstrap-datetimepicker-widget table td.day{
+			font-size:16px;
+			padding: 5px;
+			border-radius:0;
+			height:46px;
+			width:80px;
+			color:$black;
+			&.active,&.today{
+				background:$secondary!important;
+				box-shadow:none;
+				color:$white;
+				&:before{
+					height: 17px;
+					width: 17px;
+					border-radius: 21px;
+					border: 3px solid $white;
+					background: $primary;
+					bottom: -10px;
+					left: 50%;
+					transform: translateX(-50%);	
+				}
+			}
+			&:hover{
+				background:$primary;
+				color:$white;
+			}
+		}
+	}
+}
+//patient-activity
+.patient-activity{
+	.img-2{
+		width:80px;
+		height:80px;
+		@include respond ('phone'){
+			width:60px;
+			height:60px;
+		}
+	}
+	.table tbody tr td{
+		vertical-align:top;
+	}
+}
