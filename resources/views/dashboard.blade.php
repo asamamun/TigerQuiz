@@ -67,7 +67,7 @@
           <!-- User Menu Start -->
           <div class="user-container d-flex">
             <a href="#" class="d-flex user position-relative" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <img class="profile" alt="profile" src="img/profile/imran.png" />
+              <img class="profile" alt="profile" src="img/profile/{{ Auth::user()->name }}.png" />
               <div class="name">{{ Auth::user()->name }}</div>
             </a>
             <div class="dropdown-menu dropdown-menu-end user-menu wide">
