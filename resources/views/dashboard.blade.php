@@ -238,17 +238,17 @@
               <li>
                 <a href="#products" data-href="Products.html">
                   <i data-cs-icon="cupcake" class="icon" data-cs-size="18"></i>
-                  <span class="label">Products</span>
+                  <span class="label">Quiz</span>
                 </a>
                 <ul id="products">
                   <li>
                     <a href="Products.List.html">
-                      <span class="label">List</span>
+                      <span class="label">MCQ</span>
                     </a>
                   </li>
                   <li>
                     <a href="Products.Detail.html">
-                      <span class="label">Detail</span>
+                      <span class="label">Descriptive</span>
                     </a>
                   </li>
                 </ul>

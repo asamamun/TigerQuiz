@@ -80,7 +80,8 @@
                                 <li ><a href="/Home/Index">Home</a></li>
                                 <li ><a href="/Home/Features">Features</a></li>
                                 <li ><a href="/Home/Plans">Plans</a></li>
-                                <li ><a href="/Help">Help</a></li>
+                                <li ><a href="/Help">Class</a></li>
+                                <li ><a href="/Help">Quiz</a></li>
                             </ul>
                             <form class="navbar-form navbar-right mt-2" role="form">
                                 @if (Route::has('login'))
@@ -88,7 +89,6 @@
                                     <li class="nav-item auth-nav"><a href="{{ url('/dashboard') }}" class="text-sm text-gray dark:text-gray">Dashboard</a></li>
                                     @else
                                    <button class=''><a class="nav-link auth-nav" href="{{ route('login') }}">Log in</a></button>
-                        
                                     @if (Route::has('register'))
                                    <button class=''><a class="nav-link" href="{{ route('register') }}" >Register</a></button>
                                     @endif
