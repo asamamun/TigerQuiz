@@ -1,4 +1,3 @@
-
 <html lang="en" data-footer="true" data-override='{"attributes": {"placement": "vertical", "layout": "boxed" }, "storagePrefix": "ecommerce-platform"}'>
   <head>
     <meta charset="UTF-8" />
@@ -353,8 +352,10 @@
               <li>
                 
                   <span class="align-middle">
-                    <form method="POST" action="{{ route('logout') }}"> @csrf <a href="{{route('logout')}}" onclick="event.preventDefault(); this.closest('form').submit();"> <i data-cs-icon="logout" class="me-2" data-cs-size="17"></i> {{ __('Log Out') }}
-                          </a>
+                    <form method="POST" action="{{ route('logout') }}">
+                      @csrf <a href="{{route('logout')}}" 
+                      onclick="event.preventDefault(); this.closest('form').submit();">
+                      <i data-cs-icon="logout" class="me-2" data-cs-size="17"></i>{{ __('Log Out') }}</a>
                   </form>
                   </span>
                
@@ -375,8 +376,8 @@
         <div class="nav-shadow"></div>
       </div>
 
-      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark ms-5">
+        <div class="container ms-5">
             <a class="navbar-brand" href="#!"> {{ __('Tiger Quiz') }}</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -385,27 +386,15 @@
                     <li class="nav-item"><a class="nav-link" href="#!">About</a></li>
                     <li class="nav-item"><a class="nav-link" href="#!">Search</a></li>
                     <li class="nav-item"><a class="nav-link" href="#!">Contact</a></li>
-                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="#">Blog</a></li>
-                    <li class="nav-item"> 
-                        @if (Route::has('login'))
-                        <div class="hidden auth-nav fixed top-0 right-0 sm:block">
-                            @auth
-                            <li class="nav-item ms-5 auth-nav"> <a href="{{ url('/dashboard') }}" class="nav-link text-info"><div>{{ Auth::user()->name }}</div></a></li>
-                            @else
-                           <li class="nav-item ms-5 auth-nav"> <a class="nav-link" href="{{ route('login') }}">Log in</a></li>
-                
-                            @if (Route::has('register'))
-                           <li class="nav-item"> <a class="nav-link" href="{{ route('register') }}" >Register</a></li>
-                            @endif
-                            @endauth
-                        </div>
-                        @endif
+                    <li class="nav-item"><a class="nav-link" aria-current="page" href="#">Blog</a></li>
+                    <li class="nav-item me-5 ms-5">
+                      <a class="nav-link active name" href="#">{{ Auth::user()->name }}</a>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
-        <div class="container">
+        <div class="container ms-5">
           <!-- Title and Top Buttons Start -->
           <div class="page-title-container">
             <div class="row">
