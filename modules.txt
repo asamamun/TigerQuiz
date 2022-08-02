@@ -1,0 +1,18 @@
+module teacher:
+can register and login
+can add quiz(mcq and descriptive)
+can add quiz set
+publish quiz
+
+module student:
+can register and login
+can take quiz on different categories
+check his leaderboard position
+check his previous quiz results
+
+admin can:
+manage categories(class), subcategories(subject), topic(chapters), quiz ,quizset, teacher, student , leaderboard
+
+https://github.com/ColorlibHQ/gentelella
+
+

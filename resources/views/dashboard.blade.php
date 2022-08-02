@@ -154,7 +154,7 @@
                     </li>
                     <li>
                       <span class="align-middle">
-                        <form method="POST" action="{{ route('logout') }}"> @csrf <a href="route('logout')" onclick="event.preventDefault(); this.closest('form').submit();"> <i data-cs-icon="logout" class="me-2" data-cs-size="17"></i> {{ __('Log Out') }}
+                        <form method="POST" action="{{ route('logout') }}"> @csrf <a href="{{route('logout')}}" onclick="event.preventDefault(); this.closest('form').submit();"> <i data-cs-icon="logout" class="me-2" data-cs-size="17"></i> {{ __('Log Out') }}
                               </a>
                       </form>
                       </span>
@@ -353,7 +353,7 @@
               <li>
                 
                   <span class="align-middle">
-                    <form method="POST" action="{{ route('logout') }}"> @csrf <a href="route('logout')" onclick="event.preventDefault(); this.closest('form').submit();"> <i data-cs-icon="logout" class="me-2" data-cs-size="17"></i> {{ __('Log Out') }}
+                    <form method="POST" action="{{ route('logout') }}"> @csrf <a href="{{route('logout')}}" onclick="event.preventDefault(); this.closest('form').submit();"> <i data-cs-icon="logout" class="me-2" data-cs-size="17"></i> {{ __('Log Out') }}
                           </a>
                   </form>
                   </span>
