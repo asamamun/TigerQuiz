@@ -22,8 +22,6 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
-require __DIR__.'/auth.php';
-
 
 
 // teacherDashboard
@@ -31,3 +29,9 @@ Route::get("tdashboard", [teacherController::class,"index"]);
 Route::get("index", [teacherController::class,"login"]);
 Route::get("register", [teacherController::class,"reg"]);
 Route::get("forgot", [teacherController::class,"forgetpass"]);
+
+Route::get('/student_dashboard', function () {
+    return view('student_dashboard.index');
+})->middleware(['auth'])->name('student_dashboard');
+
+require __DIR__.'/auth.php';

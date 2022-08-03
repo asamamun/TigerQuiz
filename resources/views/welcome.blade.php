@@ -16,7 +16,7 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
         
 
-        <title>Match Marriage</title>
+        <title>Tiger Quiz</title>
         <base href="https://www.flexiquiz.com">
 
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/css/bootstrap.min.css" />
@@ -40,7 +40,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 <meta name="description" content="" />
 <meta name="author" content="" />
-<title>Match Marriage</title>
 <!-- Favicon-->
 <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
 <!-- Core theme CSS (includes Bootstrap)-->
