@@ -19,7 +19,7 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    return view('dashboard.index');
 })->middleware(['auth'])->name('dashboard');
 
 
@@ -30,8 +30,8 @@ Route::get("index", [teacherController::class,"login"]);
 Route::get("register", [teacherController::class,"reg"]);
 Route::get("forgot", [teacherController::class,"forgetpass"]);
 
-Route::get('/student_dashboard', function () {
-    return view('student_dashboard.index');
-})->middleware(['auth'])->name('student_dashboard');
+Route::get('/student', function () {
+    return view('student.index');
+})->middleware(['auth'])->name('student');
 
 require __DIR__.'/auth.php';
