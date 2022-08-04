@@ -1,9 +1,12 @@
 <x-guest-layout>
     <x-auth-card>
         <x-slot name="logo">
-            <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-            </a>
+            <div class="text-center">
+                <a href="/">
+                    <span class="icon logo"><img src="assets/img/logo/tiger_logo.png" class="rounded mx-auto d-block" width="12%" alt="logo"></span>
+                    <span class="text-primary">Tiger Quiz</span></a>
+                </a>
+            </div>
         </x-slot>
 
         <!-- Validation Errors -->

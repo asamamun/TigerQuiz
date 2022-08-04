@@ -25,7 +25,7 @@ Route::get('/dashboard', function () {
 
 
 // teacherDashboard
-Route::get("tdashboard", [teacherController::class,"index"]);
+Route::get("teacher", [teacherController::class,"index"]);
 Route::get("index", [teacherController::class,"login"]);
 Route::get("register", [teacherController::class,"reg"]);
 Route::get("forgot", [teacherController::class,"forgetpass"]);

@@ -1,491 +1,987 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
-    <head>
+  <head>
+    <meta charset="utf-8" />
+    <title>Tiger Quiz</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <meta content="Free HTML Templates" name="keywords" />
+    <meta content="Free HTML Templates" name="description" />
 
+    <!-- Favicon -->
+    <link href="assets/img/img_wel/favicon.ico" rel="icon" />
 
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Handlee&family=Nunito&display=swap"
+      rel="stylesheet"
+    />
 
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="description" content="TigerQuiz is powerful online test generator that will automatically mark and grade your quizzes. Create, send and start analyzing the results now." />
-        <meta name="keywords" content="Online test generator, online quiz maker, TigerQuiz, test generator, quiz maker, exam builder, online quiz software, timed quiz maker, multiple choice quiz maker, exam creator" />
-        
-        <meta name="author" content="">
-        <meta name="csrf-token" content="{{ csrf_token() }}">
-        
+    <!-- Font Awesome -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css"
+      rel="stylesheet"
+    />
 
-        <title>Tiger Quiz</title>
-        <base href="https://www.flexiquiz.com">
+    <!-- Flaticon Font -->
+    <link href="assets/lib/flaticon/font/flaticon.css" rel="stylesheet" />
 
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/css/bootstrap.min.css" />
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/css/bootstrap-theme.min.css" />
-                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css" />
-                    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
-        <link href="/Content/layout?v=h4VrYcj3yyewM7Lix5k27EnFTpHdULRomN5aQPQ62501" rel="stylesheet"/>
+    <!-- Libraries Stylesheet -->
+    <link href="assets/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet" />
+    <link href="assets/lib/lightbox/css/lightbox.min.css" rel="stylesheet" />
 
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="assets/css/wel_style.css" rel="stylesheet" />
+  </head>
 
-            <!-- Global site tag (gtag.js) - Google Analytics -->
-            <script async src="https://www.googletagmanager.com/gtag/js?id=UA-61255730-2"></script>
-            <script>
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
+  <body>
+    <!-- Navbar Start -->
+    <div class="container-fluid bg-light position-relative shadow">
+      <nav
+        class="navbar navbar-expand-lg bg-light navbar-light py-3 py-lg-0 px-0 px-lg-5"
+      >
+        <a
+          href=""
+          class="navbar-brand font-weight-bold text-secondary"
+          style="font-size: 50px"
+        >
+        <span class="icon logo"><img src="assets/img/logo/tiger_logo.png" class="" width="12%" alt="logo"></span>
+          <!-- <i class="flaticon-043-teddy-bear"></i> -->
+          <span class="text-primary">Tiger Quiz</span></a>
+        <button
+          type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+          <span class="navbar-toggler-icon"></span>
+        </button>
 
-              gtag('config', 'UA-61255730-2');
-            </script>
-
-
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-<meta name="description" content="" />
-<meta name="author" content="" />
-<!-- Favicon-->
-<link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
-<!-- Core theme CSS (includes Bootstrap)-->
-<link href="assets/css/styles.css" rel="stylesheet" />
-
-
-    </head>
-    <body class="surveyPage ">
-
-        <div id="mainCompanyGroup" style="display:none">QUIZ</div>
-
-        <div class="surveyContentPage">
-
-            <!-- Fixed navbar -->
-    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-                <div class="container">
-
-                    <div class="browserWarning"></div>
-
-                    <div id="mainMenu">
-                        <div class="navbar-header">
-                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                                <span class="sr-only">Toggle navigation</span>
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                            </button>
-
-                            <a class="navbar-brand" href="#!"> <span class="icon-bar text-info"> TIGER QUIZ</span></a>
-                            {{-- <img class="navbar-brand FlexiQuizLogo" src="/Images/FlexiQuizLogoExtraSmall.jpg" alt="Logo" onclick="window.location=''" /> --}}
-                            
-                        </div>
-                        <div class="navbar-collapse collapse">
-
-
-                            <ul class="nav navbar-nav">
-                                <li ><a href="/Home/Index">Home</a></li>
-                                <li ><a href="/Home/Features">Features</a></li>
-                                <li ><a href="/Home/Plans">Plans</a></li>
-                                <li ><a href="/Help">Class</a></li>
-                                <li ><a href="/Help">Quiz</a></li>
-                            </ul>
-                            <form class="navbar-form navbar-right mt-2" role="form">
-                                @if (Route::has('login'))
-                                    @auth
-                                    <li class="nav-item auth-nav"><a href="{{ url('/dashboard') }}" class="text-sm text-gray dark:text-gray">Dashboard</a></li>
-                                    @else
-                                   <button class=''><a class="nav-link auth-nav" href="{{ route('login') }}">Log in</a></button>
-                                    @if (Route::has('register'))
-                                   <button class=''><a class="nav-link" href="{{ route('register') }}" >Register</a></button>
-                                    @endif
-                                    @endauth
-                                @endif
-                            </form>
-                        </div><!--/.nav-collapse -->
-                    </div>
-                </div>
+        <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+          <div class="navbar-nav font-weight-bold mx-auto py-0">
+            <a href="index.html" class="nav-item nav-link active">Home</a>
+            <a href="about.html" class="nav-item nav-link">About</a>
+            <a href="class.html" class="nav-item nav-link">Classes</a>
+            <a href="team.html" class="nav-item nav-link">Teachers</a>
+            <a href="team.html" class="nav-item nav-link">Students</a>
+            <!-- <a href="gallery.html" class="nav-item nav-link">Gallery</a> -->
+            <div class="nav-item dropdown">
+              <a href="#"
+                class="nav-link dropdown-toggle" data-toggle="dropdown">Quizzes</a>
+              <div class="dropdown-menu rounded-0 m-0">
+                <a href="blog.html" class="dropdown-item">MCQ</a>
+                <a href="single.html" class="dropdown-item">Descriptive</a>
+              </div>
             </div>
-
-            <noscript>
-                <div class="container bs-callout" style="margin-top:80px;">
-                    <strong>For full functionality of this site it is necessary to enable JavaScript.</strong>
-                </div>
-            </noscript>
-
-            
-
-
-
-
-<div id="homeBanner">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-7">
-                <div id="bannerText">
-                    <h1>Powerful online test and quiz maker</h1>
-                    <p>Create, send and analyze your tests, quizzes and assessments for free with TigerQuiz</p>
-                    <a class="btn btn-success btn-lg" onclick="joinWithoutSignup();">Get Started for Free &raquo;</a>
-                </div>
+            <a href="contact.html" class="nav-item nav-link">Contact</a>
+          </div>
+          &nbsp; &nbsp;
+          <li class="nav-item"> 
+            @if (Route::has('login'))
+            <div class="hidden auth-nav fixed top-0 right-0 sm:block">
+                @auth
+                <li class="nav-item ms-5 auth-nav"><a href="{{ url('/dashboard') }}" class="text-sm text-gray dark:text-gray">Dashboard</a></li>
+                @else
+               <li class="nav-item ms-4 auth-nav me-1"> <a class="nav-link btn btn-info me-1" href="{{ route('login') }}">Login</a></li>
+                &nbsp;
+                @if (Route::has('register'))
+               <li class="nav-item ms-1"> <a class="nav-link btn btn-info ms-1" href="{{ route('register') }}" >Register</a></li>
+                @endif
+                @endauth
             </div>
-            <div class="col-md-5">
-                <div id="bannerWrapper">
-                    
-                    <picture>
-                        <source srcset="/Images/banner-laptop.png" media="(max-width:767px)" />
-                        <img id="bannerLaptop" src="/Images/banner-laptop.png" srcset="/Images/banner-laptop2x.png 2x" alt="Creating a quiz on a laptop" />
-                    </picture>
-
-                    <picture>
-                        <source srcset="/Images/banner-mobile.png" media="(max-width:767px)" />
-                        <img id="bannerMobile" src="/Images/banner-mobile.png" srcset="/Images/banner-mobile2x.png 2x" alt="Taking a quiz on a mobile" />
-                    </picture>
-
-                    <svg id="bannerTick" viewBox="0 0 71 55">
-                        <path fill="#2aabd2" opacity="0.25" d="M9 24 L1 34 L18 48 L32 48 L70 8 L60 0 L25 37 Z" />    
-                    </svg>
-
-                </div>
-            </div>
+            @endif
+        </li>
         </div>
+      </nav>
     </div>
-</div>
+    <!-- Navbar End -->
 
-
-<div class="container homePageMarketing">
-    <!-- Example row of columns -->
-    <div class="row">
-        <div class="col-md-4">
-            <img class="img-circle" style="width: 128px; height: 128px;" alt="Test Generator" src="/Images/compose.png">
-            <h2>Create</h2>
-            <p>Quickly create great looking tests using multiple question types and formatting options. </p>
+    <!-- Header Start -->
+    <div class="container-fluid bg-primary px-0 px-md-5 mb-5">
+      <div class="row align-items-center px-3">
+        <div class="col-lg-6 text-center text-lg-left">
+          <h4 class="text-white mb-4 mt-5 mt-lg-0">Kids Learning Center</h4>
+          <h1 class="display-3 font-weight-bold text-white">
+            New Approach to Kids Education
+          </h1>
+          <p class="text-white mb-4">
+            Sea ipsum kasd eirmod kasd magna, est sea et diam ipsum est amet sed
+            sit. Ipsum dolor no justo dolor et, lorem ut dolor erat dolore sed
+            ipsum at ipsum nonumy amet. Clita lorem dolore sed stet et est justo
+            dolore.
+          </p>
+          <a href="" class="btn btn-secondary mt-1 py-3 px-5">Learn More</a>
         </div>
-        <div class="col-md-4">
-            <img class="img-circle" style="width: 128px; height: 128px;" alt="Publish" src="/Images/upload.png">
-            <h2>Publish</h2>
-            <p>Tests can either be published privately to a select group or open them up to everyone with a single link and registration page. </p>
+        <div class="col-lg-6 text-center text-lg-right">
+          <img class="img-fluid mt-5" src="assets/img/img_wel/header.png" alt="" />
         </div>
-        <div class="col-md-4">
-            <img class="img-circle" style="width: 128px; height: 128px;" alt="Analyze" src="/Images/trends.png">
-            <h2>Analyze</h2>
-            <p>FlexiQuiz instantly marks and grades your tests. Powerful reports then allow you to perform in-depth analysis across all responses. </p>
-       </div>
+      </div>
     </div>
-</div> <!-- /container -->
+    <!-- Header End -->
 
-<div class="homePageFeatures">
-    <div class="container">
-
-        <div class="page-header">
-            <h2>Why choose <strong>TigerQuiz</strong></h2>
-        </div>
-
+    <!-- Facilities Start -->
+    <div class="container-fluid pt-5">
+      <div class="container pb-3">
         <div class="row">
-            
-            <div class="col-xs-offset-1 col-xs-5 col-sm-3 col-sm-offset-0">
-                <span class="featureIcon glyphicon glyphicon-font"></span>
-                <h4>Auto-grading</h4>
-            </div>
-            <div class="col-xs-offset-1 col-xs-5 col-sm-3 col-sm-offset-0">
-                <span class="featureIcon glyphicon glyphicon-stats"></span>
-                <h4>Powerful reports</h4>
-            </div>
-            <div class="col-xs-offset-1 col-xs-5 col-sm-3 col-sm-offset-0">
-                <span class="featureIcon glyphicon glyphicon-calendar"></span>
-                <h4>Schedule your tests</h4>
-            </div>
-            <div class="col-xs-offset-1 col-xs-5 col-sm-3 col-sm-offset-0">
-                <span class="featureIcon glyphicon glyphicon-eye-close"></span>
-                <h4>Public and private tests</h4>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-xs-offset-1 col-xs-5 col-sm-3 col-sm-offset-0">
-                <span class="featureIcon glyphicon glyphicon-envelope"></span>
-                <h4>Custom email invites</h4>
-            </div>
-            <div class="col-xs-offset-1 col-xs-5 col-sm-3 col-sm-offset-0">
-                <span class="featureIcon glyphicon glyphicon-picture"></span>
-                <h4>Include images</h4>
-            </div>
-            <div class="col-xs-offset-1 col-xs-5 col-sm-3 col-sm-offset-0">
-                <span class="featureIcon glyphicon glyphicon-usd"></span>
-                <h4>Free plan option</h4>
-            </div>
-            <div class="col-xs-offset-1 col-xs-5 col-sm-3 col-sm-offset-0">
-                <span class="featureIcon glyphicon glyphicon-phone"></span>
-                <h4>Mobile ready</h4>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-xs-offset-1 col-xs-5 col-sm-3 col-sm-offset-0">
-                <span class="featureIcon glyphicon glyphicon-th-list"></span>
-                <h4>Multiple question types</h4>
-            </div>
-            <div class="col-xs-offset-1 col-xs-5 col-sm-3 col-sm-offset-0">
-                <span class="featureIcon glyphicon glyphicon-lock"></span>
-                <h4>Secured with SSL encryption</h4>
-            </div>
-            <div class="col-xs-offset-1 col-xs-5 col-sm-3 col-sm-offset-0">
-                <span class="featureIcon glyphicon glyphicon-file"></span>
-                <h4>PDF reports</h4>
-            </div>
-            <div class="col-xs-offset-1 col-xs-5 col-sm-3 col-sm-offset-0">
-                <span class="featureIcon glyphicon glyphicon-cog"></span>
-                <h4>Advanced configuration options</h4>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-xs-offset-1 col-xs-5 col-sm-3 col-sm-offset-0">
-                <span class="featureIcon glyphicon glyphicon-time"></span>
-                <h4>Timed tests</h4>
-            </div>
-            <div class="col-xs-offset-1 col-xs-5 col-sm-3 col-sm-offset-0">
-                <span class="featureIcon glyphicon glyphicon-user"></span>
-                <h4>Respondent accounts</h4>
-            </div>
-            <div class="col-xs-offset-1 col-xs-5 col-sm-3 col-sm-offset-0">
-                <span class="featureIcon glyphicon glyphicon-globe"></span>
-                <h4>Access anywhere</h4>
-            </div>
-            <div class="col-xs-offset-1 col-xs-5 col-sm-3 col-sm-offset-0">
-                <span class="featureIcon glyphicon glyphicon-facetime-video"></span>
-                <h4>Include video</h4>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="homePageTourFeatures">
-    <div class="container">
-        <div class="row text-center">
-            <div class="col-sm-12">
-                <h4><a href="/Home/Features">Take a tour of the FlexiQuiz features &raquo;</a></h4>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="homePageUses">
-    <div class="container">
-        <div class="row text-center page-header"><h2>Who uses <strong>TigerQuiz</strong></h2></div>
-        <div class="row text-center">
-            <div class="col-sm-4">
-                <i class="fa fa-user fa-5x"></i>
-
-                <h4>Individuals</h4>
-                <p>
-                    Create fun social quizzes that you can post on your website, blog or other social media site. 
-                    If you prefer privacy the advanced email options allow you to quickly send private quizzes to your friends.
-                    The review feature allows your friends to review their answers after they have completed the quiz.
+          <div class="col-lg-4 col-md-6 pb-1">
+            <div
+              class="d-flex bg-light shadow-sm border-top rounded mb-4"
+              style="padding: 30px"
+            >
+              <i
+                class="flaticon-050-fence h1 font-weight-normal text-primary mb-3"
+              ></i>
+              <div class="pl-4">
+                <h4>Play Ground</h4>
+                <p class="m-0">
+                  Kasd labore kasd et dolor est rebum dolor ut, clita dolor vero
+                  lorem amet elitr vero...
                 </p>
+              </div>
             </div>
-            <div class="col-sm-4">
-                <i class="fa fa-mortar-board fa-5x"></i>
-
-                <h4>Teachers</h4>
-                <p>
-                    Quickly create courses or online tests for your students. 
-                    You can make your test public or just publish it for your class or school with our private test options.
-                    The premium account will allow you to upload media and have unlimited questions.
-                    The auto-grading function will save you time and allow you to concentrate on what's important.
-                    
+          </div>
+          <div class="col-lg-4 col-md-6 pb-1">
+            <div
+              class="d-flex bg-light shadow-sm border-top rounded mb-4"
+              style="padding: 30px"
+            >
+              <i
+                class="flaticon-022-drum h1 font-weight-normal text-primary mb-3"
+              ></i>
+              <div class="pl-4">
+                <h4>Music and Dance</h4>
+                <p class="m-0">
+                  Kasd labore kasd et dolor est rebum dolor ut, clita dolor vero
+                  lorem amet elitr vero...
                 </p>
+              </div>
             </div>
-            <div class="col-sm-4">
-                <i class="fa fa-users fa-5x"></i>
-
-                <h4>Businesses</h4>
-                <p>
-                    Create online training and assessments to ensure your staff are always up to date with the right skills.
-                    The powerful reporting allows you to track your staff participation and progress.
-                    TigerQuiz implements SSL encryption and offers public and private options so you can be sure your assessments are always secure.
+          </div>
+          <div class="col-lg-4 col-md-6 pb-1">
+            <div
+              class="d-flex bg-light shadow-sm border-top rounded mb-4"
+              style="padding: 30px"
+            >
+              <i
+                class="flaticon-030-crayons h1 font-weight-normal text-primary mb-3"
+              ></i>
+              <div class="pl-4">
+                <h4>Arts and Crafts</h4>
+                <p class="m-0">
+                  Kasd labore kasd et dolor est rebum dolor ut, clita dolor vero
+                  lorem amet elitr vero...
                 </p>
+              </div>
             </div>
+          </div>
+          <div class="col-lg-4 col-md-6 pb-1">
+            <div
+              class="d-flex bg-light shadow-sm border-top rounded mb-4"
+              style="padding: 30px"
+            >
+              <i
+                class="flaticon-017-toy-car h1 font-weight-normal text-primary mb-3"
+              ></i>
+              <div class="pl-4">
+                <h4>Safe Transportation</h4>
+                <p class="m-0">
+                  Kasd labore kasd et dolor est rebum dolor ut, clita dolor vero
+                  lorem amet elitr vero...
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6 pb-1">
+            <div
+              class="d-flex bg-light shadow-sm border-top rounded mb-4"
+              style="padding: 30px"
+            >
+              <i
+                class="flaticon-025-sandwich h1 font-weight-normal text-primary mb-3"
+              ></i>
+              <div class="pl-4">
+                <h4>Healthy food</h4>
+                <p class="m-0">
+                  Kasd labore kasd et dolor est rebum dolor ut, clita dolor vero
+                  lorem amet elitr vero...
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6 pb-1">
+            <div
+              class="d-flex bg-light shadow-sm border-top rounded mb-4"
+              style="padding: 30px"
+            >
+              <i
+                class="flaticon-047-backpack h1 font-weight-normal text-primary mb-3"
+              ></i>
+              <div class="pl-4">
+                <h4>Educational Tour</h4>
+                <p class="m-0">
+                  Kasd labore kasd et dolor est rebum dolor ut, clita dolor vero
+                  lorem amet elitr vero...
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
+      </div>
     </div>
-</div>
+    <!-- Facilities Start -->
 
-
-    <div class="homePageKeyFunctions">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="text-center page-header">
-                        <h2>Awesome <strong>Features</strong></h2>
-                        <span class="center-line"></span>
-                    </div>
-                </div>
+    <!-- About Start -->
+    <div class="container-fluid py-5">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-lg-5">
+            <img
+              class="img-fluid rounded mb-5 mb-lg-0"
+              src="assets/img/img_wel/about-1.jpg"
+              alt=""
+            />
+          </div>
+          <div class="col-lg-7">
+            <p class="section-title pr-5">
+              <span class="pr-2">Learn About Us</span>
+            </p>
+            <h1 class="mb-4">Best School For Your Kids</h1>
+            <p>
+              Invidunt lorem justo sanctus clita. Erat lorem labore ea, justo
+              dolor lorem ipsum ut sed eos, ipsum et dolor kasd sit ea justo.
+              Erat justo sed sed diam. Ea et erat ut sed diam sea ipsum est
+              dolor
+            </p>
+            <div class="row pt-2 pb-4">
+              <div class="col-6 col-md-4">
+                <img class="img-fluid rounded" src="assets/img/img_wel/about-2.jpg" alt="" />
+              </div>
+              <div class="col-6 col-md-8">
+                <ul class="list-inline m-0">
+                  <li class="py-2 border-top border-bottom">
+                    <i class="fa fa-check text-primary mr-3"></i>Labore eos amet
+                    dolor amet diam
+                  </li>
+                  <li class="py-2 border-bottom">
+                    <i class="fa fa-check text-primary mr-3"></i>Etsea et sit
+                    dolor amet ipsum
+                  </li>
+                  <li class="py-2 border-bottom">
+                    <i class="fa fa-check text-primary mr-3"></i>Diam dolor diam
+                    elitripsum vero.
+                  </li>
+                </ul>
+              </div>
             </div>
-            <div class="row">
-                <div class="col-md-4 col-sm-6">
-                    <div class="homePageServices">
-                        <div class="homePageServicesIcon">
-                            <i class="fa fa-globe"></i>
-                        </div>
-                        <div class="homePageServicesInfo">
-                            <h4>Access anywhere</h4>
-                            <p>
-                                Being online allows you and your respondents to access, administer and take your quizzes from anywhere at anytime.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 col-sm-6">
-                    <div class="homePageServices">
-                        <div class="homePageServicesIcon">
-                            <i class="fa fa-lock"></i>
-                        </div>
-                        <div class="homePageServicesInfo">
-                            <h4>Secured with SSL</h4>
-                            <p>
-                                With SSL encryption and utilising our advanced cloud infrastructure you can be sure your tests will always be secure.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 col-sm-6">
-                    <div class="homePageServices">
-                        <div class="homePageServicesIcon">
-                            <i class="fa fa-check"></i>
-                        </div>
-                        <div class="homePageServicesInfo">
-                            <h4>Auto-grading</h4>
-                            <p>
-                                TigerQuiz can automatically mark and grade your assessments, saving you the time to concentrate on whats important.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-4 col-sm-6">
-                    <div class="homePageServices">
-                        <div class="homePageServicesIcon">
-                            <i class="fa fa-clock-o"></i>
-                        </div>
-                        <div class="homePageServicesInfo">
-                            <h4>Timed tests</h4>
-                            <p>
-                                With TigerQuiz it is easy to set a time limit or allow your learners an unlimited amount of time to complete your assessment.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 col-sm-6">
-                    <div class="homePageServices">
-                        <div class="homePageServicesIcon">
-                            <i class="fa fa-flash"></i>
-                        </div><!--services icon-->
-                        <div class="homePageServicesInfo">
-                            <h4>Custom Branding</h4>
-                            <p>
-                                Customize your tests by adding your own branding with your school or companies logo.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 col-sm-6">
-                    <div class="homePageServices">
-                        <div class="homePageServicesIcon">
-                            <i class="fa fa-eye"></i>
-                        </div>
-                        <div class="homePageServicesInfo">
-                            <h4>Public and Private quizzes</h4>
-                            <p>
-                                Tests can either be published privately to a select group or open them up to everyone with a single link and registration page.
-                            </p>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <a href="" class="btn btn-primary mt-2 py-2 px-4">Learn More</a>
+          </div>
         </div>
+      </div>
     </div>
+    <!-- About End -->
 
-    <div class="homePageBottomJoinNow">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-8">
-                    <h4 class="animated slideInDown">
-                        TigerQuiz IS A POWERFUL ONLINE TEST GENERATOR
-                    </h4>
-
-                    <p>
-                        Build your own online tests and assessments with TigerQuiz for free.
-                    </p>
+    <!-- Class Start -->
+    <div class="container-fluid pt-5">
+      <div class="container">
+        <div class="text-center pb-2">
+          <p class="section-title px-5">
+            <span class="px-2">Popular Classes</span>
+          </p>
+          <h1 class="mb-4">Classes for Your Kids</h1>
+        </div>
+        <div class="row">
+          <div class="col-lg-4 mb-5">
+            <div class="card border-0 bg-light shadow-sm pb-2">
+              <img class="card-img-top mb-2" src="assets/img/img_wel/class-1.jpg" alt="" />
+              <div class="card-body text-center">
+                <h4 class="card-title">Drawing Class</h4>
+                <p class="card-text">
+                  Justo ea diam stet diam ipsum no sit, ipsum vero et et diam
+                  ipsum duo et no et, ipsum ipsum erat duo amet clita duo
+                </p>
+              </div>
+              <div class="card-footer bg-transparent py-4 px-5">
+                <div class="row border-bottom">
+                  <div class="col-6 py-1 text-right border-right">
+                    <strong>Age of Kids</strong>
+                  </div>
+                  <div class="col-6 py-1">3 - 6 Years</div>
                 </div>
-                <div class="col-sm-4">
-                    <p><a class="btn btn-success btn-lg" role="button" onclick="window.location='https://www.flexiquiz.com/Account/Register?plan=free'">Get Started for Free &raquo;</a></p>
+                <div class="row border-bottom">
+                  <div class="col-6 py-1 text-right border-right">
+                    <strong>Total Seats</strong>
+                  </div>
+                  <div class="col-6 py-1">40 Seats</div>
                 </div>
+                <div class="row border-bottom">
+                  <div class="col-6 py-1 text-right border-right">
+                    <strong>Class Time</strong>
+                  </div>
+                  <div class="col-6 py-1">08:00 - 10:00</div>
+                </div>
+                <div class="row">
+                  <div class="col-6 py-1 text-right border-right">
+                    <strong>Tution Fee</strong>
+                  </div>
+                  <div class="col-6 py-1">$290 / Month</div>
+                </div>
+              </div>
+              <a href="" class="btn btn-primary px-4 mx-auto mb-4">Join Now</a>
             </div>
+          </div>
+          <div class="col-lg-4 mb-5">
+            <div class="card border-0 bg-light shadow-sm pb-2">
+              <img class="card-img-top mb-2" src="assets/img/img_wel/class-2.jpg" alt="" />
+              <div class="card-body text-center">
+                <h4 class="card-title">Language Learning</h4>
+                <p class="card-text">
+                  Justo ea diam stet diam ipsum no sit, ipsum vero et et diam
+                  ipsum duo et no et, ipsum ipsum erat duo amet clita duo
+                </p>
+              </div>
+              <div class="card-footer bg-transparent py-4 px-5">
+                <div class="row border-bottom">
+                  <div class="col-6 py-1 text-right border-right">
+                    <strong>Age of Kids</strong>
+                  </div>
+                  <div class="col-6 py-1">3 - 6 Years</div>
+                </div>
+                <div class="row border-bottom">
+                  <div class="col-6 py-1 text-right border-right">
+                    <strong>Total Seats</strong>
+                  </div>
+                  <div class="col-6 py-1">40 Seats</div>
+                </div>
+                <div class="row border-bottom">
+                  <div class="col-6 py-1 text-right border-right">
+                    <strong>Class Time</strong>
+                  </div>
+                  <div class="col-6 py-1">08:00 - 10:00</div>
+                </div>
+                <div class="row">
+                  <div class="col-6 py-1 text-right border-right">
+                    <strong>Tution Fee</strong>
+                  </div>
+                  <div class="col-6 py-1">$290 / Month</div>
+                </div>
+              </div>
+              <a href="" class="btn btn-primary px-4 mx-auto mb-4">Join Now</a>
+            </div>
+          </div>
+          <div class="col-lg-4 mb-5">
+            <div class="card border-0 bg-light shadow-sm pb-2">
+              <img class="card-img-top mb-2" src="assets/img/img_wel/class-3.jpg" alt="" />
+              <div class="card-body text-center">
+                <h4 class="card-title">Basic Science</h4>
+                <p class="card-text">
+                  Justo ea diam stet diam ipsum no sit, ipsum vero et et diam
+                  ipsum duo et no et, ipsum ipsum erat duo amet clita duo
+                </p>
+              </div>
+              <div class="card-footer bg-transparent py-4 px-5">
+                <div class="row border-bottom">
+                  <div class="col-6 py-1 text-right border-right">
+                    <strong>Age of Kids</strong>
+                  </div>
+                  <div class="col-6 py-1">3 - 6 Years</div>
+                </div>
+                <div class="row border-bottom">
+                  <div class="col-6 py-1 text-right border-right">
+                    <strong>Total Seats</strong>
+                  </div>
+                  <div class="col-6 py-1">40 Seats</div>
+                </div>
+                <div class="row border-bottom">
+                  <div class="col-6 py-1 text-right border-right">
+                    <strong>Class Time</strong>
+                  </div>
+                  <div class="col-6 py-1">08:00 - 10:00</div>
+                </div>
+                <div class="row">
+                  <div class="col-6 py-1 text-right border-right">
+                    <strong>Tution Fee</strong>
+                  </div>
+                  <div class="col-6 py-1">$290 / Month</div>
+                </div>
+              </div>
+              <a href="" class="btn btn-primary px-4 mx-auto mb-4">Join Now</a>
+            </div>
+          </div>
         </div>
+      </div>
     </div>
+    <!-- Class End -->
 
-
-            
-
-
-<div class="siteFooter">
-    <div class="container">
-        <div class="row text-center">
-            <div class="col-md-2">
-                <h5><a href="/Home/TermsAndConditions">Terms and Conditions</a></h5>
+    <!-- Registration Start -->
+    <div class="container-fluid py-5">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-lg-7 mb-5 mb-lg-0">
+            <p class="section-title pr-5">
+              <span class="pr-2">Book A Seat</span>
+            </p>
+            <h1 class="mb-4">Book A Seat For Your Kid</h1>
+            <p>
+              Invidunt lorem justo sanctus clita. Erat lorem labore ea, justo
+              dolor lorem ipsum ut sed eos, ipsum et dolor kasd sit ea justo.
+              Erat justo sed sed diam. Ea et erat ut sed diam sea ipsum est
+              dolor
+            </p>
+            <ul class="list-inline m-0">
+              <li class="py-2">
+                <i class="fa fa-check text-success mr-3"></i>Labore eos amet
+                dolor amet diam
+              </li>
+              <li class="py-2">
+                <i class="fa fa-check text-success mr-3"></i>Etsea et sit dolor
+                amet ipsum
+              </li>
+              <li class="py-2">
+                <i class="fa fa-check text-success mr-3"></i>Diam dolor diam
+                elitripsum vero.
+              </li>
+            </ul>
+            <a href="" class="btn btn-primary mt-4 py-2 px-4">Book Now</a>
+          </div>
+          <div class="col-lg-5">
+            <div class="card border-0">
+              <div class="card-header bg-secondary text-center p-4">
+                <h1 class="text-white m-0">Book A Seat</h1>
+              </div>
+              <div class="card-body rounded-bottom bg-primary p-5">
+                <form>
+                  <div class="form-group">
+                    <input
+                      type="text"
+                      class="form-control border-0 p-4"
+                      placeholder="Your Name"
+                      required="required"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <input
+                      type="email"
+                      class="form-control border-0 p-4"
+                      placeholder="Your Email"
+                      required="required"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <select
+                      class="custom-select border-0 px-4"
+                      style="height: 47px"
+                    >
+                      <option selected>Select A Class</option>
+                      <option value="1">Class 1</option>
+                      <option value="2">Class 1</option>
+                      <option value="3">Class 1</option>
+                    </select>
+                  </div>
+                  <div>
+                    <button
+                      class="btn btn-secondary btn-block border-0 py-3"
+                      type="submit"
+                    >
+                      Book Now
+                    </button>
+                  </div>
+                </form>
+              </div>
             </div>
-            <div class="col-md-2"><h5><a href="/Home/AntiSpamPolicy">Anti-Spam</a></h5></div>
-            <div class="col-md-2">
-                <h5><a href="/Home/PrivacyPolicy">Privacy</a></h5>
-            </div>
-                <div class="col-md-2"><h5><a href="/Help">Help</a></h5></div>
-                <div class="col-md-2"><h5><a href="/blog">Blog</a></h5></div>
-
-            <div class="col-md-2"><h5><a href="/Home/Contact">Contact Us</a></h5></div>
+          </div>
         </div>
-        <div class="row text-center">
-
-            <div class="col-md-offset-3 col-md-6">
-                <h6>&copy; 2022 - nextSpark Pty Ltd.</h6>
-            </div>
-        </div>
+      </div>
     </div>
-</div>
+    <!-- Registration End -->
 
-
+    <!-- Team Start -->
+    <div class="container-fluid pt-5">
+      <div class="container">
+        <div class="text-center pb-2">
+          <p class="section-title px-5">
+            <span class="px-2">Our Teachers</span>
+          </p>
+          <h1 class="mb-4">Meet Our Teachers</h1>
         </div>
+        <div class="row">
+          <div class="col-md-6 col-lg-3 text-center team mb-5">
+            <div
+              class="position-relative overflow-hidden mb-4"
+              style="border-radius: 100%"
+            >
+              <img class="img-fluid w-100" src="assets/img/img_wel/team-1.jpg" alt="" />
+              <div
+                class="team-social d-flex align-items-center justify-content-center w-100 h-100 position-absolute"
+              >
+                <a
+                  class="btn btn-outline-light text-center mr-2 px-0"
+                  style="width: 38px; height: 38px"
+                  href="#"
+                  ><i class="fab fa-twitter"></i
+                ></a>
+                <a
+                  class="btn btn-outline-light text-center mr-2 px-0"
+                  style="width: 38px; height: 38px"
+                  href="#"
+                  ><i class="fab fa-facebook-f"></i
+                ></a>
+                <a
+                  class="btn btn-outline-light text-center px-0"
+                  style="width: 38px; height: 38px"
+                  href="#"
+                  ><i class="fab fa-linkedin-in"></i
+                ></a>
+              </div>
+            </div>
+            <h4>Julia Smith</h4>
+            <i>Music Teacher</i>
+          </div>
+          <div class="col-md-6 col-lg-3 text-center team mb-5">
+            <div
+              class="position-relative overflow-hidden mb-4"
+              style="border-radius: 100%"
+            >
+              <img class="img-fluid w-100" src="assets/img/img_wel/team-2.jpg" alt="" />
+              <div
+                class="team-social d-flex align-items-center justify-content-center w-100 h-100 position-absolute"
+              >
+                <a
+                  class="btn btn-outline-light text-center mr-2 px-0"
+                  style="width: 38px; height: 38px"
+                  href="#"
+                  ><i class="fab fa-twitter"></i
+                ></a>
+                <a
+                  class="btn btn-outline-light text-center mr-2 px-0"
+                  style="width: 38px; height: 38px"
+                  href="#"
+                  ><i class="fab fa-facebook-f"></i
+                ></a>
+                <a
+                  class="btn btn-outline-light text-center px-0"
+                  style="width: 38px; height: 38px"
+                  href="#"
+                  ><i class="fab fa-linkedin-in"></i
+                ></a>
+              </div>
+            </div>
+            <h4>Jhon Doe</h4>
+            <i>Language Teacher</i>
+          </div>
+          <div class="col-md-6 col-lg-3 text-center team mb-5">
+            <div
+              class="position-relative overflow-hidden mb-4"
+              style="border-radius: 100%"
+            >
+              <img class="img-fluid w-100" src="assets/img/img_wel/team-3.jpg" alt="" />
+              <div
+                class="team-social d-flex align-items-center justify-content-center w-100 h-100 position-absolute"
+              >
+                <a
+                  class="btn btn-outline-light text-center mr-2 px-0"
+                  style="width: 38px; height: 38px"
+                  href="#"
+                  ><i class="fab fa-twitter"></i
+                ></a>
+                <a
+                  class="btn btn-outline-light text-center mr-2 px-0"
+                  style="width: 38px; height: 38px"
+                  href="#"
+                  ><i class="fab fa-facebook-f"></i
+                ></a>
+                <a
+                  class="btn btn-outline-light text-center px-0"
+                  style="width: 38px; height: 38px"
+                  href="#"
+                  ><i class="fab fa-linkedin-in"></i
+                ></a>
+              </div>
+            </div>
+            <h4>Mollie Ross</h4>
+            <i>Dance Teacher</i>
+          </div>
+          <div class="col-md-6 col-lg-3 text-center team mb-5">
+            <div
+              class="position-relative overflow-hidden mb-4"
+              style="border-radius: 100%"
+            >
+              <img class="img-fluid w-100" src="assets/img/img_wel/team-4.jpg" alt="" />
+              <div
+                class="team-social d-flex align-items-center justify-content-center w-100 h-100 position-absolute"
+              >
+                <a
+                  class="btn btn-outline-light text-center mr-2 px-0"
+                  style="width: 38px; height: 38px"
+                  href="#"
+                  ><i class="fab fa-twitter"></i
+                ></a>
+                <a
+                  class="btn btn-outline-light text-center mr-2 px-0"
+                  style="width: 38px; height: 38px"
+                  href="#"
+                  ><i class="fab fa-facebook-f"></i
+                ></a>
+                <a
+                  class="btn btn-outline-light text-center px-0"
+                  style="width: 38px; height: 38px"
+                  href="#"
+                  ><i class="fab fa-linkedin-in"></i
+                ></a>
+              </div>
+            </div>
+            <h4>Donald John</h4>
+            <i>Art Teacher</i>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Team End -->
 
-    
+    <!-- Testimonial Start -->
+    <div class="container-fluid py-5">
+      <div class="container p-0">
+        <div class="text-center pb-2">
+          <p class="section-title px-5">
+            <span class="px-2">Testimonial</span>
+          </p>
+          <h1 class="mb-4">What Parents Say!</h1>
+        </div>
+        <div class="owl-carousel testimonial-carousel">
+          <div class="testimonial-item px-3">
+            <div class="bg-light shadow-sm rounded mb-4 p-4">
+              <h3 class="fas fa-quote-left text-primary mr-3"></h3>
+              Sed ea amet kasd elitr stet, stet rebum et ipsum est duo elitr
+              eirmod clita lorem. Dolor tempor ipsum clita
+            </div>
+            <div class="d-flex align-items-center">
+              <img
+                class="rounded-circle"
+                src="assets/img/img_wel/testimonial-1.jpg"
+                style="width: 70px; height: 70px"
+                alt="Image"
+              />
+              <div class="pl-3">
+                <h5>Parent Name</h5>
+                <i>Profession</i>
+              </div>
+            </div>
+          </div>
+          <div class="testimonial-item px-3">
+            <div class="bg-light shadow-sm rounded mb-4 p-4">
+              <h3 class="fas fa-quote-left text-primary mr-3"></h3>
+              Sed ea amet kasd elitr stet, stet rebum et ipsum est duo elitr
+              eirmod clita lorem. Dolor tempor ipsum clita
+            </div>
+            <div class="d-flex align-items-center">
+              <img
+                class="rounded-circle"
+                src="assets/img/img_wel/testimonial-2.jpg"
+                style="width: 70px; height: 70px"
+                alt="Image"
+              />
+              <div class="pl-3">
+                <h5>Parent Name</h5>
+                <i>Profession</i>
+              </div>
+            </div>
+          </div>
+          <div class="testimonial-item px-3">
+            <div class="bg-light shadow-sm rounded mb-4 p-4">
+              <h3 class="fas fa-quote-left text-primary mr-3"></h3>
+              Sed ea amet kasd elitr stet, stet rebum et ipsum est duo elitr
+              eirmod clita lorem. Dolor tempor ipsum clita
+            </div>
+            <div class="d-flex align-items-center">
+              <img
+                class="rounded-circle"
+                src="assets/img/img_wel/testimonial-3.jpg"
+                style="width: 70px; height: 70px"
+                alt="Image"
+              />
+              <div class="pl-3">
+                <h5>Parent Name</h5>
+                <i>Profession</i>
+              </div>
+            </div>
+          </div>
+          <div class="testimonial-item px-3">
+            <div class="bg-light shadow-sm rounded mb-4 p-4">
+              <h3 class="fas fa-quote-left text-primary mr-3"></h3>
+              Sed ea amet kasd elitr stet, stet rebum et ipsum est duo elitr
+              eirmod clita lorem. Dolor tempor ipsum clita
+            </div>
+            <div class="d-flex align-items-center">
+              <img
+                class="rounded-circle"
+                src="assets/img/img_wel/testimonial-4.jpg"
+                style="width: 70px; height: 70px"
+                alt="Image"
+              />
+              <div class="pl-3">
+                <h5>Parent Name</h5>
+                <i>Profession</i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Testimonial End -->
 
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/3.3.1/jquery-migrate.min.js" integrity="sha512-wDH73bv6rW6O6ev5DGYexNboWMzBoY+1TEAx5Q/sdbqN2MB2cNTG9Ge/qv3c1QNvuiAuETsKJnnHH2UDJGmmAQ==" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.2/html5shiv.min.js" integrity="sha256-4OrICDjBYfKefEbVT7wETRLNFkuq4TJV5WLGvjqpGAk=" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js" integrity="sha256-g6iAfvZp+nDQ2TdTR/VVKJf3bGro4ub5fvWSWVRi2NE=" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/js/bootstrap.min.js" integrity="sha256-JnqDCSpf1uxft0a84S1ECr038dZJwHL2U+F9DIAOtkc=" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.10.0/jquery.validate.min.js" integrity="sha256-zeBXhIZxe7b3XDozN2EWt3Z3YZR1w4tZBCWOWxGOhDY=" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.2/jquery.validate.unobtrusive.min.js" integrity="sha256-Wmm/W/tEYyG8DI5G0qw+plrWVWbJNNr5dewPwJ44Qh8=" crossorigin="anonymous"></script>
-        <script src="/bundles/layoutSC?v=z_Mz0d8Q05ErBm-ucl4mbRzolLZlAbSsFrYB2MEL7B81"></script>
+    <!-- Blog Start -->
+    <div class="container-fluid pt-5">
+      <div class="container">
+        <div class="text-center pb-2">
+          <p class="section-title px-5">
+            <span class="px-2">Latest Blog</span>
+          </p>
+          <h1 class="mb-4">Latest Articles From Blog</h1>
+        </div>
+        <div class="row pb-3">
+          <div class="col-lg-4 mb-4">
+            <div class="card border-0 shadow-sm mb-2">
+              <img class="card-img-top mb-2" src="assets/img/img_wel/blog-1.jpg" alt="" />
+              <div class="card-body bg-light text-center p-4">
+                <h4 class="">Diam amet eos at no eos</h4>
+                <div class="d-flex justify-content-center mb-3">
+                  <small class="mr-3"
+                    ><i class="fa fa-user text-primary"></i> Admin</small
+                  >
+                  <small class="mr-3"
+                    ><i class="fa fa-folder text-primary"></i> Web Design</small
+                  >
+                  <small class="mr-3"
+                    ><i class="fa fa-comments text-primary"></i> 15</small
+                  >
+                </div>
+                <p>
+                  Sed kasd sea sed at elitr sed ipsum justo, sit nonumy diam
+                  eirmod, duo et sed sit eirmod kasd clita tempor dolor stet
+                  lorem. Tempor ipsum justo amet stet...
+                </p>
+                <a href="" class="btn btn-primary px-4 mx-auto my-2"
+                  >Read More</a
+                >
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 mb-4">
+            <div class="card border-0 shadow-sm mb-2">
+              <img class="card-img-top mb-2" src="assets/img/img_wel/blog-2.jpg" alt="" />
+              <div class="card-body bg-light text-center p-4">
+                <h4 class="">Diam amet eos at no eos</h4>
+                <div class="d-flex justify-content-center mb-3">
+                  <small class="mr-3"
+                    ><i class="fa fa-user text-primary"></i> Admin</small
+                  >
+                  <small class="mr-3"
+                    ><i class="fa fa-folder text-primary"></i> Web Design</small
+                  >
+                  <small class="mr-3"
+                    ><i class="fa fa-comments text-primary"></i> 15</small
+                  >
+                </div>
+                <p>
+                  Sed kasd sea sed at elitr sed ipsum justo, sit nonumy diam
+                  eirmod, duo et sed sit eirmod kasd clita tempor dolor stet
+                  lorem. Tempor ipsum justo amet stet...
+                </p>
+                <a href="" class="btn btn-primary px-4 mx-auto my-2"
+                  >Read More</a
+                >
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 mb-4">
+            <div class="card border-0 shadow-sm mb-2">
+              <img class="card-img-top mb-2" src="assets/img/img_wel/blog-3.jpg" alt="" />
+              <div class="card-body bg-light text-center p-4">
+                <h4 class="">Diam amet eos at no eos</h4>
+                <div class="d-flex justify-content-center mb-3">
+                  <small class="mr-3"
+                    ><i class="fa fa-user text-primary"></i> Admin</small
+                  >
+                  <small class="mr-3"
+                    ><i class="fa fa-folder text-primary"></i> Web Design</small
+                  >
+                  <small class="mr-3"
+                    ><i class="fa fa-comments text-primary"></i> 15</small
+                  >
+                </div>
+                <p>
+                  Sed kasd sea sed at elitr sed ipsum justo, sit nonumy diam
+                  eirmod, duo et sed sit eirmod kasd clita tempor dolor stet
+                  lorem. Tempor ipsum justo amet stet...
+                </p>
+                <a href="" class="btn btn-primary px-4 mx-auto my-2"
+                  >Read More</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Blog End -->
 
-        
+    <!-- Footer Start -->
+    <div
+      class="container-fluid bg-secondary text-white mt-5 py-5 px-sm-3 px-md-5"
+    >
+      <div class="row pt-5">
+        <div class="col-lg-3 col-md-6 mb-5">
+          <a
+            href=""
+            class="navbar-brand font-weight-bold text-primary m-0 mb-4 p-0"
+            style="font-size: 40px; line-height: 40px"
+          >
+            <i class="flaticon-043-teddy-bear"></i>
+            <span class="text-white">KidKinder</span>
+          </a>
+          <p>
+            Labore dolor amet ipsum ea, erat sit ipsum duo eos. Volup amet ea
+            dolor et magna dolor, elitr rebum duo est sed diam elitr. Stet elitr
+            stet diam duo eos rebum ipsum diam ipsum elitr.
+          </p>
+          <div class="d-flex justify-content-start mt-4">
+            <a
+              class="btn btn-outline-primary rounded-circle text-center mr-2 px-0"
+              style="width: 38px; height: 38px"
+              href="#"
+              ><i class="fab fa-twitter"></i
+            ></a>
+            <a
+              class="btn btn-outline-primary rounded-circle text-center mr-2 px-0"
+              style="width: 38px; height: 38px"
+              href="#"
+              ><i class="fab fa-facebook-f"></i
+            ></a>
+            <a
+              class="btn btn-outline-primary rounded-circle text-center mr-2 px-0"
+              style="width: 38px; height: 38px"
+              href="#"
+              ><i class="fab fa-linkedin-in"></i
+            ></a>
+            <a
+              class="btn btn-outline-primary rounded-circle text-center mr-2 px-0"
+              style="width: 38px; height: 38px"
+              href="#"
+              ><i class="fab fa-instagram"></i
+            ></a>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6 mb-5">
+          <h3 class="text-primary mb-4">Get In Touch</h3>
+          <div class="d-flex">
+            <h4 class="fa fa-map-marker-alt text-primary"></h4>
+            <div class="pl-3">
+              <h5 class="text-white">Address</h5>
+              <p>123 Street, New York, USA</p>
+            </div>
+          </div>
+          <div class="d-flex">
+            <h4 class="fa fa-envelope text-primary"></h4>
+            <div class="pl-3">
+              <h5 class="text-white">Email</h5>
+              <p>info@example.com</p>
+            </div>
+          </div>
+          <div class="d-flex">
+            <h4 class="fa fa-phone-alt text-primary"></h4>
+            <div class="pl-3">
+              <h5 class="text-white">Phone</h5>
+              <p>+012 345 67890</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6 mb-5">
+          <h3 class="text-primary mb-4">Quick Links</h3>
+          <div class="d-flex flex-column justify-content-start">
+            <a class="text-white mb-2" href="#"
+              ><i class="fa fa-angle-right mr-2"></i>Home</a
+            >
+            <a class="text-white mb-2" href="#"
+              ><i class="fa fa-angle-right mr-2"></i>About Us</a
+            >
+            <a class="text-white mb-2" href="#"
+              ><i class="fa fa-angle-right mr-2"></i>Our Classes</a
+            >
+            <a class="text-white mb-2" href="#"
+              ><i class="fa fa-angle-right mr-2"></i>Our Teachers</a
+            >
+            <a class="text-white mb-2" href="#"
+              ><i class="fa fa-angle-right mr-2"></i>Our Blog</a
+            >
+            <a class="text-white" href="#"
+              ><i class="fa fa-angle-right mr-2"></i>Contact Us</a
+            >
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6 mb-5">
+          <h3 class="text-primary mb-4">Newsletter</h3>
+          <form action="">
+            <div class="form-group">
+              <input
+                type="text"
+                class="form-control border-0 py-4"
+                placeholder="Your Name"
+                required="required"
+              />
+            </div>
+            <div class="form-group">
+              <input
+                type="email"
+                class="form-control border-0 py-4"
+                placeholder="Your Email"
+                required="required"
+              />
+            </div>
+            <div>
+              <button
+                class="btn btn-primary btn-block border-0 py-3"
+                type="submit"
+              >
+                Submit Now
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div
+        class="container-fluid pt-5"
+        style="border-top: 1px solid rgba(23, 162, 184, 0.2) ;"
+      >
+        <p class="m-0 text-center text-white">
+          &copy;
+          <a class="text-primary font-weight-bold" href="#">Your Site Name</a>.
+          All Rights Reserved.
 
+          <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
+          Designed by
+          <a class="text-primary font-weight-bold" href="https://htmlcodex.com"
+            >HTML Codex</a
+          >
+          <br />Distributed By:
+          <a href="https://themewagon.com" target="_blank">ThemeWagon</a>
+        </p>
+      </div>
+    </div>
+    <!-- Footer End -->
 
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-primary p-3 back-to-top"
+      ><i class="fa fa-angle-double-up"></i
+    ></a>
 
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/lib/easing/easing.min.js"></script>
+    <script src="assets/lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="assets/lib/isotope/isotope.pkgd.min.js"></script>
+    <script src="assets/lib/lightbox/js/lightbox.min.js"></script>
 
-        <script type="text/javascript">
+    <!-- Contact Javascript File -->
+    <script src="assets/mail/jqBootstrapValidation.min.js"></script>
+    <script src="assets/mail/contact.js"></script>
 
-            if (ie_ver() > 0 && ie_ver() <= 7) {
-                $(".browserWarning").html("<br /><h5><strong>Your Browser Is Not Supported!</strong> Please use Firefox, Chrome, Safari or Internet Explorer 8+</h5><br />");
-
-                $(".browserWarning").show();
-                $("#mainMenu").hide();
-            }
-        </script>
-
-            <script>
-              window.addEventListener('load',function(){
-                jQuery('button:contains(Sign up)').click(function(){
-                  gtag('event','click',{'event_category':'link','event_label':jQuery(this).text()})
-                })
-                jQuery('[href="/Home/Contact"]').click(function(){
-                  gtag('event','click',{'event_category':'link','event_label':jQuery(this).text()})
-                })
-                jQuery('button:contains(Login)').click(function(){
-                  gtag('event','click',{'event_category':'link','event_label':jQuery(this).text()})
-                })
-              })
-            </script>
-    </body>
-
+    <!-- Template Javascript -->
+    <script src="assets/js/wel_main.js"></script>
+  </body>
 </html>

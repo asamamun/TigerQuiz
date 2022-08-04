@@ -1,1 +1,0 @@
-@extends('tlayouts.master');

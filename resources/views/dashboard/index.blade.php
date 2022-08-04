@@ -165,7 +165,7 @@
     <div class="sidebar-footer">
         <a href="##" class="sidebar-user">
             <span class="sidebar-user-img">
-              <picture><img class="profile" alt="profile" src="img/profile/{{ Auth::user()->name }}.png" alt="User name" /></picture>
+              <picture><img class="profile" alt="profile" src="assets/img/profile/{{ Auth::user()->name }}.png" alt="User name" /></picture>
             </span>
             <div class="sidebar-user-info">
                 <span class="sidebar-user__title">{{ Auth::user()->name }}</span>
@@ -255,7 +255,7 @@
         <button href="##" class="nav-user-btn dropdown-btn" title="My profile" type="button">
           <span class="sr-only">My profile</span>
           <span class="nav-user-img">
-            <picture><img class="profile" alt="profile" src="img/profile/{{ Auth::user()->name }}.png" alt="User name" /></picture>
+            <picture><img class="profile" alt="profile" src="assets/img/profile/{{ Auth::user()->name }}.png" alt="User name" /></picture>
           </span>
         </button>
         <ul class="users-item-dropdown nav-user-dropdown dropdown">

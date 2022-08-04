@@ -8,13 +8,13 @@ class teacherController extends Controller
 {
     public function index()
     {
-    return view("teacher.dashboard");
+    return view("teacher.index");
     }
 
-    public function login()
-    {
-        return view("teacher.index");
-    }
+    // public function login()
+    // {
+    //     return view("teacher.login");
+    // }
 
     public function reg()
     {
