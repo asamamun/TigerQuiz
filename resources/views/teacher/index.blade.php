@@ -4,23 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Teacher Dashboard</title>
-    
     <link rel="stylesheet" href="assets/css/bootstrap.css">
-    
     <link rel="stylesheet" href="assets/css/chart.min.css">
-
     <link rel="stylesheet" href="assets/scrollbar/perfect-scrollbar.css">
     <link rel="stylesheet" href="assets/css/tea_style.css">
-    <link rel="shortcut icon" href="assets/img/favicon.ico" type="image/x-icon">
 </head>
 <body>
     <div id="app">
         <div id="sidebar" class='active'>
         <div class="sidebar-wrapper active">
-    <div class="sidebar-header text-center border-bottom">
+    <a href="./"><div class="sidebar-header text-center border-bottom">
 		<img src="assets/img/logo/tiger_logo.png" alt="logo">
 		<span class="logo-title text-warning">Tiger</span>&nbsp;<span class="logo-title text-info">Quiz</span>
-    </div>
+    </div></a>
     <div class="sidebar-menu">
         <ul class="menu">
                 <li class='sidebar-title'>Main Menu</li>
@@ -701,11 +697,9 @@
     <script src="assets/js/feather.min.js"></script>
     <script src="assets/scrollbar/perfect-scrollbar.min.js"></script>
     <script src="assets/js/tea_app.js"></script>
-    
     <script src="assets/js/Chart.min.js"></script>
     <script src="assets/vendors/apexcharts/apexcharts.min.js"></script>
     <script src="assets/js/pages/dashboard.js"></script>
-
     <script src="assets/js/tea_main.js"></script>
 </body>
 </html>

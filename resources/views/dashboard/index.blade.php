@@ -22,7 +22,7 @@
   <aside class="sidebar">
     <div class="sidebar-start">
         <div class="sidebar-head">
-            <a href="/" class="logo-wrapper" title="Home">
+            <a href="./" class="logo-wrapper" title="Home">
                 <span class="sr-only">Home</span>
                 <span class="icon logo" aria-hidden="true"><img src="assets/img/logo/tiger_logo.png" alt=""></span>
                 <div class="logo-text">
