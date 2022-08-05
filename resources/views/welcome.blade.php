@@ -3,7 +3,7 @@
 
 @section('css')
     @include('inc.maincss')
-@stop
+    @stop
 
 @section('include')
 
@@ -16,5 +16,8 @@
 @include('inc.team')
 @include('inc.tsm')
 @include('inc.footer')
-@include('inc.mainjs')
+
     @stop
+@section('scripts')
+@include('inc.mainjs')
+    @endsection
