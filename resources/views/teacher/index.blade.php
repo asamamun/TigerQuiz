@@ -371,17 +371,13 @@
                                 <a class="dropdown-item" href="#"><i data-feather="user"></i> Account</a>
                                 <a class="dropdown-item" href="#"><i data-feather="settings"></i> Settings</a>
                                 <div class="dropdown-divider"></div>
-                                <span class="dropdown-item"><i data-feather="log-out"></i>
-									<a class="danger" href="##">
-										<span class="align-middle">
-										  <form method="POST" action="{{ route('logout') }}">
-											@csrf
-											<a href="{{route('logout')}}" 
-											onclick="event.preventDefault(); this.closest('form').submit();">{{ __('Log Out') }}</a>
-											return redirect()->back();
-										</form>
-										</span>
-									  </a></span>
+                               <a class="danger" href="#">
+                                <i data-feather="log-out"></i>
+                                            <form method="POST" action="{{ route('logout') }}">
+                                                @csrf <a href="{{route('logout')}}" 
+                                                onclick="event.preventDefault(); this.closest('form').submit();">
+                                                {{ __('Log Out') }}</a>
+                                            </form></a>
                             </div>
                         </li>
                         <li class="dropdown">

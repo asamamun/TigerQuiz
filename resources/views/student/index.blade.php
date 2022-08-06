@@ -32,9 +32,14 @@
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                         <div class="profile text-center"> <img class="profile rounded-circle text-center" width="40%" src="assets/img/profile/{{ Auth::user()->name }}.png" /></div>
                         <div class="name text-center">{{ Auth::user()->name }}</div>
-                        <li><a class="dropdown-item text-center" href="#!">Settings</a></li>
-                        <li><hr class="dropdown-divider" /></li>
-                        <li><a class="dropdown-item text-center" href="#!">Logout</a></li>
+                        <li class="border-top"><a class="dropdown-item text-center" href="#!">Settings</a></li>
+                        <li class="border-top">
+                              <form method="POST" action="{{ route('logout') }}">
+                                @csrf <a class="dropdown-item text-center" href="{{route('logout')}}" 
+                                onclick="event.preventDefault(); this.closest('form').submit();">
+                                </i>{{ __('Log Out') }}</a>
+                            </form>
+                        </li>
                     </ul>
                 </li>
             </ul>
