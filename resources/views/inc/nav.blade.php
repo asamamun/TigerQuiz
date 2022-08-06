@@ -27,7 +27,7 @@
           <a href="./about" class="nav-item nav-link">About</a>
           <a href="./class" class="nav-item nav-link">Classes</a>
           <a href="./teachers" class="nav-item nav-link">Teachers</a>
-          <a href="./Leaderboard" class="nav-item nav-link">Leaderboard</a>
+          <a href="./leaderboard" class="nav-item nav-link">Leaderboard</a>
           <!-- <a href="gallery.html" class="nav-item nav-link">Gallery</a> -->
           <div class="nav-item dropdown">
             <a href="#"
