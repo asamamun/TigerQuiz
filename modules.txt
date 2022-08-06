@@ -3,6 +3,11 @@ can register and login
 can add quiz(mcq and descriptive)
 can add quiz set
 publish quiz
+teacher can write blog
+teacher can create classroom/batch(classname-batchnumber-session/year)(05-01-22,05-02-22)
+teacher profile will show classrooms/batcher with (enrolled/join now buttons)
+
+free and paid quizzes/resources/blogs
 
 module student:
 can register and login
@@ -11,8 +16,30 @@ check his leaderboard position
 check his previous quiz results
 
 admin can:
-manage categories(class), subcategories(subject), topic(chapters), quiz ,quizset, teacher, student , leaderboard
+manage 
+categories(class), 
+subcategories(subject), 
+topic(chapters), 
+quiz ,
+quizset, 
+teacher, 
+student , 
+leaderboard
+change role of teachers(all/blog/quiz/)
 
 https://github.com/ColorlibHQ/gentelella
+
+
+students can attend in quiz
+students can attend teachers classroom/batch
+teachers can enroll students
+
+
+
+Roles : 
+1 = admin
+2 = teacher
+3 = student
+
 
 
