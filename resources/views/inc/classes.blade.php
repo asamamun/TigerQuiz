@@ -8,11 +8,9 @@
 @section('include')
 
 @include('inc.nav')
-@include('inc.introabt')
+@include('inc.introcls')
 @include('inc.class')
-@include('inc.faci')
-@include('inc.team')
-
+@include('inc.reg')
     @stop
 
 @section('footerin')
@@ -21,3 +19,4 @@
 @section('scriptin')
     @include('inc.mainjs')
     @endsection
+@section('scripts')

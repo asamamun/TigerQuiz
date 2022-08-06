@@ -15,9 +15,12 @@
 @include('inc.reg')
 @include('inc.team')
 @include('inc.tsm')
-@include('inc.footer')
-
     @stop
-@section('scripts')
-@include('inc.mainjs')
+
+@section('footerin')
+@include('inc.footer')
+    @stop
+@section('scriptin')
+    @include('inc.mainjs')
     @endsection
+@section('scripts')

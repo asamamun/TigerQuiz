@@ -1,3 +1,12 @@
+
+<style>
+  .dropdown:hover .dropdown-menu{
+      display: block;
+  }
+  .dropdown-menu{
+      margin-top: 0;
+  }
+</style>
 <!-- Navbar Start -->
 <div class="container-fluid bg-light position-relative shadow">
     <nav class="navbar navbar-expand-lg bg-light navbar-light py-3 py-lg-0 px-0 px-lg-5">
@@ -15,10 +24,10 @@
       <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
         <div class="navbar-nav font-weight-bold mx-auto py-0">
           <a href="./" class="nav-item nav-link active">Home</a>
-          <a href="about.html" class="nav-item nav-link">About</a>
-          <a href="class.html" class="nav-item nav-link">Classes</a>
-          <a href="team.html" class="nav-item nav-link">Teachers</a>
-          <a href="team.html" class="nav-item nav-link">Students</a>
+          <a href="./about" class="nav-item nav-link">About</a>
+          <a href="./class" class="nav-item nav-link">Classes</a>
+          <a href="./teachers" class="nav-item nav-link">Teachers</a>
+          <a href="./Leaderboard" class="nav-item nav-link">Leaderboard</a>
           <!-- <a href="gallery.html" class="nav-item nav-link">Gallery</a> -->
           <div class="nav-item dropdown">
             <a href="#"
@@ -28,7 +37,7 @@
               <a href="single.html" class="dropdown-item">Descriptive</a>
             </div>
           </div>
-          <a href="contact.html" class="nav-item nav-link">Contact</a>
+          <a href="./contact" class="nav-item nav-link">Contact</a>
         </div>
         &nbsp; &nbsp;
         <li class="nav-item"> 
@@ -50,3 +59,4 @@
     </nav>
   </div>
   <!-- Navbar End -->
+  

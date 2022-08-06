@@ -13,7 +13,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Handlee&family=Nunito&display=swap"/>
    <!-- Bootstrap CDN -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
-    <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+    <script src="https://use.fontawesome.com/releases/v6.1.2/js/all.js" crossorigin="anonymous"></script>
     <!--for code-->
          @yield('css')
          @section('cssin')
@@ -44,8 +44,8 @@
 
         @show
         </div>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" crossorigin="anonymous"></script>
+        <script src="assets/js/bootstrap.bundle.min.js"></script>
         @yield('scripts')
         @section('scriptin')
 
