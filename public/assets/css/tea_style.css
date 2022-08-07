@@ -70,6 +70,13 @@
  * 6. Responsive
  */
  
+ *{
+  margin: 0;
+  padding: 0;
+  text-decoration: none!important;
+  list-style: none!important;
+  font-family: 'palatino linotype', Rupali!important;
+}
 
 .color-primary {
   color: #5A8DEE;
@@ -1502,4 +1509,10 @@ footer {
 
 .bg-gray-700 {
   background-color: #4a5568 !important;
+}
+/* ================ */
+.dropdown-menu {
+  position: absolute;
+  right: 0;
+  top: 50px;
 }
