@@ -1,5 +1,6 @@
 @extends('layouts.admin')
-@section('title', 'Admin Dashborad')
+@section('title', 'Student Dashborad')
+
 @section('sidebar')
 @include('inc.admin.stsidebar')
 @endsection
@@ -7,6 +8,7 @@
 @section('navbar')
 @include('inc.admin.navbar')
 @endsection
+
 
 @section('content')
         <div class="container-fluid px-4">
@@ -561,7 +563,6 @@
                 </div>
             </div>
         </div>
-    
      @endsection
      
          @section('footer')

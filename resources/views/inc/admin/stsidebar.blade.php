@@ -11,23 +11,23 @@
             <li class="sidebar-item active ">
                 <a href="index.html" class='sidebar-link'>
                     <i data-feather="home" width="20"></i> 
-                    <span>Students Dashboard</span>
+                    <span>Student Dashboard</span>
                 </a>
             </li>
             <li class="sidebar-item  has-sub">
                 <a href="#" class='sidebar-link'>
-                    <i data-feather="book" width="20"></i> 
-                    <span>Take Quiz</span>
+                    <i data-feather="settings" width="20"></i> 
+                    <span>Quizzes </span>
                 </a>
                 
                 <ul class="submenu ">
                     
                     <li>
-                        <a href="component-alert.html">Add Mcq</a>
+                        <a href="component-alert.html">Play Quizzes </a>
                     </li>
                     
                     <li>
-                        <a href="component-badge.html">All Descriptive</a>
+                        <a href="component-badge.html">Archive Quizset</a>
                     </li>
                     
                    
@@ -35,21 +35,51 @@
                 </ul>
                 
             </li>
-            <li class="sidebar-item  ">
-                <a href="form-layout.html" class='sidebar-link'>
+            <li class="sidebar-item  has-sub">
+                <a href="#" class='sidebar-link'>
                     <i data-feather="book" width="20"></i> 
-                    <span>My leaderboard</span>
+                    <span>Leaderboard</span>
                 </a>
                 
-            </li>
-            <li class="sidebar-item  ">
-                <a href="form-layout.html" class='sidebar-link'>
-                    <i data-feather="book" width="20"></i> 
-                    <span>My quiz results</span>
-                </a>
+                <ul class="submenu ">
+                    
+                    <li>
+                        <a href="component-alert.html">Your Rank</a>
+                    </li>
+                    
+                    <li>
+                        <a href="component-badge.html">Add Quizset</a>
+                    </li>
+                    
+                   
+                    
+                </ul>
                 
             </li>
-            
+            <li class="sidebar-item  has-sub">
+                <a href="#" class='sidebar-link'>
+                    <i data-feather="book" width="20"></i> 
+                    <span>Quiz Results</span>
+                </a>
+                
+                <ul class="submenu ">
+                    
+                    <li>
+                        <a href="component-alert.html">Last Quiz Result</a>
+                    </li>
+                    
+                    <li>
+                        <a href="component-badge.html">All Quiz Result</a>
+                    </li>
+                    
+                   
+                    
+                </ul>
+                
+            </li>
+            <hr>
+    </ul>
+</div>
 <button class="sidebar-toggler btn x"><i data-feather="x"></i></button>
 </div>
 </div>
