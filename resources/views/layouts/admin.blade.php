@@ -12,6 +12,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
     <script src="https://use.fontawesome.com/releases/v6.1.2/js/all.js" crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
+    <!-- page css-->
     <!-- <link rel="stylesheet" href="assets/css/bootstrap.css"> -->
     <link rel="stylesheet" href="assets/css/chart.min.css">
     <link rel="stylesheet" href="assets/scrollbar/perfect-scrollbar.css">
@@ -22,21 +23,21 @@
     </head>
     <body>
     
-   
     <!--for sidebar-->
-    
          @yield('sidebar')
 
     <!--for navbar-->
     <div id="main">
          @yield('navbar')
 
+  <!--main body-->
+    @yield('body')
     <!--main content-->
     <div class="main-content container-fluid">
      <section class="section">
          @yield('content')
      </section>
-</div>
+    </div>
    <!-- end of main div -->
    <!-- footer div -->
         @yield('footer')
