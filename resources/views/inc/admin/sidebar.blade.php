@@ -16,6 +16,27 @@
             </li>
             <li class="sidebar-item  has-sub">
                 <a href="#" class='sidebar-link'>
+                    <i data-feather="settings" width="20"></i> 
+                    <span>Settings </span>
+                </a>
+                
+                <ul class="submenu ">
+                    
+                    <li>
+                        <a href="component-alert.html">Site Info</a>
+                    </li>
+                    
+                    <li>
+                        <a href="component-badge.html">Site Theame</a>
+                    </li>
+                    
+                   
+                    
+                </ul>
+                
+            </li>
+            <li class="sidebar-item  has-sub">
+                <a href="#" class='sidebar-link'>
                     <i data-feather="book" width="20"></i> 
                     <span>Categories</span>
                 </a>
@@ -23,11 +44,11 @@
                 <ul class="submenu ">
                     
                     <li>
-                        <a href="component-alert.html">Add Categories</a>
+                        <a href="component-alert.html">Add Class</a>
                     </li>
                     
                     <li>
-                        <a href="component-badge.html">All Categories</a>
+                        <a href="component-badge.html">All Class</a>
                     </li>
                     
                    
@@ -35,27 +56,20 @@
                 </ul>
                 
             </li>
-            <li class="sidebar-item  ">
-                <a href="form-layout.html" class='sidebar-link'>
-                    <i data-feather="book" width="20"></i> 
-                    <span>Subcategories</span>
-                </a>
-                
-            </li>
             <li class="sidebar-item  has-sub">
                 <a href="#" class='sidebar-link'>
                     <i data-feather="book" width="20"></i> 
-                    <span>Topic</span>
+                    <span>Subcategories</span>
                 </a>
                 
                 <ul class="submenu ">
                     
                     <li>
-                        <a href="component-alert.html">Add topic</a>
+                        <a href="component-alert.html">Add Subject</a>
                     </li>
                     
                     <li>
-                        <a href="component-badge.html">All topic</a>
+                        <a href="component-badge.html">All Subject</a>
                     </li>
                     
                    
@@ -66,7 +80,28 @@
             <li class="sidebar-item  has-sub">
                 <a href="#" class='sidebar-link'>
                     <i data-feather="book" width="20"></i> 
-                    <span>Quiz </span>
+                    <span>Topics</span>
+                </a>
+                
+                <ul class="submenu ">
+                    
+                    <li>
+                        <a href="component-alert.html">Add Chapter</a>
+                    </li>
+                    
+                    <li>
+                        <a href="component-badge.html">All Chapter</a>
+                    </li>
+                    
+                   
+                    
+                </ul>
+                
+            </li>
+            <li class="sidebar-item  has-sub">
+                <a href="#" class='sidebar-link'>
+                    <i data-feather="book" width="20"></i> 
+                    <span>Quizzes</span>
                 </a>
                 
                 <ul class="submenu ">
@@ -84,11 +119,25 @@
                 </ul>
                 
             </li>
-            <li class="sidebar-item  ">
-                <a href="table-datatable.html" class='sidebar-link'>
-                    <i data-feather="book" width="20"></i> 
-                    <span>Quizset</span>
+            <li class="sidebar-item  has-sub">
+                <a href="#" class='sidebar-link'>
+                    <i data-feather="book-open" width="20"></i> 
+                    <span>Quizset </span>
                 </a>
+                
+                <ul class="submenu ">
+                    
+                    <li>
+                        <a href="component-alert.html">Add Quizset </a>
+                    </li>
+                    
+                    <li>
+                        <a href="component-badge.html">All Quizset</a>
+                    </li>
+                    
+                   
+                    
+                </ul>
                 
             </li>
             <li class='sidebar-title'>Teacher & Students</li>
@@ -97,7 +146,7 @@
         
             <li class="sidebar-item  has-sub">
                 <a href="#" class='sidebar-link'>
-                    <i data-feather="user" width="20"></i> 
+                    <i data-feather="users" width="20"></i> 
                     <span>All Teachers</span>
                 </a>
                 
@@ -120,7 +169,7 @@
             </li>
             <li class="sidebar-item  has-sub">
                 <a href="#" class='sidebar-link'>
-                    <i data-feather="user" width="20"></i> 
+                    <i data-feather="users" width="20"></i> 
                     <span>All Students</span>
                 </a>
                 
@@ -143,7 +192,7 @@
         
             <li class="sidebar-item  has-sub">
                 <a href="#" class='sidebar-link'>
-                    <i data-feather="trending-up" width="20"></i> 
+                    <i data-feather="award" width="20"></i> 
                     <span>Leaderboard</span>
                 </a>
                 
