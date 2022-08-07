@@ -11,23 +11,23 @@
             <li class="sidebar-item active ">
                 <a href="index.html" class='sidebar-link'>
                     <i data-feather="home" width="20"></i> 
-                    <span>Dashboard</span>
+                    <span>Teachers Dashboard</span>
                 </a>
             </li>
             <li class="sidebar-item  has-sub">
                 <a href="#" class='sidebar-link'>
                     <i data-feather="book" width="20"></i> 
-                    <span>Categories</span>
+                    <span>Add Quiz</span>
                 </a>
                 
                 <ul class="submenu ">
                     
                     <li>
-                        <a href="component-alert.html">Add Categories</a>
+                        <a href="component-alert.html">Add Mcq</a>
                     </li>
                     
                     <li>
-                        <a href="component-badge.html">All Categories</a>
+                        <a href="component-badge.html">All Descriptive</a>
                     </li>
                     
                    
@@ -38,24 +38,24 @@
             <li class="sidebar-item  ">
                 <a href="form-layout.html" class='sidebar-link'>
                     <i data-feather="book" width="20"></i> 
-                    <span>Subcategories</span>
+                    <span>Add Quiz Set</span>
                 </a>
                 
             </li>
             <li class="sidebar-item  has-sub">
                 <a href="#" class='sidebar-link'>
                     <i data-feather="book" width="20"></i> 
-                    <span>Topic</span>
+                    <span>Publish Quiz</span>
                 </a>
                 
                 <ul class="submenu ">
                     
                     <li>
-                        <a href="component-alert.html">Add topic</a>
+                        <a href="component-alert.html">Publish MCQ</a>
                     </li>
                     
                     <li>
-                        <a href="component-badge.html">All topic</a>
+                        <a href="component-badge.html">Publish Descriptive</a>
                     </li>
                     
                    
@@ -63,31 +63,13 @@
                 </ul>
                 
             </li>
-            <li class="sidebar-item  has-sub">
-                <a href="#" class='sidebar-link'>
-                    <i data-feather="book" width="20"></i> 
-                    <span>Quiz </span>
-                </a>
-                
-                <ul class="submenu ">
-                    
-                    <li>
-                        <a href="component-alert.html">Add quiz </a>
-                    </li>
-                    
-                    <li>
-                        <a href="component-badge.html">All quiz</a>
-                    </li>
-                    
-                   
-                    
-                </ul>
-                
+           
+                                            
             </li>
             <li class="sidebar-item  ">
                 <a href="table-datatable.html" class='sidebar-link'>
                     <i data-feather="book" width="20"></i> 
-                    <span>Quizset</span>
+                    <span>Blog Post</span>
                 </a>
                 
             </li>
@@ -98,7 +80,7 @@
             <li class="sidebar-item  has-sub">
                 <a href="#" class='sidebar-link'>
                     <i data-feather="user" width="20"></i> 
-                    <span>All Teachers</span>
+                    <span>Create Classroom</span>
                 </a>
                 
                 <ul class="submenu ">
@@ -107,13 +89,7 @@
                         <a href="ui-chatbox.html">Chatbox</a>
                     </li>
                     
-                    <li>
-                        <a href="ui-pricing.html">Pricing</a>
-                    </li>
-                    
-                    <li>
-                        <a href="ui-todolist.html">To-do List</a>
-                    </li>
+                   
                     
                 </ul>
                 
@@ -121,7 +97,7 @@
             <li class="sidebar-item  has-sub">
                 <a href="#" class='sidebar-link'>
                     <i data-feather="user" width="20"></i> 
-                    <span>All Students</span>
+                    <span>Enrolled Course List</span>
                 </a>
                 
                 <ul class="submenu ">
@@ -137,55 +113,7 @@
                 </ul>
                 
             </li>
-            <li class='sidebar-title'>Others</li>
-        
-        
-        
-            <li class="sidebar-item  has-sub">
-                <a href="#" class='sidebar-link'>
-                    <i data-feather="trending-up" width="20"></i> 
-                    <span>Leaderboard</span>
-                </a>
-                
-                <ul class="submenu ">
-                    
-                    <li>
-                        <a href="auth-login.html">Login</a>
-                    </li>
-                    
-                    <li>
-                        <a href="auth-register.html">Register</a>
-                    </li>
-                    
-                    <li>
-                        <a href="auth-forgot-password.html">Forgot Password</a>
-                    </li>
-                    
-                </ul>
-                
-            </li>
-
-        
-        
-        
-            <li class="sidebar-item  has-sub">
-                <a href="#" class='sidebar-link'>
-                    <i data-feather="user-minus" width="20"></i> 
-                    <span>Change Role</span>
-                </a>
-                
-                <ul class="submenu ">
-                    
-                    <li>
-                        <a href="error-403.html">403</a>
-                    </li>
-                    
-                
-                    
-                </ul>
-                
-            </li>
-    </ul>
+            
 </div>
 <button class="sidebar-toggler btn x"><i data-feather="x"></i></button>
 </div>

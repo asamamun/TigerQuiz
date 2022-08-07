@@ -2,7 +2,7 @@
 @section('title', 'Admin Dashborad')
 
 @section('sidebar')
-@include('inc.admin.sidebar')
+@include('inc.admin.trsidebar')
 @endsection
 
 @section('navbar')

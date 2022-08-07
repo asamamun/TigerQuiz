@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 @section('title', 'Admin Dashborad')
 @section('sidebar')
-@include('inc.admin.sidebar')
+@include('inc.admin.stsidebar')
 @endsection
 
 @section('navbar')
