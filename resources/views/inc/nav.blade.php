@@ -44,7 +44,18 @@
           @if (Route::has('login'))
           <div class="hidden auth-nav fixed top-0 right-0 sm:block">
               @auth
+              @php
+              $r = Auth::user()->role;    
+              @endphp
+              @if($r == "1")
               <li class="nav-item ms-5 auth-nav"><a href="{{ url('/dashboard') }}" class="text-sm text-gray dark:text-gray">Dashboard</a></li>
+              @endif
+              @if($r == "2")
+              <li class="nav-item ms-5 auth-nav"><a href="{{ url('/teacher') }}" class="text-sm text-gray dark:text-gray">Dashboard</a></li>
+              @endif
+              @if($r == "3")
+              <li class="nav-item ms-5 auth-nav"><a href="{{ url('/student') }}" class="text-sm text-gray dark:text-gray">Dashboard</a></li>
+              @endif
               @else
              <li class="nav-item ms-4 auth-nav me-1"> <a class="nav-link btn btn-success me-1" href="{{ route('login') }}">Login</a></li>
               &nbsp;

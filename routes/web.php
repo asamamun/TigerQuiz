@@ -22,20 +22,38 @@ Route::get('/', [HomeController::class,"index"]);
 // });
 
 // admin dashboard routes
-Route::get('/dashboard', function () {
-    return view('dashboard.index');
-})->middleware(['auth'])->name('dashboard');
+
 
 // teacherDashboard
-Route::get("teacher", [TeacherController::class,"index"])->middleware(['auth'])->name('teacher');
+
 Route::get("index", [TeacherController::class,"login"]);
 Route::get("register", [TeacherController::class,"reg"]);
 Route::get("forgot", [TeacherController::class,"forgetpass"]);
 
 // student dashboard routes
-Route::get('/student', function () {
-    return view('student.index');
-})->middleware(['auth'])->name('student');
+
+
+//admin group
+Route::middleware(['admin','auth'])->group(function () {
+    Route::get('/dashboard', function () {
+        return view('dashboard.index');
+    })->name('dashboard');
+
+});
+//student group
+Route::middleware(['student','auth'])->group(function () {
+    Route::get('/student', function () {
+        return view('student.index');
+    })->name('student');
+
+});
+//teacher group
+Route::middleware(['teacher','auth'])->group(function () {
+    Route::get("teacher", [TeacherController::class,"index"])->name('teacher');
+    
+});
+
+
 
 
 // main pages routes
