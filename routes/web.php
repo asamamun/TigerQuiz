@@ -1,7 +1,8 @@
 <?php
 
-use App\Http\Controllers\teacherController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\TeacherController;
+use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,10 +15,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/', [HomeController::class,"index"]);
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 // admin dashboard routes
 Route::get('/dashboard', function () {
@@ -25,10 +27,10 @@ Route::get('/dashboard', function () {
 })->middleware(['auth'])->name('dashboard');
 
 // teacherDashboard
-Route::get("teacher", [teacherController::class,"index"])->middleware(['auth'])->name('teacher');
-Route::get("index", [teacherController::class,"login"]);
-Route::get("register", [teacherController::class,"reg"]);
-Route::get("forgot", [teacherController::class,"forgetpass"]);
+Route::get("teacher", [TeacherController::class,"index"])->middleware(['auth'])->name('teacher');
+Route::get("index", [TeacherController::class,"login"]);
+Route::get("register", [TeacherController::class,"reg"]);
+Route::get("forgot", [TeacherController::class,"forgetpass"]);
 
 // student dashboard routes
 Route::get('/student', function () {
