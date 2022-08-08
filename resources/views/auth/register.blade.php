@@ -28,6 +28,12 @@
 
                 <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required />
             </div>
+            <!-- User Role -->
+            <div class="mt-4">
+                <x-label for="email" :value="__('Role (Teacher-2 & User-3)')" />
+
+                <x-input id="role" class="block mt-1 w-full" type="number" name="role" :value="old('email')" max='3' min='2' required />
+            </div>
 
             <!-- Password -->
             <div class="mt-4">
