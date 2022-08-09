@@ -37,7 +37,7 @@
               <a href="single.html" class="dropdown-item">Descriptive</a>
             </div>
           </div>
-          <a href="./contact" class="nav-item nav-link">Contact</a>
+          <a href="./contact" class="nav-item nav-link">Blog</a>
         </div>
         &nbsp; &nbsp;
         <li class="nav-item"> 
@@ -57,10 +57,10 @@
               <li class="nav-item ms-5 auth-nav"><a href="{{ url('/student') }}" class="text-sm text-gray dark:text-gray">Dashboard</a></li>
               @endif
               @else
-             <li class="nav-item ms-4 auth-nav me-1"> <a class="nav-link btn btn-success me-1" href="{{ route('login') }}">Login</a></li>
-              &nbsp;
+             <li class="nav-item ms-4 auth-nav "> <a class="nav-link btn btn-sm btn-success" href="{{ route('login') }}">Login</a></li>
+              {{-- &nbsp; --}}
               @if (Route::has('register'))
-             <li class="nav-item ms-1"> <a class="nav-link btn btn-info ms-1" href="{{ route('register') }}" >Register</a></li>
+             <li class="nav-item"> <a class="nav-link btn btn-sm btn-info ms-1" href="{{ route('register') }}" >Register</a></li>
               @endif
               @endauth
           </div>

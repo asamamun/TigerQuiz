@@ -50,7 +50,7 @@
                         <div class="d-none d-md-block d-lg-inline-block">Hi, <span class="sidebar-user__title">{{ Auth::user()->name }}</span></div>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right">
-                        <span><a class="dropdown-item" href="#"><i data-feather="mail"></i> Profile</a></span>
+                        <span><a class="dropdown-item" href="{{url('profile')}}"><i data-feather="profiles"></i> Profile</a></span>
                      <span><a class="dropdown-item" href="#"><i data-feather="settings"></i> Settings</a></span>
                         <span class="dropdown-divider"></span>
                         <span><a class="dropdown-item" href="{{ route('logout') }}"

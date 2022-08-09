@@ -1,69 +1,113 @@
-@extends('layouts.dark')
+@extends('layouts.admin')
 
-@section('pagetitle')
-    Profile
-@endsection
+@section('title','Profile')
+@section('sidebar')
+@include('inc.admin.sidebar')
+@stop
+@section('navbar')
+@include('inc.admin.navbar')
+@stop
 @section('content')
-    <h1>Your Profile</h1>    
-    @include('partial.flash')
-    @include('partial.error')
-    <form class="row g-3" action="{{route('updateprofile')}}" method="POST" enctype="multipart/form-data">
-        @csrf
-        {{-- <div class="col-md-6">
-          <label for="inputEmail4" class="form-label">Email</label>
-          <input type="email" class="form-control" id="inputEmail4">
-        </div>
-        <div class="col-md-6">
-          <label for="inputPassword4" class="form-label">Password</label>
-          <input type="password" class="form-control" id="inputPassword4">
-        </div> --}}
-        <div class="col-12">
-          <label for="fullname" class="form-label">Full Name</label>
-          <input type="text" class="form-control" id="fullname" name="fullname" placeholder="Full Name" value="{{$user->profile?->fullname}}">
-        </div>
-        <div class="col-12">
-          <label for="phone" class="form-label">Phone</label>
-          <input type="text" class="form-control" name="phone" id="phone" placeholder="01XXXXXXXXX" value="{{$user->profile?->phone}}">
-        </div>
-        <div class="col-md-6">
-          <label for="image" class="form-label">Image</label>
-          <input type="file" name="image" class="form-control" id="image">
-        </div>
+<div class="card card-hover shadow mb-4">
+    <div class="card-header bg-info py-3 mb-2 mb-sm-0 d-flex justify-content-between">
+        <h5 class="m-0 font-weight-bold text-light">Profile of {{Auth::user()->name}}</h5>
+        <a href="./profile" class="btn btn-primary btn-circle btn-sm" title="Refresh">
+            <i class="fa fa-refresh"></i></a>
+    </div>
+    <div class="card-body">
+        @include('partial.flash')
+        @include('partial.error')
+
         @if ($user->profile)
-        <p>{{Storage::path($user->profile->image)}}</p>
-        <p>{{Storage::url($user->profile->image)}}</p>
-        <p>{{url(Storage::url($user->profile->image))}}</p>
-        <img src="{{url(Storage::url($user->profile->image))}}" alt="sdfsdf">        
-        @else            
+        <div class="mb-2">
+            <img src="{{url(Storage::url($user->profile->image))}}" class="profileimage" alt="Profile Image">
+        </div>
+        {!! Form::model($user->profile, ['method' => 'PUT','enctype'=>'multipart/form-data','class'=>'user','route' => ['profile.update', $user->profile->id]]) !!}
+        @else
+        {!! Form::open(['route' => ['profile.store'] ,'class'=>'user', 'enctype'=>'multipart/form-data']) !!}
         @endif
-        <div class="col-md-12">
-          <label for="bloodgroup" class="form-label">Blood Group</label>
-          <select name="bloodgroup" id="bloodgroup" class="form-control">
-            <option selected value="-1">Choose...</option>
-            <option value="B+">B+</option>
-            <option value="B-">B-</option>
-            <option value="A+">A+</option>
-            <option value="A-">A-</option>
-            <option value="AB+">AB+</option>
-            <option value="AB-">AB-</option>
-            <option value="O+">O+</option>
-            <option value="O-">O-</option>
-          </select>
+        
+        
+        <div class="form-group row">
+            <div class="col-sm-6 mt-2 mb-2 mb-sm-0">
+                {!! Form::text('fullname', null, ['required', 'class'=>'form-control form-control-profile', 'id'=>'name', 'placeholder'=>'Name']) !!}
+            </div>
+            <div class="col-sm-6 mt-2">
+                {!! Form::text('Institute', null, ['required', 'class'=>'form-control form-control-profile', 'id'=>'institute', 'placeholder'=>'Institute Name']) !!}
+            </div>
         </div>
-        {{-- <div class="col-md-2">
-          <label for="inputZip" class="form-label">Zip</label>
-          <input type="text" class="form-control" id="inputZip">
-        </div> --}}
-{{--         <div class="col-12">
-          <div class="form-check">
-            <input class="form-check-input" type="checkbox" id="gridCheck">
-            <label class="form-check-label" for="gridCheck">
-              Check me out
-            </label>
-          </div>
-        </div> --}}
-        <div class="col-12">
-          <button type="submit" class="btn btn-primary">Update</button>
+        <div class="form-group row">
+            <div class="col-sm-4 mb-2 mb-sm-0">
+                {!! Form::text('Designation', null, ['required', 'class'=>'form-control form-control-profile', 'id'=>'designation', 'placeholder'=>'Designation']) !!}
+            </div>
+            <div class="col-sm-4 mb-2 mb-sm-0">
+                {!! Form::text('Subject', null, ['required', 'class'=>'form-control form-control-profile', 'id'=>'subject', 'placeholder'=>'Subject']) !!}
+            </div>
+            <div class="col-sm-4">
+                {!! Form::text('phone', null, ['required', 'class'=>'form-control form-control-profile', 'id'=>'phone', 'placeholder'=>'Phone Number']) !!}
+            </div>
         </div>
-      </form>
+        <div class="form-group">
+            {!! Form::text('address', null, ['required', 'class'=>'form-control form-control-profile', 'id'=>'address', 'placeholder'=>'Address']) !!}
+        </div>
+        
+
+        <div class="form-group row">
+            <div class="col-sm-6 mb-2 mb-sm-0">
+                {!! Form::select('bloodgroup', $bloodgroup, null, ['required', 'placeholder' => 'Blood Group', 'class'=>'form-control form-control-profile']) !!}
+            </div>
+            <div class="col-sm-6">
+                {!! Form::file('image', ['required', 'class'=>'form-control form-control-profile', 'id'=>'image']) !!}
+            </div>
+        </div>
+        <div class="form-group">
+            {!! Form::textarea('bio', null, ['required', 'class'=>'form-control form-control-profile', 'id'=>'bio', 'rows'=>'2',  'placeholder'=>'Bio']) !!}
+        </div>
+      <span class="hidden">
+        @if (Route::has('login'))
+        @auth
+        @if (Auth::user()->role == '3')
+            <div class="form-group row">
+                <div class="btn btn-sm mb-1 mb-sm-0 bg-info">Information of Guardian</div>
+                 <div class="col-sm-4 mt-2 mb-2 mb-sm-0">
+                     {!! Form::text('Guardian name', null, ['required', 'class'=>'form-control form-control-profile', 'id'=>'gname', 'placeholder'=>"Guardian's name"]) !!}
+                 </div>
+                 <div class="col-sm-4 mt-2 mb-2 mb-sm-0">
+                     {!! Form::text('Guardian Phone', null, ['required', 'class'=>'form-control form-control-profile', 'id'=>'gphone', 'placeholder'=>"Guardian's Phone"]) !!}
+                 </div>
+                 <div class="col-sm-4 mt-2">
+                     {!! Form::text('Guardian Email', null, ['class'=>'form-control form-control-profile', 'id'=>'gemail', 'placeholder'=>"Guardian's Email"]) !!}
+                 </div>
+             </div>
+        @endif
+        @endauth
+        @endif
+      </span>
+        
+    <div class="form-group row">
+       <div class="btn btn-sm mb-1 mb-sm-0 bg-info">Social Media</div>
+        <div class="col-sm-4 mt-2 mb-2 mb-sm-0">
+            {!! Form::text('Facebook', null, ['class'=>'form-control form-control-profile', 'id'=>'facebook', 'placeholder'=>'Facebook']) !!}
+        </div>
+        <div class="col-sm-4 mt-2 mb-2 mb-sm-0">
+            {!! Form::text('Youtube', null, ['class'=>'form-control form-control-profile', 'id'=>'youtube', 'placeholder'=>'Youtube']) !!}
+        </div>
+        <div class="col-sm-4 mt-2">
+            {!! Form::text('Linkin', null, ['class'=>'form-control form-control-profile', 'id'=>'linkin', 'placeholder'=>'Linkin']) !!}
+        </div>
+    </div>
+        
+       <div class="form-group row">
+        {{-- <div class="col-sm-6 mb-2 mb-sm-0 text-center">
+            {!! Form::reset('Reset', ['class'=>'btn btn-primary btn-sm btn-block']) !!}
+        </div> --}}
+        <div class=" text-center">
+            {!! Form::submit('Update Profile', ['class'=>'btn btn-primary btn-sm btn-block']) !!}
+        </div>
+       </div>
+        
+        {!! Form::close() !!}
+
+
+</div>
 @endsection

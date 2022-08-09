@@ -1,13 +1,28 @@
+
+<style>
+    a,*{
+  text-decoration: none!important;
+  list-style: none!important;
+  font-family: 'palatino linotype', Rupali!important;
+}
+</style>
 <x-guest-layout>
     <x-auth-card>
         <x-slot name="logo">
+            <div class="text-center">
+                <a href="/">
+                    <span class="icon logo"><img src="assets/img/logo/tiger_logo.png" class="rounded mx-auto d-block" width="12%" alt="logo"></span>
+                    <span class="text-primary">Tiger Quiz</span></a>
+                </a>
+            </div>
             <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
+                {{-- <x-application-logo class="w-20 h-20 fill-current text-gray-500" /> --}}
+                {{-- <img class="img-responsive" width="10%" height="10%" src="{{ asset('assets/img/logo/tiger_logo.png') }}" /> --}}
             </a>
         </x-slot>
 
         <div class="mb-4 text-sm text-gray-600">
-            {{ __('Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.') }}
+            {{ __('Forgot your password? Let us know your email address for a new reset link.') }}
         </div>
 
         <!-- Session Status -->

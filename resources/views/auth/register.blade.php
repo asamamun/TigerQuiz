@@ -1,3 +1,10 @@
+<style>
+    a,*{
+  text-decoration: none!important;
+  list-style: none!important;
+  font-family: 'palatino linotype', Rupali!important;
+}
+</style>
 <x-guest-layout>
     <x-auth-card>
         <x-slot name="logo">
@@ -30,12 +37,11 @@
             </div>
             <!-- User Role -->
             <div class="mt-4">
-                <x-label for="role" :value="__('Role (Teacher-2 & User-3)')" />
-
-                {{-- <x-input id="role" class="block mt-1 w-full" type="number" name="role" :value="old('email')" max='3' min='2' required /> --}}
-                <select name="role" id="role" class="block mt-1 w-full rounded">
-                    <option value="3">Student</option>
-                    <option value="2">Teacher</option>
+                <x-label for="role" :value="__('Role')" />
+                
+                <select name="role" id="role" max='3' min='2' required class="block mt-1 w-full form-select  rounded">
+                    <option class="block mt-1" value="3">Student</option>
+                    <option class="block mt-1" value="2">Teacher</option>
                 </select>
 
             </div>

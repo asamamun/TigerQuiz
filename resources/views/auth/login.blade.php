@@ -1,3 +1,12 @@
+<style>
+    a,*{
+  margin: 0;
+  padding: 0;
+  text-decoration: none!important;
+  list-style: none!important;
+  font-family: 'palatino linotype', Rupali!important;
+}
+</style>
 <x-guest-layout>
     <x-auth-card>
         <x-slot name="logo">
@@ -6,10 +15,7 @@
                     <span class="icon logo"><img src="assets/img/logo/tiger_logo.png" class="rounded mx-auto d-block" width="12%" alt="logo"></span>
                     <span class="text-primary">Tiger Quiz</span></a>
                 </a>
-            </div><a href="/">
-                
-                
-            </a>
+            </div><a href="/"> </a>
         </x-slot>
 
         <!-- Session Status -->

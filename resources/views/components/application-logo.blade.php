@@ -3,5 +3,5 @@
 </svg> --}}
 <a href="/">
     {{-- Replace the default svg with your own logo svg or an image --}}
-    <img class="img-responsive" width="10%" height="10%" src="{{ asset('assets/images/logo.png') }}" />
+    <img class="img-responsive" width="10%" height="10%" src="{{ asset('assets/img/logo/tiger_logo.png') }}" />
 </a>

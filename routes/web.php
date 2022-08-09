@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -53,6 +54,8 @@ Route::middleware(['teacher','auth'])->group(function () {
     
 });
 
+// profile route
+Route::resource("profile",ProfileController::class);
 
 
 

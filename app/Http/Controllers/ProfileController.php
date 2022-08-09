@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\ProfilePostRequest;
 use App\Models\Profile;
+use App\Http\Requests\StoreProfileRequest;
+use App\Http\Requests\UpdateProfileRequest;
 use App\Models\User;
-use App\Myclass\MyImage;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image;
+
 
 class ProfileController extends Controller
 {
@@ -19,38 +20,18 @@ class ProfileController extends Controller
      */
     public function index()
     {
-       // dd(Auth::user());
-       return view('profile.index')->with('user',Auth::user());
-    }
-    public function update(ProfilePostRequest $request){
-// dd($request->file("image")->getFilename());
-// dd($request->file("image")->getClientOriginalName());
-/* $file = $request->file('image');
- 
-$name = $file->hashName(); // Generate a unique, random name...
-$extension = $file->extension(); // Determine the file's extension based on the file's MIME type...
-echo $name ." : ". $extension; */
-
-//upload
-$path = $request->file('image')->store('public/profiles');
-$storagepath = Storage::path($path);
-
-//resize, compress, watermark image
-MyImage::image_resize_compress_watermark_store($storagepath);
-//https://image.intervention.io/v2/api/resize
-
-
-// dd($path);
-        $u = User::find(Auth::id());
-        $p = $u->profile? $u->profile :  new Profile();
-        $p->fullname = $request->fullname;
-        $p->phone = $request->phone;
-        $p->bloodgroup = $request->bloodgroup;
-        $p->image = $path;
-        if($u->profile()->save($p)){
-            return back()->with('message',"Your profile has been updated!!!");
-        }
-    
+        //dd(Auth::user()->profile);
+        $bloodgroup = [
+            'A+' => 'A+',
+            'A-' => 'A-',
+            'B+' => 'B+',
+            'B-' => 'B-',
+            'O+' => 'O+',
+            'O-' => 'O-',
+            'AB+' => 'AB+',
+            'AB-' => 'AB-',
+        ];
+        return view('profile.index')->with('bloodgroup',$bloodgroup)->with('user',Auth::user());
     }
 
     /**
@@ -71,7 +52,30 @@ MyImage::image_resize_compress_watermark_store($storagepath);
      */
     public function store(StoreProfileRequest $request)
     {
-        //
+        // dd($request->file('image'));
+        $path = $request->file('image')->store('public/profiles');
+        $storagepath = Storage::path($path);
+        $img = Image::make($storagepath);
+
+        // resize image instance
+        $img->resize(320, 320);
+
+        // insert a watermark
+        // $img->insert('public/watermark.png');
+
+        // save image in desired format
+        $img->save($storagepath);
+
+        $u = User::find(Auth::id());
+        $p = new Profile();        
+        $p->fullname = $request->fullname;
+        $p->phone = $request->phone;
+        $p->address = $request->address;
+        $p->bloodgroup = $request->bloodgroup;
+        $p->image = $path;
+        if($u->profile()->save($p)){
+            return back()->with('message',"Your profile has been Created!!!");
+        }
     }
 
     /**
@@ -105,7 +109,34 @@ MyImage::image_resize_compress_watermark_store($storagepath);
      */
     public function update(UpdateProfileRequest $request, Profile $profile)
     {
-        //
+        //upload
+        
+        $path = $request->file('image')->store('public/profiles');
+        $storagepath = Storage::path($path);
+        $img = Image::make($storagepath);
+
+        // resize image instance
+        $img->resize(320, 320);
+
+        // insert a watermark
+        // $img->insert('public/watermark.png');
+
+        // save image in desired format
+        $img->save($storagepath);
+
+        $u = User::find(Auth::id());
+        $p = $u->profile;
+        if($p->image){
+            Storage::delete($p->image);
+        }
+        $p->fullname = $request->fullname;
+        $p->phone = $request->phone;
+        $p->address = $request->address;
+        $p->bloodgroup = $request->bloodgroup;
+        $p->image = $path;
+        if($u->profile()->save($p)){
+            return back()->with('message',"Your profile has been updated!!!");
+        }
     }
 
     /**
