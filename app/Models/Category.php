@@ -18,4 +18,16 @@ class Category extends Model
     {
     return $this->hasMany('App\Models\Subcategory');
     }
+    public function blogs()
+    {
+    return $this->hasMany('App\Models\Blog');
+    }
+    public function quizsets()
+    {
+    return $this->hasMany('App\Models\Quizset');
+    }
+    public function quizzes()
+    {
+    return $this->hasMany('App\Models\Quiz');
+    }
 }

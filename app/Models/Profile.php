@@ -29,7 +29,6 @@ class Profile extends Model
         'image',
       
     ];
-
     public function user()
     {
     return $this->belongsTo('App\Models\User');

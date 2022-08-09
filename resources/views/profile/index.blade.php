@@ -33,15 +33,15 @@
                 {!! Form::text('fullname', null, ['required', 'class'=>'form-control form-control-profile', 'id'=>'name', 'placeholder'=>'Name']) !!}
             </div>
             <div class="col-sm-6 mt-2">
-                {!! Form::text('Institute', null, ['required', 'class'=>'form-control form-control-profile', 'id'=>'institute', 'placeholder'=>'Institute Name']) !!}
+                {!! Form::text('institute', null, ['required', 'class'=>'form-control form-control-profile', 'id'=>'institute', 'placeholder'=>'Institute Name']) !!}
             </div>
         </div>
         <div class="form-group row">
             <div class="col-sm-4 mb-2 mb-sm-0">
-                {!! Form::text('Designation', null, ['required', 'class'=>'form-control form-control-profile', 'id'=>'designation', 'placeholder'=>'Designation']) !!}
+                {!! Form::text('designation', null, ['required', 'class'=>'form-control form-control-profile', 'id'=>'designation', 'placeholder'=>'Designation']) !!}
             </div>
             <div class="col-sm-4 mb-2 mb-sm-0">
-                {!! Form::text('Subject', null, ['required', 'class'=>'form-control form-control-profile', 'id'=>'subject', 'placeholder'=>'Subject']) !!}
+                {!! Form::text('subject', null, ['required', 'class'=>'form-control form-control-profile', 'id'=>'subject', 'placeholder'=>'Subject']) !!}
             </div>
             <div class="col-sm-4">
                 {!! Form::text('phone', null, ['required', 'class'=>'form-control form-control-profile', 'id'=>'phone', 'placeholder'=>'Phone Number']) !!}
@@ -87,13 +87,13 @@
     <div class="form-group row">
        <div class="btn btn-sm mb-1 mb-sm-0 bg-info">Social Media</div>
         <div class="col-sm-4 mt-2 mb-2 mb-sm-0">
-            {!! Form::text('Facebook', null, ['class'=>'form-control form-control-profile', 'id'=>'facebook', 'placeholder'=>'Facebook']) !!}
+            {!! Form::text('facebook', null, ['class'=>'form-control form-control-profile', 'id'=>'facebook', 'placeholder'=>'Facebook']) !!}
         </div>
         <div class="col-sm-4 mt-2 mb-2 mb-sm-0">
-            {!! Form::text('Youtube', null, ['class'=>'form-control form-control-profile', 'id'=>'youtube', 'placeholder'=>'Youtube']) !!}
+            {!! Form::text('youtube', null, ['class'=>'form-control form-control-profile', 'id'=>'youtube', 'placeholder'=>'Youtube']) !!}
         </div>
         <div class="col-sm-4 mt-2">
-            {!! Form::text('Linkin', null, ['class'=>'form-control form-control-profile', 'id'=>'linkin', 'placeholder'=>'Linkin']) !!}
+            {!! Form::text('linkin', null, ['class'=>'form-control form-control-profile', 'id'=>'linkin', 'placeholder'=>'Linkin']) !!}
         </div>
     </div>
         

@@ -69,9 +69,10 @@ class ProfileController extends Controller
         $u = User::find(Auth::id());
         $p = new Profile();        
         $p->fullname = $request->fullname;
+        $p->institute = $request->institute;
         $p->phone = $request->phone;
         $p->address = $request->address;
-        $p->bloodgroup = $request->bloodgroup;
+        // $p->bloodgroup = $request->bloodgroup;
         $p->image = $path;
         if($u->profile()->save($p)){
             return back()->with('message',"Your profile has been Created!!!");

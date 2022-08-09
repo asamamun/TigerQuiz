@@ -3,7 +3,7 @@
 
 @section('css')
     @include('inc.maincss')
-    @stop
+@stop
 
 @section('include')
 

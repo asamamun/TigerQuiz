@@ -8,4 +8,16 @@ use Illuminate\Database\Eloquent\Model;
 class Topic extends Model
 {
     use HasFactory;
+    public function blogs()
+    {
+    return $this->hasMany('App\Models\Blog');
+    }
+    public function subcategory()
+    {
+    return $this->belongsTo('App\Models\Subcategory');
+    }
+    public function quizzes()
+    {
+    return $this->hasMany('App\Models\Quiz');
+    }
 }
