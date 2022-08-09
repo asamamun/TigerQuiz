@@ -2,12 +2,12 @@
 @section('title', 'Tiger Quiz')
 
 @section('css')
-    @include('inc.maincss')
+   
 @stop
 
+{{-- main content add here --}}
 @section('include')
 
-@include('inc.nav')
 @include('inc.intro')
 @include('inc.faci')
 @include('inc.class')
@@ -17,10 +17,7 @@
 @include('inc.tsm')
     @stop
 
+{{-- footer add here --}}
 @section('footerin')
 @include('inc.footer')
     @stop
-@section('scriptin')
-    @include('inc.mainjs')
-    @endsection
-@section('scripts')

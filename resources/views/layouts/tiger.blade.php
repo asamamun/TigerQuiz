@@ -15,40 +15,49 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
     <script src="https://use.fontawesome.com/releases/v6.1.2/js/all.js" crossorigin="anonymous"></script>
     <!--for code-->
-         @yield('css')
-         @section('cssin')
-    <!--for include-->
-         @show
+     @yield('css')
+     @include('inc.maincss')
+        
     </head>
     <body>
+     {{-- navbar add here --}}
+     @include('inc.nav')
     
-    <!--for container-fluid-->
+
+     
+     <!--for container-fluid-->
     <div class="container-fluid">
-         @yield('fluid')
+     @yield('fluid')
     </div>
     <!--for container-->
     <div class="container">
-         @yield('container')
+     @yield('container')
     </div>
     <!--for container free-->
     <div class="">
-         @yield('content')
+     @yield('content')
     </div>
-        @section('include')
+     @section('include')
     
-        @show
-    
+     @show
+     {{-- end main content --}}
+
+    {{-- add footer here --}}
     <div class="container-fluid">
         @yield('footer')
+
         @section('footerin')
 
         @show
-        </div>
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js" crossorigin="anonymous"></script>
-        <script src="assets/js/bootstrap.bundle.min.js"></script>
-        @yield('scripts')
-        @section('scriptin')
+        
+     </div>
+     {{-- end footer --}}
 
-        @show
-   </body>
-   </html>
+     <script src="https://code.jquery.com/jquery-3.6.0.min.js" crossorigin="anonymous"></script>
+     <script src="assets/js/bootstrap.bundle.min.js"></script>
+      @include('inc.mainjs')
+        
+     @yield('scripts')
+       
+</body>
+</html>
