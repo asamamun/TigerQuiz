@@ -1,13 +1,18 @@
-@extends('layouts.light')
+@extends('layouts.admin')
 
-@section('pagetitle')
-    Subcategory
+@section('title','Subcategory')
+@section('sidebar')
+@include('dashboard.sidebar')
+@endsection
+
+@section('navbar')
+@include('inc.admin.navbar')
 @endsection
 
 @section('content')
 <div class="card card-hover shadow mb-4">
     <div class="card-header py-3 d-flex justify-content-between">
-        <h6 class="m-0 font-weight-bold text-primary">Subcategory Details</h6>
+        <h6 class="m-0 font-weight-bold text-primary">Subject Details</h6>
         <a href="{{url('subcategory')}}" class="btn btn-primary btn-circle btn-sm" title="Back to Subcategory List">
             <i class="fas fa-arrow-left"></i>
         </a>
@@ -23,17 +28,12 @@
                 <td>{{ $subcategory->name }}</td>
             </tr>
             <tr class="table-bordered">
-                <th>Category</th>
+                <th>Class</th>
                 <td>{{ $subcategory->category->name }}</td>
             </tr>
             <tr class="table-bordered">
-                <th>Icon</th>
-                <td>
-                    @if ($subcategory->icon)
-                    <img src="{{url(Storage::url($subcategory->icon))}}" class="iconimage" alt="Icon">       
-                @else            
-                @endif
-                </td>
+                <th>Active</th>
+                <td>{{ $subcategory->active }}</td>
             </tr>
             <tr class="table-bordered">
                 <th>Description</th>

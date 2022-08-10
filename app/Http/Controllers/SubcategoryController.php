@@ -50,36 +50,16 @@ class SubcategoryController extends Controller
     public function store(StoreSubcategoryRequest $request)
     {
         //upload
-        $path = $request->file('icon')->store('public/subcategories');
-        $storagepath = Storage::path($path);
-        $img = Image::make($storagepath);
+        
 
-        // resize image instance
-        $img->resize(320, 320);
-
-        // insert a watermark
-        // $img->insert('public/watermark.png');
-
-        // save image in desired format
-        $img->save($storagepath);
-
-        // dd($request->category_id);
-
-        /* $data = [
-            'name'=>$request->name,
-            'category_id'=>$request->category_id,
-            'icon'=>$path,
-            'description'=>$request->description,
-        ];
-        dd($data);
-        $sc = Subcategory::create($data); */
+        
         $sc = new Subcategory();
         $sc->name = $request->name;
-        $sc->icon = $path;
+        $sc->active = $request->active;
         $sc->description = $request->description;
         $c = Category::find($request->category_id);
         if($c->subcategories()->save($sc)){
-            return back()->with('message','Subcategory ' .$sc->id. ' Create Successfully!!!');
+            return back()->with('message','Subject ' .$sc->id. 'has been created successfully!');
         }
         else{
             return back()->with('message','Error!!');
@@ -118,27 +98,11 @@ class SubcategoryController extends Controller
      */
     public function update(UpdateSubcategoryRequest $request, Subcategory $subcategory)
     {
-        //upload
-        $path = $request->file('icon')->store('public/subcategories');
-        $storagepath = Storage::path($path);
-        $img = Image::make($storagepath);
-
-        // resize image instance
-        $img->resize(320, 320);
-
-        // insert a watermark
-        // $img->insert('public/watermark.png');
-
-        // save image in desired format
-        $img->save($storagepath);
-
-        if($subcategory->icon){
-            Storage::delete($subcategory->icon);
-        }
+       
 
         $subcategory->name = $request->name;
         $subcategory->category_id = $request->category_id;
-        $subcategory->icon = $path;
+        $subcategory->active = $request->active;
         $subcategory->description = $request->description;
 
         if($subcategory->save()){

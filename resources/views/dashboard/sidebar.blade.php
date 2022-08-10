@@ -45,11 +45,11 @@
                     
                     
                     <li>
-                        <a href="./category">All Class</a>
+                        <a href="{{url('category')}}">All Class</a>
                     </li>
                     
                     <li>
-                        <a href="">Add Class</a>
+                        <a href="{{url('subcategory/create')}}">Add Class</a>
                     </li>
                    
                     
@@ -65,11 +65,11 @@
                 <ul class="submenu ">
                     
                     <li>
-                        <a href="component-alert.html">Add Subject</a>
+                        <a href="{{url('subcategory')}}">All Subject</a>
                     </li>
                     
                     <li>
-                        <a href="component-badge.html">All Subject</a>
+                        <a href="{{url('subcategory/create')}}">Add Subject</a>
                     </li>
                     
                    

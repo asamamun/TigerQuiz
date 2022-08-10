@@ -7,13 +7,13 @@
     </div>
     
     <div class="col-sm-4 mb-3 mb-sm-0">
-        {!! Form::select('category_id', $categories, null, ['placeholder' => 'Select Category', 'class'=>'form-control form-control-profile']) !!}
+        {!! Form::select('category_id', $categories, null, ['placeholder' => 'Select Category', 'class'=>'form-control']) !!}
     </div>
     <div class="col-sm-4">
-        {!! Form::file('icon', ['required', 'class'=>'form-control form-control-profile', 'id'=>'icon']) !!}
+        {!! Form::text('active', null, ['required', 'class'=>'form-control', 'id'=>'active', 'placeholder'=>'active']) !!}
     </div>
 </div>
 
 <div class="form-group">
-    {!! Form::text('description', null, ['required', 'class'=>'form-control form-control-profile', 'id'=>'description', 'placeholder'=>'Description']) !!}
+    {!! Form::text('description', null, ['required', 'class'=>'form-control', 'id'=>'description', 'placeholder'=>'Description']) !!}
 </div>

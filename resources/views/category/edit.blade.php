@@ -13,8 +13,8 @@
 @section('content')
     <div class="card card-hover shadow mb-4">
         <div class="card-header py-3 d-flex justify-content-between">
-            <h6 class="m-0 font-weight-bold text-primary">Update Category</h6>
-            <a href="{{url('category')}}" class="btn btn-primary btn-circle btn-sm" title="Back to Category List">
+            <h6 class="m-0 font-weight-bold text-primary">Update Class</h6>
+            <a href="{{url('category')}}" class="btn btn-primary btn-circle btn-sm" title="Back to Class">
                 <i class="fas fa-arrow-left"></i>
             </a>
         </div>
@@ -34,7 +34,7 @@
             </div>
 
             <div class="form-group">
-                {!! Form::submit('Update Category', ['class'=>'btn btn-primary btn-profile btn-block']) !!}
+                {!! Form::submit('Update Class', ['class'=>'btn btn-info btn-profile btn-block']) !!}
             </div>
             {!! Form::close() !!}
         </div>
