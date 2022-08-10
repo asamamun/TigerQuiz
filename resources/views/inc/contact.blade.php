@@ -7,7 +7,6 @@
 
 @section('include')
 
-@include('inc.nav')
 @include('inc.introcon')
     @stop
 

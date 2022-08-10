@@ -6,7 +6,6 @@
     @stop
 
 @section('content')
-@include('inc.nav')
 
     <!-- Header Start -->
     <div class="container-fluid bg-primary mb-5">

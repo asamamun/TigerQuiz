@@ -7,7 +7,7 @@
 
 @section('include')
 
-@include('inc.nav')
+
 @include('inc.introcls')
 @include('inc.class')
 @include('inc.reg')
