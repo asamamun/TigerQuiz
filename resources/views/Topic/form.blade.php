@@ -1,0 +1,19 @@
+@include('partial.flash')
+@include("partial.error")
+
+<div class="form-group row">
+    <div class="col-sm-4 mb-3 mb-sm-0">
+        {!! Form::text('name', null, ['required', 'class'=>'form-control form-control-profile', 'id'=>'name', 'placeholder'=>'Name']) !!}
+    </div>
+    
+    <div class="col-sm-4 mb-3 mb-sm-0">
+        {!! Form::select('category_id', $categories, null, ['placeholder' => 'Select Category', 'class'=>'form-control']) !!}
+    </div>
+    <div class="col-sm-4">
+        {!! Form::text('active', null, ['required', 'class'=>'form-control', 'id'=>'active', 'placeholder'=>'active']) !!}
+    </div>
+</div>
+
+<div class="form-group">
+    {!! Form::text('description', null, ['required', 'class'=>'form-control', 'id'=>'description', 'placeholder'=>'Description']) !!}
+</div>

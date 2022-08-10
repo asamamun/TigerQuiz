@@ -6,6 +6,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\SubcategoryController;
+use App\Http\Controllers\TopicController;
 
 
 
@@ -66,6 +67,9 @@ Route::resource("profile",ProfileController::class);
 
  // subcategory
  Route::resource("/subcategory",SubcategoryController::class);
+
+ // Topic
+ Route::resource("/topic",TopicController::class);
 
 // main pages routes
 Route::get('/about', function() { return view('inc.about');});
