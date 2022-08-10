@@ -4,6 +4,10 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\SubcategoryController;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -57,7 +61,11 @@ Route::middleware(['teacher','auth'])->group(function () {
 // profile route
 Route::resource("profile",ProfileController::class);
 
+ // category
+ Route::resource("/category",CategoryController::class);
 
+ // subcategory
+ Route::resource("/subcategory",SubcategoryController::class);
 
 // main pages routes
 Route::get('/about', function() { return view('inc.about');});

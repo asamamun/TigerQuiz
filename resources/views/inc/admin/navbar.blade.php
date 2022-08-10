@@ -45,7 +45,8 @@
                 <li class="dropdown">
                     <a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user">
                         <div class="avatar mr-1">
-                            <picture><img class="profile" alt="profile" src="assets/img/profile/{{ Auth::user()->name }}.png" alt="User name" /></picture>
+                            <picture><img class="profile" alt="profile" src="{{url('assets/img/profile')}}/{{ Auth::user()->name}}.png" alt="User name" /></picture>
+                            {{-- {{url('assets/img/undraw_profile_1.svg')}} --}}
                         </div>
                         <div class="d-none d-md-block d-lg-inline-block">Hi, <span class="sidebar-user__title">{{ Auth::user()->name }}</span></div>
                     </a>

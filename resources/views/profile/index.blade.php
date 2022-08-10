@@ -1,6 +1,9 @@
 @extends('layouts.admin')
 
 @section('title','Profile')
+@section('head')
+
+@endsection
 @section('sidebar')
 @include('inc.admin.sidebar')
 @stop
@@ -19,9 +22,14 @@
         @include('partial.error')
 
         @if ($user->profile)
-        <div class="mb-2">
-            <img src="{{url(Storage::url($user->profile->image))}}" class="rounded float-start mt-2 mb-2" alt="Profile Image">
+       <div class="form-group row mt-2 bg-image rounded bg-primary ">
+        
+        <div class="my-1">
+            <img src="{{url(Storage::url($user->profile->image))}}" width='190px' class="rounded d-block float-start mt-2 mb-2 alt="Profile Image">
+            
         </div>
+        
+       </div>
         {!! Form::model($user->profile, ['method' => 'PUT','enctype'=>'multipart/form-data','class'=>'user','route' => ['profile.update', $user->profile->id]]) !!}
         @else
         {!! Form::open(['route' => ['profile.store'] ,'class'=>'user', 'enctype'=>'multipart/form-data']) !!}
@@ -67,13 +75,14 @@
             {!! Form::textarea('bio', null, ['required', 'class'=>'form-control form-control-profile', 'id'=>'bio', 'rows'=>'2',  'placeholder'=>'Bio']) !!}
         </div>
         </div>
-      <span class="hidden">
+        <span class="hidden">
         @if (Route::has('login'))
         @auth
         @if (Auth::user()->role == '3')
-        <div class="btn btn-sm mb-1 mb-sm-0 bg-info">Information of Guardian</div>
+        <div class="d-grid gap-2">
+            <button class="btn btn-sm btn-info" type="button">Information of Guardian</button>
+        </div>
             <div class="form-group row">
-                
                  <div class="col-sm-4 mt-2 mb-2 mb-sm-0">
                      {!! Form::text('Guardian name', null, ['required', 'class'=>'form-control form-control-profile', 'id'=>'gname', 'placeholder'=>"Guardian's name"]) !!}
                  </div>
@@ -88,9 +97,10 @@
         @endauth
         @endif
       </span>
-        
+      <div class="d-grid gap-2">
+        <button class="btn btn-sm btn-info" type="button">Social Media</button>
+      </div>
     <div class="form-group row">
-       <div class="btn btn-sm mb-1 mb-sm-0 bg-info">Social Media</div>
         <div class="col-sm-4 mt-2 mb-2 mb-sm-0">
             {!! Form::text('facebook', null, ['class'=>'form-control form-control-profile', 'id'=>'facebook', 'placeholder'=>'Facebook']) !!}
         </div>

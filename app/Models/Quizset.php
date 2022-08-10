@@ -8,6 +8,15 @@ use Illuminate\Database\Eloquent\Model;
 class Quizset extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'name',
+        'title',
+        'quizzes',
+        'user_id',
+        'category_id',
+        'subcategory_id',
+    ];
+
     public function user()
     {
     return $this->belongsTo('App\Models\User');

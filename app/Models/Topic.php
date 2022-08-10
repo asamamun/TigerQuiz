@@ -8,6 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Topic extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'name',
+        'description',
+        'subcategory_id',
+        'active',
+    ];
     public function blogs()
     {
     return $this->hasMany('App\Models\Blog');

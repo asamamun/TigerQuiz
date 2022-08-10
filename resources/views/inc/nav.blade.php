@@ -11,9 +11,9 @@
 <div class="container-fluid bg-light position-relative shadow">
     <nav class="navbar navbar-expand-lg bg-light navbar-light py-3 py-lg-0 px-0 px-lg-5">
       <div class="d-flex col-3">
-        <a href="./" class="navbar-brand font-weight-bold text-secondary"style="font-size: 50px">
-          <span class="icon logo"><img src="assets/img/logo/tiger_logo.png" class="" width="20%" alt="logo"></span>
-            <!-- <i class="flaticon-043-teddy-bear"></i> -->
+        <a href="{{url('./')}}" class="navbar-brand font-weight-bold text-secondary"style="font-size: 50px">
+          <span class="icon logo"><img src="{{url('assets/img/logo/tiger_logo.png')}}" class="" width="20%" alt="logo"></span>
+            
             <span class="text-primary">Tiger Quiz</span></a>
     </div>
     <button

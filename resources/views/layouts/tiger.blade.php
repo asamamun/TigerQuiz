@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
     <meta charset="utf-8"/>
     <title> @yield('title')</title>
@@ -7,7 +7,7 @@
     <meta content="Tiger quiz" name="keywords" />
     <meta content="tiger quiz" name="description" />
     <!-- Favicon -->
-    <link href="assets/img/favicon/favicon.ico" rel="icon" />
+    <link href="{{url('assets/img/favicon/favicon.ico')}}" rel="icon" />
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.gstatic.com" />
     <link href="https://fonts.googleapis.com/css2?family=Handlee&family=Nunito&display=swap"/>
@@ -54,8 +54,9 @@
      {{-- end footer --}}
 
      <script src="https://code.jquery.com/jquery-3.6.0.min.js" crossorigin="anonymous"></script>
-     <script src="assets/js/bootstrap.bundle.min.js"></script>
-      @include('inc.mainjs')
+     <script src="{{url('assets/js/bootstrap.bundle.min.js')}}"></script>
+     <!-- ========================= -->
+     @include('inc.mainjs')
         
      @yield('scripts')
        
