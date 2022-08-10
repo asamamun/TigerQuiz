@@ -1,8 +1,14 @@
-@extends('layouts.light')
+@extends('layouts.admin')
 
-@section('pagetitle')
-    Category
+@section('title','Category')
+@section('sidebar')
+@include('dashboard.sidebar')
 @endsection
+
+@section('navbar')
+@include('inc.admin.navbar')
+@endsection
+
 
 @section('content')
 <div class="card card-hover shadow mb-4">
@@ -15,24 +21,21 @@
     <div class="card-body">
         <table class="table table-responsive">
             <tr class="table-bordered">
-                <th>Id</th>
+                <th>Id:</th>
                 <td>{{ $category->id }}</td>
             </tr>
             <tr class="table-bordered">
-                <th>Name</th>
+                <th>Name:</th>
                 <td>{{ $category->name }}</td>
             </tr>
-            <tr class="table-bordered">
-                <th>Icon</th>
+            <tr class="table-bordered text-start">
+                <th>Active:</th>
                 <td>
-                    @if ($category->icon)
-                    <img src="{{url(Storage::url($category->icon))}}" class="iconimage" alt="Icon">       
-                @else            
-                @endif
+                    <td>{{ $category->active }}</td>
                 </td>
             </tr>
             <tr class="table-bordered">
-                <th>Description</th>
+                <th>Description:</th>
                 <td>{{ $category->description }}</td>
             </tr>
         </table>

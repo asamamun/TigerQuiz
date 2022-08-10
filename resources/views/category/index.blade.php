@@ -48,12 +48,7 @@
                     <tr>
                         <td>{{ $category->id }}</td>
                         <td>{{ $category->name }}</td>
-                        <td>
-                            @if ($category->icon)
-                                <img src="{{url(Storage::url($category->icon))}}" class="iconimage" alt="Icon">       
-                            @else            
-                            @endif
-                        </td>
+                        <td>{{ $category->active }}</td>
                         <td>{{ $category->description }}</td>
                         <td class="d-flex justify-content-center">
                             {!! Form::open(['method' => 'delete','route' => ['category.destroy', $category->id],'id'=>'deleteform']) !!}
@@ -61,12 +56,11 @@
                                 <i class="fas fa-trash"></i>
                             </a>
                             {!! Form::close() !!}
+                            &nbsp;
                             <a href="{{url('category/'.$category->id.'/edit')}}" class="btn btn-primary btn-circle btn-sm" title="Edit">
                                 <i class="fas fa-edit"></i>
                             </a>
-                            {{-- <a href="#" class="btn btn-primary btn-circle btn-sm" title="Delete">
-                                <i class="fas fa-trash"></i>
-                            </a> --}}
+                        &nbsp;
                             <a href="{{url('category/'.$category->id)}}" class="btn btn-primary btn-circle btn-sm" title="View">
                                 <i class="fas fa-eye"></i>
                             </a>
