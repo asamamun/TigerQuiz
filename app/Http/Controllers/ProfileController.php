@@ -31,6 +31,7 @@ class ProfileController extends Controller
             'AB+' => 'AB+',
             'AB-' => 'AB-',
         ];
+        // dd(Auth::user()->profile);
         return view('profile.index')->with('bloodgroup',$bdroup)->with('user',Auth::user());
     }
 
@@ -119,26 +120,39 @@ class ProfileController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(UpdateProfileRequest $request, Profile $profile)
-    { $userid = Auth::id();
-        $path = $request->file('image')->store('public/profiles');
-        $storagepath = Storage::path($path);
-        $img = Image::make($storagepath);
-        
+    {   
+        $userid = Auth::id();
 
-        // resize image instance
-        $img->resize(320, 320);
-
-        // insert a watermark
-        // $img->insert('public/watermark.png');
-
-        // save image in desired format
-        $img->save($storagepath);
-
+        //delete previous image
         $u = User::find(Auth::id());
-        $p = $u->profile;
-        if($p->image){
-            Storage::delete($p->image);
+        $p = $u->profile;        
+
+        if($request->file('image')){
+            if($p->image){
+                Storage::delete($p->image);
+            }
+            $path = $request->file('image')->store('public/profiles');
+            $storagepath = Storage::path($path);
+            $img = Image::make($storagepath);        
+    
+            // resize image instance
+            $img->resize(320, 320);
+    
+            // insert a watermark
+            // $img->insert('public/watermark.png');
+    
+            // save image in desired format
+            $img->save($storagepath);
         }
+        else{
+            if($p?->image){
+                $path = $p->image;
+            }
+            else{
+               $path = null; 
+            }
+        }
+
         $p->category_id = $request->category_id;
         $p->fullname = $request->fullname;
         $p->institute = $request->institute;

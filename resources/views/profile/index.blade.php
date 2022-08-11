@@ -74,15 +74,13 @@
            <div>
             {!! Form::text('address', null, ['required', 'class'=>'form-control', 'id'=>'address', 'placeholder'=>'Address']) !!}
            </div>
-        </div>
-        
-
-        <div class="form-group row">
+        </div>     
+         <div class="form-group row">
             <div class="col-sm-6 mb-2 mb-sm-0">
                 {!! Form::select('bloodgroup', $bloodgroup, null, ['required', 'id'=>'bloodgroup', 'placeholder' => 'Blood Group', 'class'=>'form-control']) !!}
             </div>
             <div class="col-sm-6">
-                {!! Form::file('image', ['required', 'class'=>'form-control', 'id'=>'image']) !!}
+                {!! Form::file('image', ['class'=>'form-control', 'id'=>'image']) !!}
             </div>
         </div>
         <div class="form-group row">
