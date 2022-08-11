@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title','Category')
+@section('title','Edit Class')
 @section('sidebar')
 @include('dashboard.sidebar')
 @endsection
@@ -13,8 +13,8 @@
 @section('content')
     <div class="card card-hover shadow mb-4">
         <div class="card-header py-3 d-flex justify-content-between">
-            <h6 class="m-0 font-weight-bold text-primary">Update Class</h6>
-            <a href="{{url('category')}}" class="btn btn-primary btn-circle btn-sm" title="Back to Class">
+            <h4 class="m-0 font-weight-bold text-info">Update Class</h4>
+            <a href="{{url('category')}}" class="btn btn-info btn-circle btn-sm" title="Back to Class">
                 <i class="fas fa-arrow-left"></i>
             </a>
         </div>
@@ -29,8 +29,7 @@
                 </div>
             </div>
             <div class="form-group">
-                {!! Form::number('active', null, ['required', 'class'=>'form-control form-control-profile', 'id'=>'active', 'max'=>'1', 'min'=>'0', 'placeholder'=>'Active']) !!}
-                {{-- {!! Form::select('active', null, ['placeholder' => 'Select Category', 'class'=>'form-control']) !!} --}}
+                {!! Form::select('active', [0=>'No', 1=>'Yes'], 1, ['required', 'class'=>'form-control form-control-profile', 'id'=>'active', 'max'=>'1', 'min'=>'0', 'placeholder'=>'Active Field']) !!}
             </div>
 
             <div class="form-group">

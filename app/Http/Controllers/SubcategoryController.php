@@ -18,11 +18,11 @@ class SubcategoryController extends Controller
     public function index()
     {
 
-        $allsubcategory = Subcategory::with('category')->get();
+        $allsubcat = Subcategory::with('category')->get();
         return view("subcategory.index")
-        ->with('allsubcategory',$allsubcategory)
+        ->with('allsubcat',$allsubcat)
         ->with('user',Auth::user());
-        // dd($allsubcategory->categories);
+        // dd($allsubcat->categories);
     }
 
     /**

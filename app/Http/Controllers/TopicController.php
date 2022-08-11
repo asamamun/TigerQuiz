@@ -18,11 +18,11 @@ class TopicController extends Controller
     public function index()
     {
 
-        $alltopic = Topic::with('Subcategory')->get();
+        $alltopic = Topic::with('subcategory')->get();
         return view("topic.index")
         ->with('alltopic',$alltopic)
         ->with('user',Auth::user());
-        // dd($alltopic->categories);
+        // dd($alltopic);
     }
 
     /**
@@ -33,10 +33,10 @@ class TopicController extends Controller
     public function create()
     {
        
-        $categories = Subcategory::pluck('name','id');
-        // array_unshift($categories , ['-1'=>"Select Subcategory"]);
-        // dd($categories);
-        return view("topic.create")->with('categories',$categories)->with('user',Auth::user());
+        $subcategories = Subcategory::pluck('name','id');
+        // array_unshift($subcategories , ['-1'=>"Select Subcategory"]);
+        // dd($subcategories);
+        return view("topic.create")->with('subcategories',$subcategories)->with('user',Auth::user());
     }
 
     /**
@@ -49,15 +49,14 @@ class TopicController extends Controller
     {
         //upload
         
-
-        
-        $sc = new Topic();
-        $sc->name = $request->name;
-        $sc->active = $request->active;
-        $sc->description = $request->description;
-        $c = Subcategory::find($request->Subcategory_id);
-        if($c->topics()->save($sc)){
-            return back()->with('message','Subject ' .$sc->id. 'has been created successfully!');
+        $tp = new Topic();
+        $tp->name = $request->name;
+        $tp->active = $request->active;
+        $tp->description = $request->description;
+        $sc = Subcategory::find($request->subcategory_id);
+        // dd($sc);
+        if($sc->topics()->save($tp)){
+            return back()->with('message','Subject ' .$tp->id. 'has been created successfully!');
         }
         else{
             return back()->with('message','Error!!');
@@ -70,7 +69,7 @@ class TopicController extends Controller
      * @param  \App\Models\topic  $topic
      * @return \Illuminate\Http\Response
      */
-    public function show(topic $topic)
+    public function show(Topic $topic)
     {
         return view('topic.show',compact('topic'))->with('user',Auth::user());
     }
@@ -78,13 +77,13 @@ class TopicController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\topic  $topic
+     * @param  \App\Models\Topic  $topic
      * @return \Illuminate\Http\Response
      */
     public function edit(topic $topic)
     {
-        $categories = Subcategory::pluck('name','id');
-        return view('topic.edit',compact('topic'))->with('categories',$categories)->with('user',Auth::user());
+        $subcategories = Subcategory::pluck('name','id');
+        return view('topic.edit',compact('topic'))->with('subcategories',$subcategories)->with('user',Auth::user());
     }
 
     /**
@@ -94,12 +93,12 @@ class TopicController extends Controller
      * @param  \App\Models\topic  $topic
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdatetopicRequest $request, topic $topic)
+    public function update(UpdateTopicRequest $request, Topic $topic)
     {
        
 
         $topic->name = $request->name;
-        $topic->Subcategory_id = $request->Subcategory_id;
+        $topic->subcategory_id = $request->subcategory_id;
         $topic->active = $request->active;
         $topic->description = $request->description;
 
@@ -114,13 +113,20 @@ class TopicController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\topic  $topic
+     * @param  \App\Models\Topic  $topic
      * @return \Illuminate\Http\Response
      */
-    public function destroy(topic $topic)
+    public function destroy(Topic $topic)
     {
-        if(topic::destroy($topic->id)){
+        if(Topic::destroy($topic->id)){
             return back()->with('message',$topic->id. ' Deleted!!!!');
         }
     }
+
+    // public function topic_list(){
+    //     $topics = Topic::with(array('subcategory'=>function($query){
+    //             $query->select('id','name');
+    //         }))->get();
+    // return view('topic.index',compact('topics'))->with('user',Auth::user());
+    // }
 }

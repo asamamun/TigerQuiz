@@ -63,6 +63,13 @@
         <script src="{{url('assets/js/dashboard.js')}}"></script>
         <script src="{{url('assets/js/tea_main.js')}}"></script>
         @yield('scripts')
-        
+      <script>
+            $(document).ready(function() {
+          // show the alert
+          setTimeout(function() {
+              $(".alert").alert('close');
+          }, 2000);
+      });
+      </script>
    </body>
    </html>

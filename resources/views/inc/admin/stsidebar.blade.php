@@ -2,7 +2,7 @@
     <div id="sidebar" class='active'>
     <div class="sidebar-wrapper active">
      <a href="./"><div class="sidebar-header text-center border-bottom">
-    <img src="assets/img/logo/tiger_logo.png" alt="logo">
+    <img src="{{url('assets/img/logo/tiger_logo.png')}}" alt="logo">
     <span class="logo-title text-warning">Tiger</span>&nbsp;<span class="logo-title text-info">Quiz</span>
 </div></a>
 <div class="sidebar-menu">
@@ -23,11 +23,11 @@
                 <ul class="submenu ">
                     
                     <li>
-                        <a href="component-alert.html">Play Quizzes </a>
+                        <a href="{{url('')}}">Play Quizzes </a>
                     </li>
                     
                     <li>
-                        <a href="component-badge.html">Archive Quizset</a>
+                        <a href="{{url('')}}">Archive Quizset</a>
                     </li>
                     
                    
@@ -44,11 +44,11 @@
                 <ul class="submenu ">
                     
                     <li>
-                        <a href="component-alert.html">Your Rank</a>
+                        <a href="{{url('')}}">Your Rank</a>
                     </li>
                     
                     <li>
-                        <a href="component-badge.html">Add Quizset</a>
+                        <a href="{{url('')}}">Add Quizset</a>
                     </li>
                     
                    
@@ -65,11 +65,11 @@
                 <ul class="submenu ">
                     
                     <li>
-                        <a href="component-alert.html">Last Quiz Result</a>
+                        <a href="{{url('')}}">Last Quiz Result</a>
                     </li>
                     
                     <li>
-                        <a href="component-badge.html">All Quiz Result</a>
+                        <a href="{{url('assets/img/logo/tiger_logo.png')}}">All Quiz Result</a>
                     </li>
                     
                    

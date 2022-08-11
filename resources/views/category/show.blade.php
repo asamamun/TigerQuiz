@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title','Category')
+@section('title','Show Classes')
 @section('sidebar')
 @include('dashboard.sidebar')
 @endsection
@@ -13,8 +13,8 @@
 @section('content')
 <div class="card card-hover shadow mb-4">
     <div class="card-header py-3 d-flex justify-content-between">
-        <h6 class="m-0 font-weight-bold text-info">Class Details</h6>
-        <a href="{{url('category')}}" class="btn btn-primary btn-circle btn-sm" title="Back to Class">
+        <h4 class="m-0 font-weight-bold text-info">Class Details</h4>
+        <a href="{{url('category')}}" class="btn btn-info btn-circle btn-sm" title="Back to Class">
             <i class="fas fa-arrow-left"></i>
         </a>
     </div>

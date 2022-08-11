@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title','Category')
+@section('title','Add Subject')
 @section('sidebar')
 @include('dashboard.sidebar')
 @endsection
@@ -36,8 +36,7 @@
     {!! Form::select('category_id', $categories, null, ['placeholder' => 'Select Class', 'class'=>'form-control w-full']) !!}
 </div>
 <div class="col-sm-6">
-    {!! Form::number('active', null, ['required', 'class'=>'form-control form-control-profile', 'id'=>'active', 'max'=>'1', 'min'=>'0', 'placeholder'=>'Active']) !!}
-    {{-- {!! Form::select('active', null, ['placeholder' => 'Select Category', 'class'=>'form-control']) !!} --}}
+    {!! Form::select('active', [0=>'No', 1=>'Yes'], 1, ['required', 'class'=>'form-control form-control-profile', 'id'=>'active', 'max'=>'1', 'min'=>'0', 'placeholder'=>'Active Field']) !!}
 </div>
 </div>
 

@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title','Category')
+@section('title','Add Chapter')
 @section('sidebar')
 @include('dashboard.sidebar')
 @endsection
@@ -33,10 +33,10 @@
 </div>
 <div class="form-group row">
 <div class="col-sm-6 mb-3 mb-sm-0">
-    {!! Form::select('subcategory_id', $categories, null, ['placeholder' => 'Select Class', 'class'=>'form-control w-full']) !!}
+    {!! Form::select('subcategory_id', $subcategories, null, ['placeholder' => 'Select Class', 'id'=>'active', 'class'=>'form-control w-100'])!!}
 </div>
 <div class="col-sm-6">
-    {!! Form::number('active', null, ['required', 'class'=>'form-control form-control-profile', 'id'=>'active', 'max'=>'1', 'min'=>'0', 'placeholder'=>'Active']) !!}
+    {!! Form::select('active', [0=>'No', 1=>'Yes'], 1, ['required', 'class'=>'form-control form-control-profile', 'id'=>'active', 'max'=>'1', 'min'=>'0', 'value'=>'[0,1]', 'placeholder'=>'Active']) !!}
     {{-- {!! Form::select('active', null, ['placeholder' => 'Select Category', 'class'=>'form-control']) !!} --}}
 </div>
 </div>

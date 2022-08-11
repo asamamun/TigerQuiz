@@ -86,12 +86,12 @@
                 <ul class="submenu ">
                     
                     <li>
-                        <a href="{{url('topic')}}">Add Chapter</a>
+                        <a href="{{url('topic')}}">All Chapter</a>
+                    </li>
+                    <li>
+                        <a href="{{url('topic/create')}}">Add Chapter</a>
                     </li>
                     
-                    <li>
-                        <a href="{{url('topic/create')}}">All Chapter</a>
-                    </li>
                     
                    
                     

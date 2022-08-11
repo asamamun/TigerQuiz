@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title','Category')
+@section('title','All Classes')
 @section('sidebar')
 @include('dashboard.sidebar')
 @endsection
@@ -13,7 +13,7 @@
 <div class="card card-hover shadow mb-4">
     <!-- Card Header - Dropdown -->
     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-        <h6 class="m-0 font-weight-bold text-info">List of Classes</h6>
+        <h4 class="m-0 font-weight-bold text-info">List of Classes</h4>
         <div class="">
             <a class="btn btn-sm btn-info" href="{{url('category/create')}}">
                 <i class="fa-solid fa-plus"></i> 
@@ -52,8 +52,8 @@
                         <td>{{ $category->description }}</td>
                         <td class="d-flex justify-content-center">
                             {!! Form::open(['method' => 'delete','route' => ['category.destroy', $category->id],'id'=>'deleteform']) !!}
-                            <a href="javascript:void(0)" class="btn btn-info btn-circle btn-sm" title="Delete" onclick="event.preventDefault();if (!confirm('Are you sure?')) return; document.getElementById('deleteform').submit();">
-                                <i class="fas fa-trash"></i>
+                            <a href="javascript:void(0)" class="btn btn-danger btn-circle btn-sm" title="Delete" onclick="event.preventDefault();if (!confirm('Are you sure?')) return; document.getElementById('deleteform').submit();">
+                                <i class="fa-solid fa-trash-can"></i>
                             </a>
                             {!! Form::close() !!}
                             &nbsp;

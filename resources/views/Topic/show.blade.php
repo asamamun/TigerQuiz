@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title','Subcategory')
+@section('title','Show Chapters')
 @section('sidebar')
 @include('dashboard.sidebar')
 @endsection
@@ -13,7 +13,7 @@
 <div class="card card-hover shadow mb-4">
     <div class="card-header py-3 d-flex justify-content-between">
         <h6 class="m-0 font-weight-bold text-primary">Subject Details</h6>
-        <a href="{{url('subcategory')}}" class="btn btn-primary btn-circle btn-sm" title="Back to Subcategory List">
+        <a href="{{url('topic')}}" class="btn btn-primary btn-circle btn-sm" title="Back to Chapter">
             <i class="fas fa-arrow-left"></i>
         </a>
     </div>
@@ -21,23 +21,23 @@
         <table class="table table-responsive">
             <tr class="table-bordered">
                 <th>Id</th>
-                <td>{{ $subcategory->id }}</td>
+                <td>{{ $topic->id }}</td>
             </tr>
             <tr class="table-bordered">
                 <th>Name</th>
-                <td>{{ $subcategory->name }}</td>
+                <td>{{ $topic->name }}</td>
             </tr>
             <tr class="table-bordered">
                 <th>Class</th>
-                <td>{{ $subcategory->category->name }}</td>
+                <td>{{ $topic->subcategory->name }}</td>
             </tr>
             <tr class="table-bordered">
                 <th>Active</th>
-                <td>{{ $subcategory->active }}</td>
+                <td>{{ $topic->active }}</td>
             </tr>
             <tr class="table-bordered">
                 <th>Description</th>
-                <td>{{ $subcategory->description }}</td>
+                <td>{{ $topic->description }}</td>
             </tr>
         </table>
     </div>

@@ -18,7 +18,7 @@
                         <ul class="list-group rounded-none">
                             <li class="list-group-item border-0 align-items-start">
                                 <div class="avatar bg-success mr-3">
-                                    <span class="avatar-content"><i data-feather="shopping-cart"></i></span>
+                                    <span class="avatar-content"><i class="fa-regular fa-gear"></i></span>
                                 </div>
                                 <div>
                                     <h6 class='text-bold'>New Order</h6>
@@ -37,8 +37,8 @@
                         </div>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right">
-                        <a class="dropdown-item" href="#"><i data-feather="user"></i> Mail</a>
-                        <a class="dropdown-item" href="#"><i data-feather="settings"></i> Settings</a>
+                        <a class="dropdown-item" href="#"><i data-feather="mail"></i> Mail</a>
+                        <a class="dropdown-item" href="#"><i class="fa-regular fa-gear"></i></i> Settings</a>
                        
                     </div>
                 </li>
@@ -51,13 +51,13 @@
                         <div class="d-none d-md-block d-lg-inline-block">Hi, <span class="sidebar-user__title">{{ Auth::user()->name }}</span></div>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right">
-                        <span><a class="dropdown-item" href="{{url('profile')}}"><i data-feather="profiles"></i> Profile</a></span>
-                     <span><a class="dropdown-item" href="#"><i data-feather="settings"></i> Settings</a></span>
+                        <span><a class="dropdown-item" href="{{url('profile')}}"><i class="fa-solid fa-user"></i> Profile</a></span>
+                     <span><a class="dropdown-item" href="#"><i class="fa-solid fa-gear"></i> Settings</a></span>
                         <span class="dropdown-divider"></span>
                         <span><a class="dropdown-item" href="{{ route('logout') }}"
                                onclick="event.preventDefault();
                                 document.getElementById('logout-form').submit();">
-                                <i data-feather="power"></i> {{ __('Logout') }}</a></span>
+                                <i class="fa-solid fa-arrow-right-from-bracket"></i> {{ __('Logout') }}</a></span>
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                             @csrf
                         </form>

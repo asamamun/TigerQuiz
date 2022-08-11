@@ -21,7 +21,7 @@ class ProfileController extends Controller
     public function index()
     {
         //dd(Auth::user()->profile);
-        $bloodgroup = [
+        $bdroup = [
             'A+' => 'A+',
             'A-' => 'A-',
             'B+' => 'B+',
@@ -31,7 +31,7 @@ class ProfileController extends Controller
             'AB+' => 'AB+',
             'AB-' => 'AB-',
         ];
-        return view('profile.index')->with('bloodgroup',$bloodgroup)->with('user',Auth::user());
+        return view('profile.index')->with('bloodgroup',$bdroup)->with('user',Auth::user());
     }
 
     /**
@@ -67,12 +67,22 @@ class ProfileController extends Controller
         $img->save($storagepath);
 
         $u = User::find(Auth::id());
-        $p = new Profile();        
+        $p = new Profile(); 
+        $p->category_id = $request->category_id;
         $p->fullname = $request->fullname;
         $p->institute = $request->institute;
+        $p->subject = $request->subject;
+        $p->designation = $request->designation;
         $p->phone = $request->phone;
         $p->address = $request->address;
-        // $p->bloodgroup = $request->bloodgroup;
+        $p->bio = $request->bio;
+        $p->yt = $request->yt;
+        $p->fb = $request->fb;
+        $p->in = $request->in;
+        $p->bloodgroup = $request->bloodgroup;
+        $p->guardianname = $request->guardianname;
+        $p->guardianemail = $request->guardianemail;
+        $p->guardianphone = $request->guardianphone;
         $p->image = $path;
         if($u->profile()->save($p)){
             return back()->with('message',"Your profile has been Created!!!");
@@ -109,12 +119,11 @@ class ProfileController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(UpdateProfileRequest $request, Profile $profile)
-    {
-        //upload
-        
+    { $userid = Auth::id();
         $path = $request->file('image')->store('public/profiles');
         $storagepath = Storage::path($path);
         $img = Image::make($storagepath);
+        
 
         // resize image instance
         $img->resize(320, 320);
@@ -130,13 +139,24 @@ class ProfileController extends Controller
         if($p->image){
             Storage::delete($p->image);
         }
+        $p->category_id = $request->category_id;
         $p->fullname = $request->fullname;
+        $p->institute = $request->institute;
+        $p->subject = $request->subject;
+        $p->designation = $request->designation;
         $p->phone = $request->phone;
         $p->address = $request->address;
+        $p->bio = $request->bio;
+        $p->yt = $request->yt;
+        $p->fb = $request->fb;
+        $p->in = $request->in;
         $p->bloodgroup = $request->bloodgroup;
+        $p->guardianname = $request->guardianname;
+        $p->guardianemail = $request->guardianemail;
+        $p->guardianphone = $request->guardianphone;
         $p->image = $path;
         if($u->profile()->save($p)){
-            return back()->with('message',"Your profile has been updated!!!");
+            return back()->with('message',"Your profile has been updated!");
         }
     }
 

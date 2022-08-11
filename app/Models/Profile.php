@@ -18,14 +18,13 @@ class Profile extends Model
         'bio',
         'phone',
         'address',
+        'bloodgroup',
         'yt',
-        'fb',
         'fb',
         'in',
         'guardianname',
         'guardianemail',
         'guardianphone',
-        'guardianname',
         'image',
       
     ];

@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title','Category')
+@section('title','All Chapters')
 @section('sidebar')
 @include('dashboard.sidebar')
 @endsection
@@ -51,14 +51,15 @@
                     <tr>
                         <td>{{ $topic->id }}</td>
                         <td>{{ $topic->name }}</td>                        
-                        <td>{{ $topic->category->name }}</td>          
+                        <td>{{$topic->subcategory->name ?? 'None'}}</td>
+                        <!-- Attempt to read property "name" on null -->
+                        {{-- {{dd($topic->subcategory->name)}} --}}
                         <td>{{ $topic->active }}</td>
                         <td>{{ $topic->description }}</td>
                         <td class="d-flex justify-content-center">
-                            {{-- onclick="event.preventDefault(); document.getElementById('submit-form').submit();" --}}
                             {!! Form::open(['method' => 'delete','route' => ['topic.destroy', $topic->id],'id'=>'deleteform']) !!}
-                            <a href="javascript:void(0)" class="btn btn-info btn-circle btn-sm" title="Delete" onclick="event.preventDefault();if (!confirm('Are you sure?')) return; document.getElementById('deleteform').submit();">
-                                <i class="fas fa-trash"></i>
+                            <a href="javascript:void(0)" class="btn btn-danger btn-circle btn-sm" title="Delete" onclick="event.preventDefault();if (!confirm('Are you sure?')) return; document.getElementById('deleteform').submit();">
+                                <i class="fa-solid fa-trash-can"></i>
                             </a>
                             {!! Form::close() !!}
                             &nbsp;

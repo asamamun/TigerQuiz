@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title','Category')
+@section('title','All Subjeccts')
 @section('sidebar')
 @include('dashboard.sidebar')
 @endsection
@@ -47,26 +47,26 @@
                     </tr>
                 </tfoot>
                 <tbody>
-                    @foreach ($allsubcategory as $subcategory)
+                    @foreach ($allsubcat as $subcat)
                     <tr>
-                        <td>{{ $subcategory->id }}</td>
-                        <td>{{ $subcategory->name }}</td>                        
-                        <td>{{ $subcategory->category->name }}</td>          
-                        <td>{{ $subcategory->active }}</td>
-                        <td>{{ $subcategory->description }}</td>
+                        <td>{{ $subcat->id }}</td>
+                        <td>{{ $subcat->name }}</td>                        
+                        <td>{{ $subcat->category->name}}</td>          
+                        <td>{{ $subcat->active }}</td>
+                        <td>{{ $subcat->description }}</td>
                         <td class="d-flex justify-content-center">
                             {{-- onclick="event.preventDefault(); document.getElementById('submit-form').submit();" --}}
-                            {!! Form::open(['method' => 'delete','route' => ['subcategory.destroy', $subcategory->id],'id'=>'deleteform']) !!}
-                            <a href="javascript:void(0)" class="btn btn-info btn-circle btn-sm" title="Delete" onclick="event.preventDefault();if (!confirm('Are you sure?')) return; document.getElementById('deleteform').submit();">
-                                <i class="fas fa-trash"></i>
+                            {!! Form::open(['method' => 'delete','route' => ['subcategory.destroy', $subcat->id],'id'=>'deleteform']) !!}
+                            <a href="javascript:void(0)" class="btn btn-danger btn-circle btn-sm" title="Delete" onclick="event.preventDefault();if (!confirm('Are you sure?')) return; document.getElementById('deleteform').submit();">
+                                <i class="fa-solid fa-trash-can"></i>
                             </a>
                             {!! Form::close() !!}
                             &nbsp;
-                            <a href="{{url('subcategory/'.$subcategory->id.'/edit')}}" class="btn btn-info btn-circle btn-sm" title="Edit">
+                            <a href="{{url('subcategory/'.$subcat->id.'/edit')}}" class="btn btn-info btn-circle btn-sm" title="Edit">
                                 <i class="fas fa-edit"></i>
                             </a>
                             &nbsp;
-                            <a href="{{url('subcategory/'.$subcategory->id)}}" class="btn btn-info btn-circle btn-sm" title="View">
+                            <a href="{{url('subcategory/'.$subcat->id)}}" class="btn btn-info btn-circle btn-sm" title="View">
                                 <i class="fas fa-eye"></i>
                             </a>
                         </td>
