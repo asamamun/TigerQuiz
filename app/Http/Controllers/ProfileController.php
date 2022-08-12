@@ -6,6 +6,7 @@ use App\Models\Profile;
 use App\Http\Requests\StoreProfileRequest;
 use App\Http\Requests\UpdateProfileRequest;
 use App\Models\User;
+use App\Models\Category;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
@@ -13,6 +14,7 @@ use Intervention\Image\Facades\Image;
 
 class ProfileController extends Controller
 {
+   
     /**
      * Display a listing of the resource.
      *
@@ -31,8 +33,9 @@ class ProfileController extends Controller
             'AB+' => 'AB+',
             'AB-' => 'AB-',
         ];
+        $categories = Category::pluck('name','id');
         // dd(Auth::user()->profile);
-        return view('profile.index')->with('bloodgroup',$bdroup)->with('user',Auth::user());
+        return view('profile.index')->with('bloodgroup',$bdroup)->with('categories',$categories)->with('user',Auth::user());
     }
 
     /**
@@ -52,19 +55,21 @@ class ProfileController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(StoreProfileRequest $request)
-    {
-        // dd($request->file('image'));
-        $path = $request->file('image')->store('public/profiles');
+    {   // dd($request->file('image'));
+        // pathinfo();
+        $unrid = Auth::user()->name.'_'.Auth::user()->role.Auth::id();
+        $oname = $request->file('image')->getClientOriginalName();
+        // $oextn = $request->file('image')->getClientOriginalExtension();
+        
+        // rename the GD image path
+        $rename = str_replace($oname,'', $unrid.'.'.'png');
+        // replace the file name with the new name
+        $path = $request->file('image')->storeAs('public/profiles',$rename);
+
         $storagepath = Storage::path($path);
-        $img = Image::make($storagepath);
-
-        // resize image instance
-        $img->resize(320, 320);
-
-        // insert a watermark
-        // $img->insert('public/watermark.png');
-
-        // save image in desired format
+        // desired format
+        $img = Image::make($storagepath)->fit(310,310);
+        // save image
         $img->save($storagepath);
 
         $u = User::find(Auth::id());
@@ -72,6 +77,7 @@ class ProfileController extends Controller
         $p->category_id = $request->category_id;
         $p->fullname = $request->fullname;
         $p->institute = $request->institute;
+        $p->batch = $request->batch;
         $p->subject = $request->subject;
         $p->designation = $request->designation;
         $p->phone = $request->phone;
@@ -86,7 +92,7 @@ class ProfileController extends Controller
         $p->guardianphone = $request->guardianphone;
         $p->image = $path;
         if($u->profile()->save($p)){
-            return back()->with('message',"Your profile has been Created!!!");
+            return back()->with('message',"Your profile has been Created!");
         }
     }
 
@@ -120,9 +126,7 @@ class ProfileController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(UpdateProfileRequest $request, Profile $profile)
-    {   
-        $userid = Auth::id();
-
+     {  
         //delete previous image
         $u = User::find(Auth::id());
         $p = $u->profile;        
@@ -131,17 +135,17 @@ class ProfileController extends Controller
             if($p->image){
                 Storage::delete($p->image);
             }
-            $path = $request->file('image')->store('public/profiles');
+          
+            // replace the file name with the new name
+            $unrid = Auth::user()->name.'_'.Auth::user()->role.Auth::id();
+            $oname = $request->file('image')->getClientOriginalName();
+            // $oextn = $request->file('image')->getClientOriginalExtension();
+            $rename = str_replace($oname, '',  $unrid.'.'.'png');
+            $path = $request->file('image')->storeAs('public/profiles',$rename);
+            
+            // $path = $request->file('image')->store('public/profiles');
             $storagepath = Storage::path($path);
-            $img = Image::make($storagepath);        
-    
-            // resize image instance
-            $img->resize(320, 320);
-    
-            // insert a watermark
-            // $img->insert('public/watermark.png');
-    
-            // save image in desired format
+            $img = Image::make($storagepath)->fit(310,310);
             $img->save($storagepath);
         }
         else{
@@ -156,6 +160,7 @@ class ProfileController extends Controller
         $p->category_id = $request->category_id;
         $p->fullname = $request->fullname;
         $p->institute = $request->institute;
+        $p->batch = $request->batch;
         $p->subject = $request->subject;
         $p->designation = $request->designation;
         $p->phone = $request->phone;

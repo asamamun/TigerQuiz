@@ -11,9 +11,8 @@
 
 @section('content')
 <div class="card card-hover shadow mb-4">
-    <!-- Card Header - Dropdown -->
     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-        <h6 class="m-0 font-weight-bold text-info">Subject List</h6>
+        <h4 class="m-0 font-weight-bold text-info">Topic List</h4>
         <div class="">
             <a class="btn btn-sm btn-info" href="{{url('topic/create')}}">
                 <i class="fa-solid fa-plus"></i> 
@@ -31,6 +30,7 @@
                         <th>#</th>
                         <th>Name</th>
                         <th>Subject</th>
+                        <th>Class</th>
                         <th>Active</th>
                         <th>Description</th>
                         <th>Action</th>
@@ -41,6 +41,7 @@
                         <th>#</th>
                         <th>Name</th>
                         <th>Subject</th>
+                        <th>Class</th>
                         <th>Active</th>
                         <th>Description</th>
                         <th>Action</th>
@@ -54,6 +55,7 @@
                         <td>{{$topic->subcategory->name ?? 'None'}}</td>
                         <!-- Attempt to read property "name" on null -->
                         {{-- {{dd($topic->subcategory->name)}} --}}
+                        <td>{{ $topic->category->name ?? 'None'}}</td>
                         <td>{{ $topic->active }}</td>
                         <td>{{ $topic->description }}</td>
                         <td class="d-flex justify-content-center">

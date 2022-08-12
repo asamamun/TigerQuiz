@@ -18,6 +18,7 @@ class CategoryController extends Controller
     public function index()
     {
         $allcategory = Category::all();
+   
         return view('category.index',compact('allcategory'))->with('user',Auth::user());
     }
 
@@ -28,7 +29,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view("category.create")->with('user',Auth::user());
+        return view('category.create')->with('user',Auth::user());
     }
 
     /**

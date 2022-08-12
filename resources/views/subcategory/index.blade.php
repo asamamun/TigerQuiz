@@ -11,9 +11,8 @@
 
 @section('content')
 <div class="card card-hover shadow mb-4">
-    <!-- Card Header - Dropdown -->
     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-        <h6 class="m-0 font-weight-bold text-info">Subject List</h6>
+        <h4 class="m-0 font-weight-bold text-info">Subject List</h4>
         <div class="">
             <a class="btn btn-sm btn-info" href="{{url('subcategory/create')}}">
                 <i class="fa-solid fa-plus"></i> 

@@ -50,7 +50,7 @@
                 @auth
                 @if (Auth::user()->role == '3')
                 <div class="col-sm-4 mb-2 mb-sm-0">
-                    {!! Form::text('category_id', null, [ 'class'=>'form-control', 'id'=>'category_id', 'placeholder'=>'Class Id']) !!}
+                    {!! Form::select('category_id', $categories, null, [ 'class'=>'form-control', 'id'=>'category_id', 'placeholder'=>'Select Class']) !!}
                 </div>
                 <div class="col-sm-4">
                     {!! Form::text('classroom', null, [ 'disabled','class'=>'form-control','id'=>'classroom', 'placeholder'=>'Total Class Rooms: 12']) !!}

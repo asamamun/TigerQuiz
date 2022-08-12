@@ -17,11 +17,13 @@ return new class extends Migration
             $table->id();
             $table->bigInteger('user_id')->unsigned()->nullable();
             $table->foreign('user_id')->references('id')->on('users');
+
             //for students
             $table->bigInteger('category_id')->unsigned()->nullable();
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('restrict');            
             $table->string('fullname');
             $table->string('institute');
+            $table->string('batch')->nullable();
             $table->string('subject')->nullable();
             $table->string('designation')->nullable();
             $table->text('bio')->nullable();
@@ -33,6 +35,7 @@ return new class extends Migration
             $table->string('guardianname')->nullable();
             $table->string('guardianemail')->nullable();
             $table->string('guardianphone')->nullable();
+            $table->string('bloodgroup');
             $table->string('image');
             $table->timestamps();
         });

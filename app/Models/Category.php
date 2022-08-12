@@ -4,6 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
+
+
 
 class Category extends Model
 {
@@ -18,10 +21,12 @@ class Category extends Model
     {
     return $this->hasMany('App\Models\Subcategory');
     }
+   
     public function blogs()
     {
     return $this->hasMany('App\Models\Blog');
     }
+    
     public function quizsets()
     {
     return $this->hasMany('App\Models\Quizset');
@@ -30,4 +35,9 @@ class Category extends Model
     {
     return $this->hasMany('App\Models\Quiz');
     }
+    public function topics()
+    {
+    return $this->hasMany('App\Models\Topic');
+    }
+  
 }

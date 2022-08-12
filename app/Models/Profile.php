@@ -13,6 +13,7 @@ class Profile extends Model
         'category_id',
         'fullnam',
         'institute',
+        'batch',
         'subject',
         'designation',
         'bio',
