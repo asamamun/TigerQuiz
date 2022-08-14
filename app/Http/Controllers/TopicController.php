@@ -7,6 +7,7 @@ use App\Http\Requests\StoreTopicRequest;
 use App\Http\Requests\UpdateTopicRequest;
 use App\Models\Category;
 use App\Models\Subcategory;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class TopicController extends Controller
@@ -31,10 +32,9 @@ class TopicController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
 
-        // $category_id = Subcategory::pluck('id');
         // $subcategories = Subcategory::where('category_id','=',$category_id)->pluck('name','id');
         
         $categories = Category::pluck('name','id');

@@ -1321,7 +1321,7 @@ footer {
   background: #6c757d;
   min-height: 100vh;
   padding-top: 100px;
-  background-image: url(../images/background/auth.jpg);
+  background-image: url(assets/img/background/auth.jpg);
 }
 #auth .card {
   box-shadow: 0 5px 15px rgba(36, 104, 146, 0.6);
@@ -1517,3 +1517,9 @@ footer {
   top: 50px;
 }
 /* bacground image */
+.ppicture {
+  background-image: url(assets/img/background/auth.jpg)!important;
+  background-position: center;
+  background-size: cover;
+  
+}

@@ -36,7 +36,9 @@
     {!! Form::select('category_id',$categories, null, ['placeholder' => 'Select Class', 'id'=>'category_id', 'class'=>'form-control'])!!}
 </div>
 <div class="col-sm-4">
-    {!! Form::select('subcategory_id',$subcategories, null, ['placeholder' => 'Select Subject', 'id'=>'subcategory_id', 'class'=>'form-control'])!!}
+    {!! Form::select('subcategory_id', $subcategories
+    
+    , null, ['placeholder' => 'Select Subject', 'id'=>'subcategory_id', 'class'=>'form-control'])!!}
 </div>
 
 <div class="col-sm-4">
@@ -51,3 +53,13 @@
         </div>
     </div>
 @endsection
+
+
+
+
+{{-- @foreach ($categories as $category)
+@foreach
+($category->subcategories->$scategory)
+{{$scategory->name??''}}
+@endforeach
+@endforeach --}}

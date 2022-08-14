@@ -26,6 +26,7 @@ return new class extends Migration
             $table->string('batch')->nullable();
             $table->string('subject')->nullable();
             $table->string('designation')->nullable();
+            $table->set('gender',['Male','Female','Others'])->nullable();
             $table->text('bio')->nullable();
             $table->string('phone');
             $table->string('address');
@@ -36,7 +37,7 @@ return new class extends Migration
             $table->string('guardianemail')->nullable();
             $table->string('guardianphone')->nullable();
             $table->string('bloodgroup');
-            $table->string('image');
+            $table->string('image')->default('default.png');
             $table->timestamps();
         });
     }

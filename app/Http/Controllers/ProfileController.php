@@ -33,6 +33,7 @@ class ProfileController extends Controller
             'AB+' => 'AB+',
             'AB-' => 'AB-',
         ];
+
         $categories = Category::pluck('name','id');
         // dd(Auth::user()->profile);
         return view('profile.index')->with('bloodgroup',$bdroup)->with('categories',$categories)->with('user',Auth::user());
@@ -54,21 +55,19 @@ class ProfileController extends Controller
      * @param  \App\Http\Requests\StoreProfileRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreProfileRequest $request)
-    {   // dd($request->file('image'));
+    public function store(StoreProfileRequest $request){
         // pathinfo();
-        $unrid = Auth::user()->name.'_'.Auth::user()->role.Auth::id();
-        $oname = $request->file('image')->getClientOriginalName();
-        // $oextn = $request->file('image')->getClientOriginalExtension();
+    //    image require for the first time
+          if(!$request->has('image')){
+            return redirect()->back()->with('error','Please Upload Image!');}
         
-        // rename the GD image path
-        $rename = str_replace($oname,'', $unrid.'.'.'png');
-        // replace the file name with the new name
-        $path = $request->file('image')->storeAs('public/profiles',$rename);
-
+        $unrid = Auth::user()->name.'_'.Auth::user()->role.Auth::id();
+        $image = $request->file('image');
+        $filename = $unrid.'.png';
+        $path = $image->storeAs('public/profiles',$filename);
         $storagepath = Storage::path($path);
         // desired format
-        $img = Image::make($storagepath)->fit(310,310);
+        $img = Image::make($storagepath)->fit(330,330);
         // save image
         $img->save($storagepath);
 
@@ -80,6 +79,7 @@ class ProfileController extends Controller
         $p->batch = $request->batch;
         $p->subject = $request->subject;
         $p->designation = $request->designation;
+        $p->gender = $request->gender;
         $p->phone = $request->phone;
         $p->address = $request->address;
         $p->bio = $request->bio;
@@ -90,7 +90,7 @@ class ProfileController extends Controller
         $p->guardianname = $request->guardianname;
         $p->guardianemail = $request->guardianemail;
         $p->guardianphone = $request->guardianphone;
-        $p->image = $path;
+        $p->image = $filename;
         if($u->profile()->save($p)){
             return back()->with('message',"Your profile has been Created!");
         }
@@ -136,16 +136,12 @@ class ProfileController extends Controller
                 Storage::delete($p->image);
             }
           
-            // replace the file name with the new name
-            $unrid = Auth::user()->name.'_'.Auth::user()->role.Auth::id();
-            $oname = $request->file('image')->getClientOriginalName();
-            // $oextn = $request->file('image')->getClientOriginalExtension();
-            $rename = str_replace($oname, '',  $unrid.'.'.'png');
-            $path = $request->file('image')->storeAs('public/profiles',$rename);
-            
-            // $path = $request->file('image')->store('public/profiles');
+            // replace the file name with priviouse name
+
+            $filename = Auth::user()->name.'_'.Auth::user()->role.Auth::id().'.png';
+            $path = $request->file('image')->storeAs('public/profiles',$filename);
             $storagepath = Storage::path($path);
-            $img = Image::make($storagepath)->fit(310,310);
+            $img = Image::make($storagepath)->fit(330,330);
             $img->save($storagepath);
         }
         else{
@@ -156,6 +152,8 @@ class ProfileController extends Controller
                $path = null; 
             }
         }
+        
+        $filename = Auth::user()->name.'_'.Auth::user()->role.Auth::id().'.png';
 
         $p->category_id = $request->category_id;
         $p->fullname = $request->fullname;
@@ -163,6 +161,7 @@ class ProfileController extends Controller
         $p->batch = $request->batch;
         $p->subject = $request->subject;
         $p->designation = $request->designation;
+        $p->gender = $request->gender;
         $p->phone = $request->phone;
         $p->address = $request->address;
         $p->bio = $request->bio;
@@ -173,7 +172,7 @@ class ProfileController extends Controller
         $p->guardianname = $request->guardianname;
         $p->guardianemail = $request->guardianemail;
         $p->guardianphone = $request->guardianphone;
-        $p->image = $path;
+        $p->image = $filename;
         if($u->profile()->save($p)){
             return back()->with('message',"Your profile has been updated!");
         }
@@ -189,4 +188,10 @@ class ProfileController extends Controller
     {
         //
     }
+         // no need now
+        // $oextn = $image->getClientOriginalExtension();
+        // $oname = $image->getClientOriginalName();
+        // $filename = Str::of($oname)->scan('%[^.].%s');
+        // $rename = str_replace($filename,'', $unrid.'.'.'png');
+        // dd($filename[1], $rename);
 }

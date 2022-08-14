@@ -17,9 +17,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $allcategory = Category::all();
-   
-        return view('category.index',compact('allcategory'))->with('user',Auth::user());
+        $categories = Category::all();
+        return view('category.index',compact('categories'))->with('user',Auth::user());
     }
 
     /**
@@ -108,6 +107,8 @@ class CategoryController extends Controller
     {
         if(Category::destroy($category->id)){
             return back()->with('message',$category->id. ' has been deleted!');
+        }else{
+            return back()->with('message','Delete Failed!');
         }
     }
 }

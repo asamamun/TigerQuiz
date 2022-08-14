@@ -28,7 +28,7 @@
         {!! Form::text('name', null, ['required', 'class'=>'form-control form-control-profile', 'id'=>'name', 'placeholder'=>'Name']) !!}
     </div>
     <div class="col-sm-6">
-        {!! Form::select('category_id', $categories, null, ['placeholder' => 'Select Class', 'class'=>'form-control w-full']) !!}
+        {!! Form::select('category_id', $categories, null, ['placeholder' => 'Select Class', 'id'=>'category_id', 'class'=>'form-control w-full']) !!}
     </div>
 </div>
 <div class="form-group row">

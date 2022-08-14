@@ -12,7 +12,7 @@
     <script src="https://use.fontawesome.com/releases/v6.1.2/js/all.js" crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
     <!-- page css-->
-    <!-- <link rel="stylesheet" href="assets/css/bootstrap.css"> -->
+   {{-- <link rel="stylesheet" href="assets/css/bootstrap.css"> --}}
     <link rel="stylesheet" href="{{url('assets/css/chart.min.css')}}">
     <link rel="stylesheet" href="{{url('assets/scrollbar/perfect-scrollbar.css')}}">
     <link rel="stylesheet" href="{{url('assets/css/tea_style.css')}}">

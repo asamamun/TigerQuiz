@@ -4,7 +4,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Builder;
 
 
 
@@ -19,7 +18,7 @@ class Category extends Model
     ];
     public function Subcategories()
     {
-    return $this->hasMany('App\Models\Subcategory');
+    return $this->hasMany('App\Models\Subcategory', 'category_id');
     }
    
     public function blogs()
@@ -39,5 +38,9 @@ class Category extends Model
     {
     return $this->hasMany('App\Models\Topic');
     }
-  
+
+    // public function scopeActive($query)
+    // {
+    //     return $query->where('active', 1);
+    // }
 }
