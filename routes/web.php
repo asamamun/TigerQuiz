@@ -8,8 +8,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\SubcategoryController;
 use App\Http\Controllers\TopicController;
 use App\Http\Controllers\AllUsers;
-
-
+use Illuminate\Support\Facades\Artisan;
 
 /*
 |--------------------------------------------------------------------------
@@ -85,6 +84,9 @@ Route::get('/class', function() {return view('inc.classes');});
 Route::get('/teachers', function() {return view('inc.teacher');});
 Route::get('/leaderboard', function() {return view('inc.leaderboard');});
 Route::get('/contact', function() { return view('inc.contact');});
+
+// storage:link
+Route::get('/link', function () { Artisan::call('storage:link'); return back(); });
 
 
 // keet it at the bottom

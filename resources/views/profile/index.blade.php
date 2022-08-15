@@ -33,7 +33,7 @@
        <div class="form-group row mt-2 bg-image rounded bg-info ">
         <div class="my-1">
         @if (!($user->profile->image))
-        <img src="{{url(Storage::url('public/profiles/default.png'))}}" alt="{{$user->name}}" width='190px' class="rounded d-block float-start me-4 mt-2 mb-2"/>
+        <img src="{{url('assets/img/profile/default.png')}}" alt="{{$user->name}}" width='190px' class="rounded d-block float-start me-4 mt-2 mb-2"/>
             @else
             <img src="{{url(Storage::url('public/profiles/'.$user->profile->image))}}" alt="{{$user->name}}" width='190px' class="rounded d-block float-start me-4 mt-2 mb-2">
           @endif

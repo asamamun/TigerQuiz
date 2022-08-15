@@ -46,9 +46,8 @@
                     <a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user">
                         <div class="avatar mr-1">
                             <!--if  profile or default avatar is not exists in db -->
-
-                            @if (!(Auth::user()->profile) || (Auth::user()->profile->image == null))
-                            <picture><img src="{{url(Storage::url('public/profiles/default2.png'))}}" alt="{{auth()->user()->name}}" class="profile"/></picture> 
+                            @if (!(Auth::user()->profile) || (Auth::user()->profile->image == '' ))
+                            <picture><img src="{{url('assets/img/profile/default2.png')}}" alt="{{auth()->user()->name}}" class="profile"/></picture> 
                             @else
                                 <picture><img src="{{url(Storage::url('public/profiles/'.Auth::user()->profile->image))}}" alt="{{auth()->user()->name}}" class="profile"/></picture>
                             @endif
