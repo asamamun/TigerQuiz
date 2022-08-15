@@ -139,7 +139,10 @@ class ProfileController extends Controller
 
         if($request->file('image')){
             if($filename){Storage::delete($filename);}
-
+            // if you manually delete the image from the profile table folder
+            if(!$filename) {
+                $filename = (Auth::user()->name.'_'.Auth::user()->role.Auth::id().'.png');
+            }
          // Image rename and replace the file name with desired name
             $path = $request->file('image')->storeAs('public/profiles',$filename);
             $storagepath = Storage::path($path);
@@ -149,7 +152,7 @@ class ProfileController extends Controller
         } else{
             if($p?->image){ $path = $filename;}
             else{ $path = null;}}
-        
+       
         // update all into prpfile table
         $profile->update($request->all());
         // replace the request filename with desired name
