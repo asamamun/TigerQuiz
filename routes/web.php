@@ -74,6 +74,8 @@ Route::resource("profile",ProfileController::class);
 
  // Topic
  Route::resource("/topic",TopicController::class);
+ // Quiz
+ Route::resource("/quiz",TopicController::class);
  // allusers
  Route::resource("/dashboard/allusers",AllUsers::class);
 

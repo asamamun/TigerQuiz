@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Quiz;
 use App\Http\Requests\StoreQuizRequest;
 use App\Http\Requests\UpdateQuizRequest;
+use Illuminate\Support\Facades\Auth;
 
 class QuizController extends Controller
 {
@@ -15,7 +16,11 @@ class QuizController extends Controller
      */
     public function index()
     {
-        //
+       $quizess = Quiz::with('subcategory')->with('category')->get();
+        return view("quiz.index")
+        ->with('allquiz',$quizess)
+        ->with('user',Auth::user());
+        // dd($quizess);
     }
 
     /**

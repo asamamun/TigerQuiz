@@ -59,7 +59,7 @@ class ProfileController extends Controller
         // pathinfo();
     //    image require for the first time
           if(!$request->has('image')){
-            return redirect()->back()->with('error','Please Upload Image!');}
+            return back()->withInput()->with('error','Please Upload Image!');}
         
         $unrid = Auth::user()->name.'_'.Auth::user()->role.Auth::id();
         $image = $request->file('image');
@@ -108,7 +108,8 @@ class ProfileController extends Controller
      */
     public function show(Profile $profile)
     {
-        //
+      
+        return view('profile.show')->with('profile',$profile);
     }
 
     /**
