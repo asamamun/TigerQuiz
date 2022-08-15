@@ -23,15 +23,32 @@
                 <ul class="submenu ">
                     
                     <li>
-                        <a href="component-alert.html">Site Info</a>
+                        <a href="component-alert.html">Profile Info</a>
                     </li>
                     
                     <li>
-                        <a href="component-badge.html">Site Theame</a>
+                        <a href="component-alert.html">Quizzes</a>
                     </li>
                     
                    
                     
+                </ul>
+                
+            </li>
+            <li class="sidebar-item  has-sub">
+                <a href="#" class='sidebar-link'>
+                    <i data-feather="book-open" width="20"></i> 
+                    <span>Blogs</span>
+                </a>
+                
+                <ul class="submenu ">
+                    
+                    <li>
+                        <a href="{{url('category')}}">All Blogs</a>
+                    </li>
+                    <li>
+                        <a href="{{url('category')}}">Write Blogs</a>
+                    </li>
                 </ul>
                 
             </li>
@@ -43,16 +60,9 @@
                 
                 <ul class="submenu ">
                     
-                    
                     <li>
                         <a href="{{url('category')}}">All Class</a>
                     </li>
-                    
-                    <li>
-                        <a href="{{url('category/create')}}">Add Class</a>
-                    </li>
-                   
-                    
                 </ul>
                 
             </li>
@@ -67,13 +77,6 @@
                     <li>
                         <a href="{{url('subcategory')}}">All Subject</a>
                     </li>
-                    
-                    <li>
-                        <a href="{{url('subcategory/create')}}">Add Subject</a>
-                    </li>
-                    
-                   
-                    
                 </ul>
                 
             </li>
@@ -88,13 +91,6 @@
                     <li>
                         <a href="{{url('topic')}}">All Chapter</a>
                     </li>
-                    <li>
-                        <a href="{{url('topic/create')}}">Add Chapter</a>
-                    </li>
-                    
-                    
-                   
-                    
                 </ul>
                 
             </li>
@@ -140,14 +136,14 @@
                 </ul>
                 
             </li>
-            <li class='sidebar-title'>Teacher & Students</li>
+            <li class='sidebar-title'>Students</li>
         
         
         
             <li class="sidebar-item  has-sub">
                 <a href="#" class='sidebar-link'>
                     <i data-feather="users" width="20"></i> 
-                    <span>All Teachers</span>
+                    <span>All Students</span>
                 </a>
                 
                 <ul class="submenu ">
@@ -170,7 +166,7 @@
             <li class="sidebar-item  has-sub">
                 <a href="#" class='sidebar-link'>
                     <i data-feather="users" width="20"></i> 
-                    <span>All Students</span>
+                    <span>Invite Students</span>
                 </a>
                 
                 <ul class="submenu ">
@@ -214,26 +210,6 @@
                 
             </li>
 
-        
-        
-        
-            <li class="sidebar-item  has-sub">
-                <a href="#" class='sidebar-link'>
-                    <i data-feather="user-minus" width="20"></i> 
-                    <span>Change Role</span>
-                </a>
-                
-                <ul class="submenu ">
-                    
-                    <li>
-                        <a href="error-403.html">403</a>
-                    </li>
-                    
-                
-                    
-                </ul>
-                
-            </li>
     </ul>
 </div>
 <button class="sidebar-toggler btn x"><i data-feather="x"></i></button>

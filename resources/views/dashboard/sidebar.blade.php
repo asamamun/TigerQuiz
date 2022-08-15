@@ -9,7 +9,7 @@
     <ul class="menu">
             <li class='sidebar-title'>Main Menu</li>
             <li class="sidebar-item active ">
-                <a href="index.html" class='sidebar-link'>
+                <a href="{{('dashboard')}}" class='sidebar-link'>
                     <i data-feather="home" width="20"></i> 
                     <span>Dashboard</span>
                 </a>
@@ -147,6 +147,29 @@
             <li class="sidebar-item  has-sub">
                 <a href="#" class='sidebar-link'>
                     <i data-feather="users" width="20"></i> 
+                    <span>Users</span>
+                </a>
+                
+                <ul class="submenu ">
+                    
+                    <li>
+                        <a href="{{('allusers')}}">All Users</a>
+                    </li>
+                    
+                    <li>
+                        <a href="ui-pricing.html">Pricing</a>
+                    </li>
+                    
+                    <li>
+                        <a href="ui-todolist.html">To-do List</a>
+                    </li>
+                    
+                </ul>
+                
+            </li>
+            <li class="sidebar-item  has-sub">
+                <a href="#" class='sidebar-link'>
+                    <i data-feather="users" width="20"></i> 
                     <span>All Teachers</span>
                 </a>
                 
@@ -199,17 +222,12 @@
                 <ul class="submenu ">
                     
                     <li>
-                        <a href="auth-login.html">Login</a>
+                        <a href="auth-login.html">Students</a>
                     </li>
                     
                     <li>
-                        <a href="auth-register.html">Register</a>
+                        <a href="auth-register.html">Teachers</a>
                     </li>
-                    
-                    <li>
-                        <a href="auth-forgot-password.html">Forgot Password</a>
-                    </li>
-                    
                 </ul>
                 
             </li>

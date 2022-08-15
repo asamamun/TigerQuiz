@@ -5,11 +5,20 @@
 
 @endsection
 @section('sidebar')
+{{-- sidebar as user role --}}
+@if (Auth::user()->role == '1')
 @include('dashboard.sidebar')
+@elseif (Auth::user()->role == '2')
+@include('inc.admin.trsidebar')
+@else
+@include('inc.admin.stsidebar')
+@endif
 @stop
+<!-- end sidebar -->
 @section('navbar')
 @include('inc.admin.navbar')
 @stop
+
 @section('content')
 <div class="card card-hover shadow mb-4">
     <div class="card-header bg-info py-2 mb-2 mb-sm-0 d-flex justify-content-between">

@@ -7,6 +7,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\SubcategoryController;
 use App\Http\Controllers\TopicController;
+use App\Http\Controllers\AllUsers;
 
 
 
@@ -70,6 +71,8 @@ Route::resource("profile",ProfileController::class);
 
  // Topic
  Route::resource("/topic",TopicController::class);
+ // Topic
+ Route::resource("/allusers",AllUsers::class);
 
 // main pages routes
 Route::get('/about', function() { return view('inc.about');});
