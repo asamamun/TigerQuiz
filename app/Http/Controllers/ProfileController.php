@@ -72,7 +72,8 @@ class ProfileController extends Controller
         $img->save($storagepath);
 
         $u = User::find(Auth::id());
-        $p = new Profile(); 
+        $p = new Profile();
+        
         $p->category_id = $request->category_id;
         $p->fullname = $request->fullname;
         $p->institute = $request->institute;
@@ -93,6 +94,9 @@ class ProfileController extends Controller
         $p->image = $filename;
         if($u->profile()->save($p)){
             return back()->with('message',"Your profile has been Created!");
+        }
+        else{
+            return back()->with('message',"Create Failed!");
         }
     }
 
@@ -129,53 +133,33 @@ class ProfileController extends Controller
      {  
         //delete previous image
         $u = User::find(Auth::id());
-        $p = $u->profile;        
+        $p = $u->profile; 
+        $filename = $p->image;
 
         if($request->file('image')){
-            if($p->image){
-                Storage::delete($p->image);
-            }
-          
-            // replace the file name with priviouse name
+            if($filename){Storage::delete($filename);}
 
-            $filename = Auth::user()->name.'_'.Auth::user()->role.Auth::id().'.png';
+         // Image rename and replace the file name with desired name
             $path = $request->file('image')->storeAs('public/profiles',$filename);
             $storagepath = Storage::path($path);
             $img = Image::make($storagepath)->fit(330,330);
             $img->save($storagepath);
-        }
-        else{
-            if($p?->image){
-                $path = $p->image;
+
+        } else{
+            if($p?->image){ $path = $filename;}
+            else{ $path = null;}}
+        
+        // update all into prpfile table
+        $profile->update($request->all());
+        // replace the request filename with desired name
+        $profile->image = $filename;
+        if($profile->save()){
+                return back()->with('message',"Update Successfully!");
             }
             else{
-               $path = null; 
+                return back()->with('message',"Update Failed!!!");
             }
-        }
-        
-        $filename = Auth::user()->name.'_'.Auth::user()->role.Auth::id().'.png';
-
-        $p->category_id = $request->category_id;
-        $p->fullname = $request->fullname;
-        $p->institute = $request->institute;
-        $p->batch = $request->batch;
-        $p->subject = $request->subject;
-        $p->designation = $request->designation;
-        $p->gender = $request->gender;
-        $p->phone = $request->phone;
-        $p->address = $request->address;
-        $p->bio = $request->bio;
-        $p->yt = $request->yt;
-        $p->fb = $request->fb;
-        $p->in = $request->in;
-        $p->bloodgroup = $request->bloodgroup;
-        $p->guardianname = $request->guardianname;
-        $p->guardianemail = $request->guardianemail;
-        $p->guardianphone = $request->guardianphone;
-        $p->image = $filename;
-        if($u->profile()->save($p)){
-            return back()->with('message',"Your profile has been updated!");
-        }
+       
     }
 
     /**

@@ -36,8 +36,7 @@
     {!! Form::select('category_id',$categories, null, ['placeholder' => 'Select Class', 'id'=>'category_id', 'class'=>'form-control'])!!}
 </div>
 <div class="col-sm-4">
-    {!! Form::select('subcategory_id', $subcategories
-    
+    {!! Form::select('subcategory_id',$subcategories
     , null, ['placeholder' => 'Select Subject', 'id'=>'subcategory_id', 'class'=>'form-control'])!!}
 </div>
 

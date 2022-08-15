@@ -11,18 +11,4 @@ class TeacherController extends Controller
     return view("teacher.index");
     }
 
-    // public function login()
-    // {
-    //     return view("teacher.login");
-    // }
-
-    public function reg()
-    {
-        return view("teacher.register");
-    }
-
-    public function forgetpass()
-    {
-        return view ("teacher.forgot");
-    }
 }

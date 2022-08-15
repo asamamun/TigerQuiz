@@ -96,19 +96,15 @@ class SubcategoryController extends Controller
      */
     public function update(UpdateSubcategoryRequest $request, Subcategory $subcategory)
     {
-       
-
-        $subcategory->name = $request->name;
-        $subcategory->category_id = $request->category_id;
-        $subcategory->active = $request->active;
-        $subcategory->description = $request->description;
-
+        
+        $subcategory->update($request->all());
         if($subcategory->save()){
-            return back()->with('message',"Update Successfully!!!");
-        }
-        else{
-            return back()->with('message',"Update Failed!!!");
-        }
+                return back()->with('message',"Update Successfully!");
+            }
+            else{
+                return back()->with('message',"Update Failed!!!");
+            }
+
     }
 
     /**

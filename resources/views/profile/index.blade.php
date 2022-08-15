@@ -122,7 +122,7 @@
                      {!! Form::text('guardianphone', null, ['required', 'class'=>'form-control', 'id'=>'gphone', 'placeholder'=>"Guardian's Phone", 'title'=>"Guardian's Phone"]) !!}
                  </div>
                  <div class="col-sm-4 mt-2">
-                     {!! Form::text('guardianemail', null, ['class'=>'form-control', 'id'=>'gemail', 'placeholder'=>"Guardian's Email",'title'=>"Guardian's Email"]) !!}
+                     {!! Form::email('guardianemail', null, ['class'=>'form-control', 'id'=>'gemail', 'placeholder'=>"Guardian's Email",'title'=>"Guardian's Email"]) !!}
                  </div>
              </div>
         @endif

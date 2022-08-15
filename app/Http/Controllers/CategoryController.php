@@ -85,16 +85,13 @@ class CategoryController extends Controller
     {
         //upload
        
-        $category->name = $request->name;
-        $category->description = $request->description;
-        $category->active = $request->active;
-
+        $category->update($request->all());
         if($category->save()){
-            return back()->with('message'," Class updated Successfully!");
-        }
-        else{
-            return back()->with('message',"Update Failed!!!");
-        }
+                return back()->with('message',"Update Successfully!");
+            }
+            else{
+                return back()->with('message',"Update Failed!");
+            }
     }
 
     /**

@@ -20,7 +20,7 @@
         <div class="card-body">
             {!! Form::model($subcategory, ['method' => 'put','enctype'=>'multipart/form-data','class'=>'user','route' => ['subcategory.update', $subcategory->id]]) !!}
              @include('partial.flash')
-            @include("partial.error")
+             @include("partial.error")
 
 <div class="form-group row">
     <div class="col-sm-6 mb-3 mb-sm-0">

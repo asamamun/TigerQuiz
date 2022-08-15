@@ -34,7 +34,7 @@ class TopicController extends Controller
      */
     public function create(Request $request)
     {
-
+  
         // $subcategories = Subcategory::where('category_id','=',$category_id)->pluck('name','id');
         
         $categories = Category::pluck('name','id');
@@ -107,18 +107,13 @@ class TopicController extends Controller
     {
        
 
-        $topic->name = $request->name;
-        $topic->category_id = $request->category_id;
-        $topic->subcategory_id = $request->subcategory_id;
-        $topic->active = $request->active;
-        $topic->description = $request->description;
-
+        $topic->update($request->all());
         if($topic->save()){
-            return back()->with('message',"Update Successfully!!!");
-        }
-        else{
-            return back()->with('message',"Update Failed!!!");
-        }
+                return back()->with('message',"Update Successfully!");
+            }
+            else{
+                return back()->with('message',"Update Failed!!!");
+            }
     }
 
     /**

@@ -20,8 +20,6 @@
         </div>
         <div class="card-body">
             {!! Form::model($category, ['method' => 'put','enctype'=>'multipart/form-data','class'=>'user','route' => ['category.update', $category->id]]) !!}
-            @include('partial.flash')
-            @include("partial.error")
             <div class="form-group row">
                 <div class="col-sm-6 mb-3 mb-sm-0">
                     {!! Form::text('name', null, ['required', 'class'=>'form-control form-control-profile', 'id'=>'name', 'placeholder'=>'Name']) !!}

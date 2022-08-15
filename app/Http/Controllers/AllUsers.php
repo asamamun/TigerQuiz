@@ -16,7 +16,7 @@ class AllUsers extends Controller
     public function index()
     {
         $allusers = User::all();
-        return view('allusers.index',compact('allusers'))->with('user',Auth::user());
+        return view('dashboard.allusers.index',compact('allusers'))->with('user',Auth::user());
     }
 
     /**
@@ -59,7 +59,7 @@ class AllUsers extends Controller
      */
     public function edit(User $user)
     {
-        return view('allusers.edit',compact('user'))->with('user',Auth::user());
+        return view('dashboard.allusers.edit',compact('user'))->with('user',Auth::user());
     }
 
     /**
@@ -70,18 +70,21 @@ class AllUsers extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, User $user)
-    {
-        $user->name = $request->name;
-        $user->email = $request->email;
-        $user->role = $request->role;
-        $user->description = $request->description;
+    {   
+        $user->update($request->all());
+        return redirect()->route('allusers.index')->with('success','User updated successfully');
+       
+        // $user->name = $request->name;
+        // $user->email = $request->email;
+        // $user->role = $request->role;
+        // $user->description = $request->description;
 
-        if($user->save()){
-            return back()->with('message',"Update Successfully!");
-        }
-        else{
-            return back()->with('message',"Update Failed!");
-        }
+        // if($user->save()){
+        //     return back()->with('message',"Update Successfully!");
+        // }
+        // else{
+        //     return back()->with('message',"Update Failed!");
+        // }
        
     }
    

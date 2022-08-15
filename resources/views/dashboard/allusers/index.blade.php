@@ -31,7 +31,6 @@
                         <th>Username</th>
                         <th>Email</th>
                         <th>User Role</th>
-                        <th>Description</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -41,7 +40,6 @@
                         <th>Username</th>
                         <th>Email</th>
                         <th>Role</th>
-                        <th>Description</th>
                         <th>Action</th>
                     </tr>
                 </tfoot>
@@ -52,7 +50,6 @@
                         <td>{{ $users->name }}</td>                        
                         <td>{{ $users->email}}</td>          
                         <td>{{ $users->role }}</td>
-                        <td>{{ $users->description }}</td>
                         <td class="d-flex justify-content-center">
                             {{-- onclick="event.preventDefault(); document.getElementById('submit-form').submit();" --}}
                             {!! Form::open(['method' => 'delete','route' => ['allusers.destroy', $users->id],'id'=>'deleteform']) !!}
@@ -61,11 +58,11 @@
                             </a>
                             {!! Form::close() !!}
                             &nbsp;
-                            <a href="{{url('allusers/'.$users->id.'/edit')}}" class="btn btn-info btn-circle btn-sm" title="Edit">
+                            <a href="{{url('dashboard/allusers/'.$users->id.'/edit')}}" class="btn btn-info btn-circle btn-sm" title="Edit">
                                 <i class="fas fa-edit"></i>
                             </a>
                             &nbsp;
-                            <a href="{{url('allusers/'.$users->id)}}" class="btn btn-info btn-circle btn-sm" title="View">
+                            <a href="{{url('dashboard/allusers/'.$users->id)}}" class="btn btn-info btn-circle btn-sm" title="View">
                                 <i class="fas fa-eye"></i>
                             </a>
                         </td>

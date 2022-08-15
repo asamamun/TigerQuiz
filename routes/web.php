@@ -46,6 +46,8 @@ Route::middleware(['admin','auth'])->group(function () {
         return view('dashboard.index');
     })->name('dashboard');
 
+    Route::get('dashboard/allusers', [AllUsers::class,"index"])->name('allusers');
+
 });
 //student group
 Route::middleware(['student','auth'])->group(function () {
@@ -60,6 +62,7 @@ Route::middleware(['teacher','auth'])->group(function () {
     
 });
 
+
 // profile route
 Route::resource("profile",ProfileController::class);
 
@@ -71,8 +74,8 @@ Route::resource("profile",ProfileController::class);
 
  // Topic
  Route::resource("/topic",TopicController::class);
- // Topic
- Route::resource("/allusers",AllUsers::class);
+ // allusers
+ Route::resource("/dashboard/allusers",AllUsers::class);
 
 // main pages routes
 Route::get('/about', function() { return view('inc.about');});

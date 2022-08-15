@@ -9,7 +9,7 @@
     <ul class="menu">
             <li class='sidebar-title'>Main Menu</li>
             <li class="sidebar-item active ">
-                <a href="{{('dashboard')}}" class='sidebar-link'>
+                <a href="{{url('dashboard')}}" class='sidebar-link'>
                     <i data-feather="home" width="20"></i> 
                     <span>Dashboard</span>
                 </a>
@@ -153,15 +153,15 @@
                 <ul class="submenu ">
                     
                     <li>
-                        <a href="{{('allusers')}}">All Users</a>
+                        <a href="{{url('dashboard/allusers')}}">All Users</a>
                     </li>
                     
                     <li>
-                        <a href="ui-pricing.html">Pricing</a>
+                        <a href="{{url('dashboard/allusers')}}">Promot Users</a>
                     </li>
                     
                     <li>
-                        <a href="ui-todolist.html">To-do List</a>
+                        <a href="{{url('dashboard.allusers')}}">Deactive Users</a>
                     </li>
                     
                 </ul>
@@ -170,13 +170,13 @@
             <li class="sidebar-item  has-sub">
                 <a href="#" class='sidebar-link'>
                     <i data-feather="users" width="20"></i> 
-                    <span>All Teachers</span>
+                    <span>Teachers</span>
                 </a>
                 
                 <ul class="submenu ">
                     
                     <li>
-                        <a href="ui-chatbox.html">Chatbox</a>
+                        <a href="{{url('dashboard/teachers')}}">All Teachers</a>
                     </li>
                     
                     <li>
