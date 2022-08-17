@@ -8,6 +8,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\SubcategoryController;
 use App\Http\Controllers\TopicController;
 use App\Http\Controllers\QuizController;
+use App\Http\Controllers\QuizsetController;
 use App\Http\Controllers\AllUsers;
 use Illuminate\Support\Facades\Artisan;
 
@@ -76,8 +77,12 @@ Route::resource("profile", ProfileController::class);
  Route::resource("/topic", TopicController::class);
  // Quiz
  Route::resource("/quiz", QuizController::class);
+ // Quizset
+ Route::resource("/quizset", QuizsetController::class);
  // allusers
  Route::resource("/allusers", AllUsers::class);
+ //showquiz
+ Route::get('/showquiz', [QuizsetController::class,"showquiz"]);
 
 
 

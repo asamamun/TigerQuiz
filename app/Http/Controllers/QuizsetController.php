@@ -5,6 +5,12 @@ namespace App\Http\Controllers;
 use App\Models\Quizset;
 use App\Http\Requests\StoreQuizsetRequest;
 use App\Http\Requests\UpdateQuizsetRequest;
+use App\Models\Category;
+use App\Models\Quiz;
+use App\Models\Subcategory;
+use App\Models\Topic;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class QuizsetController extends Controller
 {
@@ -15,7 +21,7 @@ class QuizsetController extends Controller
      */
     public function index()
     {
-        //
+        return view('quizset.index');
     }
 
     /**
@@ -25,7 +31,14 @@ class QuizsetController extends Controller
      */
     public function create()
     {
-        //
+        $categories = Category::pluck('name','id');
+        $subcategories = Subcategory::pluck('name','id');
+        $topics = Topic::pluck('name','id');
+        return view('quizset.create')->with('categories',$categories)
+        ->with('subcategories',$subcategories)
+        ->with('topics',$topics)        
+        ->with('user',Auth::user());
+        
     }
 
     /**
@@ -82,5 +95,11 @@ class QuizsetController extends Controller
     public function destroy(Quizset $quizset)
     {
         //
+    }
+
+    public function showquiz(Request $request){
+        // echo "hello";
+        $quiz  = Quiz::where('category_id',$request->cid)->where('subcategory_id',$request->scid)->get();
+        return response()->json($quiz);
     }
 }

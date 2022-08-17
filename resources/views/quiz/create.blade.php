@@ -48,20 +48,24 @@
 </div>
 <div class="form-group row">
 <div class="col-sm-6 mb-3 mb-sm-0">
+    {!! Form::checkbox('ques[]', 'op1'); !!}
     {!! Form::text('op1','A. ', ['placeholder' => 'Option 1', 'id'=>'op1', 'class'=>'form-control'  ])!!}
 </div>
 <div class="col-sm-6">
+    {!! Form::checkbox('ques[]', 'op2'); !!}
     {!! Form::text('op2', 'B. ', ['placeholder' => 'Option 2', 'id'=>'op2', 'class'=>'form-control'])!!}
 </div>
 </div>
 
 <div class="form-group row">
     <div class="col-sm-6 mb-3 mb-sm-0">
+        {!! Form::checkbox('ques[]', 'op3'); !!}
     {!! Form::text('op3', 'C. ', ['required', 'class'=>'form-control form-control-profile', 'id'=>'op3', 'max'=>'1', 'min'=>'0','placeholder'=>'Option 3']) !!}
     
 </div>
 
 <div class="col-sm-6">
+    {!! Form::checkbox('ques[]', 'op4'); !!}
     {!! Form::text('op4', 'D. ', ['required', 'class'=>'form-control form-control-profile', 'id'=>'op4', 'placeholder'=>'Option 4']) !!}
     
 </div>

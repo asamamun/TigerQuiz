@@ -22,8 +22,13 @@ class QuizController extends Controller
     {
         // $quizzes = Quiz::all();
         // return view('quiz.index',compact('quizzes'))->with('user',Auth::user());
-
-        $quizzes = Quiz::with('category')->with('subcategory')->with('topic')->get();
+if(Auth::user()->role == "1"){
+    $quizzes = Quiz::with('category')->with('subcategory')->with('topic')->get();
+}
+else{
+    $quizzes = Quiz::where('user_id',Auth::id())->with('category')->with('subcategory')->with('topic')->get();
+}
+       
         return view("quiz.index")
         ->with('quizzes',$quizzes)
         ->with('user',Auth::user());
@@ -54,7 +59,7 @@ class QuizController extends Controller
      */
     public function store(StoreQuizRequest $request)
     {
-       
+    //    dd($request->ques);
         $request = [
             
             'question'=>$request->question,
@@ -138,10 +143,10 @@ class QuizController extends Controller
      * @param  \App\Models\Quiz  $quizzes
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Quiz $quizzes)
+    public function destroy(Quiz $quiz)
     {
-        if(Quiz::destroy($quizzes->id)){
-            return back()->with('message',$quizzes->id. ' has been deleted!');
+        if(Quiz::destroy($quiz->id)){
+            return back()->with('message',$quiz->id. ' has been deleted!');
         }else{
             return back()->with('message','Delete Failed!');
         }
