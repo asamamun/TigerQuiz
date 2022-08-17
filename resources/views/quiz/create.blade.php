@@ -24,72 +24,66 @@
             @include("partial.error")
 
            
-            <div class="form-group row">
-                <div class="col-sm-3 mb-3 mb-sm-0">
+            <div class="form-group mt-1 row">
+                <div class="col-sm-3 mb-3">
                 {!! Form::select('category_id',$categories,null, ['required', 'class'=>'form-control form-control-profile', 'id'=>'category_id', 'placeholder'=>'Category']) !!}
                 
             </div>
-            <div class="col-sm-3">
+            <div class="col-sm-3 mb-3 mb-sm-0">
                 {!! Form::select('subcategory_id',$subcategories,null, ['required', 'class'=>'form-control form-control-profile', 'id'=>'subcategory_id', 'placeholder'=>'Subcategory']) !!}
                 
             </div>
-            <div class="col-sm-3">
+            <div class="col-sm-3 mb-3 mb-sm-0">
                 {!! Form::select('topic_id',$topics,null, ['required', 'class'=>'form-control form-control-profile', 'id'=>'topic_id', 'placeholder'=>'Topic']) !!}
                 
             </div>
-            <div class="col-sm-3">
+            <div class="col-sm-3 mb-3 mb-sm-0">
                 {!! Form::select('type', ['m'=>'MCQ', 'd'=>'Descriptive'],'m', ['required', 'class'=>'form-control form-control-profile', 'id'=>'type','rows'=>'1', 'placeholder'=>'Type']) !!}
             </div>
             </div>
-<div class="form-group row">
-    <div class="mb-3 mb-sm-0">
-        {!! Form::textarea('question', null, ['required', 'class'=>'form-control form-control-profile', 'id'=>'question','rows'=>'1', 'placeholder'=>'Question']) !!}
-    </div>
-</div>
-<div class="form-group row">
-<div class="col-sm-6 mb-3 mb-sm-0">
-    {!! Form::checkbox('ques[]', 'op1'); !!}
-    {!! Form::text('op1','A. ', ['placeholder' => 'Option 1', 'id'=>'op1', 'class'=>'form-control'  ])!!}
-</div>
-<div class="col-sm-6">
-    {!! Form::checkbox('ques[]', 'op2'); !!}
-    {!! Form::text('op2', 'B. ', ['placeholder' => 'Option 2', 'id'=>'op2', 'class'=>'form-control'])!!}
-</div>
-</div>
+            <div class="form-group row">
+            <div class="mb-3 mb-sm-0">
+             {!! Form::textarea('question', null, ['required', 'class'=>'form-control form-control-profile', 'id'=>'question','rows'=>'1', 'placeholder'=>'Question']) !!}
+            </div>
+             </div>
+            
+            <div class="form-group row">
+            <div class="col-sm-6 mb-3 mb-sm-0 d-flex align-self-center">
+            <span class='btn border me-1'>{!! Form::checkbox('ques[]', 'op1',null) !!}</span>
+            {!! Form::text('op1','A. ', ['placeholder' => 'Option 1', 'id'=>'op1', 'class'=>'form-control'  ])!!}
+            </div>
+            <div class="col-sm-6 d-flex align-self-center">
+            <span class='btn border me-1'>{!! Form::checkbox('ques[]', 'op2',null) !!}</span>
+            {!! Form::text('op2', 'B. ', ['placeholder' => 'Option 2', 'id'=>'op2', 'class'=>'form-control'])!!}
+            </div>
+            </div>
 
-<div class="form-group row">
-    <div class="col-sm-6 mb-3 mb-sm-0">
-        {!! Form::checkbox('ques[]', 'op3'); !!}
-    {!! Form::text('op3', 'C. ', ['required', 'class'=>'form-control form-control-profile', 'id'=>'op3', 'max'=>'1', 'min'=>'0','placeholder'=>'Option 3']) !!}
-    
-</div>
+            <div class="form-group row">
+            <div class="col-sm-6 mb-3 mb-sm-0 d-flex align-self-center">
+            <span class='btn border me-1'>{!! Form::checkbox('ques[]', 'op3',null) !!}</span>
+            {!! Form::text('op3', 'C. ', ['required', 'class'=>'form-control', 'id'=>'op3', 'max'=>'1', 'min'=>'0','placeholder'=>'Option 3']) !!}
+           </div>
+        <div class="col-sm-6 d-flex align-self-center">
+        <span class='btn border me-1'>{!! Form::checkbox('ques[]', 'op4',null) !!}</span>
+        {!! Form::text('op4', 'D. ', ['required', 'class'=>'form-control', 'id'=>'op4', 'placeholder'=>'Option 4']) !!}
+      </div>
+      </div>
 
-<div class="col-sm-6">
-    {!! Form::checkbox('ques[]', 'op4'); !!}
-    {!! Form::text('op4', 'D. ', ['required', 'class'=>'form-control form-control-profile', 'id'=>'op4', 'placeholder'=>'Option 4']) !!}
-    
-</div>
-</div>
 
-<div class="form-group row">
-    <div class="mb-3 mb-sm-0">
-    {!! Form::select('ans',['A.'=>'A','B.'=>'B','C.'=>'C','D.'=>'D'], null, ['required', 'class'=>'form-control form-control-profile', 'id'=>'ans', 'placeholder'=>'Select Answer']) !!}
-    
-</div>
-
-</div>
-<div class="form-group row">
-<div class=" mb-3 mb-sm-0">
-    {!! Form::hidden('user_id',Auth::user()->id, null, ['required', 'disabled','class'=>'form-control', 'id'=>'user_id', 'placeholder'=>'User']) !!}
-    
-</div>
+        <div class="form-group row">
+        <div class=" mb-3 mb-sm-0">
+         {!! Form::hidden('user_id',Auth::user()->id, null, ['required', 'disabled','class'=>'form-control', 'id'=>'user_id', 'placeholder'=>'User']) !!}
+       </div>
+       </div>
 
             <div class="form-group">
-                {!! Form::submit('Add Class', ['class'=>'btn btn-info btn-profile btn-block']) !!}
+                {!! Form::submit('Add Quiz', ['class'=>'btn btn-info']) !!}
             </div>
             {!! Form::close() !!}
         </div>
     </div>
+</div>
+</div>
 @endsection
 
 

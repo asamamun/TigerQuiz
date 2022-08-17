@@ -53,7 +53,7 @@
     </div></div>
    <!-- end div -->
         <script src="https://code.jquery.com/jquery-3.6.0.min.js" crossorigin="anonymous"></script>
-        {{-- <script src="assets/js/bootstrap.bundle.min.js"></script> --}}
+        {{-- <script src={{url('assets/js/bootstrap.bundle.min.js')}}></script> --}}
         <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.29.0/feather.min.js" crossorigin="anonymous"></script>
        <!-- ==================== -->
@@ -62,7 +62,7 @@
         <script src="{{url('assets/js/tea_app.js')}}"></script>
         <script src="{{url('assets/js/chart.min.js')}}"></script>
         {{-- <script src="{{url('assets/js/dashboard.js')}}"></script> --}}
-        {{-- <script src="{{url('assets/js/tea_main.js')}}"></script> --}}
+        <script src="{{url('assets/js/tea_main.js')}}"></script>
         <script>
           $(document).ready(function() {
           $.ajaxSetup({

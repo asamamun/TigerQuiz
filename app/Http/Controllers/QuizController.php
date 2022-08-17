@@ -10,6 +10,7 @@ use App\Http\Requests\UpdateQuizRequest;
 use App\Models\Topic;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Nette\Utils\Strings;
 
 class QuizController extends Controller
 {
@@ -49,6 +50,7 @@ else{
         ->with('topics',$topics)
         
         ->with('user',Auth::user());
+       
     }
 
     /**
@@ -59,7 +61,10 @@ else{
      */
     public function store(StoreQuizRequest $request)
     {
-    //    dd($request->ques);
+    // // 
+        $request->ques = json_encode($request->ques);
+        $opt = trim($request->ques, '[]'); // remove [] from the string
+        // dd($name2);
         $request = [
             
             'question'=>$request->question,
@@ -68,7 +73,7 @@ else{
             'op2'=>$request->op2,
             'op3'=>$request->op3,
             'op4'=>$request->op4,
-            'ans'=>$request->ans,
+            'ans'=>$opt,
             'user_id'=>$request->user_id,
             'category_id'=>$request->category_id,
             'subcategory_id'=>$request->subcategory_id,
@@ -127,8 +132,11 @@ else{
     public function update(UpdateQuizRequest $request, Quiz $quiz)
     {
         //upload
+        $request->ques = json_encode($request->ques);
+        $opt = trim($request->ques, '[]');
        
         $quiz->update($request->all());
+        $quiz->ans =$opt; 
         if($quiz->save()){
                 return back()->with('message',"Update Successfully!");
             }

@@ -124,11 +124,11 @@
                 <ul class="submenu ">
                     
                     <li>
-                        <a href="component-alert.html">Add Quizset </a>
+                        <a href="{{url('quizset/create')}}">Add quiz </a>
                     </li>
                     
                     <li>
-                        <a href="component-badge.html">All Quizset</a>
+                        <a href="{{url('quizset')}}">All quiz</a>
                     </li>
                     
                    

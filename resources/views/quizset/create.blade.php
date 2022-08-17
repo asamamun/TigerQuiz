@@ -23,16 +23,16 @@
             @include('partial.flash')
             @include("partial.error")
 
-            <div class="form-group row">
-                <div class="col-sm-6 mb-3 mb-sm-0">
+            <div class="form-group mt-1 row">
+                <div class="col-sm-6 mb-3">
                 <input type="text" id="name" class="form-control" placeholder="Quizset Name">
                 </div>
-                <div class="col-sm-6 mb-3 mb-sm-0">
+                <div class="col-sm-6 mb-3">
                     <input type="text" id="title" class="form-control" placeholder="Quizset Title">
                     </div>
             </div>
             <div class="form-group row">
-                <div class="col-sm-3 mb-3 mb-sm-0">
+                <div class="col-sm-3 mb-3">
                 {!! Form::select('category_id',$categories,null, ['required', 'class'=>'form-control form-control-profile', 'id'=>'category_id', 'placeholder'=>'Category']) !!}
                 
             </div>
