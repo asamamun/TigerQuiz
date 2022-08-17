@@ -16,9 +16,10 @@ class AllUsers extends Controller
     public function index()
     {
         $allusers = User::all();
-        return view('dashboard.allusers.index',compact('allusers'))->with('user',Auth::user());
-    }
+        return view('allusers.index',compact('allusers'))->with('user',Auth::user());
 
+   
+}
     /**
      * Show the form for creating a new resource.
      *
@@ -59,7 +60,7 @@ class AllUsers extends Controller
      */
     public function edit(User $user)
     {
-        return view('dashboard.allusers.edit',compact('user'))->with('user',Auth::user());
+        return view('allusers.edit',compact('user'))->with('user',Auth::user());
     }
 
     /**

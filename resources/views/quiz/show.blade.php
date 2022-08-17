@@ -13,7 +13,7 @@
 <div class="card card-hover shadow mb-4">
     <div class="card-header py-3 d-flex justify-content-between">
         <h6 class="m-0 font-weight-bold text-info">Topic Details</h6>
-        <a href="{{url('topic')}}" class="btn btn-info btn-circle btn-sm" title="Back to Chapter">
+        <a href="{{url('quiz')}}" class="btn btn-info btn-circle btn-sm" title="Back to Chapter">
             <i class="fas fa-arrow-left"></i>
         </a>
     </div>
@@ -24,20 +24,37 @@
                 <td>{{ $topic->id }}</td>
             </tr> --}}
             <tr class="table-bordered">
-                <th>Name:</th>
-                <td>{{ $topic->name }}</td>
+                <th>Question:</th>
+                <td>{{ $quiz->question}}</td>
             </tr>
             <tr class="table-bordered">
-                <th>Class:</th>
-                <td>{{ $topic->subcategory->name }}</td>
+                <th>Type:</th>
+                <td>{{ $quiz->type}}</td>
             </tr>
             <tr class="table-bordered">
-                <th>Active:</th>
-                <td>{{ $topic->active }}</td>
+                <th>Option 1:</th>
+                <td>{{ $quiz->op1}}</td>
             </tr>
             <tr class="table-bordered">
-                <th>Description:</th>
-                <td>{{ $topic->description }}</td>
+                <th>Option 2:</th>
+                <td>{{ $quiz->op2}}</td>
+            </tr>
+            <tr class="table-bordered">
+                <th>Option 3:</th>
+                                    
+                <td>{{ $quiz->op3}}</td>  
+            </tr>
+            <tr class="table-bordered">
+                <th>Option 3:</th>
+                <td>{{ $quiz->op4}}</td> 
+            </tr>
+            <tr class="table-bordered">
+                <th>Answer:</th>         
+                <td>{{ $quiz->ans}}</td>
+            </tr>
+            <tr class="table-bordered">
+                <th>UserID:</th>         
+                <td>{{$quiz->user_id}}</td>
             </tr>
         </table>
     </div>

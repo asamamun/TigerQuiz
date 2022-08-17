@@ -7,6 +7,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\SubcategoryController;
 use App\Http\Controllers\TopicController;
+use App\Http\Controllers\QuizController;
 use App\Http\Controllers\AllUsers;
 use Illuminate\Support\Facades\Artisan;
 
@@ -63,22 +64,24 @@ Route::middleware(['teacher','auth'])->group(function () {
 
 
 // profile route
-Route::resource("profile",ProfileController::class);
+Route::resource("profile", ProfileController::class);
 
  // category
- Route::resource("/category",CategoryController::class);
+ Route::resource("/category", CategoryController::class);
 
  // subcategory
- Route::resource("/subcategory",SubcategoryController::class);
+ Route::resource("/subcategory", SubcategoryController::class);
 
  // Topic
- Route::resource("/topic",TopicController::class);
+ Route::resource("/topic", TopicController::class);
  // Quiz
- Route::resource("/quiz",TopicController::class);
+ Route::resource("/quiz", QuizController::class);
  // allusers
- Route::resource("/dashboard/allusers",AllUsers::class);
+ Route::resource("/allusers", AllUsers::class);
 
-// main pages routes
+
+
+// front  pages routes
 Route::get('/about', function() { return view('inc.about');});
 Route::get('/class', function() {return view('inc.classes');});
 Route::get('/teachers', function() {return view('inc.teacher');});

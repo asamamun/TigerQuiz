@@ -103,11 +103,11 @@
                 <ul class="submenu ">
                     
                     <li>
-                        <a href="component-alert.html">Add quiz </a>
+                        <a href="{{url('quiz/create')}}">Add quiz </a>
                     </li>
                     
                     <li>
-                        <a href="component-badge.html">All quiz</a>
+                        <a href="{{url('quiz')}}">All quiz</a>
                     </li>
                     
                    

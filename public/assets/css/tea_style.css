@@ -922,7 +922,7 @@ footer {
 }
 .card.card-statistic {
   box-shadow: 1px 2px 5px rgba(47, 170, 244, 0.5);
-  background: linear-gradient(to bottom, #25a6f1, #54b9ff);
+  /* background: linear-gradient(to bottom, #25a6f1, #54b9ff); */
   border: none;
 }
 .card.card-statistic .card-title {

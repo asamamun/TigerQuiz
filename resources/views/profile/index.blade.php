@@ -37,9 +37,6 @@
             @else
             <img src="{{url(Storage::url('public/profiles/'.$user->profile->image))}}" alt="{{$user->name}}" width='190px' class="rounded d-block float-start me-4 mt-2 mb-2">
           @endif
-
-        
-            {{-- <img src="{{url(Storage::url('public/profiles/'.$pimg))}}" width='190px' class="rounded d-block float-start me-4 mt-2 mb-2" alt=" Profile Image"/> --}}
             <h3 class="mt-5 pt-1 text-warning">{{$user->profile->fullname}}</h3>
             <span class="text-light">{{$user->email}}</span>
         </div>

@@ -12,13 +12,16 @@
 @section('content')
 <div class="card card-hover shadow mb-4">
     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-        <h4 class="m-0 font-weight-bold text-info">Users List</h4>
-        <div class="">
-            <a class="btn btn-sm btn-info" href="{{url('allusers/show')}}">
-                <i class="fa-solid fa-plus"></i> 
-                Show
-            </a>
-        </div>
+      <div>
+
+        <a class="btn btn-sm btn-info" href="{{url('allusers')}}">Students</a>
+       <button class="btn btn-sm btn-primary" title="Total Students">  {{DB::table('users')->where('role','=','3')->count();}} </button>
+    
+    </div>
+    <div class="">
+    <button class="btn btn-sm btn-primary" title="Total Teachers"> {{DB::table('users')->where('role','=','2')->count();}} </button>
+     
+     </div>
     </div>
     </div>
     <!-- Card Body -->
@@ -58,11 +61,11 @@
                             </a>
                             {!! Form::close() !!}
                             &nbsp;
-                            <a href="{{url('dashboard/allusers/'.$users->id.'/edit')}}" class="btn btn-info btn-circle btn-sm" title="Edit">
+                            <a href="{{url('allusers/'.$users->id.'/edit')}}" class="btn btn-info btn-circle btn-sm" title="Edit">
                                 <i class="fas fa-edit"></i>
                             </a>
                             &nbsp;
-                            <a href="{{url('dashboard/allusers/'.$users->id)}}" class="btn btn-info btn-circle btn-sm" title="View">
+                            <a href="{{url('allusers/'.$users->id)}}" class="btn btn-info btn-circle btn-sm" title="View">
                                 <i class="fas fa-eye"></i>
                             </a>
                         </td>

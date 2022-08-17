@@ -107,7 +107,7 @@
                 <ul class="submenu ">
                     
                     <li>
-                        <a href="{{url('quizset/create')}}">Add quiz </a>
+                        <a href="{{url('quiz/create')}}">Add quiz </a>
                     </li>
                     
                     <li>
@@ -132,7 +132,7 @@
                     </li>
                     
                     <li>
-                        <a href="{{url('quizset/create')}}">All Quizset</a>
+                        <a href="{{url('quizset')}}">All Quizset</a>
                     </li>
                     
                    

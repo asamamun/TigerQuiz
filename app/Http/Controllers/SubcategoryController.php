@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Subcategory;
+
 use App\Http\Requests\StoreSubcategoryRequest;
 use App\Http\Requests\UpdateSubcategoryRequest;
 use App\Models\Category;
+use App\Models\Subcategory;
 use Illuminate\Support\Facades\Auth;
 
 class SubcategoryController extends Controller
