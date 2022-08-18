@@ -101,8 +101,8 @@ class QuizsetController extends Controller
     public function showquiz(Request $request){
         // echo "hello";
         $quiz  = Quiz::where('category_id',$request->cid)->where('subcategory_id',$request->scid)->get();
-        $quizzes = response()->json($quiz);
-        return view('showquiz')->with('quizzes',$quizzes);
+        return response()->json($quiz);
+        //return view('showquiz')->with('quizzes',$quizzes);
        
     }
 }

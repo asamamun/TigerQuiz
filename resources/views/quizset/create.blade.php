@@ -58,39 +58,23 @@
     </div>
     <hr>
     <div class="row">
-        <div class="col-9">
+        <div class="col-8">
             <h1>All Quiz</h1>
             <div id="quizcontainer">
-{{--             
-                @foreach($quizzes as $quiz)
-                    <table class="table table-bordered" id="quizcontainer2">  
-                    <tr>
-                        <th>Name</th>
-                        <th>Title</th>
-                        <th>op1</th>
-                        <th>op2</th>
-                        <th>op3</th>
-                        <th>op4</th>
-                    </tr>
-                    @foreach($quiz['properties'] as $qz)
-                       <tr>
-                         <td>{{ $qz['id'] }}</td>
-                         <td>{{ $qz['name'] }}</td>
-                         <td>{{ $qz['title'] }}</td>
-                         <td>{{ $qz['op1'] }}</td>
-                         <td>{{ $qz['op2'] }}</td>
-                         <td>{{ $qz['op3'] }}</td>
-                         <td>{{ $qz['op4'] }}</td>
-                       </tr>
-                    @endforeach
-                  </table>
-                @endforeach 
-                 
-            </div>--}}
+
 
             </div>
         </div>
-        <div class="col-3"> Selected Quizes</div>
+        <div class="col-4"> 
+            <h3>Selected Quiz</h3>
+            
+                <ul class="list-group" id="selectedQuizContainer">
+                    
+                </ul>
+                <button id="saveQuizsetBtn" class="btn btn-primary">Add to Quizset</button>
+            
+
+        </div>
         
          </div>
     
@@ -99,6 +83,25 @@
 @section('scripts')
     <script>
         $(document).ready(function () {
+            function render_quiz_questions(quizes){
+                let q = "";
+/* <ol class="list-group list-group-numbered">
+  <li class="list-group-item">Cras justo odio</li>
+  <li class="list-group-item">Cras justo odio</li>
+  <li class="list-group-item">Cras justo odio</li>
+</ol> */
+quizes.forEach(quiz => {
+    let html = "<h3>"+quiz.question+"</h3>";
+    html += `<ol class="list-group list-group-numbered">
+  <li class="list-group-item">${quiz.op1}</li>
+  <li class="list-group-item">${quiz.op2}</li>
+  <li class="list-group-item">${quiz.op3}</li>
+  <li class="list-group-item">${quiz.op4}</li>  
+</ol><span role="button" class='addToQuizsetBtn btn btn-info' data-id='${quiz.id}' data-q='${quiz.question}'> Add this to Quizset</span>`;
+q += html;
+});
+$("#quizcontainer").html(q);
+            }
             // alert(55)
             $("#showbtn").click(function(){
                 // alert(5)
@@ -113,11 +116,37 @@
                     dataType: "json",
                     success: function (response) {
                         // alert(555)
-                        // console.log(response);
-                        $("#quizcontainer").html(response);
+                        //console.log(response);
+                        //$("#quizcontainer").html(response);
+                        render_quiz_questions(response);
                     }
                 });
             });
+
+/* $("#selectedQuizContainer").on('hover','.list-group-item',function(){
+    $(this).find('span').removeClass('d-none');
+},function(){
+    $(this).find('span').addClass('d-none');
+}); */
+$(document).on({
+    mouseenter: function () {
+        $(this).find('span').removeClass('d-none');
+    },
+    mouseleave: function () {
+        $(this).find('span').addClass('d-none');
+    }
+}, ".list-group-item"); //pass the element as an argument to .on
+
+//add to quizset
+$(document).on("click",".addToQuizsetBtn",function(){
+    // alert(5);
+    let id = $(this).data('id');
+    let ques = $(this).data('q');
+    let html = `<li class="list-group-item" data-selected=${id}>${id} <span class="d-none">${ques} </span> <button>&times;</button> </li>`;
+    $("#selectedQuizContainer").append(html);
+
+});
+
         });
     </script>
 @endsection
