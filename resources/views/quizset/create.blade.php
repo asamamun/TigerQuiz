@@ -61,11 +61,38 @@
         <div class="col-9">
             <h1>All Quiz</h1>
             <div id="quizcontainer">
+{{--             
+                @foreach($quizzes as $quiz)
+                    <table class="table table-bordered" id="quizcontainer2">  
+                    <tr>
+                        <th>Name</th>
+                        <th>Title</th>
+                        <th>op1</th>
+                        <th>op2</th>
+                        <th>op3</th>
+                        <th>op4</th>
+                    </tr>
+                    @foreach($quiz['properties'] as $qz)
+                       <tr>
+                         <td>{{ $qz['id'] }}</td>
+                         <td>{{ $qz['name'] }}</td>
+                         <td>{{ $qz['title'] }}</td>
+                         <td>{{ $qz['op1'] }}</td>
+                         <td>{{ $qz['op2'] }}</td>
+                         <td>{{ $qz['op3'] }}</td>
+                         <td>{{ $qz['op4'] }}</td>
+                       </tr>
+                    @endforeach
+                  </table>
+                @endforeach 
+                 
+            </div>--}}
 
             </div>
         </div>
         <div class="col-3"> Selected Quizes</div>
-    </div>
+        
+         </div>
     
 @endsection
 
@@ -85,8 +112,9 @@
                     },
                     dataType: "json",
                     success: function (response) {
-                        alert(555)
-                        console.log(response);
+                        // alert(555)
+                        // console.log(response);
+                        $("#quizcontainer").html(response);
                     }
                 });
             });

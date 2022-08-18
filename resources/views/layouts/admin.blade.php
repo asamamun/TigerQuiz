@@ -61,7 +61,6 @@
         <script src="{{url('assets/scrollbar/perfect-scrollbar.min.js')}}"></script>
         <script src="{{url('assets/js/tea_app.js')}}"></script>
         <script src="{{url('assets/js/chart.min.js')}}"></script>
-        {{-- <script src="{{url('assets/js/dashboard.js')}}"></script> --}}
         <script src="{{url('assets/js/tea_main.js')}}"></script>
         <script>
           $(document).ready(function() {

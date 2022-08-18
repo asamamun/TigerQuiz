@@ -61,10 +61,10 @@ else{
      */
     public function store(StoreQuizRequest $request)
     {
-    // // 
         $request->ques = json_encode($request->ques);
-        $opt = trim($request->ques, '[]'); // remove [] from the string
-        // dd($name2);
+        $opt = str_replace('"', '',trim($request->ques, '[]'));
+        // dd($opt);
+
         $request = [
             
             'question'=>$request->question,
@@ -133,7 +133,7 @@ else{
     {
         //upload
         $request->ques = json_encode($request->ques);
-        $opt = trim($request->ques, '[]');
+        $opt = str_replace('"', '',trim($request->ques, '[]'));
        
         $quiz->update($request->all());
         $quiz->ans =$opt; 
