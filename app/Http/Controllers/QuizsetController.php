@@ -33,14 +33,13 @@ class QuizsetController extends Controller
      */
     public function create()
     {
-        $categories = Category::pluck('name','id');
-        $subcategories = Subcategory::pluck('name','id');
-        $topics = Topic::pluck('name','id');
-        return view('quizset.create')->with('categories',$categories)
-        ->with('subcategories',$subcategories)
-        ->with('topics',$topics)        
-        ->with('user',Auth::user());
-        
+        $categories = Category::pluck('name', 'id');
+        $subcategories = Subcategory::pluck('name', 'id');
+        $topics = Topic::pluck('name', 'id');
+        return view('quizset.create')->with('categories', $categories)
+            ->with('subcategories', $subcategories)
+            ->with('topics', $topics)
+            ->with('user', Auth::user());
     }
 
     /**
@@ -99,27 +98,36 @@ class QuizsetController extends Controller
         //
     }
 
-    public function showquiz(Request $request){
+    public function showquiz(Request $request)
+    {
         // echo "hello";
-        $quiz  = Quiz::where('category_id',$request->cid)->where('subcategory_id',$request->scid)->get();
+        $quiz  = Quiz::where('category_id', $request->cid)->where('subcategory_id', $request->scid)->get();
         return response()->json($quiz);
         //return view('showquiz')->with('quizzes',$quizzes);
-       
+
     }
-    public function storeset(Request $request){
+    public function storeset(Request $request)
+    {
         $u = User::find(Auth::id());
         $q = new Quizset();
         $q->name = $request->name;
         $q->title = $request->title;
         $q->category_id = $request->cid;
         $q->subcategory_id = $request->scid;
-        $q->quizzes =join(",",$request->quiz) ;
-        if($u->quizsets()->save($q)){
-            return response()->json(['message'=>"Created",'error'=>0]);
+        $q->quizzes = join(",", $request->quiz);
+
+        if ($u->quizsets()->save($q)) {
+            return redirect()->refresh()->with('message', 'Quizset ' . $q->id . ' has been created!');
+        } else {
+            return redirect()->back()->with('error', 'Please select atleast one quiz');
         }
-        else{
-            return response()->json(['message'=>"Error",'error'=>1]);
-        }
+
+        // if($u->quizsets()->save($q)){
+        //      return response()->json(['message'=>"Created",'error'=>0]);
+        // }
+        // else{
+        //     return response()->json(['message'=>"Error",'error'=>1]);
+        // }
 
     }
 }
