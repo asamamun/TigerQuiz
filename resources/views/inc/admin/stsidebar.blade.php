@@ -1,7 +1,7 @@
 <div id="app">
     <div id="sidebar" class='active'>
     <div class="sidebar-wrapper active">
-     <a href="./"><div class="sidebar-header text-center border-bottom">
+     <a href="{{url('./')}}"><div class="sidebar-header text-center border-bottom">
     <img src="{{url('assets/img/logo/tiger_logo.png')}}" alt="logo">
     <span class="logo-title text-warning">Tiger</span>&nbsp;<span class="logo-title text-info">Quiz</span>
 </div></a>

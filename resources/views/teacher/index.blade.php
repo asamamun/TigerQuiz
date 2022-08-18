@@ -18,7 +18,7 @@
    
         <div class="row mb-2">
             <div class="col-12 col-md-3">
-                <div class="card card-statistic">
+                <div class="card bg-primary">
                     <div class="card-body p-0">
                         <div class="d-flex flex-column">
                             <div class='px-3 py-3 d-flex justify-content-between'>
@@ -35,7 +35,7 @@
                 </div>
             </div>
             <div class="col-12 col-md-3">
-                <div class="card card-statistic">
+                <div class="card bg-info">
                     <div class="card-body p-0">
                         <div class="d-flex flex-column">
                             <div class='px-3 py-3 d-flex justify-content-between'>
@@ -52,7 +52,7 @@
                 </div>
             </div>
             <div class="col-12 col-md-3">
-                <div class="card card-statistic">
+                <div class="card bg-warning">
                     <div class="card-body p-0">
                         <div class="d-flex flex-column">
                             <div class='px-3 py-3 d-flex justify-content-between'>
@@ -69,7 +69,7 @@
                 </div>
             </div>
             <div class="col-12 col-md-3">
-                <div class="card card-statistic">
+                <div class="card bg-success">
                     <div class="card-body p-0">
                         <div class="d-flex flex-column">
                             <div class='px-3 py-3 d-flex justify-content-between'>
@@ -208,10 +208,10 @@
             </div>
             <div class="col-md-4">
                 <div class="card ">
-                    <div class="card-header">
+                    <div class="card-header bg-info">
                         <h4>Your Earnings</h4>
                     </div>
-                    <div class="card-body">
+                    <div class="card-body bg-danger">
                         <div id="radialBars"></div>
                         <div class="text-center mb-5">
                             <h6>From last month</h6>
@@ -220,13 +220,13 @@
                     </div>
                 </div>
                 <div class="card widget-todo">
-                    <div class="card-header border-bottom d-flex justify-content-between align-items-center">
+                    <div class="card-header bg-primary border-bottom d-flex justify-content-between align-items-center">
                         <h4 class="card-title d-flex">
                             <i class='bx bx-check font-medium-5 pl-25 pr-75'></i>Progress
                         </h4>
 
                     </div>
-                    <div class="card-body px-0 py-1">
+                    <div class="card-body  px-0 py-1">
                         <table class='table table-borderless'>
                             <tr>
                                 <td class='col-3'>UI Design</td>
