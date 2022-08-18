@@ -9,6 +9,7 @@ use App\Models\Category;
 use App\Models\Quiz;
 use App\Models\Subcategory;
 use App\Models\Topic;
+use App\Models\User;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -104,5 +105,21 @@ class QuizsetController extends Controller
         return response()->json($quiz);
         //return view('showquiz')->with('quizzes',$quizzes);
        
+    }
+    public function storeset(Request $request){
+        $u = User::find(Auth::id());
+        $q = new Quizset();
+        $q->name = $request->name;
+        $q->title = $request->title;
+        $q->category_id = $request->cid;
+        $q->subcategory_id = $request->scid;
+        $q->quizzes =join(",",$request->quiz) ;
+        if($u->quizsets()->save($q)){
+            return response()->json(['message'=>"Created",'error'=>0]);
+        }
+        else{
+            return response()->json(['message'=>"Error",'error'=>1]);
+        }
+
     }
 }

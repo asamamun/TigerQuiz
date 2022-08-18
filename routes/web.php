@@ -83,6 +83,7 @@ Route::resource("profile", ProfileController::class);
  Route::resource("/allusers", AllUsers::class);
  //showquiz
  Route::get('/showquiz', [QuizsetController::class,"showquiz"]);
+ Route::post('/storequizset', [QuizsetController::class,"storeset"]);
 
 
 

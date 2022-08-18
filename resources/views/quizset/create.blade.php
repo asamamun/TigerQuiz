@@ -147,6 +147,32 @@ $(document).on("click",".addToQuizsetBtn",function(){
 
 });
 
+//store quizset
+$("#saveQuizsetBtn").click(function (e) { 
+    e.preventDefault();
+    let qArr = [];
+    $.each($("#selectedQuizContainer li"), function (indexInArray, valueOfElement) { 
+         //console.log($(this).data('selected'));
+        qArr.push($(this).data('selected'));
+    });
+    $.ajax({
+        type: "post",
+        url: "{{ url('storequizset') }}",
+        data: {
+            name : $("#name").val(),
+            title : $("#title").val(),
+            cid : $("#category_id").val(),
+            scid : $("#subcategory_id").val(),
+            quiz: qArr
+        },
+        dataType: "json",
+        success: function (response) {
+            
+        }
+    });
+    
+});
+
         });
     </script>
 @endsection
