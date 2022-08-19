@@ -23,7 +23,17 @@ class QuizsetController extends Controller
      */
     public function index()
     {
-        return view('quizset.index');
+        $quizset = Quizset::all();
+
+        if (Auth::user()->role == "1") {
+            $quizset = Quizset::with('category')->with('subcategory')->get();
+        } else {
+            $quizset = Quizset::where('user_id', Auth::id())->with('category')->with('subcategory')->get();
+        }
+
+        return view("quizset.index", compact('quizset'))
+            ->with('quizzes', $quizset)
+            ->with('user', Auth::user());
     }
 
     /**

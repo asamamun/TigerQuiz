@@ -23,16 +23,15 @@ class QuizController extends Controller
     {
         // $quizzes = Quiz::all();
         // return view('quiz.index',compact('quizzes'))->with('user',Auth::user());
-if(Auth::user()->role == "1"){
-    $quizzes = Quiz::with('category')->with('subcategory')->with('topic')->get();
-}
-else{
-    $quizzes = Quiz::where('user_id',Auth::id())->with('category')->with('subcategory')->with('topic')->get();
-}
-       
+        if (Auth::user()->role == "1") {
+            $quizzes = Quiz::with('category')->with('subcategory')->with('topic')->get();
+        } else {
+            $quizzes = Quiz::where('user_id', Auth::id())->with('category')->with('subcategory')->with('topic')->get();
+        }
+
         return view("quiz.index")
-        ->with('quizzes',$quizzes)
-        ->with('user',Auth::user());
+            ->with('quizzes', $quizzes)
+            ->with('user', Auth::user());
     }
 
     /**
@@ -42,15 +41,14 @@ else{
      */
     public function create(Request $request)
     {
-        $categories = Category::pluck('name','id');
-        $subcategories = Subcategory::pluck('name','id');
-        $topics = Topic::pluck('name','id');
-        return view('quiz.create')->with('categories',$categories)
-        ->with('subcategories',$subcategories)
-        ->with('topics',$topics)
-        
-        ->with('user',Auth::user());
-       
+        $categories = Category::pluck('name', 'id');
+        $subcategories = Subcategory::pluck('name', 'id');
+        $topics = Topic::pluck('name', 'id');
+        return view('quiz.create')->with('categories', $categories)
+            ->with('subcategories', $subcategories)
+            ->with('topics', $topics)
+
+            ->with('user', Auth::user());
     }
 
     /**
@@ -62,27 +60,27 @@ else{
     public function store(StoreQuizRequest $request)
     {
         $request->ques = json_encode($request->ques);
-        $opt = str_replace('"', '',trim($request->ques, '[]'));
+        $opt = str_replace('"', '', trim($request->ques, '[]'));
         // dd($opt);
 
         $request = [
-            
-            'question'=>$request->question,
-            'type'=>$request->type,
-            'op1'=>$request->op1,
-            'op2'=>$request->op2,
-            'op3'=>$request->op3,
-            'op4'=>$request->op4,
-            'ans'=>$opt,
-            'user_id'=>$request->user_id,
-            'category_id'=>$request->category_id,
-            'subcategory_id'=>$request->subcategory_id,
-            'topic_id'=>$request->topic_id,
+
+            'question' => $request->question,
+            'type' => $request->type,
+            'op1' => $request->op1,
+            'op2' => $request->op2,
+            'op3' => $request->op3,
+            'op4' => $request->op4,
+            'ans' => $opt,
+            'user_id' => $request->user_id,
+            'category_id' => $request->category_id,
+            'subcategory_id' => $request->subcategory_id,
+            'topic_id' => $request->topic_id,
         ];
         // dd($data);
         $quizzes = Quiz::create($request);
-        if($quizzes){
-            return back()->with('message','Quiz ' .$quizzes->id. ' has been created Successfully!');
+        if ($quizzes) {
+            return back()->with('message', 'Quiz ' . $quizzes->id . ' has been created Successfully!');
         }
     }
 
@@ -94,14 +92,14 @@ else{
      */
     public function show(Quiz $quiz)
     {
-        $categories = Category::pluck('name','id');
-        $subcategories = Subcategory::pluck('name','id');
-        $topics = Topic::pluck('name','id');
-        return view('quiz.show',compact('quiz'))->with('categories',$categories)
-        ->with('subcategories',$subcategories)
-        ->with('topics',$topics)
-        
-        ->with('user',Auth::user());
+        $categories = Category::pluck('name', 'id');
+        $subcategories = Subcategory::pluck('name', 'id');
+        $topics = Topic::pluck('name', 'id');
+        return view('quiz.show', compact('quiz'))->with('categories', $categories)
+            ->with('subcategories', $subcategories)
+            ->with('topics', $topics)
+
+            ->with('user', Auth::user());
     }
 
     /**
@@ -112,14 +110,14 @@ else{
      */
     public function edit(Quiz $quiz)
     {
-        $categories = Category::pluck('name','id');
-        $subcategories = Subcategory::pluck('name','id');
-        $topics = Topic::pluck('name','id');
-        return view('quiz.edit',compact('quiz'))->with('categories',$categories)
-        ->with('subcategories',$subcategories)
-        ->with('topics',$topics)
-        
-        ->with('user',Auth::user());
+        $categories = Category::pluck('name', 'id');
+        $subcategories = Subcategory::pluck('name', 'id');
+        $topics = Topic::pluck('name', 'id');
+        return view('quiz.edit', compact('quiz'))->with('categories', $categories)
+            ->with('subcategories', $subcategories)
+            ->with('topics', $topics)
+
+            ->with('user', Auth::user());
     }
 
     /**
@@ -133,16 +131,15 @@ else{
     {
         //upload
         $request->ques = json_encode($request->ques);
-        $opt = str_replace('"', '',trim($request->ques, '[]'));
-       
+        $opt = str_replace('"', '', trim($request->ques, '[]'));
+
         $quiz->update($request->all());
-        $quiz->ans =$opt; 
-        if($quiz->save()){
-                return back()->with('message',"Update Successfully!");
-            }
-            else{
-                return back()->with('message',"Update Failed!");
-            }
+        $quiz->ans = $opt;
+        if ($quiz->save()) {
+            return back()->with('message', "Update Successfully!");
+        } else {
+            return back()->with('message', "Update Failed!");
+        }
     }
 
     /**
@@ -153,10 +150,10 @@ else{
      */
     public function destroy(Quiz $quiz)
     {
-        if(Quiz::destroy($quiz->id)){
-            return back()->with('message',$quiz->id. ' has been deleted!');
-        }else{
-            return back()->with('message','Delete Failed!');
+        if (Quiz::destroy($quiz->id)) {
+            return back()->with('message', $quiz->id . ' has been deleted!');
+        } else {
+            return back()->with('message', 'Delete Failed!');
         }
     }
 }
