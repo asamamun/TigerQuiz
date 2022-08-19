@@ -13,7 +13,7 @@
     <div class="card card-hover shadow mb-4">
         <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
             <h6 class="m-0 font-weight-bold text-info">Add Quiz</h6>
-            <a href="{{ url('quiz') }}" class="btn btn-info btn-circle btn-sm" title="Back to Topic List">
+            <a href="{{ url('quizset') }}" class="btn btn-info btn-circle btn-sm" title="Back to Topic List">
                 <i class="fas fa-arrow-left"></i>
             </a>
         </div>
@@ -70,7 +70,7 @@
                         ]) !!}
                     </div>
                     <div class="form-group">
-                        {!! Form::button('Show', ['class' => 'btn btn-info btn-profile btn-block', 'id' => 'showbtn']) !!}
+                        {!! Form::button('Show <i class="fa-solid fa-arrow-down"></i>', ['class' => 'btn btn-info btn-profile btn-block', 'id' => 'showbtn']) !!}
                     </div>
                     {!! Form::close() !!}
                 </div>
@@ -83,7 +83,6 @@
     <div class="row">
 
         <div class="col-8 border rounded shadow">
-
             <div class="card-header my-2 ps-2 pe-2 py-1 rounded border d-flex justify-content-between">
                 <h4 class="m-0 font-weight-bold text-info">All Quiz</h4>
                 <a href="{{ url('quizset') }}" class="btn btn-info btn-circle btn-sm" title="Back to Subject List">
@@ -97,10 +96,12 @@
         </div>
         <!-- Selected Quiz -->
         <div class="col-4 rounded border border-left shadow">
-            <h3>Selected Quiz</h3>
+            <div class="card-header my-2 ps-2 pe-2 py-1 rounded border d-flex justify-content-between">
+                <h4 class="m-0 font-weight-bold text-info">Selected Quizzes</h4>
+            </div>
             <ul class="list-group" id="selectedQuizContainer">
             </ul>
-            <button type="submit" id="saveQuizsetBtn" class="btn btn-primary mt-2 btn-sm">Add to Quizset</button>
+            <button type="submit" id="saveQuizsetBtn" class="btn btn-info mt-2 btn-sm">Add To Quizset</button>
         </div>
     </div>
 @endsection
@@ -112,22 +113,20 @@
                 let q = "";
                 /* <ol class="list-group list-group-numbered">
                   <li class="list-group-item">Cras justo odio</li>
-                  <li class="list-group-item">Cras justo odio</li>
-                  <li class="list-group-item">Cras justo odio</li>
                 </ol> */
                 quizes.forEach(quiz => {
                     let html = "<h5 class='m-0 font-weight-bold card-header rounded text-dark'>" + quiz
                         .question +
                         "</h5>";
                     html +=
-                        `
-        <div class="card-body border-bottom my-1">
-        <ol class="list-group list-group-numbered">
-        <li class="list-group-item">${quiz.op1}</li>
-        <li class="list-group-item">${quiz.op2}</li>
-        <li class="list-group-item">${quiz.op3}</li>
-        <li class="list-group-item">${quiz.op4}</li>  
-        </ol><span role="button" class='addToQuizsetBtn mt-1 btn btn-info text-center' data-id='${quiz.id}' data-q='${quiz.question}'> Add this to Quizset</span></div>`;
+        `<div class='card-body border-bottom my-1'>
+        <ol class='list-group list-group-numbered'>
+        <li class='list-group-item'>trim${quiz.op1}</li>
+        <li class='list-group-item'>${quiz.op2}</li>
+        <li class='list-group-item'>${quiz.op3}</li>
+        <li class='list-group-item'>${quiz.op4}</li>  
+        </ol><span role='button' class='addToQuizsetBtn mt-1 btn btn-info text-center' data-id='${quiz.id}' data-q="(${quiz.question})"> Add this to Quizset</span></div>
+        `;
                     q += html;
                 });
                 $("#quizcontainer").html(q);
