@@ -13,6 +13,7 @@ use App\Models\User;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class QuizsetController extends Controller
 {
@@ -139,18 +140,19 @@ class QuizsetController extends Controller
         $q->subcategory_id = $request->scid;
         $q->quizzes = join(",", $request->quiz);
 
-        if ($u->quizsets()->save($q)) {
-            return redirect()->refresh()->with('message', 'Quizset ' . $q->id . ' has been created!');
-        } else {
-            return redirect()->back()->with('error', 'Please select atleast one quiz');
-        }
+        // if ($u->quizsets()->save($q)) {
+        //     return redirect()->refresh()->with('message', 'Quizset ' . $q->id . ' has been created!');
+        // } else {
+        //     return redirect()->back()->with('error', 'Please select atleast one quiz');
+        // }
 
-        // if($u->quizsets()->save($q)){
-        //      return response()->json(['message'=>"Created",'error'=>0]);
-        // }
-        // else{
-        //     return response()->json(['message'=>"Error",'error'=>1]);
-        // }
+        if($u->quizsets()->save($q)){
+           Session::flash('message', __('Quizset ' . $q->id . ' has been created!'));
+             return response()->json(['message'=>"Created",'error'=>0]);
+        }
+        else{
+            return response()->json(['message'=>"Error",'error'=>1]);
+        }
 
     }
 }

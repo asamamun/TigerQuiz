@@ -173,7 +173,7 @@
                 let id = $(this).data('id');
                 let ques = $(this).data('q');
                 let html =
-                    `<li class="list-group-item d-flex justify-content-between" data-selected=${id}>${id}. <span class="d-none">${ques}</span> <span><i id="cnlq" class="btn btn-sm text-danger fa-solid fa-rectangle-xmark"></span></li>`;
+                    `<li class="list-group-item d-flex justify-content-between" data-selected=${id}>${id}. <span class="d-none">${ques}</span> <span><i class="removeqbtn btn btn-sm text-danger fa-solid fa-rectangle-xmark"></i></span></li>`;
                 $("#selectedQuizContainer").append(html);
 
             });
@@ -199,18 +199,22 @@
                     },
                     dataType: "json",
                     success: function(response) {
-
+                        if(response.error == "1"){
+alert("Something went wrong!!");
+                        }
+                        else{location.reload();}
                     }
                 });
 
-                $(document).ready(function() {
-                    // show question set update message
-                    setTimeout(function() {
-                        $("#saveQuizsetBtn").alert(location.reload());
-                    }, 500);
-                });
+
+            });
+
+            //remove quiz from list
+            $(document).on("click",".removeqbtn",function(){
+                $(this).parent().parent().remove();
             });
 
         });
+
     </script>
 @endsection
