@@ -71,7 +71,20 @@ class QuizsetController extends Controller
      */
     public function show(Quizset $quizset)
     {
-        //
+        
+        // $quizset = Quizset::all();
+
+        // if (Auth::user()->role == "1") {
+        //     $quizset = Quizset::with('category')->with('subcategory')->get();
+        // } else {
+        //     $quizset = Quizset::where('user_id', Auth::id())->with('category')->with('subcategory')->get();
+        // }
+
+        // return view("quizset.show", compact('quizset'))
+        //     ->with('quizzes', $quizset)
+        //     ->with('user', Auth::user());
+        
+        return view('quizset.show');
     }
 
     /**
