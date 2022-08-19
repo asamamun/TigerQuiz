@@ -18,7 +18,7 @@
             </a>
         </div>
         <div class="card-body">
-            {!! Form::model($quiz,['method' => 'put','enctype'=>'multipart/form-data','class'=>'user','route' => ['quiz.update',$quiz->id]]) !!}
+            {!! Form::model($quizset,['method' => 'put','enctype'=>'multipart/form-data','class'=>'user','route' => ['quiz.update',$quizset->id]]) !!}
           
             @include('partial.flash')
             @include("partial.error")

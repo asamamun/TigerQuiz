@@ -170,10 +170,10 @@
             //add to quizset
             $(document).on("click", ".addToQuizsetBtn", function() {
                 // alert(5);
-                let id = $(this).data('id') + '.';
+                let id = $(this).data('id');
                 let ques = $(this).data('q');
                 let html =
-                    `<li class="list-group-item d-flex justify-content-between" data-selected=${id}>${id} <span class="d-none">${ques} </span><span><i class="btn btn-sm text-danger fa-solid fa-rectangle-xmark"></span></li>`;
+                    `<li class="list-group-item d-flex justify-content-between" data-selected=${id}>${id}. <span class="d-none">${ques}</span> <span><i id="cnlq" class="btn btn-sm text-danger fa-solid fa-rectangle-xmark"></span></li>`;
                 $("#selectedQuizContainer").append(html);
 
             });

@@ -4,12 +4,12 @@
      <a href="{{url('./')}}"><div class="sidebar-header text-center border-bottom">
     <img src="{{url('assets/img/logo/tiger_logo.png')}}" alt="logo">
     <span class="logo-title text-warning">Tiger</span>&nbsp;<span class="logo-title text-info">Quiz</span>
-</div></a>
-<div class="sidebar-menu">
+ </div></a>
+ <div class="sidebar-menu">
     <ul class="menu">
             <li class='sidebar-title'>Main Menu</li>
             <li class="sidebar-item active ">
-                <a href="index.html" class='sidebar-link'>
+                <a href="index.html" class='sidebar-link'> 
                     <i data-feather="home" width="20"></i> 
                     <span>Student Dashboard</span>
                 </a>
