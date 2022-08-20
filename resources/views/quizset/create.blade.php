@@ -115,7 +115,7 @@
                   <li class="list-group-item">Cras justo odio</li>
                 </ol> */
                 quizes.forEach(quiz => {
-                    let html = "<h5 class='m-0 font-weight-bold card-header rounded text-dark'>" + quiz
+                    let html = "<h5 class='m-0 font-weight-bold card-header rounded text-dark'>"  + quiz
                         .question +
                         "</h5>";
                     html +=
@@ -124,9 +124,9 @@
         <li class='list-group-item'>trim${quiz.op1}</li>
         <li class='list-group-item'>${quiz.op2}</li>
         <li class='list-group-item'>${quiz.op3}</li>
-        <li class='list-group-item'>${quiz.op4}</li>  
-        </ol><span role='button' class='addToQuizsetBtn mt-1 btn btn-info text-center' data-id='${quiz.id}' data-q="(${quiz.question})"> Add this to Quizset</span></div>
-        `;
+        <li class='list-group-item'>${quiz.op4}</li> 
+       </ol><span role='button' class='addToQuizsetBtn mt-1 btn btn-info text-center' data-id='${quiz.id}' data-q="${quiz.question.replace(/\"/g, "'")}"> Add this to Quizset</span></div>
+       ` ;
                     q += html;
                 });
                 $("#quizcontainer").html(q);
