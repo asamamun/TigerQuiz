@@ -38,7 +38,7 @@
                 
             </div>
             <div class="col-sm-3 mb-3 mb-sm-0">
-                {!! Form::select('type', ['m'=>'MCQ', 'd'=>'Descriptive'],'m', ['required', 'class'=>'form-control form-control-profile', 'id'=>'type','rows'=>'1', 'placeholder'=>'Type']) !!}
+                {!! Form::select('type', ['m'=>'MCQ', 'd'=>'Descriptive', 'qi'=>'Imagery'],'m', ['required', 'class'=>'form-control form-control-profile', 'id'=>'type','rows'=>'1']) !!}
             </div>
             </div>
             <div class="form-group row">

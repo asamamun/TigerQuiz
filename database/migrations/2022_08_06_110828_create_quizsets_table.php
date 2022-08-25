@@ -18,6 +18,8 @@ return new class extends Migration
             $table->string('name');
             $table->string('title');
             $table->string('quizzes');
+            $table->timestamp('stime')->nullable();
+            $table->bigInteger('active')->unsigned()->nullable();
             $table->bigInteger('user_id')->unsigned()->nullable();
             $table->foreign('user_id')->references('id')->on('users');
             $table->bigInteger('category_id')->unsigned()->nullable();

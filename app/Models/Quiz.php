@@ -16,6 +16,7 @@ class Quiz extends Model
         'op3',
         'op4',
         'ans',
+        'qimage',
         'user_id',
         'category_id',
         'subcategory_id',

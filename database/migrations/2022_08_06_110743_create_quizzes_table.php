@@ -16,12 +16,13 @@ return new class extends Migration
         Schema::create('quizzes', function (Blueprint $table) {
             $table->id();
             $table->string('question');
-            $table->set('type',['m','d'])->default('m');
+            $table->set('type',['m','d','qi'])->default('m');
             $table->string('op1')->nullable();
             $table->string('op2')->nullable();
             $table->string('op3')->nullable();
             $table->string('op4')->nullable();
             $table->string('ans')->nullable();
+            $table->string('qimage')->nullable();
             $table->bigInteger('user_id')->unsigned()->nullable();
             $table->foreign('user_id')->references('id')->on('users');
             $table->bigInteger('category_id')->unsigned()->nullable();
