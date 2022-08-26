@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
+use App\Models\Quiz;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
-class AllUsers extends Controller
+class StudentController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,11 +14,9 @@ class AllUsers extends Controller
      */
     public function index()
     {
-        $allusers = User::all();
-        return view('allusers.index',compact('allusers'))->with('user',Auth::user());
+        //
+    }
 
-   
-}
     /**
      * Show the form for creating a new resource.
      *
@@ -47,9 +44,13 @@ class AllUsers extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(User $users)
+    public function show(Quiz $quizzes)
     {
-        return view('student.show');
+
+        $quizzes = Quiz::all();
+        // dd($quizzes);
+        
+        return view('quiz/qz.qshow',compact('quizzes'));
     }
 
     /**
@@ -58,9 +59,9 @@ class AllUsers extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(User $user)
+    public function edit($id)
     {
-        return view('allusers.edit',compact('user'))->with('user',Auth::user());
+        //
     }
 
     /**
@@ -70,25 +71,10 @@ class AllUsers extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
-    {   
-        $user->update($request->all());
-        return redirect()->route('allusers.index')->with('success','User updated successfully');
-       
-        // $user->name = $request->name;
-        // $user->email = $request->email;
-        // $user->role = $request->role;
-        // $user->description = $request->description;
-
-        // if($user->save()){
-        //     return back()->with('message',"Update Successfully!");
-        // }
-        // else{
-        //     return back()->with('message',"Update Failed!");
-        // }
-       
+    public function update(Request $request, $id)
+    {
+        //
     }
-   
 
     /**
      * Remove the specified resource from storage.
@@ -96,10 +82,8 @@ class AllUsers extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(User $user)
+    public function destroy($id)
     {
-        if(User::destroy($user->id)){
-            return back()->with('message',$user->id. ' has been Deleted!');
-        }
+        //
     }
 }

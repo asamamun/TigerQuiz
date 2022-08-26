@@ -10,6 +10,7 @@ use App\Http\Controllers\TopicController;
 use App\Http\Controllers\QuizController;
 use App\Http\Controllers\QuizsetController;
 use App\Http\Controllers\AllUsers;
+use App\Http\Controllers\StudentController;
 use Illuminate\Support\Facades\Artisan;
 
 /*
@@ -81,6 +82,9 @@ Route::resource("profile", ProfileController::class);
  Route::resource("/quizset", QuizsetController::class);
  // allusers
  Route::resource("/allusers", AllUsers::class);
+
+//  student quiz show and leaderbord
+ Route::resource("/quiz/qz", StudentController::class);
  //showquiz
  Route::get('/showquiz', [QuizsetController::class,"showquiz"]);
  Route::post('/storequizset', [QuizsetController::class,"storeset"]);

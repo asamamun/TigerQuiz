@@ -50,22 +50,22 @@
             <div class="form-group row">
             <div class="col-sm-6 mb-3 mb-sm-0 d-flex align-self-center">
             <span class='btn border me-1'>{!! Form::checkbox('ques[]', 'op1',null) !!}</span>
-            {!! Form::text('op1','A. ', ['placeholder' => 'Option 1', 'id'=>'op1', 'class'=>'form-control'  ])!!}
+            {!! Form::text('op1',null, ['placeholder' => 'A.', 'id'=>'op1', 'class'=>'form-control'  ])!!}
             </div>
             <div class="col-sm-6 d-flex align-self-center">
             <span class='btn border me-1'>{!! Form::checkbox('ques[]', 'op2',null) !!}</span>
-            {!! Form::text('op2', 'B. ', ['placeholder' => 'Option 2', 'id'=>'op2', 'class'=>'form-control'])!!}
+            {!! Form::text('op2', null, ['placeholder' => 'B.', 'id'=>'op2', 'class'=>'form-control'])!!}
             </div>
             </div>
 
             <div class="form-group row">
             <div class="col-sm-6 mb-3 mb-sm-0 d-flex align-self-center">
             <span class='btn border me-1'>{!! Form::checkbox('ques[]', 'op3',null) !!}</span>
-            {!! Form::text('op3', 'C. ', ['required', 'class'=>'form-control', 'id'=>'op3', 'max'=>'1', 'min'=>'0','placeholder'=>'Option 3']) !!}
+            {!! Form::text('op3',null, ['required', 'class'=>'form-control', 'id'=>'op3', 'max'=>'1', 'min'=>'0','placeholder'=>'C.']) !!}
            </div>
         <div class="col-sm-6 d-flex align-self-center">
         <span class='btn border me-1'>{!! Form::checkbox('ques[]', 'op4',null) !!}</span>
-        {!! Form::text('op4', 'D. ', ['required', 'class'=>'form-control', 'id'=>'op4', 'placeholder'=>'Option 4']) !!}
+        {!! Form::text('op4',null, ['required', 'class'=>'form-control', 'id'=>'op4', 'placeholder'=>'D.']) !!}
       </div>
       </div>
 

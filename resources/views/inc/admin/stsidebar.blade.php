@@ -23,11 +23,11 @@
                 <ul class="submenu ">
                     
                     <li>
-                        <a href="{{url('')}}">Play Quizzes </a>
+                        <a href="{{url('quiz/qz/qshow')}}">Play Quizzes </a>
                     </li>
                     
                     <li>
-                        <a href="{{url('')}}">Archive Quizset</a>
+                        <a href="{{url('quiz/qz/qshow')}}">Archive Quizset</a>
                     </li>
                     
                    
