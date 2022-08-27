@@ -35,7 +35,7 @@
             <head>
                 <meta charset=utf-8>
 
-                <style>
+<!--                 <style>
                     * {
                         margin: 0;
                         padding: 0;
@@ -119,7 +119,7 @@
                             font-size: 12px
                         }
                     }
-                </style>
+                </style> -->
 
 
             </head>
@@ -132,21 +132,21 @@
                             <div class="col-12">
                                 <p class="fw-bold border rounded py-2 ps-2">{{ $sl++ . '. ' . $quiz->question }}</p>
                                 <div>
-                                    <input type="radio" name="box" id="one">
-                                    <input type="radio" name="box" id="two">
-                                    <input type="radio" name="box" id="three">
-                                    <input type="radio" name="box" id="four">
-                                    <label for="one" class="box first">
+                                    <input type="radio" name="box{{$quiz->id}}" id="one{{$quiz->id}}">
+                                    <input type="radio" name="box{{$quiz->id}}" id="two{{$quiz->id}}">
+                                    <input type="radio" name="box{{$quiz->id}}" id="three{{$quiz->id}}">
+                                    <input type="radio" name="box{{$quiz->id}}" id="four{{$quiz->id}}">
+                                    <label for="one{{$quiz->id}}" class="box first">
 
                                     <div class="course"> <span class="circle"></span> <span class="subject">
                                                 {{ $quiz->op1 }} </span> </div>
-                                    </label> <label for="two" class="box second">
+                                    </label> <label for="two{{$quiz->id}}" class="box second">
                                         <div class="course"> <span class="circle"></span> <span class="subject">
                                                 {{ $quiz->op2 }} </span> </div>
-                                    </label> <label for="three" class="box third">
+                                    </label> <label for="three{{$quiz->id}}" class="box third">
                                         <div class="course"> <span class="circle"></span> <span class="subject">
                                                 {{ $quiz->op3 }} </span> </div>
-                                    </label> <label for="four" class="box forth">
+                                    </label> <label for="four{{$quiz->id}}" class="box forth">
                                         <div class="course"> <span class="circle"></span> <span class="subject">
                                                 {{ $quiz->op4 }} </span> </div>
                                     </label>
