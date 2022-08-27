@@ -86,12 +86,41 @@
 </div>
 @endsection
 
+@section('scripts')
+{{-- <script type="text/javascript">
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
 
+    $(document).ready(function () {
+     
+        $('#category').on('change',function(e) {
+         
+         var id = e.target.value;
 
+         $.ajax({
+               
+               url:"{{ route('subcat') }}",
+               type:"POST",
+               data: {
+                   id: id
+                },
+              
+               success:function (data) {
 
-{{-- @foreach ($categories as $category)
-@foreach
-($category->subcategories->$scategory)
-{{$scategory->name??''}}
-@endforeach
-@endforeach --}}
+                $('#subcategory').empty();
+
+                $.each(data.subcategories[0].subcategories,function(creat,subcategory){
+                    
+                    $('#subcategory').append('<option value="'+subcategory.id+'">'+subcategory.name+'</option>');
+                })
+
+               }
+           })
+        });
+
+    });
+</script> --}}
+@endsection

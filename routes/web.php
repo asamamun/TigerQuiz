@@ -11,6 +11,8 @@ use App\Http\Controllers\QuizController;
 use App\Http\Controllers\QuizsetController;
 use App\Http\Controllers\AllUsers;
 use App\Http\Controllers\StudentController;
+use App\Models\Category;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
 
 /*
@@ -30,8 +32,17 @@ Route::get('/', [HomeController::class,"index"]);
 //     return view('welcome');
 // });
 
-// admin dashboard routes
+// ajax request routes
 
+Route::post('/subcat', function (Request $request) {
+
+    $category_id = $request->id;
+    
+    $subcategories = Category::where('id',$category_id)
+        ->with('subcategories')->get();
+
+    return response()->json([
+        'subcategories' => $subcategories]); })->name('subcat');
 
 // teacherDashboard
 
