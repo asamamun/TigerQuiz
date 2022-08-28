@@ -34,8 +34,7 @@
 
             <head>
                 <meta charset=utf-8>
-
-<!--                 <style>
+                <style>
                     * {
                         margin: 0;
                         padding: 0;
@@ -63,25 +62,25 @@
                         border: 1px solid #ddd
                     }
 
-                    #one:checked~label.first,
-                    #two:checked~label.second,
-                    #three:checked~label.third,
-                    #four:checked~label.forth,
-                    #five:checked~label.fifth,
-                    #six:checked~label.sixth,
-                    #seven:checked~label.seveth,
-                    #eight:checked~label.eighth {
+                    .one:checked~label.first,
+                    .two:checked~label.second,
+                    .three:checked~label.third,
+                    .four:checked~label.forth,
+                    .five:checked~label.fifth,
+                    .six:checked~label.sixth,
+                    .seven:checked~label.seveth,
+                    .eight:checked~label.eighth {
                         border-color: #00FFFF
                     }
 
-                    #one:checked~label.first .circle,
-                    #two:checked~label.second .circle,
-                    #three:checked~label.third .circle,
-                    #four:checked~label.forth .circle,
-                    #five:checked~label.fifth .circle,
-                    #six:checked~label.sixth .circle,
-                    #seven:checked~label.seveth .circle,
-                    #eight:checked~label.eighth .circle {
+                    .one:checked~label.first .circle,
+                    .two:checked~label.second .circle,
+                    .three:checked~label.third .circle,
+                    .four:checked~label.forth .circle,
+                    .five:checked~label.fifth .circle,
+                    .six:checked~label.sixth .circle,
+                    .seven:checked~label.seveth .circle,
+                    .eight:checked~label.eighth .circle {
                         border: 6px solid #00FFFF;
                         background-color: #fff
                     }
@@ -119,7 +118,7 @@
                             font-size: 12px
                         }
                     }
-                </style> -->
+                </style>
 
 
             </head>
@@ -132,21 +131,25 @@
                             <div class="col-12">
                                 <p class="fw-bold border rounded py-2 ps-2">{{ $sl++ . '. ' . $quiz->question }}</p>
                                 <div>
-                                    <input type="radio" name="box{{$quiz->id}}" id="one{{$quiz->id}}">
-                                    <input type="radio" name="box{{$quiz->id}}" id="two{{$quiz->id}}">
-                                    <input type="radio" name="box{{$quiz->id}}" id="three{{$quiz->id}}">
-                                    <input type="radio" name="box{{$quiz->id}}" id="four{{$quiz->id}}">
-                                    <label for="one{{$quiz->id}}" class="box first">
+                                    <input type="radio" name="box{{ $quiz->id }}" id="one{{ $quiz->id }}"
+                                        class="one">
+                                    <input type="radio" name="box{{ $quiz->id }}" id="two{{ $quiz->id }}"
+                                        class="two">
+                                    <input type="radio" name="box{{ $quiz->id }}" id="three{{ $quiz->id }}"
+                                        class="three">
+                                    <input type="radio" name="box{{ $quiz->id }}" id="four{{ $quiz->id }}"
+                                        class="four">
+                                    <label for="one{{ $quiz->id }}" class="box first">
 
-                                    <div class="course"> <span class="circle"></span> <span class="subject">
+                                        <div class="course"> <span class="circle"></span> <span class="subject">
                                                 {{ $quiz->op1 }} </span> </div>
-                                    </label> <label for="two{{$quiz->id}}" class="box second">
+                                    </label> <label for="two{{ $quiz->id }}" class="box second">
                                         <div class="course"> <span class="circle"></span> <span class="subject">
                                                 {{ $quiz->op2 }} </span> </div>
-                                    </label> <label for="three{{$quiz->id}}" class="box third">
+                                    </label> <label for="three{{ $quiz->id }}" class="box third">
                                         <div class="course"> <span class="circle"></span> <span class="subject">
                                                 {{ $quiz->op3 }} </span> </div>
-                                    </label> <label for="four{{$quiz->id}}" class="box forth">
+                                    </label> <label for="four{{ $quiz->id }}" class="box forth">
                                         <div class="course"> <span class="circle"></span> <span class="subject">
                                                 {{ $quiz->op4 }} </span> </div>
                                     </label>
@@ -168,5 +171,5 @@
     </div>
 @endsection
 @section('footer')
-@include('inc.admin.footer')
+    @include('inc.admin.footer')
 @endsection
