@@ -44,13 +44,10 @@ class StudentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Quiz $quizzes)
+    public function show()
     {
 
-        $quizzes = Quiz::all();
-        // dd($quizzes);
-        
-        return view('quiz/qz.qshow',compact('quizzes'));
+       
     }
 
     /**

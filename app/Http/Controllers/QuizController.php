@@ -10,6 +10,7 @@ use App\Http\Requests\UpdateQuizRequest;
 use App\Models\Topic;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Request as FacadesRequest;
 use Nette\Utils\Strings;
 
 class QuizController extends Controller
@@ -155,5 +156,23 @@ class QuizController extends Controller
         } else {
             return back()->with('message', 'Delete Failed!');
         }
+    }
+
+    public function qshow(Request $request){
+        $count = $request->count??"2";
+        $whereArray = [];
+        if($request->category_id){$whereArray['category_id'] = $request->category_id;}
+        if($request->subcategory_id){$whereArray['subcategory_id'] = $request->subcategory_id;}
+        if($request->topic_id){$whereArray['topic_id'] = $request->topic_id;}
+        if(count($whereArray)){
+            $quizzes = Quiz::where(['category_id'=>1,'subcategory_id'=>'2','topic_id'=>1])->inRandomOrder()->limit($count)->get();
+        }
+        else{
+            $quizzes = Quiz::inRandomOrder()->limit($count)->get();
+        }
+        
+        // dd($quizzes);
+
+        return view('quiz/qz.qshow', compact('quizzes'));
     }
 }
