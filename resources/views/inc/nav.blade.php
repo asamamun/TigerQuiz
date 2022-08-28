@@ -33,7 +33,7 @@
             <a href="#"
               class="nav-link dropdown-toggle" data-toggle="dropdown">Quizzes</a>
             <div class="dropdown-menu rounded-0 m-0">
-              <a href="blog.html" class="dropdown-item">MCQ</a>
+              <a href="{{url('/playquiz')}}" class="dropdown-item">MCQ</a>
               <a href="single.html" class="dropdown-item">Descriptive</a>
             </div>
           </div>

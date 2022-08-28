@@ -97,7 +97,7 @@ Route::resource("profile", ProfileController::class);
 //  student quiz show and leaderbord
 //  Route::resource("/quiz/qz/", StudentController::class);
 Route::get('quiz/qz/qshow', [QuizController::class,"qshow"]);
-Route::get('playquiz', [QuizController::class,"qshow"]);
+Route::get('playquiz', [QuizController::class,"qall"]);
  //showquiz
  Route::get('/showquiz', [QuizsetController::class,"showquiz"]);
  Route::post('/storequizset', [QuizsetController::class,"storeset"]);

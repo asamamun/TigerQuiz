@@ -158,6 +158,20 @@ class QuizController extends Controller
         }
     }
 
+    public function qall(Request $request){
+
+        $cats  = Category::all();
+        $scats  = Subcategory::all();
+        $topics  = Topic::all();
+
+        return view('playquiz.index', compact('request'))->with('categories', $cats)
+        ->with('subcategories', $scats)
+        ->with('topics', $topics);
+    }
+
+
+
+
     public function qshow(Request $request){
         $count = $request->count??"2";
         $whereArray = [];
