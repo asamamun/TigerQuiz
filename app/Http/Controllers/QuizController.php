@@ -165,6 +165,13 @@ class QuizController extends Controller
 
         return view('playquiz.index', compact('cats'));
     }
+    public function catquiz($id){
+
+        //$cats  = Category::with('subcategories')->get();        
+        
+
+        //return view('playquiz.index', compact('cats'));
+    }
 
 
 

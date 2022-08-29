@@ -98,6 +98,10 @@ Route::resource("profile", ProfileController::class);
 //  Route::resource("/quiz/qz/", StudentController::class);
 Route::get('quiz/qz/qshow', [QuizController::class,"qshow"]);
 Route::get('playquiz', [QuizController::class,"qall"]);
+Route::get('playquiz/cat/{id}', [QuizController::class,"catquiz"]);
+Route::get('playquiz/subcat/{id}', [QuizController::class,"subcatquiz"]);
+Route::get('playquiz/topic/{id}', [QuizController::class,"topicquiz"]);
+
  //showquiz
  Route::get('/showquiz', [QuizsetController::class,"showquiz"]);
  Route::post('/storequizset', [QuizsetController::class,"storeset"]);
