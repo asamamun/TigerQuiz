@@ -158,15 +158,14 @@ class QuizController extends Controller
         }
     }
 
-    public function qall(Request $request){
+    public function qall(Request $request, Category $category){
 
         $cats  = Category::all();
-        $scats  = Subcategory::all();
+        // dd($id);
+        $scats  = Subcategory::where('category_id', 1)->get();
         $topics  = Topic::all();
 
-        return view('playquiz.index', compact('request'))->with('categories', $cats)
-        ->with('subcategories', $scats)
-        ->with('topics', $topics);
+        return view('playquiz.index', compact('cats', 'scats', 'topics'));
     }
 
 

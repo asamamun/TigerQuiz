@@ -15,7 +15,7 @@
             <h6 class="m-0 font-weight-bold text-info">Add Quiz</h6>
             <a href="{{url('quiz')}}" class="btn btn-info btn-circle btn-sm" title="Back to Topic List">
                 <i class="fas fa-arrow-left"></i>
-            </a>
+            </a> 
         </div>
         <div class="card-body">
             {{Form::open(['route' => 'quiz.store','class'=>'user','enctype'=>'multipart/form-data'])}}
