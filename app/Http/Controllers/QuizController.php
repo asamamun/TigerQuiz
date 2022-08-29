@@ -160,12 +160,10 @@ class QuizController extends Controller
 
     public function qall(Request $request, Category $category){
 
-        $cats  = Category::all();
-        // dd($id);
-        $scats  = Subcategory::where('category_id', 1)->get();
-        $topics  = Topic::all();
+        $cats  = Category::with('subcategories')->get();        
+        
 
-        return view('playquiz.index', compact('cats', 'scats', 'topics'));
+        return view('playquiz.index', compact('cats'));
     }
 
 
