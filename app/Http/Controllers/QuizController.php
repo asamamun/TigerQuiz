@@ -10,6 +10,7 @@ use App\Http\Requests\UpdateQuizRequest;
 use App\Models\Topic;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Request as FacadesRequest;
 use Nette\Utils\Strings;
 
@@ -160,17 +161,36 @@ class QuizController extends Controller
 
     public function qall(Request $request, Category $category){
 
-        $cats  = Category::with('subcategories')->get();        
-        
+//        // define a route
+// Route::get('{id}', 'CampaignController@show')->name('campaign.show');
 
-        return view('playquiz.index', compact('cats'));
+// // then use your route in foreach
+// <a href="{{ route('campaign.show', [$campaign->id]) }}"> 
+       
+       
+        $cats  = Category::with('subcategories')->get();   
+        $id  = Category:: pluck ('id', 'name');
+        dd($id);
+
+        return view('playquiz.index', compact('cats'))->with('playquiz/cat/'.$id['id']);
     }
     public function catquiz($id){
 
-        //$cats  = Category::with('subcategories')->get();        
-        
+       
 
-        //return view('playquiz.index', compact('cats'));
+        return view('playquiz.cat', compact('cats'));
+    }
+    public function subcatquiz($id){
+
+       
+
+        return view('playquiz.subcat', compact('cats'));
+    }
+    public function topicquiz($id){
+
+       
+
+        return view('playquiz.topic', compact('cats'));
     }
 
 

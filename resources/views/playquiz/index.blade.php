@@ -19,7 +19,8 @@
                         <div class=" card-hover  d-flex bg-light shadow-sm border-top border rounded mb-4" style="padding: 30px">
                             <i class="flaticon-050-fence h1 font-weight-normal text-primary mb-3"></i>
                             <div class="pl-4">
-                                <h3>{{ $cs->name }}</h3>
+                                {{-- <a href="{{ route('campaign.show', [$campaign->id]) }}"> --}}
+                                <h3><a href="{{ route('playquiz/cat/'.$cs->id)}}">{{$cs->name}}</a></h3>
                                 @foreach ($cs->subcategories as $scs)
                                     <li class="m-0">
                                         {{ $scs->name}}

@@ -98,7 +98,7 @@ Route::resource("profile", ProfileController::class);
 //  Route::resource("/quiz/qz/", StudentController::class);
 Route::get('quiz/qz/qshow', [QuizController::class,"qshow"]);
 Route::get('playquiz', [QuizController::class,"qall"]);
-Route::get('playquiz/cat/{id}', [QuizController::class,"catquiz"]);
+Route::get('playquiz/cat/{id}', [QuizController::class,"catquiz"])->name('playquiz/cat/{id}');
 Route::get('playquiz/subcat/{id}', [QuizController::class,"subcatquiz"]);
 Route::get('playquiz/topic/{id}', [QuizController::class,"topicquiz"]);
 
