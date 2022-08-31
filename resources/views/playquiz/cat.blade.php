@@ -16,10 +16,10 @@
                     <div class=" card-hover  d-flex bg-light shadow-sm border-top border rounded mb-2 justify-content-between" style="padding: 30px">
                         
                         <div class="col-4 pl-4">
-                            @foreach ($cats as $cs)
-                            <h3><i class="flaticon-050-fence font-weight-normal text-primary"></i> <a href="{{ url('playquiz/subcat/' . $cs->id) }}">{{ $cs->name}}</a></h3>            
+                            
+                            <h3><i class="flaticon-050-fence font-weight-normal text-primary"></i> <a href="{{ url('playquiz/subcat/' . $cats->id) }}">{{ $cats->name}}</a></h3>            
                           
-                        @endforeach
+                       
                             
                         </div>
                             <div class="col-8 text-center">
@@ -29,25 +29,15 @@
 
                                 <div class="form-group mt-1 row">
                                     <div class="col-sm-3 mb-3">
-                                        {{-- {!! Form::select('category_id',$categories,null, ['required', 'class'=>'form-control form-control-profile', 'id'=>'category_id', 'placeholder'=>'Category']) !!}
+                                      
                 
                                                 </div>
-                                              <div class="col-sm-3 mb-3 mb-sm-0"> --}}
-                                        {!! Form::select('subcategory_id', $subcategories, null, [
-                                            'required',
-                                            'class' => 'form-control form-control-profile',
-                                            'id' => 'subcategory_id',
-                                            'placeholder' => 'Subcategory',
-                                        ]) !!}
+                                              <div class="col-sm-3 mb-3 mb-sm-0"> 
+                                        
 
                                     </div>
                                     <div class="col-sm-3 mb-3 mb-sm-0">
-                                        {!! Form::select('topic_id', $topics, null, [
-                                            'required',
-                                            'class' => 'form-control form-control-profile',
-                                            'id' => 'topic_id',
-                                            'placeholder' => 'Topic',
-                                        ]) !!}
+                                        
 
                                     </div>
                                     <div class="col-sm-3 mb-3 mb-sm-0">
@@ -66,9 +56,9 @@
 
             </div>
             <div class="row">
-                @foreach ($cats as $cs)
+                
              
-                    @foreach ($cs->subcategories as $scs)
+                    @foreach ($cats->subcategories as $scs)
                     <div class="col-lg-4 col-md-6 pb-1">
                         <div class=" card-hover  d-flex bg-light shadow-sm border-top border rounded mb-2"
                             style="padding: 30px">
@@ -82,7 +72,7 @@
                         </div>
                     </div>
                     @endforeach
-                @endforeach
+                
             </div>
         </div>
 

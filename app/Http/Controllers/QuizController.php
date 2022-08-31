@@ -163,18 +163,12 @@ class QuizController extends Controller
         return view('playquiz.index', compact('cats'));
     }
     public function catquiz($id){
+        
 
-       $cats  = Category::with('subcategories')->get();
-
-       $categories = Category::pluck('name', 'id');
-       $subcategories = Subcategory::pluck('name', 'id');
-    //    dd($subcategories);
-       $topics = Topic::pluck('name', 'id');
-      
-    //    dd($cats);
-       return view('playquiz.cat', compact('cats'))->with('categories', $categories)
-       ->with('subcategories', $subcategories)
-       ->with('topics', $topics);
+       $cats  = Category::with("subcategories.topics")->find($id);
+   //    dd($cats);
+       return view('playquiz.cat')
+       ->with('cats', $cats);
     }
     public function subcatquiz($id){
 
