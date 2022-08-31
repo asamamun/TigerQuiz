@@ -20,15 +20,15 @@
                             <i class="flaticon-050-fence h1 font-weight-normal text-primary mb-3"></i>
                             <div class="pl-4">
                                 {{-- <a href="{{ route('campaign.show', [$campaign->id]) }}"> --}}
-                                <h3><a href="{{ route('playquiz/cat/'.$cs->id)}}">{{$cs->name}}</a></h3>
+                                <h3><a href="{{ url('playquiz/cat/'.$cs->id)}}">{{$cs->name}}</a></h3>
                                 @foreach ($cs->subcategories as $scs)
                                     <li class="m-0">
-                                        {{ $scs->name}}
+                                    <a href="{{ url('playquiz/subcat/'.$scs->id)}}">{{ $scs->name}}</a>
                                     </li>
                                 @endforeach
                             </div>
                         </div>
-                    </div>
+                    </div> 
               
             @endforeach
           </div>

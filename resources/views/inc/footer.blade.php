@@ -8,7 +8,7 @@ class="container-fluid bg-secondary text-white mt-5 py-5 px-sm-3 px-md-5"
       href=""
       class="navbar-brand font-weight-bold text-primary m-0 mb-4 p-0"
       style="font-size: 40px; line-height: 40px">
-       <span class="icon logo"><img src="assets/img/logo/tiger_logo.png" class="" width="18%" alt="logo"></span>
+       <span class="icon logo"><img src="{{url('assets/img/logo/tiger_logo.png')}}" class="" width="18%" alt="logo"></span>
   
       <span class="text-white">Tiger Quiz</span>
     </a>

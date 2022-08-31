@@ -1,191 +1,274 @@
--- phpMyAdmin SQL Dump
--- version 5.2.0
--- https://www.phpmyadmin.net/
+-- MariaDB dump 10.19  Distrib 10.4.24-MariaDB, for Win64 (AMD64)
 --
--- Host: 127.0.0.1
--- Generation Time: Aug 17, 2022 at 12:52 PM
--- Server version: 10.4.24-MariaDB
--- PHP Version: 8.1.6
-
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-START TRANSACTION;
-SET time_zone = "+00:00";
-
+-- Host: localhost    Database: tiger_quiz
+-- ------------------------------------------------------
+-- Server version	10.4.24-MariaDB
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8mb4 */;
-
---
--- Database: `tiger_quiz`
---
-
--- --------------------------------------------------------
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
 -- Table structure for table `blogs`
 --
 
+DROP TABLE IF EXISTS `blogs`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `blogs` (
-  `id` bigint(20) UNSIGNED NOT NULL,
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `content` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `image` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `user_id` bigint(20) UNSIGNED DEFAULT NULL,
-  `category_id` bigint(20) UNSIGNED DEFAULT NULL,
-  `subcategory_id` bigint(20) UNSIGNED DEFAULT NULL,
-  `topic_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `user_id` bigint(20) unsigned DEFAULT NULL,
+  `category_id` bigint(20) unsigned DEFAULT NULL,
+  `subcategory_id` bigint(20) unsigned DEFAULT NULL,
+  `topic_id` bigint(20) unsigned DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `blogs_user_id_foreign` (`user_id`),
+  KEY `blogs_category_id_foreign` (`category_id`),
+  KEY `blogs_subcategory_id_foreign` (`subcategory_id`),
+  KEY `blogs_topic_id_foreign` (`topic_id`),
+  CONSTRAINT `blogs_category_id_foreign` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`),
+  CONSTRAINT `blogs_subcategory_id_foreign` FOREIGN KEY (`subcategory_id`) REFERENCES `subcategories` (`id`),
+  CONSTRAINT `blogs_topic_id_foreign` FOREIGN KEY (`topic_id`) REFERENCES `topics` (`id`),
+  CONSTRAINT `blogs_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
--- --------------------------------------------------------
+--
+-- Dumping data for table `blogs`
+--
+
+LOCK TABLES `blogs` WRITE;
+/*!40000 ALTER TABLE `blogs` DISABLE KEYS */;
+/*!40000 ALTER TABLE `blogs` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `categories`
 --
 
+DROP TABLE IF EXISTS `categories`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `categories` (
-  `id` bigint(20) UNSIGNED NOT NULL,
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `description` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `active` set('0','1') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '1',
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `categories`
 --
 
-INSERT INTO `categories` (`id`, `name`, `description`, `active`, `created_at`, `updated_at`) VALUES
-(1, 'Class 5', 'English Version', '1', '2022-08-14 03:01:48', '2022-08-15 04:50:17'),
-(2, 'Class 6', 'English Version 2', '1', '2022-08-14 03:46:48', '2022-08-15 04:50:25'),
-(3, 'Class 7', 'English Version', '1', '2022-08-14 21:23:57', '2022-08-14 21:26:18'),
-(4, 'Class 8', 'English Speaking', '0', '2022-08-14 21:27:37', '2022-08-15 04:55:01'),
-(5, 'Class 9', 'Here, we have provided the NCERT Solutions for Class 9 for the subjects Maths, Science and Social Science.', '1', '2022-08-15 22:28:28', '2022-08-15 22:28:28'),
-(6, 'Web Development with PHP and Framework', 'IT Scholarship Programme', '1', '2022-08-17 04:16:51', '2022-08-17 04:19:20');
-
--- --------------------------------------------------------
+LOCK TABLES `categories` WRITE;
+/*!40000 ALTER TABLE `categories` DISABLE KEYS */;
+INSERT INTO `categories` VALUES (1,'Class 5','English Version','1','2022-08-14 03:01:48','2022-08-15 04:50:17'),(2,'Class 6','English Version 2','1','2022-08-14 03:46:48','2022-08-15 04:50:25'),(3,'Class 7','English Version','1','2022-08-14 21:23:57','2022-08-14 21:26:18'),(4,'Class 8','English Speaking','1','2022-08-14 21:27:37','2022-08-29 13:51:26'),(5,'Class 9','NCERT Solutions for Class 9 for the subjects Maths, Science and Social Science.','1','2022-08-15 22:28:28','2022-08-29 14:10:46'),(6,'WDPF','IT Scholarship Programme','1','2022-08-17 04:16:51','2022-08-29 12:47:04'),(7,'Class 10','Class 10','1','2022-08-29 12:33:17','2022-08-29 13:50:10'),(8,'Class 11','Class 11','1','2022-08-29 12:33:25','2022-08-29 13:50:45'),(9,'Class 12','Class 12','1','2022-08-29 12:33:30','2022-08-29 13:52:03'),(10,'BCS','BCS','1','2022-08-29 12:33:38','2022-08-29 13:52:30');
+/*!40000 ALTER TABLE `categories` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `classrooms`
 --
 
+DROP TABLE IF EXISTS `classrooms`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `classrooms` (
-  `id` bigint(20) UNSIGNED NOT NULL,
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `roomname` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `description` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `user_id` bigint(20) UNSIGNED DEFAULT NULL,
-  `category_id` bigint(20) UNSIGNED DEFAULT NULL,
-  `subcategory_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `user_id` bigint(20) unsigned DEFAULT NULL,
+  `category_id` bigint(20) unsigned DEFAULT NULL,
+  `subcategory_id` bigint(20) unsigned DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `classrooms_user_id_foreign` (`user_id`),
+  KEY `classrooms_category_id_foreign` (`category_id`),
+  KEY `classrooms_subcategory_id_foreign` (`subcategory_id`),
+  CONSTRAINT `classrooms_category_id_foreign` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`),
+  CONSTRAINT `classrooms_subcategory_id_foreign` FOREIGN KEY (`subcategory_id`) REFERENCES `subcategories` (`id`),
+  CONSTRAINT `classrooms_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
--- --------------------------------------------------------
+--
+-- Dumping data for table `classrooms`
+--
+
+LOCK TABLES `classrooms` WRITE;
+/*!40000 ALTER TABLE `classrooms` DISABLE KEYS */;
+/*!40000 ALTER TABLE `classrooms` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `comments`
 --
 
+DROP TABLE IF EXISTS `comments`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `comments` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `blog_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `blog_id` bigint(20) unsigned DEFAULT NULL,
   `comment` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `user_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `user_id` bigint(20) unsigned DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `comments_blog_id_foreign` (`blog_id`),
+  KEY `comments_user_id_foreign` (`user_id`),
+  CONSTRAINT `comments_blog_id_foreign` FOREIGN KEY (`blog_id`) REFERENCES `blogs` (`id`),
+  CONSTRAINT `comments_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
--- --------------------------------------------------------
+--
+-- Dumping data for table `comments`
+--
+
+LOCK TABLES `comments` WRITE;
+/*!40000 ALTER TABLE `comments` DISABLE KEYS */;
+/*!40000 ALTER TABLE `comments` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `failed_jobs`
 --
 
+DROP TABLE IF EXISTS `failed_jobs`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `failed_jobs` (
-  `id` bigint(20) UNSIGNED NOT NULL,
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `uuid` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `connection` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `queue` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
   `exception` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `failed_at` timestamp NOT NULL DEFAULT current_timestamp()
+  `failed_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `failed_jobs_uuid_unique` (`uuid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
--- --------------------------------------------------------
+--
+-- Dumping data for table `failed_jobs`
+--
+
+LOCK TABLES `failed_jobs` WRITE;
+/*!40000 ALTER TABLE `failed_jobs` DISABLE KEYS */;
+/*!40000 ALTER TABLE `failed_jobs` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `migrations`
 --
 
+DROP TABLE IF EXISTS `migrations`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `migrations` (
-  `id` int(10) UNSIGNED NOT NULL,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `batch` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `batch` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=66 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `migrations`
 --
 
-INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
-(53, '2014_10_12_000000_create_users_table', 1),
-(54, '2014_10_12_100000_create_password_resets_table', 1),
-(55, '2019_08_19_000000_create_failed_jobs_table', 1),
-(56, '2019_12_14_000001_create_personal_access_tokens_table', 1),
-(57, '2022_08_06_110407_create_categories_table', 1),
-(58, '2022_08_06_110431_create_subcategories_table', 1),
-(59, '2022_08_06_110455_create_topics_table', 1),
-(60, '2022_08_06_110638_create_profiles_table', 1),
-(61, '2022_08_06_110743_create_quizzes_table', 1),
-(62, '2022_08_06_110828_create_quizsets_table', 1),
-(63, '2022_08_06_110844_create_blogs_table', 1),
-(64, '2022_08_06_110905_create_comments_table', 1),
-(65, '2022_08_06_111040_create_classrooms_table', 1);
-
--- --------------------------------------------------------
+LOCK TABLES `migrations` WRITE;
+/*!40000 ALTER TABLE `migrations` DISABLE KEYS */;
+INSERT INTO `migrations` VALUES (53,'2014_10_12_000000_create_users_table',1),(54,'2014_10_12_100000_create_password_resets_table',1),(55,'2019_08_19_000000_create_failed_jobs_table',1),(56,'2019_12_14_000001_create_personal_access_tokens_table',1),(57,'2022_08_06_110407_create_categories_table',1),(58,'2022_08_06_110431_create_subcategories_table',1),(59,'2022_08_06_110455_create_topics_table',1),(60,'2022_08_06_110638_create_profiles_table',1),(61,'2022_08_06_110743_create_quizzes_table',1),(62,'2022_08_06_110828_create_quizsets_table',1),(63,'2022_08_06_110844_create_blogs_table',1),(64,'2022_08_06_110905_create_comments_table',1),(65,'2022_08_06_111040_create_classrooms_table',1);
+/*!40000 ALTER TABLE `migrations` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `password_resets`
 --
 
+DROP TABLE IF EXISTS `password_resets`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `password_resets` (
   `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL
+  `created_at` timestamp NULL DEFAULT NULL,
+  KEY `password_resets_email_index` (`email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
--- --------------------------------------------------------
+--
+-- Dumping data for table `password_resets`
+--
+
+LOCK TABLES `password_resets` WRITE;
+/*!40000 ALTER TABLE `password_resets` DISABLE KEYS */;
+/*!40000 ALTER TABLE `password_resets` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `personal_access_tokens`
 --
 
+DROP TABLE IF EXISTS `personal_access_tokens`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `personal_access_tokens` (
-  `id` bigint(20) UNSIGNED NOT NULL,
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `tokenable_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `tokenable_id` bigint(20) UNSIGNED NOT NULL,
+  `tokenable_id` bigint(20) unsigned NOT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `token` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
   `abilities` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `last_used_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `personal_access_tokens_token_unique` (`token`),
+  KEY `personal_access_tokens_tokenable_type_tokenable_id_index` (`tokenable_type`,`tokenable_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
--- --------------------------------------------------------
+--
+-- Dumping data for table `personal_access_tokens`
+--
+
+LOCK TABLES `personal_access_tokens` WRITE;
+/*!40000 ALTER TABLE `personal_access_tokens` DISABLE KEYS */;
+/*!40000 ALTER TABLE `personal_access_tokens` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `profiles`
 --
 
+DROP TABLE IF EXISTS `profiles`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `profiles` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `user_id` bigint(20) UNSIGNED DEFAULT NULL,
-  `category_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `user_id` bigint(20) unsigned DEFAULT NULL,
+  `category_id` bigint(20) unsigned DEFAULT NULL,
   `fullname` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `institute` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -204,51 +287,72 @@ CREATE TABLE `profiles` (
   `bloodgroup` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `image` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'default.png',
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `profiles_user_id_foreign` (`user_id`),
+  KEY `profiles_category_id_foreign` (`category_id`),
+  CONSTRAINT `profiles_category_id_foreign` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`),
+  CONSTRAINT `profiles_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `profiles`
 --
 
-INSERT INTO `profiles` (`id`, `user_id`, `category_id`, `fullname`, `institute`, `batch`, `subject`, `designation`, `gender`, `bio`, `phone`, `address`, `yt`, `fb`, `in`, `guardianname`, `guardianemail`, `guardianphone`, `bloodgroup`, `image`, `created_at`, `updated_at`) VALUES
-(1, 3, 1, 'Akash Mahmud', 'GNSL', 'Gold', NULL, NULL, NULL, 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using \'Content here, content here\', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for \'lorem ipsum\' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).', '01735504608', 'Dhaka', '@rrayhan', '@rrayhan', '@rrayhan', 'Rayhan', 'rayhan@gmail.com', '01735504688', 'B+', 'Minar_33.png', '2022-08-14 03:04:22', '2022-08-14 03:04:22'),
-(2, 1, NULL, 'Imran Islam', 'GNSL', NULL, 'PHP', 'Web Developer', 'Male', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', '01735504660', 'Dhaka', '@lurepot', '@lurepot', '@lurepot', NULL, NULL, NULL, 'A+', 'Imran_11.png', '2022-08-14 03:12:11', '2022-08-15 19:08:00'),
-(3, 2, NULL, 'Lure Pot', 'GNSL', NULL, 'PHP', 'Web Developer', 'Male', 'Lorem Ipsum is simply a dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularized in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', '01735504660', 'Dhaka', '@lurepot', '@lurepot', '@lurepot', NULL, NULL, NULL, 'A+', 'LurePot_12.png', '2022-08-14 03:15:30', '2022-08-17 00:00:26'),
-(4, 4, NULL, 'Abu Saleh Abdullah Al-Mamun', 'GNSL', NULL, 'Computer Science', 'Faculty', 'Male', 'Hi, I\'m @asamamun; I\'m interested in web solutions; I\'m currently teaching web application development; 💞️ I\'m looking to collaborate on projects.', '01735504898', 'Dhaka', '@mamuncitiut', '@mamuncitiut', '@mamuncitiut', NULL, NULL, NULL, 'A+', 'Admin_24.png', '2022-08-14 03:39:43', '2022-08-14 06:34:13'),
-(5, 6, NULL, 'Apples Mahmud', 'GNSL', NULL, 'PHP', 'Web Developer', NULL, 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', '01735504660', 'Dhaka', '@rrayhan', '@rrayhan', '@rrayhan', NULL, NULL, NULL, 'A+', '', '2022-08-14 06:15:41', '2022-08-14 06:15:41'),
-(7, 9, NULL, 'Imran Hussain', 'GNSL', NULL, 'UI', 'WDPF', 'Male', 'There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humor, or randomized words that don\'t look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn\'t anything embarrassing hidden in the middle of the text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humor, or non-characteristic words, etc.', '01735504660', 'Dhaka', '@lurepot', '@lurepot', '@lurepot', NULL, NULL, NULL, 'B+', 'Imran Hussain_29.png', '2022-08-14 11:47:52', '2022-08-14 11:47:52'),
-(8, 10, NULL, 'Noor Islam', 'GNSL', NULL, 'PHP', 'Web Developer', 'Female', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', '01735504660', 'Dhaka', '@lurepot', '@lurepot', '@lurepot', NULL, NULL, NULL, 'O+', 'Noor_210.png', '2022-08-15 04:36:09', '2022-08-15 04:40:25'),
-(10, 8, 1, 'Imran Islam', 'GNSL', 'Gold', NULL, NULL, 'Male', 'Biography', '01735504660', 'Dhaka', '@lurepot', '@lurepot', '@lurepot', 'Rayhan', 'lurepot@gmail.com', '01735504660', 'O+', 'Aman_38.png', '2022-08-15 08:13:05', '2022-08-15 10:15:18');
-
--- --------------------------------------------------------
+LOCK TABLES `profiles` WRITE;
+/*!40000 ALTER TABLE `profiles` DISABLE KEYS */;
+INSERT INTO `profiles` VALUES (1,3,1,'Akash Mahmud','GNSL','Gold',NULL,NULL,NULL,'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using \'Content here, content here\', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for \'lorem ipsum\' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).','01735504608','Dhaka','@rrayhan','@rrayhan','@rrayhan','Rayhan','rayhan@gmail.com','01735504688','B+','Minar_33.png','2022-08-14 03:04:22','2022-08-14 03:04:22'),(2,1,NULL,'Imran Islam','GNSL',NULL,'PHP','Web Developer','Male','Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.','01735504660','Dhaka','@lurepot','@lurepot','@lurepot',NULL,NULL,NULL,'A+','Imran_11.png','2022-08-14 03:12:11','2022-08-15 19:08:00'),(3,2,NULL,'Lure Pot','GNSL',NULL,'PHP','Web Developer','Male','Lorem Ipsum is simply a dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularized in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.','01735504660','Dhaka','@lurepot','@lurepot','@lurepot',NULL,NULL,NULL,'A+','LurePot_12.png','2022-08-14 03:15:30','2022-08-17 00:00:26'),(4,4,NULL,'Abu Saleh Abdullah Al-Mamun','GNSL',NULL,'Computer Science','Faculty','Male','Hi, I\'m @asamamun; I\'m interested in web solutions; I\'m currently teaching web application development; 💞️ I\'m looking to collaborate on projects.','01735504898','Dhaka','@mamuncitiut','@mamuncitiut','@mamuncitiut',NULL,NULL,NULL,'A+','Admin_24.png','2022-08-14 03:39:43','2022-08-14 06:34:13'),(5,6,NULL,'Apples Mahmud','GNSL',NULL,'PHP','Web Developer',NULL,'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.','01735504660','Dhaka','@rrayhan','@rrayhan','@rrayhan',NULL,NULL,NULL,'A+','','2022-08-14 06:15:41','2022-08-14 06:15:41'),(7,9,NULL,'Imran Hussain','GNSL',NULL,'UI','WDPF','Male','There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humor, or randomized words that don\'t look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn\'t anything embarrassing hidden in the middle of the text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humor, or non-characteristic words, etc.','01735504660','Dhaka','@lurepot','@lurepot','@lurepot',NULL,NULL,NULL,'B+','Imran Hussain_29.png','2022-08-14 11:47:52','2022-08-14 11:47:52'),(8,10,NULL,'Noor Islam','GNSL',NULL,'PHP','Web Developer','Female','Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.','01735504660','Dhaka','@lurepot','@lurepot','@lurepot',NULL,NULL,NULL,'O+','Noor_210.png','2022-08-15 04:36:09','2022-08-15 04:40:25'),(10,8,1,'Imran Islam','GNSL','Gold',NULL,NULL,'Male','Biography','01735504660','Dhaka','@lurepot','@lurepot','@lurepot','Rayhan','lurepot@gmail.com','01735504660','O+','Aman_38.png','2022-08-15 08:13:05','2022-08-15 10:15:18');
+/*!40000 ALTER TABLE `profiles` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `quizsets`
 --
 
+DROP TABLE IF EXISTS `quizsets`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `quizsets` (
-  `id` bigint(20) UNSIGNED NOT NULL,
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `quizzes` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `stime` timestamp NULL DEFAULT NULL,
-  `active` bigint(20) UNSIGNED DEFAULT NULL,
-  `user_id` bigint(20) UNSIGNED DEFAULT NULL,
-  `category_id` bigint(20) UNSIGNED DEFAULT NULL,
-  `subcategory_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `active` bigint(20) unsigned DEFAULT NULL,
+  `user_id` bigint(20) unsigned DEFAULT NULL,
+  `category_id` bigint(20) unsigned DEFAULT NULL,
+  `subcategory_id` bigint(20) unsigned DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `quizsets_user_id_foreign` (`user_id`),
+  KEY `quizsets_category_id_foreign` (`category_id`),
+  KEY `quizsets_subcategory_id_foreign` (`subcategory_id`),
+  CONSTRAINT `quizsets_category_id_foreign` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`),
+  CONSTRAINT `quizsets_subcategory_id_foreign` FOREIGN KEY (`subcategory_id`) REFERENCES `subcategories` (`id`),
+  CONSTRAINT `quizsets_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
--- --------------------------------------------------------
+--
+-- Dumping data for table `quizsets`
+--
+
+LOCK TABLES `quizsets` WRITE;
+/*!40000 ALTER TABLE `quizsets` DISABLE KEYS */;
+/*!40000 ALTER TABLE `quizsets` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `quizzes`
 --
 
+DROP TABLE IF EXISTS `quizzes`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `quizzes` (
-  `id` bigint(20) UNSIGNED NOT NULL,
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `question` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `type` set('m','d') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'm',
   `op1` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -257,111 +361,102 @@ CREATE TABLE `quizzes` (
   `op4` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `ans` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `qimage` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `user_id` bigint(20) UNSIGNED DEFAULT NULL,
-  `category_id` bigint(20) UNSIGNED DEFAULT NULL,
-  `subcategory_id` bigint(20) UNSIGNED DEFAULT NULL,
-  `topic_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `user_id` bigint(20) unsigned DEFAULT NULL,
+  `category_id` bigint(20) unsigned DEFAULT NULL,
+  `subcategory_id` bigint(20) unsigned DEFAULT NULL,
+  `topic_id` bigint(20) unsigned DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `quizzes_user_id_foreign` (`user_id`),
+  KEY `quizzes_category_id_foreign` (`category_id`),
+  KEY `quizzes_subcategory_id_foreign` (`subcategory_id`),
+  KEY `quizzes_topic_id_foreign` (`topic_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=141 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `quizzes`
 --
 
-INSERT INTO `quizzes` (`id`, `question`, `type`, `op1`, `op2`, `op3`, `op4`, `ans`, `user_id`, `category_id`, `subcategory_id`, `topic_id`, `created_at`, `updated_at`) VALUES
-(1, 'Any qualities, feelings or ideas are referred to be...', 'm', 'Abstract', 'Common', 'Proper', 'None', 'A.', 1, 1, 2, 1, '2022-08-16 20:19:10', '2022-08-17 03:07:00'),
-(2, 'Words like crowd, army fleet and swarm are called', 'm', 'collective', 'abstract', 'proper', 'None', 'A.', 1, 1, 2, 1, '2022-08-16 20:22:17', '2022-08-17 03:13:35'),
-(3, 'A_________ of thieves was caught by the police last week', 'm', 'gang', 'group', 'bunch', 'None', 'A.', 1, 1, 2, 1, '2022-08-16 20:23:57', '2022-08-17 03:18:57'),
-(4, 'There is a _____________ of books in our school', 'm', 'library', 'stack', 'flock', 'None', 'B.', 1, 1, 2, 1, '2022-08-16 20:25:56', '2022-08-17 03:19:07'),
-(5, 'A ____ of wolves chased a ______ of deer', 'm', 'pack,heard', 'group, cattle', 'pack, cattle', 'none of them', 'A.', 1, 1, 2, 1, '2022-08-16 20:27:47', '2022-08-17 03:18:34'),
-(6, 'This work can be done by minu. This statement is in ____ voice.', 'm', 'passive', 'active', 'none of them', 'None', 'A.', 1, 1, 2, 2, '2022-08-16 20:34:49', '2022-08-17 03:22:51'),
-(7, 'He gave me open. This statement is in _____ voice', 'm', 'passive', 'active', 'none of them', 'None', 'B.', 1, 1, 2, 2, '2022-08-16 20:35:47', '2022-08-17 03:25:19'),
-(8, 'The plate are being washed', 'm', 'active', 'passive', 'none of them', 'none', 'A.', 1, 1, 2, 4, '2022-08-16 20:39:35', '2022-08-17 03:26:16'),
-(9, 'বই বিক্রি করে জীবনের শেষভাগে বিদ্যাসাগরের বার্ষিক আয় ছিল -', 'm', 'A.দশ হাজার টাকা', 'B. কুড়ি হাজার টাকা', 'C. তিরিশ হাজার টাকা', 'D. চল্লিশ হাজার টাকা', 'C.', 1, 1, 1, 7, '2022-08-16 20:52:17', '2022-08-17 03:59:03'),
-(10, 'এখনকার \'বিদ্যাসাগর কলেজ\' এর আগের নাম ছিল -', 'm', 'A. মেট্রোপলিটন কলেজ', 'B. সিটি কলেজ', 'C. রিপন কলেজ', 'D. সেন্ট স্টিফেনস্ কলেজ', 'A.', 1, 1, 1, 7, '2022-08-17 00:01:41', '2022-08-17 03:59:14'),
-(11, 'এখনকার বাঙালি জীবনের স্বপ্নে দেখা রূপ কথা -', 'm', 'A. গোয়াল ভরা গোরু', 'B. গোলা ভরা ধান', 'C. পুকুর ভরা মাছ', 'D. সবকটিই', 'D.', 1, 1, 1, 6, '2022-08-17 00:03:47', '2022-08-17 03:57:56'),
-(12, 'ফুলকপি দিয়ে রান্না হতো -', 'm', 'A. বাটা মাছ', 'B. মৌরলা মাছ', 'C. ভেটকি মাছ', 'D. বোয়াল মাছ', 'C.', 1, 1, 1, 6, '2022-08-17 00:05:34', '2022-08-17 04:00:58'),
-(13, '\'সবুজসাথী\' প্রকল্পে নবম থেকে দ্বাদশ শ্রেণির সমস্ত পড়ুয়াকে বিনামূল্যে দেওয়া হয় -', 'm', 'A. বিদ্যালয়ের পোশাক', 'B. বিদ্যালয়ের পোশাক', 'C. মধ্যাহ্নকালীন আহার', 'D. সাইকেল', 'D.', 1, 1, 1, 6, '2022-08-17 00:14:23', '2022-08-17 04:02:22'),
-(14, '\'স্থিরীকৃত\' শব্দের একটি সমার্থক শব্দ হলো -', 'm', 'A. প্রদত্ত', 'B. প্রকল্পিত', 'C. অনুমিত', 'D. অনুমোদিত', 'D.', 1, 1, 1, 6, '2022-08-17 00:14:58', '2022-08-17 04:04:47'),
-(15, 'বিদ্যাসাগর তাঁর বই বিক্রি করে উপার্জন করেন -', 'm', 'A. যুবক বয়সে', 'B. প্রৌঢ় বয়সে', 'C. বৃদ্ধ বয়সে', 'D. অতি বৃদ্ধ বয়সে', 'B.', 1, 1, 1, 7, '2022-08-17 03:37:01', '2022-08-17 03:59:51'),
-(16, 'বর্তমানে পিতা ও কন্যার বয়সের সমষ্টি ৬৫ বছর। সাতবছর পরে তাদের বয়সের সমষ্টি কত হবে ?', 'm', 'A. ৭২', 'B. ৭৯', 'C. ৭৫', 'D. ৮৬', 'B.', 1, 1, 3, 7, '2022-08-17 04:06:08', '2022-08-17 04:06:08'),
-(17, '১৫ মিটার লম্বা ফিতে থেকে ৫ মিটার কেটে নেওয়ার পর কত অংশ অবশিষ্ট আছে ?', 'm', 'A. ১/২ অংশ', 'B. ১/৫ অংশ', 'C. ২/৩ অংশ', 'D. ১/১০ অংশ', 'C.', 1, 1, 3, 7, '2022-08-17 04:08:05', '2022-08-17 04:08:05'),
-(18, 'একটি তরমুজের ওজন ২ কেজি ৭০০ গ্রাম এবং একটি আনারসের ওজন ১ কেজি ১০০ গ্রাম। তরমুজের ওজন আনারসের থেকে কত বেশি ?', 'm', 'A. ১ কেজি ৬০০ গ্রাম', 'B. ৩ কেজি ৮০০ গ্রাম', 'C. ১ কেজি ৮০০ গ্রাম', 'D. ৮০০ গ্রাম', 'A.', 1, 1, 3, 7, '2022-08-17 04:09:36', '2022-08-17 04:09:36'),
-(19, 'আয়তন পরিমাপের একক হলো -', 'm', 'A. গ্রাম', 'B. সেন্টিমিটার', 'C. বর্গ সেন্টিমিটার', 'D. ঘন সেন্টিমিটার', 'D.', 1, 1, 5, 7, '2022-08-17 04:11:54', '2022-08-17 04:11:54'),
-(20, 'হেমাটাইট যে ধাতুর আকরিক তা হলো -', 'm', 'A. সোনা', 'B. তামা', 'C. লোহা', 'D. অ্যালুমিনিয়াম', 'C.', 1, 1, 5, 7, '2022-08-17 04:12:47', '2022-08-17 04:12:47'),
-(21, 'অবিশুদ্ধ রক্ত হলো -', 'm', 'A. যে রক্তে কেবল CO2 থাকে', 'B. যে রক্তে O2 - এর তুলনায় CO2 বেশি থাকে', 'C. যে রক্তে কেবল O2 থাকে', 'D. যে রক্তে CO2 - এর তুলনায় O2 বেশি থাকে', 'B.', 1, 1, 5, 7, '2022-08-17 04:14:05', '2022-08-17 04:14:05'),
-(22, 'HTML stands for -', 'm', 'A. HighText Machine Language', 'B. HyperText and links Markup Language', 'C. HyperText Markup Language', 'D. None of these', 'C.', 1, 6, 6, 8, '2022-08-17 04:24:41', '2022-08-17 04:24:41'),
-(23, 'The correct sequence of HTML tags for starting a webpage is -', 'm', 'A. Head, Title, HTML, body', 'B. HTML, Body, Title, Head', 'C. HTML, Head, Title,', 'D. HTML, Head, Title, Body', 'D.', 1, 6, 6, 8, '2022-08-17 04:28:48', '2022-08-17 04:28:48'),
-(24, 'Which of the following element is responsible for making the text bold in HTML?', 'm', 'A. <pre>', 'B. <a>', 'C. <b>', 'D. <br>', 'C.', 1, 6, 6, 8, '2022-08-17 04:29:49', '2022-08-17 04:29:49');
-
--- --------------------------------------------------------
+LOCK TABLES `quizzes` WRITE;
+/*!40000 ALTER TABLE `quizzes` DISABLE KEYS */;
+INSERT INTO `quizzes` VALUES (26,'Who is making the Web standards?','m','A. Google','B. Mozilla','C. The World Wide Web Consortium','D. Microsoft','op3',NULL,11,6,6,8,'2022-08-18 22:36:13','2022-08-18 22:36:13'),(27,'Choose the correct HTML element for the largest heading:','m','A. <h6>','B. <h1>','C. <heading>','D. <head>','op2',NULL,11,6,6,8,'2022-08-18 22:50:29','2022-08-18 22:50:29'),(28,'What is the correct HTML element for inserting a line break?','m','A. <break>','B. <ib>','C. <br>','D.','op3',NULL,11,6,6,8,'2022-08-18 22:51:24','2022-08-18 22:51:24'),(29,'What is the correct HTML for adding a background color?','m','A. <body bg=\"yellow\">','B. <body style=\"background-color:yellow;\">','C. <background>yellow</background>','D.','op2',NULL,11,6,6,8,'2022-08-18 22:52:20','2022-08-18 22:52:20'),(30,'Choose the correct HTML element to define important text','m','A. <strong>','B. <b>','C. <i>','D. <important>','op1',NULL,11,6,6,8,'2022-08-18 22:53:21','2022-08-18 22:53:21'),(31,'Choose the correct HTML element to define emphasized text','m','A. <italic>','B. <i>','C. <em>','D.','null',NULL,11,6,6,8,'2022-08-18 22:57:11','2022-08-18 22:57:11'),(32,'What is the correct HTML for creating a hyperlink?','m','A. <a url=\"http://www.w3schools.com\">W3Schools.com</a>','B. <a href=\"http://www.w3schools.com\">W3Schools</a>','C. <a name=\"http://www.w3schools.com\">W3Schools.com</a>','D. <a>http://www.w3schools.com</a>','op2',NULL,11,6,6,8,'2022-08-18 22:58:19','2022-08-18 22:58:19'),(33,'Which character is used to indicate an end tag?','m','A. /','B. ^','C. *','D. <','op1',NULL,11,6,6,8,'2022-08-18 22:59:21','2022-08-18 22:59:21'),(34,'How can you open a link in a new tab/browser window?','m','A. <a href=\"url\" target=\"new\">','B.<a href=\"url\" new>','C. <a href=\"url\" target=\"_blank\">','D.','op3',NULL,11,6,6,8,'2022-08-18 23:00:10','2022-08-18 23:00:10'),(35,'Which of these elements are all <table> elements?','m','A. <table><head><tfoot>','B. <thead><body><tr>','C. <table><tr><tt>','D. <table><tr><td>','op4',NULL,11,6,6,8,'2022-08-18 23:01:15','2022-08-18 23:01:15'),(36,'Inline elements are normally displayed without starting a new line.','m','A. True','B. False','C.','D.','op1',NULL,11,6,6,8,'2022-08-18 23:01:54','2022-08-18 23:01:54'),(37,'How can you make a numbered list?','m','A. <list>','B. <ol>','C. <dl>','D. <ul>','op2',NULL,11,6,6,8,'2022-08-18 23:02:48','2022-08-18 23:02:48'),(38,'How can you make a bulleted list?','m','A. <ol>','B. <list>','C. <dl>','D. <ul>','op4',NULL,11,6,6,8,'2022-08-18 23:05:16','2022-08-18 23:05:16'),(39,'What is the correct HTML for making a checkbox?','m','A. <check>','B. <input type=\"checkbox\">','C. <checkbox>','D. <input type=\"check\">','op2',NULL,11,6,6,8,'2022-08-18 23:06:08','2022-08-18 23:06:08'),(40,'What is the correct HTML for making a text input field?','m','A. <input type=\"text\">','B. <textinput type=\"text\">','C. <input type=\"textfield\">','D. <textfield>','op1',NULL,11,6,6,8,'2022-08-18 23:06:59','2022-08-18 23:06:59'),(41,'What is the correct HTML for making a drop-down list?','m','A. <input type=\"dropdown\">','B. <select>','C. <input type=\"list\">','D. <list>','op2',NULL,11,6,6,8,'2022-08-18 23:08:02','2022-08-18 23:08:02'),(42,'What is the correct HTML for making a text area?','m','A. <input type=\"textarea\">','B. <input type=\"textbox\">','C. <textarea>','D.','op1',NULL,11,6,6,8,'2022-08-18 23:09:57','2022-08-18 23:09:57'),(43,'What is the correct HTML for inserting an image?','m','A. <image src=\"image.gif\" alt=\"MyImage\">','B. <img alt=\"MyImage\">image.gif</img>','C. <img src=\"image.gif\" alt=\"MyImage\">','D. <img href=\"image.gif\" alt=\"MyImage\">','op3',NULL,11,6,6,8,'2022-08-18 23:11:09','2022-08-18 23:11:09'),(44,'What is the correct HTML for inserting a background image?','m','A. <background img=\"background.gif\">','B. <body style=\"background-image:url(background.gif)\">','C. <body bg=\"background.gif\">','D.','op2',NULL,11,6,6,8,'2022-08-18 23:11:53','2022-08-18 23:11:53'),(45,'An <iframe> is used to display a web page within a web page.','m','A. True','B. There is no such thing as an <iframe>','C. False','D.','op1',NULL,11,6,6,8,'2022-08-18 23:12:34','2022-08-18 23:12:34'),(46,'HTML comments start with <!-- and end with -->','m','A. False','B. True','C.','D.','op2',NULL,11,6,6,8,'2022-08-18 23:13:13','2022-08-18 23:13:13'),(47,'Block elements are normally displayed without starting a new line.','m','A. True','B. False','C.','D.','op2',NULL,11,6,6,8,'2022-08-18 23:13:48','2022-08-18 23:13:48'),(48,'Which HTML element defines the title of a document?','m','A. <head>','B. <meta>','C. <title>','D.','op3',NULL,11,6,6,8,'2022-08-18 23:14:37','2022-08-18 23:14:37'),(49,'Which HTML attribute specifies an alternate text for an image, if the image cannot be displayed?','m','A. longdesc','B.src','C. title','D. alt','op4',NULL,11,6,6,8,'2022-08-18 23:15:39','2022-08-18 23:15:39'),(50,'What does CSS stand for?','m','A. Computer Style Sheets','B. Cascading Style Sheets','C. Colorful Style Sheets','D. Creative Style Sheets','op2',NULL,11,6,8,10,'2022-08-22 04:16:09','2022-08-22 04:16:09'),(51,'What is the correct HTML for referring to an external style sheet?','m','A. <link rel=\"stylesheet\" type=\"text/css\" href=\"mystyle.css\">','B. <stylesheet>mystyle.css</stylesheet>','C. <style src=\"mystyle.css\">','D.','op1',NULL,11,6,8,10,'2022-08-22 04:17:08','2022-08-22 04:17:08'),(52,'Where in an HTML document is the correct place to refer to an external style sheet?','m','A. In the <head> section','B. In the <body> section','C. At the end of the document','D.','op1',NULL,11,6,8,10,'2022-08-22 04:18:01','2022-08-22 04:18:01'),(53,'Which HTML tag is used to define an internal style sheet?','m','A. <script>','B. <css>','C. <style>','D.','op3',NULL,11,6,8,10,'2022-08-22 04:18:50','2022-08-22 04:18:50'),(54,'Which HTML attribute is used to define inline styles?','m','A. class','B. font','C. styles','D. style','op4',NULL,11,6,8,10,'2022-08-22 04:20:05','2022-08-22 04:20:05'),(55,'Which is the correct CSS syntax?','m','A. {body:color=black;}','B. body {color: black;}','C. body:color=black;','D. {body;color:black;}','op2',NULL,11,6,8,10,'2022-08-22 04:21:04','2022-08-22 04:21:04'),(56,'How do you insert a comment in a CSS file?','m','A. // this is a comment','B. \' this is a comment','/* this is a comment */','D. // this is a comment //','op3',NULL,11,6,8,10,'2022-08-22 04:22:42','2022-08-22 04:22:42'),(57,'Which property is used to change the background color?','m','A. bgcolor','B. background-color','C. color','D.','op2',NULL,11,6,8,10,'2022-08-22 04:23:28','2022-08-22 04:23:28'),(58,'How do you add a background color for all <h1> elements?','m','A. h1.all {background-color:#FFFFFF;}','B. all.h1 {background-color:#FFFFFF;}','C. h1 {background-color:#FFFFFF;}','D.','op3',NULL,11,6,8,10,'2022-08-22 04:24:34','2022-08-22 04:24:34'),(59,'Which CSS property is used to change the text color of an element?','m','A. text-color','B. color','C. fgcolor','D.','op2',NULL,11,6,8,10,'2022-08-22 04:25:25','2022-08-22 04:25:25'),(60,'Which CSS property controls the text size?','m','A. font-size','B. font-style','C. text-size','D. text-style','op1',NULL,11,6,8,10,'2022-08-22 04:27:31','2022-08-22 04:27:31'),(61,'What is the correct CSS syntax for making all the <p> elements bold?','m','A. <p style=\"font-size:bold;\">','B. p {font-weight:bold;}','C. p {text-size:bold;}','D. <p style=\"text-size:bold;\">','op2',NULL,11,6,8,10,'2022-08-22 04:28:32','2022-08-22 04:28:32'),(62,'How do you display hyperlinks without an underline?','m','A. a {text-decoration:none;}','B. a {text-decoration:no-underline;}','C. a {underline:none;}','D. a {decoration:no-underline;}','op1',NULL,11,6,8,10,'2022-08-22 04:29:43','2022-08-22 04:29:43'),(63,'How do you make each word in a text start with a capital letter?','m','A. transform:capitalize','B. text-style:capitalize','C. text-transform:capitalize','D. You can\'t do that with CSS','op3',NULL,11,6,8,10,'2022-08-22 04:30:45','2022-08-22 04:30:45'),(64,'Which property is used to change the font of an element?','m','A. font-weight','B. font-family','C. font-style','D.','op2',NULL,11,6,8,10,'2022-08-22 04:31:31','2022-08-22 04:31:31'),(65,'How do you make the text bold?','m','A. style:bold;','B. font:bold;','C. font-weight:bold;','D.','op3',NULL,11,6,8,10,'2022-08-22 04:32:37','2022-08-22 04:32:37'),(66,'How do you display a border like this:\r\n\r\nThe top border = 10 pixels\r\nThe bottom border = 5 pixels\r\nThe left border = 20 pixels\r\nThe right border = 1pixel?','m','A. border-width:5px 20px 10px 1px;','B. border-width:10px 5px 20px 1px;','C. border-width:10px 20px 5px 1px;','D. border-width:10px 1px 5px 20px;','op4',NULL,11,6,8,10,'2022-08-22 04:33:56','2022-08-22 04:33:56'),(67,'Which property is used to change the left margin of an element?','m','A. margin-left','B. padding-left','C. indent','D.','op1',NULL,11,6,8,10,'2022-08-22 04:34:57','2022-08-22 04:34:57'),(68,'When using the padding property; are you allowed to use negative values?','m','A. Yes','B. No','C.','D.','op2',NULL,11,6,8,10,'2022-08-22 04:35:36','2022-08-22 04:35:36'),(69,'How do you make a list that lists its items with squares?','m','A. list-type: square;','B. list: square;','C.list-style-type: square;','D.','op3',NULL,11,6,8,10,'2022-08-22 04:36:28','2022-08-22 04:36:28'),(70,'The .container class provides a full width container, spanning the entire width of the screen','m','A. True','B. False','C.','D.','op2',NULL,11,6,9,11,'2022-08-22 04:43:04','2022-08-22 04:43:04'),(71,'Which class provides a responsive fixed width container?','m','A. .container-fluid','B. .container-responsive','C. .container-fixed','D. .container','op4',NULL,11,6,9,11,'2022-08-22 04:44:08','2022-08-22 04:44:08'),(72,'Which contextual class is used to create an orange text color?','m','A. .bg-warning','B. .txt-orange','C. .text-warning','D. .txt-warning','op3',NULL,11,6,9,11,'2022-08-22 04:45:05','2022-08-22 04:45:05'),(73,'The Bootstrap grid system is based on how many columns?','m','A. 12','B. 3','C. 9','D. 6','op1',NULL,11,6,9,11,'2022-08-22 04:45:48','2022-08-22 04:45:48'),(74,'Which class adds zebra-stripes to a table?','m','A. .table-bordered','B. .table-striped','C. .table-zebra','D. .even and .odd','op2',NULL,11,6,9,11,'2022-08-22 04:46:45','2022-08-22 04:46:45'),(75,'Which class shapes an image to a circle?','m','A. .img-rounded','B. .rounded-circle','C. .img-round','D. .img-circle','op2',NULL,11,6,9,11,'2022-08-22 04:47:36','2022-08-22 04:47:36'),(76,'Which class is used to create a big box for calling extra attention?','m','A. .jumbotron','B. .bigbox','C. There is no such class','D. .container','op3',NULL,11,6,9,11,'2022-08-22 04:48:24','2022-08-22 04:48:24'),(77,'Which class is used to create a button group?','m','A. .btn-group','B. .group-btn','C. .group-button','D. .button-group','op1',NULL,11,6,9,11,'2022-08-22 04:49:26','2022-08-22 04:49:26'),(78,'Which button class is used to create a large button?','m','A. .btn-large','B. .btn-l2','C. .btn-l','D. .btn-lg','op4',NULL,11,6,9,11,'2022-08-22 04:50:17','2022-08-22 04:50:17'),(79,'Which class is used to create a badge?','m','A. .label-badge','B. .badge-label','C. .badge','D. .badge-item','op3',NULL,11,6,9,11,'2022-08-22 04:51:06','2022-08-22 04:51:06'),(80,'Which class is used to create a loader?','m','A. .spinner-border','B. .spinner','C. .spinner-loader','D. .loader','op1',NULL,11,6,9,11,'2022-08-22 04:52:09','2022-08-22 04:52:09'),(81,'Which class is used to create a basic pagination?','m','A. .navigation','B. .pages','C. .page','D. .pagination','op4',NULL,11,6,9,11,'2022-08-22 04:52:54','2022-08-22 04:52:54'),(82,'Which class is used to create a basic list group?','m','A. .grouped-list','B. .list-group','C. .group-list','D.','op2',NULL,11,6,9,11,'2022-08-22 04:53:35','2022-08-22 04:53:35'),(83,'Which class adds a heading to a card?','m','A. .card-header','B. .card-head','C. .card-footer','D. .card-heading','op1',NULL,11,6,9,11,'2022-08-22 04:54:22','2022-08-22 04:54:22'),(84,'Which class indicates a dropdown menu?','m','A. .dropdown-list','B. .select','C. .dropdown','D.','op3',NULL,11,6,9,11,'2022-08-22 04:55:20','2022-08-22 04:55:20'),(85,'Which class is used to create a vertical navigation bar?','m','A. .navbar navbar-vertical','B. .navbar','C. .navbar-inverse','D. .navbar-vertical','op2',NULL,11,6,9,11,'2022-08-22 04:56:25','2022-08-22 04:56:25'),(86,'Which component is used to cycle through elements, like a slideshow?','m','A. Scrollspy','B. Slideshow','C. Orbit','D. Carousel','op4',NULL,11,6,9,11,'2022-08-22 04:57:17','2022-08-22 04:57:17'),(87,'Which contextual class indicates a succesful or positive action?','m','A. .bg-warning','B. .bg-primary','C. .bg-success','D. .bg-info','op3',NULL,11,6,9,11,'2022-08-22 04:58:08','2022-08-22 04:58:08'),(88,'Which contextual class indicates a dangerous or potentially negative action?','m','A. .bg-danger','B. .bg-info','C. .bg-dark','D. .bg-primary','op1',NULL,11,6,9,11,'2022-08-22 04:58:59','2022-08-22 04:58:59'),(89,'Which class indicates uppercased text?','m','A. .text-capitalize','B. .ucase','C. .text-uppercase','D. .uppercase','op3',NULL,11,6,9,11,'2022-08-22 04:59:50','2022-08-22 04:59:50'),(90,'Inside which HTML element do we put the JavaScript?','m','A. <js>','B. <javascript>','C. <script>','D. <scripting>','op3',NULL,11,6,7,9,'2022-08-22 05:02:33','2022-08-22 05:02:33'),(91,'What is the correct JavaScript syntax to change the content of the HTML element below?\r\n<p id=\"demo\">This is a demonstration.</p>','m','A. document.getElement(\"p\").innerHTML = \"Hello World!\";','B. document.getElementById(\"demo\").innerHTML = \"Hello World!\";','C. document.getElementByName(\"p\").innerHTML = \"Hello World!\";','D. #demo.innerHTML = \"Hello World!\";','op2',NULL,11,6,7,9,'2022-08-22 05:03:41','2022-08-22 05:03:41'),(92,'Where is the correct place to insert a JavaScript?','m','A. The <body> section','B. The <head> section','C. Both the <head> section and the <body> section are correct','D.','op3',NULL,11,6,7,9,'2022-08-22 05:04:39','2022-08-22 05:04:39'),(93,'What is the correct syntax for referring to an external script called \"xxx.js\"?','m','A. <script src=\"xxx.js\">','B. <script name=\"xxx.js\">','C. <script href=\"xxx.js\">','D.','op1',NULL,11,6,7,9,'2022-08-22 05:05:25','2022-08-22 05:05:25'),(94,'The external JavaScript file must contain the <script> tag.','m','A. True','B. False','C.','D.','op2',NULL,11,6,7,9,'2022-08-22 05:06:40','2022-08-22 05:06:40'),(95,'How do you write \"Hello World\" in an alert box?','m','A. msgBox(\"Hello World\");','B. alertBox(\"Hello World\");','C. msg(\"Hello World\");','D. alert(\"Hello World\");','op4',NULL,11,6,7,9,'2022-08-22 05:07:45','2022-08-22 05:07:45'),(96,'How do you create a function in JavaScript?','m','A. function:myFunction()','B. function = myFunction()','C. function myFunction()','D.','op3',NULL,11,6,7,9,'2022-08-22 05:08:29','2022-08-22 05:08:29'),(97,'How do you call a function named \"myFunction\"?','m','A. myFunction()','B. call myFunction()','C. call function myFunction()','D.','op1',NULL,11,6,7,9,'2022-08-22 05:09:14','2022-08-22 05:09:14'),(98,'How to write an IF statement in JavaScript?','m','A. if i = 5 then','B. if (i == 5)','C. if i = 5','D. if i == 5 then','op2',NULL,11,6,7,9,'2022-08-22 05:10:13','2022-08-22 05:10:13'),(99,'How to write an IF statement for executing some code if \"i\" is NOT equal to 5?','m','A. if (i != 5)','B. if (i <> 5)','C. if i <> 5','D. if i =! 5 then','op1',NULL,11,6,7,9,'2022-08-22 05:11:02','2022-08-22 05:11:02'),(100,'How does a WHILE loop start?','m','A. while (i <= 10; i++)','B. while i = 1 to 10','C. while (i <= 10)','D.','op3',NULL,11,6,7,9,'2022-08-22 05:11:48','2022-08-22 05:11:48'),(101,'What does PHP stand for?','m','A. Personal Hypertext Processor','B. PHP: Hypertext Preprocessor','C. Private Home Page','D.','op2',NULL,11,6,10,12,'2022-08-22 06:58:45','2022-08-22 06:58:45'),(102,'PHP server scripts are surrounded by delimiters, which?','m','A. <?php>...</?>','B. <&>...</&>','C. <script>...</script>','D. <?php...?>','null',NULL,11,6,10,12,'2022-08-22 06:59:33','2022-08-22 06:59:33'),(103,'How do you write \"Hello World\" in PHP','m','A. \"Hello World\";','B. echo \"Hello World\"','C. Document.Write(\"Hello World\");','D.','null',NULL,11,6,10,12,'2022-08-22 07:00:12','2022-08-22 07:00:12'),(104,'All variables in PHP start with which symbol?','m','A. $','B. &','C. !','D.','op1',NULL,11,6,10,12,'2022-08-22 07:00:56','2022-08-22 07:00:56'),(105,'What is the correct way to end a PHP statement?','m','A. </php>','B. New line','C. ;','D. ,','op3',NULL,11,6,10,12,'2022-08-22 07:01:47','2022-08-22 07:01:47'),(106,'The PHP syntax is most similar to:','m','A. JavaScript','B. Perl and C','C. VBScript','D.','op2',NULL,11,6,10,12,'2022-08-22 07:02:56','2022-08-22 07:02:56'),(107,'How do you get information from a form that is submitted using the \"get\" method?','m','A. $_GET[];','B. Request.Form;','C. Request.QueryString;','D.','op1',NULL,11,6,10,12,'2022-08-22 07:04:01','2022-08-22 07:04:01'),(108,'When using the POST method, variables are displayed in the URL:','m','A. False','B. True','C.','D.','op1',NULL,11,6,10,12,'2022-08-22 07:04:35','2022-08-22 07:04:35'),(109,'In PHP you can use both single quotes ( \' \' ) and double quotes ( \" \" ) for strings:','m','A. False','B. True','C.','D.','op2',NULL,11,6,10,12,'2022-08-22 07:05:12','2022-08-22 07:05:12'),(110,'Include files must have the file extension \".inc\"','m','A. True','B. False','C.','D.','op2',NULL,11,6,10,12,'2022-08-22 07:05:51','2022-08-22 07:05:51'),(111,'What is the correct way to include the file \"time.inc\" ?','m','A. <?php include \"time.inc\"; ?>','B. <!-- include file=\"time.inc\" -->','C. <?php include file=\"time.inc\"; ?>','D. <?php include:\"time.inc\"; ?>','op1',NULL,11,6,10,12,'2022-08-22 07:06:45','2022-08-22 07:06:45'),(112,'What is the correct way to create a function in PHP?','m','A. function myFunction()','B. create myFunction()','C. new_function myFunction()','D.','op1',NULL,11,6,10,12,'2022-08-22 07:08:19','2022-08-22 07:08:19'),(113,'What is the correct way to open the file \"time.txt\" as readable?','m','A. open(\"time.txt\",\"read\");','B. fopen(\"time.txt\",\"r+\")','C. open(\"time.txt\");','D. fopen(\"time.txt\",\"r\");','op4',NULL,11,6,10,12,'2022-08-22 07:09:24','2022-08-22 07:09:24'),(114,'PHP allows you to send emails directly from a script','m','A. False','B. True','C.','D.','op2',NULL,11,6,10,12,'2022-08-22 07:10:13','2022-08-22 07:10:13'),(115,'Which superglobal variable holds information about headers, paths, and script locations?','m','A. $_SESSION','B. $_GET','C. $_SERVER','D. $GLOBALS','op3',NULL,11,6,10,12,'2022-08-22 07:11:14','2022-08-22 07:11:14'),(116,'What is the correct way to add 1 to the $count variable?','m','A. count++;','B. $count++;','C. $count =+1','D. ++count','op2',NULL,11,6,10,12,'2022-08-22 07:12:14','2022-08-22 07:12:14'),(117,'What is a correct way to add a comment in PHP?','m','A. <comment>...</comment>','B. <!--...-->','C. *\\...\\*','D. /*...*/','op4',NULL,11,6,10,12,'2022-08-22 07:13:16','2022-08-22 07:13:16'),(118,'PHP can be run on Microsoft Windows IIS(Internet Information Server):','m','A. True','B. False','C.','D.','op1',NULL,11,6,10,12,'2022-08-22 07:14:30','2022-08-22 07:14:30'),(119,'The die() and exit() functions do the exact same thing.','m','A. True','B. False','C.','D.','op1',NULL,11,6,10,12,'2022-08-22 07:15:26','2022-08-22 07:15:26'),(120,'Which one of these variables has an illegal name?','m','A. $my-Var','B. $myVar','C. $my_Var','D.','op1',NULL,11,6,10,12,'2022-08-22 07:16:13','2022-08-22 07:16:13'),(121,'Which of the following is correct?','m','A. jQuery is a JavaScript Library','B. jQuery is a JSON Library','C.','D.','op1',NULL,11,6,11,13,'2022-08-22 07:21:24','2022-08-22 07:21:24'),(122,'jQuery uses CSS selectors to select elements?','m','A. False','B. True','C.','D.','op2',NULL,11,6,11,13,'2022-08-22 07:21:55','2022-08-22 07:21:55'),(123,'Which sign does jQuery use as a shortcut for jQuery?','m','A. the ? Sign','B. the % sign','C. the $ sign','D.','op3',NULL,11,6,11,13,'2022-08-22 07:22:44','2022-08-22 07:22:44'),(124,'Look at the following selector: $(\"div\"). What does it select?','m','A. The first div element','B. All div elements','C.','D.','op2',NULL,11,6,11,13,'2022-08-22 07:23:27','2022-08-22 07:23:27'),(125,'Is jQuery a library for client scripting or server scripting?','m','A. Client scripting','B. Server scripting','C.','D.','op1',NULL,11,6,11,13,'2022-08-22 07:24:13','2022-08-22 07:24:13'),(126,'Is it possible to use jQuery together with AJAX?','m','A. Yes','B. No','C.','D.','op1',NULL,11,6,11,13,'2022-08-22 07:24:50','2022-08-22 07:24:50'),(127,'The jQuery html() method works for both HTML and XML documents','m','A. False','B. True','C.','D.','op1',NULL,11,6,11,13,'2022-08-22 07:25:21','2022-08-22 07:25:21'),(128,'What is the correct jQuery code to set the background color of all p elements to red?','m','A. $(\"p\").layout(\"background-color\",\"red\");','B. $(\"p\").manipulate(\"background-color\",\"red\");','C. $(\"p\").css(\"background-color\",\"red\");','D. $(\"p\").style(\"background-color\",\"red\");','op3',NULL,11,6,11,13,'2022-08-22 07:26:34','2022-08-22 07:26:34'),(129,'With jQuery, look at the following selector: $(\"div.intro\"). What does it select?','m','A. All div elements with id=\"intro\"','B. The first div element with class=\"intro\"','C. The first div element with id=\"intro\"','D. All div elements with class=\"intro\"','op4',NULL,11,6,11,13,'2022-08-22 07:28:04','2022-08-22 07:28:04'),(130,'Which jQuery method is used to hide selected elements?','m','A. display(none)','B.visible(false)','C. hide()','D.hidden()','op3',NULL,11,6,11,13,'2022-08-22 07:29:04','2022-08-22 07:29:04'),(131,'Which jQuery method is used to set one or more style properties for selected elements?','m','A. style()','B. css()','C. html()','D.','op2',NULL,11,6,11,13,'2022-08-22 07:29:50','2022-08-22 07:29:50'),(132,'Which jQuery method is used to perform an asynchronous HTTP request?','m','A. jQuery.ajaxSetup()','B. jQuery.ajaxAsync()','C. jQuery.ajax()','D.','op3',NULL,11,6,11,13,'2022-08-22 07:30:33','2022-08-22 07:30:33'),(133,'What is the correct jQuery code for making all div elements 100 pixels high?','m','A. $(\"div\").height(100)','B. $(\"div\").yPos(100)','C. $(\"div\").height=\"100\"','D.','op1',NULL,11,6,11,13,'2022-08-22 07:31:22','2022-08-22 07:31:22'),(134,'Which statement is true?','m','A. To use jQuery, you do not have to do anything. Most browsers (Internet Explorer, Chrome, Firefox and Opera) have the jQuery library built in the browser','B. To use jQuery, you must buy the jQuery library at www.jquery.com','C. To use jQuery, you can refer to a hosted jQuery library at Google','D.','op3',NULL,11,6,11,13,'2022-08-22 07:32:08','2022-08-22 07:32:08'),(135,'What scripting language is jQuery written in?','m','A. VBScript','B. C#','C. C++','D. JavaScript','op4',NULL,11,6,11,13,'2022-08-22 07:32:57','2022-08-22 07:32:57'),(136,'Which jQuery function is used to prevent code from running, before the document is finished loading?','m','A. $(document).ready()','B. $(body).onload()','C. $(document).load()','D.','op1',NULL,11,6,11,13,'2022-08-22 07:33:40','2022-08-22 07:33:40'),(137,'Which jQuery method should be used to deal with name conflicts?','m','A. nameConflict()','B. noConflict()','C. conflict()','D. noNameConflict()','op2',NULL,11,6,11,13,'2022-08-22 07:34:33','2022-08-22 07:34:33'),(138,'Which jQuery method is used to switch between adding/removing one or more classes (for CSS) from selected elements?','m','A. switchClass()','B. toggleClass()','C. altClass()','D. switch()','op2',NULL,11,6,11,13,'2022-08-22 07:35:30','2022-08-22 07:35:30'),(139,'Look at the following selector: $(\"div p\"). What does it select?','m','A. The first p element inside a div element','B. All div elements with a p element','C. All p elements inside a div element','D.','op3',NULL,11,6,11,13,'2022-08-22 07:37:49','2022-08-22 07:37:49'),(140,'Is jQuery a W3C standard?','m','A. Yes','B. No','C.','D.','op2',NULL,11,6,11,13,'2022-08-22 07:38:31','2022-08-22 07:38:31');
+/*!40000 ALTER TABLE `quizzes` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `subcategories`
 --
 
+DROP TABLE IF EXISTS `subcategories`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `subcategories` (
-  `id` bigint(20) UNSIGNED NOT NULL,
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `description` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `category_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `category_id` bigint(20) unsigned DEFAULT NULL,
   `active` set('0','1') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '1',
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `subcategories_category_id_foreign` (`category_id`),
+  CONSTRAINT `subcategories_category_id_foreign` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `subcategories`
 --
 
-INSERT INTO `subcategories` (`id`, `name`, `description`, `category_id`, `active`, `created_at`, `updated_at`) VALUES
-(1, 'Bangla', 'Bengali language', 1, '0', '2022-08-14 03:47:48', '2022-08-16 22:28:32'),
-(2, 'English', 'English is a West Germanic language of the Indo-European language family, originally spoken by the inhabitants of early medieval England.', 3, '0', '2022-08-14 03:48:11', '2022-08-15 02:28:25'),
-(3, 'Mathematic', 'Karok and FT', 1, '0', '2022-08-14 21:25:49', '2022-08-15 02:28:56'),
-(4, 'Oral Test', 'English is a West Germanic language of the Indo-European language family, originally spoken by the inhabitants of early medieval England.', 4, '1', '2022-08-14 21:28:44', '2022-08-14 21:28:44'),
-(5, 'Science', 'Science and Social Science.', 5, '1', '2022-08-15 22:29:07', '2022-08-15 22:29:07'),
-(6, 'HTML', 'IT Scholarship Programme', 6, '1', '2022-08-17 04:20:07', '2022-08-17 04:20:07');
-
--- --------------------------------------------------------
+LOCK TABLES `subcategories` WRITE;
+/*!40000 ALTER TABLE `subcategories` DISABLE KEYS */;
+INSERT INTO `subcategories` VALUES (1,'Bangla','Bengali language',1,'1','2022-08-14 03:47:48','2022-08-29 14:09:24'),(2,'Bangla','Bangla',4,'1','2022-08-14 03:48:11','2022-08-29 14:07:10'),(3,'Mathematic','Karok and FT',1,'0','2022-08-14 21:25:49','2022-08-15 02:28:56'),(4,'Mathematic','Mathematic',4,'1','2022-08-14 21:28:44','2022-08-29 14:09:07'),(5,'Bangla','Bangla',5,'1','2022-08-15 22:29:07','2022-08-29 14:12:09'),(6,'HTML','IT Scholarship Programme',6,'1','2022-08-17 04:20:07','2022-08-17 04:20:07'),(7,'JavaScript','JavaScript',6,'1','2022-08-29 12:34:22','2022-08-29 13:43:26'),(8,'CSS','CSS 3',6,'1','2022-08-29 12:34:32','2022-08-29 13:44:16'),(9,'Bootstrap','Bootstrap',6,'1','2022-08-29 12:34:49','2022-08-29 13:45:09'),(10,'Angular','Angular',6,'1','2022-08-29 12:35:01','2022-08-29 13:47:19'),(11,'Laravel','Laravel',6,'1','2022-08-29 13:31:08','2022-08-29 13:48:19'),(12,'PHP','PHP',6,'1','2022-08-29 13:59:40','2022-08-29 13:59:40'),(13,'Bangla','Bangla',2,'1','2022-08-29 14:03:58','2022-08-29 14:03:58'),(14,'English','English',2,'1','2022-08-29 14:04:11','2022-08-29 14:04:11'),(15,'Bangla','Bangla',3,'1','2022-08-29 14:04:33','2022-08-29 14:04:33'),(16,'English','English',3,'1','2022-08-29 14:04:49','2022-08-29 14:04:49'),(17,'English','English',4,'1','2022-08-29 14:07:40','2022-08-29 14:07:40'),(18,'English','English',5,'1','2022-08-29 14:12:37','2022-08-29 14:12:37'),(19,'Science','Science',5,'1','2022-08-29 14:12:55','2022-08-29 14:12:55');
+/*!40000 ALTER TABLE `subcategories` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `topics`
 --
 
+DROP TABLE IF EXISTS `topics`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `topics` (
-  `id` bigint(20) UNSIGNED NOT NULL,
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `description` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `category_id` bigint(20) UNSIGNED DEFAULT NULL,
-  `subcategory_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `category_id` bigint(20) unsigned DEFAULT NULL,
+  `subcategory_id` bigint(20) unsigned DEFAULT NULL,
   `active` set('0','1') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '1',
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `topics_category_id_foreign` (`category_id`),
+  KEY `topics_subcategory_id_foreign` (`subcategory_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `topics`
 --
 
-INSERT INTO `topics` (`id`, `name`, `description`, `category_id`, `subcategory_id`, `active`, `created_at`, `updated_at`) VALUES
-(1, 'Noun', 'A noun is a word that names something, such as a person, place, thing, or idea.', 1, 3, '1', '2022-08-14 03:50:01', '2022-08-15 04:42:50'),
-(2, 'Parts of Speech', 'The Eight Parts of Speech.', 4, 1, '0', '2022-08-14 03:51:14', '2022-08-15 04:43:14'),
-(3, 'Viva-Voice', 'English is a West Germanic language of the Indo-European language family, originally spoken by the inhabitants of early medieval England.', 2, 2, '1', '2022-08-14 21:29:54', '2022-08-15 04:43:44'),
-(4, 'History', 'Bengali language, an eastern Indo-Aryan language · The endonym of Bengal, a geographical and ethno-linguistic region in South Asia.', NULL, 1, '1', '2022-08-15 22:27:23', '2022-08-15 22:27:23'),
-(5, 'ও আমার দেশের মাটি', 'English Version', NULL, 1, '1', '2022-08-17 03:35:11', '2022-08-17 03:35:11'),
-(6, 'Chapter-2', 'English Version', NULL, 1, '1', '2022-08-17 03:56:25', '2022-08-17 03:56:25'),
-(7, 'Chapter-1', 'English Version', NULL, 1, '1', '2022-08-17 03:58:45', '2022-08-17 03:58:45'),
-(8, 'Introduction of html', 'IT Scholarship Programme', 6, 6, '1', '2022-08-17 04:23:15', '2022-08-17 04:26:51');
-
--- --------------------------------------------------------
+LOCK TABLES `topics` WRITE;
+/*!40000 ALTER TABLE `topics` DISABLE KEYS */;
+INSERT INTO `topics` VALUES (1,'Noun','A noun is a word that names something, such as a person, place, thing, or idea.',1,3,'1','2022-08-14 03:50:01','2022-08-15 04:42:50'),(2,'Parts of Speech','The Eight Parts of Speech.',4,1,'0','2022-08-14 03:51:14','2022-08-15 04:43:14'),(3,'Viva-Voice','English is a West Germanic language of the Indo-European language family, originally spoken by the inhabitants of early medieval England.',2,2,'1','2022-08-14 21:29:54','2022-08-15 04:43:44'),(4,'History','Bengali language, an eastern Indo-Aryan language · The endonym of Bengal, a geographical and ethno-linguistic region in South Asia.',NULL,1,'1','2022-08-15 22:27:23','2022-08-15 22:27:23'),(5,'ও আমার দেশের মাটি','English Version',NULL,1,'1','2022-08-17 03:35:11','2022-08-17 03:35:11'),(6,'Chapter-2','English Version',NULL,1,'1','2022-08-17 03:56:25','2022-08-17 03:56:25'),(7,'Chapter-1','English Version',NULL,1,'1','2022-08-17 03:58:45','2022-08-17 03:58:45'),(8,'Introduction of html','IT Scholarship Programme',6,6,'1','2022-08-17 04:23:15','2022-08-17 04:26:51'),(9,'Introduction of JavaScript','Introduction of JavaScript',6,7,'1','2022-08-29 12:36:20','2022-08-29 13:58:20'),(10,'Introduction of CSS','Introduction of CSS',6,8,'1','2022-08-29 13:21:16','2022-08-29 13:57:58'),(11,'Introduction of Bootstrap','Introduction of Bootstrap',6,9,'1','2022-08-29 13:21:30','2022-08-29 13:57:35'),(12,'Introduction of PHP','Introduction of PHP',6,12,'1','2022-08-29 13:21:54','2022-08-29 14:00:01'),(13,'Introduction of Angular','Introduction of Angular',6,10,'1','2022-08-29 13:39:27','2022-08-29 14:00:55');
+/*!40000 ALTER TABLE `topics` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `users`
 --
 
+DROP TABLE IF EXISTS `users`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `users` (
-  `id` bigint(20) UNSIGNED NOT NULL,
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
@@ -369,285 +464,29 @@ CREATE TABLE `users` (
   `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `users_email_unique` (`email`)
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `role`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Imran', 'imran@gmail.com', NULL, '1', '$2y$10$ycpUy8o49hsfn3Va.hG9DOKRlGQR9dG4lzdBNL9INF./e0Qq3ifsy', NULL, '2022-08-14 02:56:52', '2022-08-14 02:56:52'),
-(2, 'LurePot', 'lurepot@gmail.com', NULL, '1', '$2y$10$nzghHAwSSZVAA03b78zCBugJeCoFePDKE0d/K3av19l8kb1CPCNTS', NULL, '2022-08-14 02:57:49', '2022-08-14 02:57:49'),
-(3, 'Minar', 'minar@gmail.com', NULL, '3', '$2y$10$pck0pO004y7QLvXZu82UUeSgj3pCABF3yIeGQDm.BUcmdti23OcjG', NULL, '2022-08-14 02:58:26', '2022-08-14 02:58:26'),
-(4, 'Admin', 'mamuncitiut@gmail.com', NULL, '2', '$2y$10$tCgB1FJaWp/7erC3kMmeLeSx1AKSkkNNG3Et3iio9KPiSMgv.TTKm', NULL, '2022-08-14 03:17:18', '2022-08-14 03:17:18'),
-(6, 'Umer', 'umer@mail.com', NULL, '2', '$2y$10$Ulnjh4sco/YFM/PnB5MJ0OwGknq1CV2sNrQPomnbsWQtL.NaDcvFC', NULL, '2022-08-14 06:11:47', '2022-08-14 06:11:47'),
-(7, 'Imran Hussain', 'imu@gmail.com', NULL, '2', '$2y$10$QF85zW3pJCMVhBMFMElf2Od3mJV.mMuwRwe.0la7AWkGxXNZpJph.', NULL, '2022-08-14 06:17:24', '2022-08-14 06:17:24'),
-(8, 'Aman', 'aman@gmail.com', NULL, '3', '$2y$10$dflVp0LaZ7G4isIn8kWpe.H01F2JkJCpPQLkkTOfJydwTfJMUX6KW', NULL, '2022-08-14 06:34:58', '2022-08-14 06:34:58'),
-(9, 'Imran Hussain', 'imranislamp@gmail.com', NULL, '2', '$2y$10$Z6T9PNSveHmZ5g5TPlXDjO61LUM/jNEHPztV2.5GTkZc09YAJWKj.', NULL, '2022-08-14 11:43:53', '2022-08-14 11:43:53'),
-(10, 'Noor', 'noor@gmail.com', NULL, '2', '$2y$10$wcW0t/oBxkY9AOTqSmn8vu4W7fQ/MRLXq6dcHn/yWIFNCt/El3DCq', NULL, '2022-08-15 04:11:11', '2022-08-15 04:11:11');
+LOCK TABLES `users` WRITE;
+/*!40000 ALTER TABLE `users` DISABLE KEYS */;
+INSERT INTO `users` VALUES (1,'Imran','imran@gmail.com',NULL,'1','$2y$10$ycpUy8o49hsfn3Va.hG9DOKRlGQR9dG4lzdBNL9INF./e0Qq3ifsy',NULL,'2022-08-14 02:56:52','2022-08-14 02:56:52'),(2,'LurePot','lurepot@gmail.com',NULL,'1','$2y$10$nzghHAwSSZVAA03b78zCBugJeCoFePDKE0d/K3av19l8kb1CPCNTS',NULL,'2022-08-14 02:57:49','2022-08-14 02:57:49'),(3,'Minar','minar@gmail.com',NULL,'3','$2y$10$pck0pO004y7QLvXZu82UUeSgj3pCABF3yIeGQDm.BUcmdti23OcjG',NULL,'2022-08-14 02:58:26','2022-08-14 02:58:26'),(4,'Admin','mamuncitiut@gmail.com',NULL,'2','$2y$10$tCgB1FJaWp/7erC3kMmeLeSx1AKSkkNNG3Et3iio9KPiSMgv.TTKm',NULL,'2022-08-14 03:17:18','2022-08-14 03:17:18'),(6,'Umer','umer@mail.com',NULL,'2','$2y$10$Ulnjh4sco/YFM/PnB5MJ0OwGknq1CV2sNrQPomnbsWQtL.NaDcvFC',NULL,'2022-08-14 06:11:47','2022-08-14 06:11:47'),(7,'Imran Hussain','imu@gmail.com',NULL,'2','$2y$10$QF85zW3pJCMVhBMFMElf2Od3mJV.mMuwRwe.0la7AWkGxXNZpJph.',NULL,'2022-08-14 06:17:24','2022-08-14 06:17:24'),(8,'Aman','aman@gmail.com',NULL,'3','$2y$10$dflVp0LaZ7G4isIn8kWpe.H01F2JkJCpPQLkkTOfJydwTfJMUX6KW',NULL,'2022-08-14 06:34:58','2022-08-14 06:34:58'),(9,'Imran Hussain','imranislamp@gmail.com',NULL,'2','$2y$10$Z6T9PNSveHmZ5g5TPlXDjO61LUM/jNEHPztV2.5GTkZc09YAJWKj.',NULL,'2022-08-14 11:43:53','2022-08-14 11:43:53'),(10,'Noor','noor@gmail.com',NULL,'2','$2y$10$wcW0t/oBxkY9AOTqSmn8vu4W7fQ/MRLXq6dcHn/yWIFNCt/El3DCq',NULL,'2022-08-15 04:11:11','2022-08-15 04:11:11'),(11,'Tarin','tarin@gmail.com',NULL,'1','$2y$10$8.mQyiDFJ9dAsIqR30Iy8Ol4ZRL9MjaHZTXgiLumWlvJS15ZW34te',NULL,'2022-08-29 13:18:26','2022-08-29 13:18:26');
+/*!40000 ALTER TABLE `users` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
---
--- Indexes for dumped tables
---
-
---
--- Indexes for table `blogs`
---
-ALTER TABLE `blogs`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `blogs_user_id_foreign` (`user_id`),
-  ADD KEY `blogs_category_id_foreign` (`category_id`),
-  ADD KEY `blogs_subcategory_id_foreign` (`subcategory_id`),
-  ADD KEY `blogs_topic_id_foreign` (`topic_id`);
-
---
--- Indexes for table `categories`
---
-ALTER TABLE `categories`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `classrooms`
---
-ALTER TABLE `classrooms`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `classrooms_user_id_foreign` (`user_id`),
-  ADD KEY `classrooms_category_id_foreign` (`category_id`),
-  ADD KEY `classrooms_subcategory_id_foreign` (`subcategory_id`);
-
---
--- Indexes for table `comments`
---
-ALTER TABLE `comments`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `comments_blog_id_foreign` (`blog_id`),
-  ADD KEY `comments_user_id_foreign` (`user_id`);
-
---
--- Indexes for table `failed_jobs`
---
-ALTER TABLE `failed_jobs`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `failed_jobs_uuid_unique` (`uuid`);
-
---
--- Indexes for table `migrations`
---
-ALTER TABLE `migrations`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `password_resets`
---
-ALTER TABLE `password_resets`
-  ADD KEY `password_resets_email_index` (`email`);
-
---
--- Indexes for table `personal_access_tokens`
---
-ALTER TABLE `personal_access_tokens`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `personal_access_tokens_token_unique` (`token`),
-  ADD KEY `personal_access_tokens_tokenable_type_tokenable_id_index` (`tokenable_type`,`tokenable_id`);
-
---
--- Indexes for table `profiles`
---
-ALTER TABLE `profiles`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `profiles_user_id_foreign` (`user_id`),
-  ADD KEY `profiles_category_id_foreign` (`category_id`);
-
---
--- Indexes for table `quizsets`
---
-ALTER TABLE `quizsets`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `quizsets_user_id_foreign` (`user_id`),
-  ADD KEY `quizsets_category_id_foreign` (`category_id`),
-  ADD KEY `quizsets_subcategory_id_foreign` (`subcategory_id`);
-
---
--- Indexes for table `quizzes`
---
-ALTER TABLE `quizzes`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `quizzes_user_id_foreign` (`user_id`),
-  ADD KEY `quizzes_category_id_foreign` (`category_id`),
-  ADD KEY `quizzes_subcategory_id_foreign` (`subcategory_id`),
-  ADD KEY `quizzes_topic_id_foreign` (`topic_id`);
-
---
--- Indexes for table `subcategories`
---
-ALTER TABLE `subcategories`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `subcategories_category_id_foreign` (`category_id`);
-
---
--- Indexes for table `topics`
---
-ALTER TABLE `topics`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `topics_category_id_foreign` (`category_id`),
-  ADD KEY `topics_subcategory_id_foreign` (`subcategory_id`);
-
---
--- Indexes for table `users`
---
-ALTER TABLE `users`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `users_email_unique` (`email`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `blogs`
---
-ALTER TABLE `blogs`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `categories`
---
-ALTER TABLE `categories`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
---
--- AUTO_INCREMENT for table `classrooms`
---
-ALTER TABLE `classrooms`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `comments`
---
-ALTER TABLE `comments`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `failed_jobs`
---
-ALTER TABLE `failed_jobs`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `migrations`
---
-ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
-
---
--- AUTO_INCREMENT for table `personal_access_tokens`
---
-ALTER TABLE `personal_access_tokens`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `profiles`
---
-ALTER TABLE `profiles`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
-
---
--- AUTO_INCREMENT for table `quizsets`
---
-ALTER TABLE `quizsets`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `quizzes`
---
-ALTER TABLE `quizzes`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
-
---
--- AUTO_INCREMENT for table `subcategories`
---
-ALTER TABLE `subcategories`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
---
--- AUTO_INCREMENT for table `topics`
---
-ALTER TABLE `topics`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
-
---
--- AUTO_INCREMENT for table `users`
---
-ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
-
---
--- Constraints for dumped tables
---
-
---
--- Constraints for table `blogs`
---
-ALTER TABLE `blogs`
-  ADD CONSTRAINT `blogs_category_id_foreign` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`),
-  ADD CONSTRAINT `blogs_subcategory_id_foreign` FOREIGN KEY (`subcategory_id`) REFERENCES `subcategories` (`id`),
-  ADD CONSTRAINT `blogs_topic_id_foreign` FOREIGN KEY (`topic_id`) REFERENCES `topics` (`id`),
-  ADD CONSTRAINT `blogs_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
-
---
--- Constraints for table `classrooms`
---
-ALTER TABLE `classrooms`
-  ADD CONSTRAINT `classrooms_category_id_foreign` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`),
-  ADD CONSTRAINT `classrooms_subcategory_id_foreign` FOREIGN KEY (`subcategory_id`) REFERENCES `subcategories` (`id`),
-  ADD CONSTRAINT `classrooms_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
-
---
--- Constraints for table `comments`
---
-ALTER TABLE `comments`
-  ADD CONSTRAINT `comments_blog_id_foreign` FOREIGN KEY (`blog_id`) REFERENCES `blogs` (`id`),
-  ADD CONSTRAINT `comments_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
-
---
--- Constraints for table `profiles`
---
-ALTER TABLE `profiles`
-  ADD CONSTRAINT `profiles_category_id_foreign` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`),
-  ADD CONSTRAINT `profiles_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
-
---
--- Constraints for table `quizsets`
---
-ALTER TABLE `quizsets`
-  ADD CONSTRAINT `quizsets_category_id_foreign` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`),
-  ADD CONSTRAINT `quizsets_subcategory_id_foreign` FOREIGN KEY (`subcategory_id`) REFERENCES `subcategories` (`id`),
-  ADD CONSTRAINT `quizsets_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
-
---
--- Constraints for table `quizzes`
---
-ALTER TABLE `quizzes`
-  ADD CONSTRAINT `quizzes_category_id_foreign` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`),
-  ADD CONSTRAINT `quizzes_subcategory_id_foreign` FOREIGN KEY (`subcategory_id`) REFERENCES `subcategories` (`id`),
-  ADD CONSTRAINT `quizzes_topic_id_foreign` FOREIGN KEY (`topic_id`) REFERENCES `topics` (`id`),
-  ADD CONSTRAINT `quizzes_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
-
---
--- Constraints for table `subcategories`
---
-ALTER TABLE `subcategories`
-  ADD CONSTRAINT `subcategories_category_id_foreign` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`);
-
---
--- Constraints for table `topics`
---
-ALTER TABLE `topics`
-  ADD CONSTRAINT `topics_category_id_foreign` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`),
-  ADD CONSTRAINT `topics_subcategory_id_foreign` FOREIGN KEY (`subcategory_id`) REFERENCES `subcategories` (`id`);
-COMMIT;
-
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2022-08-31 12:30:43

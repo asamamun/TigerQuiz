@@ -10,9 +10,7 @@ use App\Http\Requests\UpdateQuizRequest;
 use App\Models\Topic;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Request as FacadesRequest;
-use Nette\Utils\Strings;
 
 class QuizController extends Controller
 {
@@ -46,7 +44,7 @@ class QuizController extends Controller
         $categories = Category::pluck('name', 'id');
         $subcategories = Subcategory::pluck('name', 'id');
         $topics = Topic::pluck('name', 'id');
-        return view('quiz.create')->with('categories', $categories)
+        return view('quiz.create',)->with('categories', $categories)
             ->with('subcategories', $subcategories)
             ->with('topics', $topics)
 
@@ -161,35 +159,31 @@ class QuizController extends Controller
 
     public function qall(Request $request, Category $category){
 
-//        // define a route
-// Route::get('{id}', 'CampaignController@show')->name('campaign.show');
-
-// // then use your route in foreach
-// <a href="{{ route('campaign.show', [$campaign->id]) }}"> 
-       
-       
-        $cats  = Category::with('subcategories')->get();   
-        $id  = Category:: pluck ('id', 'name');
-        dd($id);
-
-        return view('playquiz.index', compact('cats'))->with('playquiz/cat/'.$id['id']);
+        $cats  = Category::with('subcategories')->get();
+        return view('playquiz.index', compact('cats'));
     }
     public function catquiz($id){
 
-       
+       $cats  = Category::with('subcategories')->get();
 
-        return view('playquiz.cat', compact('cats'));
+       $categories = Category::pluck('name', 'id');
+       $subcategories = Subcategory::pluck('name', 'id');
+    //    dd($subcategories);
+       $topics = Topic::pluck('name', 'id');
+      
+    //    dd($cats);
+       return view('playquiz.cat', compact('cats'))->with('categories', $categories)
+       ->with('subcategories', $subcategories)
+       ->with('topics', $topics);
     }
     public function subcatquiz($id){
 
-       
-
-        return view('playquiz.subcat', compact('cats'));
+        $scats  = Subcategory::with('topics');
+        return view('playquiz.subcat', compact('scats'));
     }
     public function topicquiz($id){
 
-       
-
+        $scats  = Topic::with('quizzes')->get();
         return view('playquiz.topic', compact('cats'));
     }
 
