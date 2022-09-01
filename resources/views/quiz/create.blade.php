@@ -38,9 +38,16 @@
                 
             </div>
             <div class="col-sm-3 mb-3 mb-sm-0">
-                {!! Form::select('type', ['m'=>'MCQ', 'd'=>'Descriptive', 'qi'=>'Imagery'],'m', ['required', 'class'=>'form-control form-control-profile', 'id'=>'type','rows'=>'1']) !!}
+                {!! Form::select('type', ['m'=>'MCQ', 'd'=>'Descriptive', 'qi'=>'Image'],'m', ['required', 'class'=>'form-control form-control-profile', 'id'=>'type','rows'=>'1']) !!}
             </div>
             </div>
+
+            <div id="imagecontainer" class="row">
+            <div class="col-sm-12 mb-3 mb-sm-0">
+             <input type="file" class="form-control" name="quizimage" id="quizimage">
+            </div>
+            </div>
+            
             <div class="form-group row">
             <div class="mb-3 mb-sm-0">
              {!! Form::textarea('question', null, ['required', 'class'=>'form-control form-control-profile', 'id'=>'question','rows'=>'1', 'placeholder'=>'Question']) !!}
@@ -87,7 +94,7 @@
 @endsection
 
 @section('scripts')
-{{-- <script type="text/javascript">
+<script type="text/javascript">
     $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -95,7 +102,17 @@
     });
 
     $(document).ready(function () {
-     
+alert(5)
+        $("#imagecontainer").hide(); 
+
+        $('#type').on('change',function(e) {
+            if($(this).val() == "qi"){
+                $("#imagecontainer").show(100);
+            }
+            else{
+                $("#imagecontainer").hide(100);  
+            }
+        });
         $('#category').on('change',function(e) {
          
          var id = e.target.value;
@@ -122,5 +139,5 @@
         });
 
     });
-</script> --}}
+</script>
 @endsection

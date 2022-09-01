@@ -47,7 +47,6 @@ class QuizController extends Controller
         return view('quiz.create',)->with('categories', $categories)
             ->with('subcategories', $subcategories)
             ->with('topics', $topics)
-
             ->with('user', Auth::user());
     }
 
