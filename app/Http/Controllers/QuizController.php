@@ -11,6 +11,9 @@ use App\Models\Topic;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Request as FacadesRequest;
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image;
+
 
 class QuizController extends Controller
 {
@@ -21,8 +24,6 @@ class QuizController extends Controller
      */
     public function index()
     {
-        // $quizzes = Quiz::all();
-        // return view('quiz.index',compact('quizzes'))->with('user',Auth::user());
         if (Auth::user()->role == "1") {
             $quizzes = Quiz::with('category')->with('subcategory')->with('topic')->get();
         } else {
@@ -58,9 +59,22 @@ class QuizController extends Controller
      */
     public function store(StoreQuizRequest $request)
     {
+
+        // Answer set in comma
         $request->ques = json_encode($request->ques);
         $opt = str_replace('"', '', trim($request->ques, '[]'));
-        // dd($opt);
+
+        // $qid  = Quiz::orderBy('id', 'desc')->first()->id;
+        $qid  = Quiz::all()->last()->id;
+        $filename = $qid + 1 . '.jpg';
+        // dd($filename);
+        $path = $request->file('quizimage')->storeAs('public/quizimages', $filename);
+
+        $storagepath = Storage::path($path);
+        // desired format
+        $img = Image::make($storagepath)->fit(350, 330);
+        // save image
+        $img->save($storagepath);
 
         $request = [
 
@@ -71,6 +85,7 @@ class QuizController extends Controller
             'op3' => $request->op3,
             'op4' => $request->op4,
             'ans' => $opt,
+            'qimage' => $filename,
             'user_id' => $request->user_id,
             'category_id' => $request->category_id,
             'subcategory_id' => $request->subcategory_id,
@@ -97,7 +112,6 @@ class QuizController extends Controller
         return view('quiz.show', compact('quiz'))->with('categories', $categories)
             ->with('subcategories', $subcategories)
             ->with('topics', $topics)
-
             ->with('user', Auth::user());
     }
 
@@ -115,7 +129,6 @@ class QuizController extends Controller
         return view('quiz.edit', compact('quiz'))->with('categories', $categories)
             ->with('subcategories', $subcategories)
             ->with('topics', $topics)
-
             ->with('user', Auth::user());
     }
 
@@ -131,6 +144,20 @@ class QuizController extends Controller
         //upload
         $request->ques = json_encode($request->ques);
         $opt = str_replace('"', '', trim($request->ques, '[]'));
+
+
+        if ($request->file('quizimage')) {
+            if ($quiz->qimage) {
+                Storage::delete($quiz->qimage);
+            }
+
+            // Image rename and replace the file name with desired name
+            $path = $request->file('quizimage')->storeAs('public/quizimages', $quiz->qimage);
+            $storagepath = Storage::path($path);
+            $img = Image::make($storagepath)->fit(350, 330);
+            $img->save($storagepath);
+        }
+
 
         $quiz->update($request->all());
         $quiz->ans = $opt;
@@ -156,25 +183,29 @@ class QuizController extends Controller
         }
     }
 
-    public function qall(Request $request, Category $category){
+    public function qall(Request $request, Category $category)
+    {
 
         $cats  = Category::with('subcategories')->get();
         return view('playquiz.index', compact('cats'));
     }
-    public function catquiz($id){
-        
+    public function catquiz($id)
+    {
 
-       $cats  = Category::with("subcategories.topics")->find($id);
-   //    dd($cats);
-       return view('playquiz.cat')
-       ->with('cats', $cats);
+
+        $cats  = Category::with("subcategories.topics")->find($id);
+        //    dd($cats);
+        return view('playquiz.cat')
+            ->with('cats', $cats);
     }
-    public function subcatquiz($id){
+    public function subcatquiz($id)
+    {
 
         $scats  = Subcategory::with('topics');
         return view('playquiz.subcat', compact('scats'));
     }
-    public function topicquiz($id){
+    public function topicquiz($id)
+    {
 
         $scats  = Topic::with('quizzes')->get();
         return view('playquiz.topic', compact('cats'));
@@ -183,19 +214,25 @@ class QuizController extends Controller
 
 
 
-    public function qshow(Request $request){
-        $count = $request->count??"2";
+    public function qshow(Request $request)
+    {
+        $count = $request->count ?? "2";
         $whereArray = [];
-        if($request->category_id){$whereArray['category_id'] = $request->category_id;}
-        if($request->subcategory_id){$whereArray['subcategory_id'] = $request->subcategory_id;}
-        if($request->topic_id){$whereArray['topic_id'] = $request->topic_id;}
-        if(count($whereArray)){
-            $quizzes = Quiz::where(['category_id'=>1,'subcategory_id'=>'2','topic_id'=>1])->inRandomOrder()->limit($count)->get();
+        if ($request->category_id) {
+            $whereArray['category_id'] = $request->category_id;
         }
-        else{
+        if ($request->subcategory_id) {
+            $whereArray['subcategory_id'] = $request->subcategory_id;
+        }
+        if ($request->topic_id) {
+            $whereArray['topic_id'] = $request->topic_id;
+        }
+        if (count($whereArray)) {
+            $quizzes = Quiz::where(['category_id' => 1, 'subcategory_id' => '2', 'topic_id' => 1])->inRandomOrder()->limit($count)->get();
+        } else {
             $quizzes = Quiz::inRandomOrder()->limit($count)->get();
         }
-        
+
         // dd($quizzes);
 
         return view('quiz/qz.qshow', compact('quizzes'));
