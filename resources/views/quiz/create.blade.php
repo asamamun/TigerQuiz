@@ -28,27 +28,26 @@
                 <div class="col-sm-3 mb-3">
                     {!! Form::select('category_id', $categories, null, [
                         'required',
-                        'class' => 'form-control form-control-profile',
+                        'class' => 'form-control',
                         'id' => 'category_id',
-                        'placeholder' => 'Category',
+                        'placeholder' => 'Select Category',
                     ]) !!}
 
                 </div>
                 <div class="col-sm-3 mb-3 mb-sm-0">
-                    {!! Form::select('subcategory_id', $subcategories, null, [
-                        'required',
-                        'class' => 'form-control form-control-profile',
+                    {!! Form::select('subcategory_id', [], null, ['required',
+                        'class' => 'form-control ',
                         'id' => 'subcategory_id',
-                        'placeholder' => 'Subcategory',
+                        'placeholder' => 'Select Subcategory',
                     ]) !!}
 
                 </div>
                 <div class="col-sm-3 mb-3 mb-sm-0">
-                    {!! Form::select('topic_id', $topics, null, [
-                        'required',
-                        'class' => 'form-control form-control-profile',
+                    {!! Form::select('topic_id', [], null, ['required',
+                        'placeholder' => 'Select Topic',
+                        'class' => 'form-control',
                         'id' => 'topic_id',
-                        'placeholder' => 'Topic',
+                        'placeholder' => 'Select Topic',
                     ]) !!}
 
                 </div>
@@ -156,34 +155,58 @@
                     $("#imagecontainer").hide(100);
                 }
             });
-
-
-            $('#category').on('change', function(e) {
-
-                var id = e.target.value;
-
-                $.ajax({
-
-                    url: "{{ route('subcat') }}",
-                    type: "POST",
-                    data: {
-                        id: id
-                    },
-
-                    success: function(data) {
-
-                        $('#subcategory').empty();
-
-                        $.each(data.subcategories[0].subcategories, function(creat,
-                        subcategory) {
-
-                            $('#subcategory').append('<option value="' + subcategory
-                                .id + '">' + subcategory.name + '</option>');
-                        })
-
+            // for subcats as cats
+            function selectscat(ob) {
+                $("#subcategory_id").html("");
+                let html = "";
+                for (const key in ob) {
+                    if (Object.hasOwnProperty.call(ob, key)) {
+                        html += "<option value='" + key + "'>" + ob[key] + "</option>";
                     }
-                })
+                }
+                $("#subcategory_id").html(html);
+            }
+            $("#category_id").change(function() {
+                // console.log( $(this).val() )
+                let URL = "{{ url('subcats') }}";
+                $.ajax({
+                    type: "get",
+                    url: URL + '/' + $(this).val(),
+                    data: "data",
+                    dataType: "json",
+                    success: function(response) {
+                        selectscat(response);
+                    }
+                });
             });
+
+            // for topics as subcats
+            function selecttopic(ot) {
+                $("#topic_id").html("");
+                let html = "";
+                for (const k in ot) {
+                    if (Object.hasOwnProperty.call(ot, k)) {
+
+                        html += "<option value='" + k + "'>" + ot[k] + "</option>";
+                    }
+                }
+                $("#topic_id").html(html);
+            }
+            $("#subcategory_id").change(function() {
+                // console.log( $(this).val() )
+                let URL = "{{ url('topics') }}";
+                $.ajax({
+                    type: "get",
+                    url: URL + '/' + $(this).val(),
+                    data: "data",
+                    dataType: "json",
+                    success: function(response) {
+                        selecttopic(response);
+                    }
+                });
+            });
+
+            
 
         });
     </script>

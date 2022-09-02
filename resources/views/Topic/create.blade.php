@@ -23,14 +23,7 @@
             @include('partial.flash')
             @include("partial.error")
 
-<div class="form-group row">
-    <div class="col-sm-6 mb-3 mb-sm-0">
-        {!! Form::text('name', null, ['required', 'class'=>'form-control form-control-profile', 'id'=>'name', 'placeholder'=>'Name']) !!}
-    </div>
-    <div class="col-sm-6">
-        {!! Form::text('description', null, ['required', 'class'=>'form-control form-control-profile', 'id'=>'description', 'placeholder'=>'Description']) !!}
-    </div>
-</div>
+
 <div class="form-group row">
 <div class="col-sm-4 mb-3 mb-sm-0">
     {!! Form::select('category_id',$categories, null, ['placeholder' => 'Select Class', 'id'=>'category_id', 'class'=>'form-control'])!!}
@@ -45,6 +38,14 @@
     {{-- {!! Form::select('active', null, ['placeholder' => 'Select Category', 'class'=>'form-control']) !!} --}}
 </div>
 </div>
+<div class="form-group row">
+    <div class="col-sm-6 mb-3 mb-sm-0">
+        {!! Form::text('name', null, ['required', 'class'=>'form-control form-control-profile', 'id'=>'name', 'placeholder'=>'Name']) !!}
+    </div>
+    <div class="col-sm-6">
+        {!! Form::textarea('description', null, ['required', 'class'=>'form-control form-control-profile', 'id'=>'description', 'rows'=>'1', 'placeholder'=>'Description']) !!}
+    </div>
+</div>
             <div class="form-group">
                 {!! Form::submit('Add Class', ['class'=>'btn btn-info btn-profile btn-block']) !!}
             </div>
@@ -56,9 +57,42 @@
 
 
 
-{{-- @foreach ($categories as $category)
-@foreach
-($category->subcategories->$scategory)
-{{$scategory->name??''}}
-@endforeach
-@endforeach --}}
+@section('scripts')
+    <script type="text/javascript">
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        $(document).ready(function() {
+         
+            // for subcats as cats
+            function selectscat(ob) {
+                $("#subcategory_id").html("");
+                let html = "";
+                for (const key in ob) {
+                    if (Object.hasOwnProperty.call(ob, key)) {
+                        html += "<option value='" + key + "'>" + ob[key] + "</option>";
+                    }
+                }
+                $("#subcategory_id").html(html);
+            }
+            $("#category_id").change(function() {
+                // console.log( $(this).val() )
+                let URL = "{{ url('subcats') }}";
+                $.ajax({
+                    type: "get",
+                    url: URL + '/' + $(this).val(),
+                    data: "data",
+                    dataType: "json",
+                    success: function(response) {
+                        selectscat(response);
+                    }
+                });
+            });
+
+
+        });
+    </script>
+@endsection

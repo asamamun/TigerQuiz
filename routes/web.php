@@ -26,7 +26,7 @@ use Illuminate\Support\Facades\Artisan;
 |
 */
 
-Route::get('/', [HomeController::class,"index"]);
+Route::get('/', [HomeController::class, "index"]);
 
 // Route::get('/', function () {
 //     return view('welcome');
@@ -34,90 +34,105 @@ Route::get('/', [HomeController::class,"index"]);
 
 // ajax request routes
 
-Route::post('/subcat', function (Request $request) {
+// Route::post('/subcat', function (Request $request) {
 
-    $category_id = $request->id;
-    
-    $subcategories = Category::where('id',$category_id)
-        ->with('subcategories')->get();
+//     $category_id = $request->id;
 
-    return response()->json([
-        'subcategories' => $subcategories]); })->name('subcat');
+//     $subcategories = Category::where('id', $category_id)
+//         ->with('subcategories')->get();
+
+//     return response()->json([
+//         'subcategories' => $subcategories
+//     ]);
+// })->name('subcat');
+// for subcats as cats
+Route::get('subcats/{cid}', [SubcategoryController::class, 'subcats']);
+// for topics as subcats
+Route::get('topics/{tid}', [TopicController::class, 'topics']);
 
 // teacherDashboard
 
-Route::get("index", [TeacherController::class,"login"]);
-Route::get("register", [TeacherController::class,"reg"]);
-Route::get("forgot", [TeacherController::class,"forgetpass"]);
+Route::get("index", [TeacherController::class, "login"]);
+Route::get("register", [TeacherController::class, "reg"]);
+Route::get("forgot", [TeacherController::class, "forgetpass"]);
 
 // student dashboard routes
 
 
 //admin group
-Route::middleware(['admin','auth'])->group(function () {
+Route::middleware(['admin', 'auth'])->group(function () {
     Route::get('/dashboard', function () {
         return view('dashboard.index');
     })->name('dashboard');
 
-    Route::get('dashboard/allusers', [AllUsers::class,"index"])->name('allusers');
-
+    Route::get('dashboard/allusers', [AllUsers::class, "index"])->name('allusers');
 });
 //student group
-Route::middleware(['student','auth'])->group(function () {
+Route::middleware(['student', 'auth'])->group(function () {
     Route::get('/student', function () {
         return view('student.index');
     })->name('student');
-
 });
 //teacher group
-Route::middleware(['teacher','auth'])->group(function () {
-    Route::get("teacher", [TeacherController::class,"index"])->name('teacher');
-    
+Route::middleware(['teacher', 'auth'])->group(function () {
+    Route::get("teacher", [TeacherController::class, "index"])->name('teacher');
 });
 
 
 // profile route
 Route::resource("profile", ProfileController::class);
 
- // category
- Route::resource("/category", CategoryController::class);
+// category
+Route::resource("/category", CategoryController::class);
 
- // subcategory
- Route::resource("/subcategory", SubcategoryController::class);
+// subcategory
+Route::resource("/subcategory", SubcategoryController::class);
 
- // Topic
- Route::resource("/topic", TopicController::class);
- // Quiz
- Route::resource("/quiz", QuizController::class);
- // Quizset
- Route::resource("/quizset", QuizsetController::class);
- // allusers
- Route::resource("/allusers", AllUsers::class);
+// Topic
+Route::resource("/topic", TopicController::class);
+// Quiz
+Route::resource("/quiz", QuizController::class);
+// Quizset
+Route::resource("/quizset", QuizsetController::class);
+// allusers
+Route::resource("/allusers", AllUsers::class);
 
-//  student quiz show and leaderbord
-//  Route::resource("/quiz/qz/", StudentController::class);
-Route::get('quiz/qz/qshow', [QuizController::class,"qshow"]);
-Route::get('playquiz', [QuizController::class,"qall"]);
-Route::get('playquiz/cat/{id}', [QuizController::class,"catquiz"]);
-Route::get('playquiz/subcat/{id}', [QuizController::class,"subcatquiz"]);
-Route::get('playquiz/topic/{id}', [QuizController::class,"topicquiz"]);
 
- //showquiz
- Route::get('/showquiz', [QuizsetController::class,"showquiz"]);
- Route::post('/storequizset', [QuizsetController::class,"storeset"]);
+Route::get('quiz/qz/qshow', [QuizController::class, "qshow"]);
+Route::get('playquiz', [QuizController::class, "qall"]);
+Route::get('playquiz/cat/{id}', [QuizController::class, "catquiz"]);
+Route::get('playquiz/subcat/{id}', [QuizController::class, "subcatquiz"]);
+Route::get('playquiz/topic/{id}', [QuizController::class, "topicquiz"]);
+
+//showquiz
+Route::get('/showquiz', [QuizsetController::class, "showquiz"]);
+Route::post('/storequizset', [QuizsetController::class, "storeset"]);
 
 
 
 // front  pages routes
-Route::get('/about', function() { return view('inc.about');});
-Route::get('/class', function() {return view('inc.classes');});
-Route::get('/teachers', function() {return view('inc.teacher');});
-Route::get('/leaderboard', function() {return view('inc.leaderboard');});
-Route::get('/contact', function() { return view('inc.contact');});
+Route::get('/about', function () {
+    return view('inc.about');
+});
+Route::get('/class', function () {
+    return view('inc.classes');
+});
+Route::get('/teachers', function () {
+    return view('inc.teacher');
+});
+Route::get('/leaderboard', function () {
+    return view('inc.leaderboard');
+});
+Route::get('/contact', function () {
+    return view('inc.contact');
+});
 
 // storage:link
-Route::get('/link', function () { Artisan::call('storage:link'); return back(); });
+Route::get('/link', function () {
+    Artisan::call('storage:link');
+    return back();
+});
 
 
 // keet it at the bottom
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

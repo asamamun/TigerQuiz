@@ -35,7 +35,7 @@
         {!! Form::select('category_id', $categories, null, ['placeholder' => 'Select Class', 'id'=>'category_id', 'class'=>'form-control'])!!}
     </div>
     <div class="col-sm-4">
-        {!! Form::select('subcategory_id', $subcategories, null, ['placeholder' => 'Select Subject', 'id'=>'category_id', 'class'=>'form-control'])!!}
+        {!! Form::select('subcategory_id', [], null, ['placeholder' => 'Select Subject', 'id'=>'subcategory_id', 'class'=>'form-control'])!!}
     </div>
     <div class="col-sm-4">
     {!! Form::select('active', [0=>'No', 1=>'Yes'], 1, ['required', 'class'=>'form-control form-control-profile', 'id'=>'active', 'max'=>'1', 'min'=>'0', 'value'=>'[0,1]', 'placeholder'=>'Active Field']) !!}
@@ -51,3 +51,42 @@
     </div>
 @endsection
 
+@section('scripts')
+    <script type="text/javascript">
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        $(document).ready(function() {
+         
+            // for subcats as cats
+            function selectscat(ob) {
+                $("#subcategory_id").html("");
+                let html = "";
+                for (const key in ob) {
+                    if (Object.hasOwnProperty.call(ob, key)) {
+                        html += "<option value='" + key + "'>" + ob[key] + "</option>";
+                    }
+                }
+                $("#subcategory_id").html(html);
+            }
+            $("#category_id").change(function() {
+                // console.log( $(this).val() )
+                let URL = "{{ url('subcats') }}";
+                $.ajax({
+                    type: "get",
+                    url: URL + '/' + $(this).val(),
+                    data: "data",
+                    dataType: "json",
+                    success: function(response) {
+                        selectscat(response);
+                    }
+                });
+            });
+
+
+        });
+    </script>
+@endsection

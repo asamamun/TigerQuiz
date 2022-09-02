@@ -1,0 +1,1 @@
+mysqldump -u root -p  tiger_quiz> C:/xampp/htdocs/Dump_DB/tiger_quiz.sql

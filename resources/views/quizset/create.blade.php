@@ -37,7 +37,7 @@
                         'required',
                         'class' => 'form-control form-control-profile',
                         'id' => 'category_id',
-                        'placeholder' => 'Category',
+                        'placeholder' => 'Select Category',
                     ]) !!}
 
                 </div>
@@ -46,7 +46,7 @@
                         'required',
                         'class' => 'form-control form-control-profile',
                         'id' => 'subcategory_id',
-                        'placeholder' => 'Subcategory',
+                        'placeholder' => 'Select Subcategory',
                     ]) !!}
 
                 </div>
@@ -70,7 +70,10 @@
                         ]) !!}
                     </div>
                     <div class="form-group">
-                        {!! Form::button('Show <i class="fa-solid fa-arrow-down"></i>', ['class' => 'btn btn-info btn-profile btn-block', 'id' => 'showbtn']) !!}
+                        {!! Form::button('Show <i class="fa-solid fa-arrow-down"></i>', [
+                            'class' => 'btn btn-info btn-profile btn-block',
+                            'id' => 'showbtn',
+                        ]) !!}
                     </div>
                     {!! Form::close() !!}
                 </div>
@@ -115,18 +118,18 @@
                   <li class="list-group-item">Cras justo odio</li>
                 </ol> */
                 quizes.forEach(quiz => {
-                    let html = "<h5 class='m-0 font-weight-bold card-header rounded text-dark'>"  + quiz
+                    let html = "<h5 class='m-0 font-weight-bold card-header rounded text-dark'>" + quiz
                         .question +
                         "</h5>";
                     html +=
-        `<div class='card-body border-bottom my-1'>
+                        `<div class='card-body border-bottom my-1'>
         <ol class='list-group list-group-numbered'>
         <li class='list-group-item'>trim${quiz.op1}</li>
         <li class='list-group-item'>${quiz.op2}</li>
         <li class='list-group-item'>${quiz.op3}</li>
         <li class='list-group-item'>${quiz.op4}</li> 
        </ol><span role='button' class='addToQuizsetBtn mt-1 btn btn-info text-center' data-id='${quiz.id}' data-q="${quiz.question.replace(/\"/g, "'")}"> Add this to Quizset</span></div>
-       ` ;
+       `;
                     q += html;
                 });
                 $("#quizcontainer").html(q);
@@ -198,10 +201,11 @@
                     },
                     dataType: "json",
                     success: function(response) {
-                        if(response.error == "1"){
-alert("Something went wrong!!");
+                        if (response.error == "1") {
+                            alert("Something went wrong!!");
+                        } else {
+                            location.reload();
                         }
-                        else{location.reload();}
                     }
                 });
 
@@ -209,11 +213,36 @@ alert("Something went wrong!!");
             });
 
             //remove quiz from list
-            $(document).on("click",".removeqbtn",function(){
+            $(document).on("click", ".removeqbtn", function() {
                 $(this).parent().parent().remove();
             });
 
-        });
 
+            // for subcats as cats
+            function selectscat(ob) {
+                $("#subcategory_id").html("");
+                let html = "";
+                for (const key in ob) {
+                    if (Object.hasOwnProperty.call(ob, key)) {
+                        html += "<option value='" + key + "'>" + ob[key] + "</option>";
+                    }
+                }
+                $("#subcategory_id").html(html);
+            }
+            $("#category_id").change(function() {
+                // console.log( $(this).val() )
+                let URL = "{{ url('subcats') }}";
+                $.ajax({
+                    type: "get",
+                    url: URL + '/' + $(this).val(),
+                    data: "data",
+                    dataType: "json",
+                    success: function(response) {
+                        selectscat(response);
+                    }
+                });
+            });
+
+        });
     </script>
 @endsection

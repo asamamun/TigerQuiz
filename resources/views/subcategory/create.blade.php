@@ -25,15 +25,15 @@
 
 <div class="form-group row">
     <div class="col-sm-6 mb-3 mb-sm-0">
-        {!! Form::text('name', null, ['required', 'class'=>'form-control form-control-profile', 'id'=>'name', 'placeholder'=>'Name']) !!}
+        {!! Form::select('category_id', $categories, null, ['placeholder' => 'Select Class', 'id'=>'category_id', 'class'=>'form-control w-full']) !!}
     </div>
     <div class="col-sm-6">
-        {!! Form::select('category_id', $categories, null, ['placeholder' => 'Select Class', 'id'=>'category_id', 'class'=>'form-control w-full']) !!}
+        {!! Form::text('name', null, ['required', 'class'=>'form-control form-control-profile', 'id'=>'name', 'placeholder'=>'Name']) !!}
     </div>
 </div>
 <div class="form-group row">
 <div class="col-sm-6 mb-3 mb-sm-0">
-    {!! Form::text('description', null, ['required', 'class'=>'form-control form-control-profile', 'id'=>'description', 'placeholder'=>'Description']) !!}
+    {!! Form::textarea('description', null, ['required', 'class'=>'form-control form-control-profile', 'id'=>'description','rows'=>'1', 'placeholder'=>'Description']) !!}
 </div>
 <div class="col-sm-6">
     {!! Form::select('active', [0=>'No', 1=>'Yes'], 1, ['required', 'class'=>'form-control form-control-profile', 'id'=>'active', 'max'=>'1', 'min'=>'0', 'placeholder'=>'Active Field']) !!}

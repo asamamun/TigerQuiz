@@ -33,7 +33,7 @@
     </div>
     
     <div class="form-group">
-    {!! Form::textarea('description', null, ['required', 'class'=>'form-control form-control-profile', 'id'=>'description','rows'=>'2', 'placeholder'=>'Description']) !!}
+    {!! Form::textarea('description', null, ['required', 'class'=>'form-control form-control-profile', 'id'=>'description','rows'=>'1', 'placeholder'=>'Description']) !!}
     </div>
 
             <div class="form-group">

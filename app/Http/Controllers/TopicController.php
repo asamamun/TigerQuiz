@@ -116,6 +116,15 @@ class TopicController extends Controller
             }
     }
 
+ // for topics as subcats
+ public function topics($tid)
+ {
+     //$tid = $request->tid;
+     $topic = Topic::where('subcategory_id', $tid)->pluck('name', 'id');
+    //  dd($topic);
+     return response()->json($topic);
+ }
+
     /**
      * Remove the specified resource from storage.
      *

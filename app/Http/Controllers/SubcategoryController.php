@@ -21,8 +21,8 @@ class SubcategoryController extends Controller
 
         $allsubcat = Subcategory::with('category')->get();
         return view("subcategory.index")
-        ->with('allsubcat',$allsubcat)
-        ->with('user',Auth::user());
+            ->with('allsubcat', $allsubcat)
+            ->with('user', Auth::user());
         // dd($allsubcat->categories);
     }
 
@@ -33,11 +33,11 @@ class SubcategoryController extends Controller
      */
     public function create()
     {
-       
-        $categories = Category::pluck('name','id');
+
+        $categories = Category::pluck('name', 'id');
         // array_unshift($categories , ['-1'=>"Select Category"]);
         // dd($categories);
-        return view("subcategory.create")->with('categories',$categories)->with('user',Auth::user());
+        return view("subcategory.create")->with('categories', $categories)->with('user', Auth::user());
     }
 
     /**
@@ -49,19 +49,18 @@ class SubcategoryController extends Controller
     public function store(StoreSubcategoryRequest $request)
     {
         //upload
-        
 
-        
+
+
         $sc = new Subcategory();
         $sc->name = $request->name;
         $sc->active = $request->active;
         $sc->description = $request->description;
         $c = Category::find($request->category_id);
-        if($c->subcategories()->save($sc)){
-            return back()->with('message','Subject ' .$sc->id. ' has been created successfully!');
-        }
-        else{
-            return back()->with('message','Error!!');
+        if ($c->subcategories()->save($sc)) {
+            return back()->with('message', 'Subject ' . $sc->id . ' has been created successfully!');
+        } else {
+            return back()->with('message', 'Error!!');
         }
     }
 
@@ -73,7 +72,7 @@ class SubcategoryController extends Controller
      */
     public function show(Subcategory $subcategory)
     {
-        return view('subcategory.show',compact('subcategory'))->with('user',Auth::user());
+        return view('subcategory.show', compact('subcategory'))->with('user', Auth::user());
     }
 
     /**
@@ -84,8 +83,8 @@ class SubcategoryController extends Controller
      */
     public function edit(Subcategory $subcategory)
     {
-        $categories = Category::pluck('name','id');
-        return view('subcategory.edit',compact('subcategory'))->with('categories',$categories)->with('user',Auth::user());
+        $categories = Category::pluck('name', 'id');
+        return view('subcategory.edit', compact('subcategory'))->with('categories', $categories)->with('user', Auth::user());
     }
 
     /**
@@ -97,15 +96,20 @@ class SubcategoryController extends Controller
      */
     public function update(UpdateSubcategoryRequest $request, Subcategory $subcategory)
     {
-        
-        $subcategory->update($request->all());
-        if($subcategory->save()){
-                return back()->with('message',"Update Successfully!");
-            }
-            else{
-                return back()->with('message',"Update Failed!!!");
-            }
 
+        $subcategory->update($request->all());
+        if ($subcategory->save()) {
+            return back()->with('message', "Update Successfully!");
+        } else {
+            return back()->with('message', "Update Failed!!!");
+        }
+    }
+    // for subcats as cats
+    public function subcats($cid)
+    {
+        //$cid = $request->cid;
+        $cat = Subcategory::where('category_id', $cid)->pluck('name', 'id');
+        return response()->json($cat);
     }
 
     /**
@@ -116,8 +120,8 @@ class SubcategoryController extends Controller
      */
     public function destroy(Subcategory $subcategory)
     {
-        if(Subcategory::destroy($subcategory->id)){
-            return back()->with('message',$subcategory->id. ' Deleted!!!!');
+        if (Subcategory::destroy($subcategory->id)) {
+            return back()->with('message', $subcategory->id . ' Deleted!!!!');
         }
     }
 }
