@@ -46,9 +46,9 @@ Route::get('/', [HomeController::class, "index"]);
 //     ]);
 // })->name('subcat');
 // for subcats as cats
-Route::get('subcats/{cid}', [SubcategoryController::class, 'subcats']);
+Route::post('subcats/{cid}', [SubcategoryController::class, 'subcats']);
 // for topics as subcats
-Route::get('topics/{tid}', [TopicController::class, 'topics']);
+Route::post('topics/{tid}', [TopicController::class, 'topics']);
 
 // teacherDashboard
 

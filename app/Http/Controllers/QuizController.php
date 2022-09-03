@@ -64,17 +64,20 @@ class QuizController extends Controller
         $request->ques = json_encode($request->ques);
         $opt = str_replace('"', '', trim($request->ques, '[]'));
 
-        // $qid  = Quiz::orderBy('id', 'desc')->first()->id;
-        $qid  = Quiz::all()->last()->id;
-        $filename = $qid + 1 . '.jpg';
-        // dd($filename);
-        $path = $request->file('quizimage')->storeAs('public/quizimages', $filename);
+        if ($request->file('quizimage')) {
+            // $qid  = Quiz::orderBy('id', 'desc')->first()->id;
+            $qid  = Quiz::all()->last()->id;
+            $filename = $qid + 1 . '.jpg';
+            // dd($filename);
+            $path = $request->file('quizimage')?->storeAs('public/quizimages', $filename);
 
-        $storagepath = Storage::path($path);
-        // desired format
-        $img = Image::make($storagepath)->fit(350, 330);
-        // save image
-        $img->save($storagepath);
+            $storagepath = Storage::path($path);
+            // desired format
+            $img = Image::make($storagepath)->fit(350, 330);
+            // save image
+            $img->save($storagepath);
+        }
+
 
         $request = [
 
@@ -85,7 +88,7 @@ class QuizController extends Controller
             'op3' => $request->op3,
             'op4' => $request->op4,
             'ans' => $opt,
-            'qimage' => $filename,
+            'qimage' => $filename ?? '',
             'user_id' => $request->user_id,
             'category_id' => $request->category_id,
             'subcategory_id' => $request->subcategory_id,
@@ -216,7 +219,7 @@ class QuizController extends Controller
 
     public function qshow(Request $request)
     {
-        $count = $request->count ?? "2";
+        $count = $request->count ?? "10";
         $whereArray = [];
         if ($request->category_id) {
             $whereArray['category_id'] = $request->category_id;
@@ -234,7 +237,7 @@ class QuizController extends Controller
         }
 
         // dd($quizzes);
-
-        return view('quiz/qz.qshow', compact('quizzes'));
+        $categories = Category::pluck('name', 'id');
+        return view('quiz/qz.qshow', compact('quizzes','categories'));
     }
 }

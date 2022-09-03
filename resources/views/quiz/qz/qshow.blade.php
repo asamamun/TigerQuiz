@@ -22,7 +22,7 @@
 @section('content')
     <div class="card card-hover shadow mb-4">
         <div class="card-header py-3 d-flex justify-content-between">
-            <h6 class="m-0 font-weight-bold text-info">Quizset Details</h6>
+            <h6 class="m-0 font-weight-bold text-info">Quiz Details</h6>
             <a href="{{ url('quizset') }}" class="btn btn-info btn-circle btn-sm" title="Back to Chapter">
                 <i class="fas fa-arrow-left"></i>
             </a>
@@ -118,13 +118,62 @@
                             font-size: 12px
                         }
                     }
+                    
                 </style>
 
 
             </head>
 
             <body>
+                <section>
+                    <div class="form-group mt-1 row">
+                        <div class="col-sm-3 mb-3">
+                            {!! Form::select('category_id', $categories, null, [
+                                'required',
+                                'class' => 'form-control',
+                                'id' => 'category_id',
+                                'placeholder' => 'Select Category',
+                            ]) !!}
+        
+                        </div>
+                        <div class="col-sm-3 mb-3 mb-sm-0">
+                            {!! Form::select('subcategory_id', [], null, ['required',
+                                'class' => 'form-control ',
+                                'id' => 'subcategory_id',
+                                'placeholder' => 'Select Subcategory',
+                            ]) !!}
+        
+                        </div>
+                        <div class="col-sm-3 mb-3 mb-sm-0">
+                            {!! Form::select('topic_id', [], null, ['required',
+                                'placeholder' => 'Select Topic',
+                                'class' => 'form-control',
+                                'id' => 'topic_id',
+                                'placeholder' => 'Select Topic',
+                            ]) !!}
+        
+                        </div>
+                        <div class="col-sm-3 mb-3 mb-sm-0">
+                            {!! Form::select('type', ['m' => 'MCQ', 'd' => 'Descriptive', 'qi' => 'Image'], 'm', [
+                                'required',
+                                'class' => 'form-control',
+                                'id' => 'type',
+                                'rows' => '1',
+                            ]) !!}
+                        </div>
+                    </div>
+
+                    
+                        <div id="Showquiz" class="card  mb-1">
+                            <div class="card-header py-3 d-flex justify-content-between">
+                                <span  class="btn btn-info">Refresh</span>
+                               <span class="btn btn-info"> Show Quizzes</span>
+                                </a>
+                            </div>
+                </section>
+
                 <div class="container mb-1">
+
                     <div class="row">
                         <span class="d-none">{{ $sl = 1 }}</span>
                         @foreach ($quizzes as $quiz)
@@ -155,10 +204,22 @@
                                     </label>
                                 </div>
                             </div>
-                            <div class="col-12">
-                                <div class="d-flex justify-content-center"> <span
-                                        class="btn btn-sm btn-info my-2 px-4 fw-bold">
-                                        Clean</span> </div>
+                            <div class="form-group row">
+                                <div class="col-sm-12 mb-3 mb-sm-0 d-flex justify-content-between align-self-center">
+                                    <div class=""> <span id="ansbtn"
+                                            class="ansbtn btn btn-sm btn-info my-2 px-4 fw-bold">
+                                            Answer</span><span id="ansshow"
+                                            class="ansshow d-none btn btn-sm btn-success ms-2 my-2 px-4 fw-bold">
+                                            {{ $quiz->ans }}</span> </div>
+                                    {{-- <span id="button1{{$quiz->id}}" onclick="SwitchButtons('button1{{ $quiz->id}}');"
+                                        class="sideviewtoggle btn btn-sm btn-info my-2 px-4 fw-bold">Answer</span>
+
+                                    <span id="button2{{$quiz->id}}" onclick="SwitchButtons('button2{{$quiz->id}}');"
+                                        class="sideviewtoggle btn btn-sm btn-info my-2 px-4 fw-bold" style='display:none;'>{{ $quiz->ans}}</span> --}}
+
+                                    <div> <span class="btn btn-sm btn-info my-2 px-4 fw-bold">
+                                            Clean</span> </div>
+                                </div>
                             </div>
                             <hr>
                         @endforeach
@@ -172,4 +233,78 @@
 @endsection
 @section('footer')
     @include('inc.admin.footer')
+@endsection
+@section('scripts')
+
+    <script type="text/javascript">
+
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        $(document).ready(function() {
+            // alert(5)
+
+            $(".ansbtn").click(function(event) {
+                event.preventDefault();
+                $('.ansshow').toggle().removeClass('d-none');
+                // $('#ansbtn').addClass('d-none');
+            });
+            // for subcats as cats
+            function selectscat(ob) {
+                $("#subcategory_id").html("");
+                let html = "";
+                for (const key in ob) {
+                    if (Object.hasOwnProperty.call(ob, key)) {
+                        html += "<option value='" + key + "'>" + ob[key] + "</option>";
+                    }
+                }
+                $("#subcategory_id").html(html);
+            }
+            $("#category_id").change(function() {
+                // console.log( $(this).val() )
+                let URL = "{{ url('subcats') }}";
+                $.ajax({
+                    type: "post",
+                    url: URL + '/' + $(this).val(),
+                    data: "data",
+                    dataType: "json",
+                    success: function(response) {
+                        selectscat(response);
+                    }
+                });
+            });
+
+            // for topics as subcats
+            function selecttopic(ot) {
+                $("#topic_id").html("");
+                let html = "";
+                for (const k in ot) {
+                    if (Object.hasOwnProperty.call(ot, k)) {
+
+                        html += "<option value='" + k + "'>" + ot[k] + "</option>";
+                    }
+                }
+                $("#topic_id").html(html);
+            }
+            $("#subcategory_id").change(function() {
+                // console.log( $(this).val() )
+                let URL = "{{ url('topics') }}";
+                $.ajax({
+                    type: "post",
+                    url: URL + '/' + $(this).val(),
+                    data: "data",
+                    dataType: "json",
+                    success: function(response) {
+                        selecttopic(response);
+                    }
+                });
+            });
+
+
+
+        });
+    </script>
 @endsection

@@ -82,7 +82,7 @@
                 // console.log( $(this).val() )
                 let URL = "{{ url('subcats') }}";
                 $.ajax({
-                    type: "get",
+                    type: "post",
                     url: URL + '/' + $(this).val(),
                     data: "data",
                     dataType: "json",
