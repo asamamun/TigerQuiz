@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 02, 2022 at 10:38 PM
+-- Generation Time: Sep 03, 2022 at 09:17 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -245,6 +245,14 @@ CREATE TABLE `quizsets` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `quizsets`
+--
+
+INSERT INTO `quizsets` (`id`, `name`, `title`, `quizzes`, `stime`, `active`, `user_id`, `category_id`, `subcategory_id`, `created_at`, `updated_at`) VALUES
+(1, 'Rational Numbers', 'MCQ Question', '116,117,118,119,120,121,122,123,124,125,126,127,129,130,131,132,131,133,134,135', NULL, NULL, 1, 4, 20, '2022-09-02 19:49:09', '2022-09-02 19:49:09'),
+(2, 'Bootstrap MCQ', 'Class Test', '45,46,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63', NULL, NULL, 1, 6, 9, '2022-09-02 19:55:18', '2022-09-02 19:55:18');
+
 -- --------------------------------------------------------
 
 --
@@ -388,7 +396,42 @@ INSERT INTO `quizzes` (`id`, `question`, `type`, `op1`, `op2`, `op3`, `op4`, `an
 (112, 'Which jQuery method should be used to deal with name conflicts?', 'm', 'A. nameConflict()', 'B. noConflict()', 'C. conflict()', 'D. noNameConflict()', 'op2', NULL, 11, 6, 11, 13, '2022-08-22 07:34:33', '2022-08-22 07:34:33'),
 (113, 'Which jQuery method is used to switch between adding/removing one or more classes (for CSS) from selected elements?', 'm', 'A. switchClass()', 'B. toggleClass()', 'C. altClass()', 'D. switch()', 'op2', NULL, 11, 6, 11, 13, '2022-08-22 07:35:30', '2022-08-22 07:35:30'),
 (114, 'Look at the following selector: $(\"div p\"). What does it select?', 'm', 'A. The first p element inside a div element', 'B. All div elements with a p element', 'C. All p elements inside a div element', 'D.', 'op3', NULL, 11, 6, 11, 13, '2022-08-22 07:37:49', '2022-08-22 07:37:49'),
-(115, 'Is jQuery a W3C standard?', 'm', 'A. Yes', 'B. No', 'C.', 'D.', 'op2', NULL, 11, 6, 11, 13, '2022-08-22 07:38:31', '2022-08-22 07:38:31');
+(115, 'Is jQuery a W3C standard?', 'm', 'A. Yes', 'B. No', 'C.', 'D.', 'op2', NULL, 11, 6, 11, 13, '2022-08-22 07:38:31', '2022-08-22 07:38:31'),
+(116, 'Which of the following statements is false ?', 'm', 'Natural numbers are closed under addition', 'Whole numbers are closed under addition', 'Integers are closed under addition', 'Rational numbers are not closed under addition.', 'op4', '', 1, 4, 20, 14, '2022-09-02 18:57:23', '2022-09-02 19:00:18'),
+(117, 'Which of the following statements is false?', 'm', 'Natural numbers are closed under subtraction', 'Whole numbers are not closed under subtraction', 'Integers are closed under subtraction', 'Rational numbers are closed under subtraction.', 'op1', '', 1, 4, 20, 14, '2022-09-02 19:01:57', '2022-09-02 19:01:57'),
+(118, 'Which of the following statements is true?', 'm', 'Natural numbers are closed under multiplication', 'Whole numbers are not closed under multiplication', 'Integers are not closed under multiplication', 'Rational numbers are not closed under multiplication.', 'op1', '', 1, 4, 20, 14, '2022-09-02 19:03:48', '2022-09-02 19:03:48'),
+(119, 'Which of the following statements is true?', 'm', 'Natural numbers are closed under division', 'Whole numbers are not closed under division', 'Integers are closed under division', 'Rational numbers are closed under division.', 'op2', '', 1, 4, 20, 14, '2022-09-02 19:06:34', '2022-09-02 19:06:34'),
+(120, 'Which of the following statements is false?', 'm', 'Natural numbers are commutative for addition', 'Whole numbers are commutative for addition', 'Integers are not commutative for addition', 'Rational numbers are commutative for addition.', 'op3', '', 1, 4, 20, 14, '2022-09-02 19:07:44', '2022-09-02 19:07:44'),
+(121, 'Which of the following statements is true?', 'm', 'Natural numbers are commutative for subtraction', 'Whole numbers are commutative for subtraction', 'Integers are commutative for subtraction', 'Rational numbers are not commutative for subtraction.', 'op4', '', 1, 4, 20, 14, '2022-09-02 19:09:02', '2022-09-02 19:09:02'),
+(122, 'Which of the following statements is false?', 'm', 'Natural numbers are commutative for multiplication', 'Whole numbers are commutative for multiplication', 'Integers are not commutative for multiplication', 'Rational numbers are commutative for multiplication.', 'op3', '', 1, 4, 20, 14, '2022-09-02 19:10:03', '2022-09-02 19:10:03'),
+(123, 'Which of the following statements is true?', 'm', 'Natural numbers are commutative for division', 'Whole numbers are not commutative for division', 'Integers are commutative for division', 'Rational numbers are commutative for division.', 'op2', '', 1, 4, 20, 14, '2022-09-02 19:11:26', '2022-09-02 19:11:26'),
+(124, 'Which of the following statements is true?', 'm', 'Natural numbers are associative for addition', 'Whole numbers are not associative for addition', 'Integers are not associative for addition', 'Rational numbers are not associative for addition.', 'op1', '', 1, 4, 20, 14, '2022-09-02 19:13:01', '2022-09-02 19:13:01'),
+(125, 'Which of the following statements is true?', 'm', 'Natural numbers are associative for subtraction', 'Whole numbers are not associative for subtraction', 'Integers are associative for subtraction', 'Rational numbers are associative for subtraction.', 'op2', '', 1, 4, 20, 14, '2022-09-02 19:14:13', '2022-09-02 19:14:13'),
+(126, 'Which of the following statements is true?', 'm', 'Natural numbers are not associative for multiplication', 'Whole numbers are not associative for multiplication', 'Integers are associative for multiplication', 'Rational numbers are not associative for multiplication.', 'op3', '', 1, 4, 20, 14, '2022-09-02 19:15:23', '2022-09-02 19:15:23'),
+(127, 'Which of the following statements is true?', 'm', 'Natural numbers are associative for division', 'Whole numbers are associative for division', 'Integers are associative for division', 'Rational numbers are not associative for division.', 'op4', '', 1, 4, 20, 14, '2022-09-02 19:16:32', '2022-09-02 19:16:32'),
+(128, '0 is not', 'm', 'a natural number', 'a whole number', 'an integer', 'a rational number.', 'op1', '', 1, 4, 20, 14, '2022-09-02 19:17:56', '2022-09-02 19:17:56'),
+(129, '1/2 is 2', 'm', 'a natural number', 'a whole number', 'an integer', 'a rational number.', 'op4', '', 1, 4, 20, 14, '2022-09-02 19:19:52', '2022-09-02 19:19:52'),
+(130, 'a + b = b + a is called', 'm', 'commutative law of addition', 'associative law of addition', 'distributive law of addition', 'none of these.', 'op1', '', 1, 4, 20, 14, '2022-09-02 19:20:59', '2022-09-02 19:20:59'),
+(131, 'a × b = b × a is called', 'm', 'commutative law for addition', 'commutative law for multiplication', 'associative law for addition', 'associative law for multiplication.', 'op2', '', 1, 4, 20, 14, '2022-09-02 19:22:02', '2022-09-02 19:22:02'),
+(132, '(a + b) + c = a + (b + c) is called', 'm', 'commutative law for multiplication', 'commutative law for addition', 'associative law for addition', 'associative law for multiplication.', 'op3', '', 1, 4, 20, 14, '2022-09-02 19:22:54', '2022-09-02 19:23:24'),
+(133, 'a × (b × c) = (a × b) × c is called', 'm', 'associative law for addition', 'associative law for multiplication', 'commutative law for addition', 'commutative law for multiplication.', 'op2', '', 1, 4, 20, 14, '2022-09-02 19:24:26', '2022-09-02 19:24:26'),
+(134, 'a(b + c) = ab + ac is called', 'm', 'commutative law', 'associative law', 'distributive law', 'none of these.', 'op3', '', 1, 4, 20, 14, '2022-09-02 19:25:33', '2022-09-02 19:25:33'),
+(135, 'The additive identity for rational numbers is', 'm', '1', '-1', '0', 'none of these.', 'op3', '', 1, 4, 20, 14, '2022-09-02 19:26:34', '2022-09-02 19:26:34'),
+(136, 'The multiplicative identity for rational numbers is', 'm', '-1', '1', '0', 'none of these.', 'op2', '', 1, 4, 20, 14, '2022-09-02 19:28:09', '2022-09-02 19:28:09'),
+(137, 'The additive inverse of 2/3 is', 'm', '–2/3', '3/2', '–3/2', '1', 'op1', '', 1, 4, 20, 14, '2022-09-02 19:29:39', '2022-09-02 19:29:39'),
+(138, 'The additive inverse of –3/4 is', 'm', '–3/4', '1', '0', '3/4', 'op4', '', 1, 4, 20, 14, '2022-09-02 19:30:44', '2022-09-02 19:30:44'),
+(139, 'The multiplicative inverse of 12 is', 'm', '1', '-1', '2', '0', 'op3', '', 1, 4, 20, 14, '2022-09-02 19:31:49', '2022-09-02 19:31:49'),
+(140, 'The multiplicative inverse of –2/5 is', 'm', '–2/5', '–5/2', '5/2', '1', 'op2', '', 1, 4, 20, 14, '2022-09-02 19:33:09', '2022-09-02 19:33:09'),
+(141, 'The multiplicative inverse of 1 is', 'm', '0', '-1', '1', 'none of these.', 'op3', '', 1, 4, 20, 14, '2022-09-02 19:34:11', '2022-09-02 19:34:11'),
+(142, 'The multiplicative inverse of -1 is', 'm', '0', '-1', '1', 'none of these.', 'op2', '', 1, 4, 20, 14, '2022-09-02 19:35:09', '2022-09-02 19:35:09'),
+(143, 'How many rational numbers are there between any two given rational numbers?', 'm', 'Only one', 'Only two', 'Countless', 'Nothing can be said.', 'op3', '', 1, 4, 20, 14, '2022-09-02 19:36:05', '2022-09-02 19:36:05'),
+(144, 'The negative of 2 is', 'm', '2', '1/2', '-2', '–1/2', 'op3', '', 1, 4, 20, 14, '2022-09-02 19:37:06', '2022-09-02 19:37:06'),
+(145, 'The negative of -2 is', 'm', '-2', '2', '–1/2', '1/2', 'op2', '', 1, 4, 20, 14, '2022-09-02 19:38:18', '2022-09-02 19:38:18'),
+(146, 'If a and b are two rational numbers, then', 'm', 'a+b/2 < a', 'a+b/2 < b', 'a+b/2 = a', 'a+b/2 > b', 'op2', '', 1, 4, 20, 14, '2022-09-02 19:39:27', '2022-09-02 19:39:27'),
+(147, 'The rational number that does not have a reciprocal is', 'm', '0', '1', '-1', '1/2', 'op1', '', 1, 4, 20, 14, '2022-09-02 19:40:24', '2022-09-02 19:40:24'),
+(148, 'The rational number which is equal to its negative is', 'm', '0', '1', '-1', '1/2', 'op1', '', 1, 4, 20, 14, '2022-09-02 19:42:06', '2022-09-02 19:42:06'),
+(149, 'The reciprocal of a positive rational number is', 'm', 'a positive rational number', 'a negative rational number', '0', '1', 'op1', '', 1, 4, 20, 14, '2022-09-02 19:43:04', '2022-09-02 19:43:04'),
+(150, 'The reciprocal of a negative rational number is', 'm', 'a positive rational number', 'a negative rational number', '0', '-1', 'op2', '', 1, 4, 20, 14, '2022-09-02 19:44:12', '2022-09-02 19:44:12');
 
 -- --------------------------------------------------------
 
@@ -414,7 +457,7 @@ INSERT INTO `subcategories` (`id`, `name`, `description`, `category_id`, `active
 (1, 'Bangla', 'Bengali language', 1, '1', '2022-08-14 03:47:48', '2022-08-29 14:09:24'),
 (2, 'Bangla', 'Bangla', 4, '1', '2022-08-14 03:48:11', '2022-08-29 14:07:10'),
 (3, 'Mathematic', 'Karok and FT', 1, '0', '2022-08-14 21:25:49', '2022-08-15 02:28:56'),
-(4, 'Mathematic', 'Mathematic', 4, '1', '2022-08-14 21:28:44', '2022-08-29 14:09:07'),
+(4, 'Mathematic', 'Mathematic', 5, '1', '2022-08-14 21:28:44', '2022-09-02 18:42:20'),
 (5, 'Bangla', 'Bangla', 5, '1', '2022-08-15 22:29:07', '2022-08-29 14:12:09'),
 (6, 'HTML', 'IT Scholarship Programme', 6, '1', '2022-08-17 04:20:07', '2022-08-17 04:20:07'),
 (7, 'JavaScript', 'JavaScript', 6, '1', '2022-08-29 12:34:22', '2022-08-29 13:43:26'),
@@ -427,9 +470,12 @@ INSERT INTO `subcategories` (`id`, `name`, `description`, `category_id`, `active
 (14, 'English', 'English', 2, '1', '2022-08-29 14:04:11', '2022-08-29 14:04:11'),
 (15, 'Bangla', 'Bangla', 3, '1', '2022-08-29 14:04:33', '2022-08-29 14:04:33'),
 (16, 'English', 'English', 3, '1', '2022-08-29 14:04:49', '2022-08-29 14:04:49'),
-(17, 'English', 'English', 4, '1', '2022-08-29 14:07:40', '2022-08-29 14:07:40'),
+(17, 'English', 'English', 5, '1', '2022-08-29 14:07:40', '2022-09-02 18:42:43'),
 (18, 'English', 'English', 5, '1', '2022-08-29 14:12:37', '2022-08-29 14:12:37'),
-(19, 'Science', 'Science', 5, '1', '2022-08-29 14:12:55', '2022-08-29 14:12:55');
+(19, 'Science', 'Science', 5, '1', '2022-08-29 14:12:55', '2022-08-29 14:12:55'),
+(20, 'Mathematic', 'Mathematic', 4, '1', '2022-09-02 18:36:59', '2022-09-02 18:36:59'),
+(21, 'English', 'English', 4, '1', '2022-09-02 18:38:14', '2022-09-02 18:38:14'),
+(22, 'Mathematic', 'Mathematic', 5, '1', '2022-09-02 18:38:36', '2022-09-02 18:43:05');
 
 -- --------------------------------------------------------
 
@@ -453,7 +499,7 @@ CREATE TABLE `topics` (
 --
 
 INSERT INTO `topics` (`id`, `name`, `description`, `category_id`, `subcategory_id`, `active`, `created_at`, `updated_at`) VALUES
-(1, 'Noun', 'A noun is a word that names something, such as a person, place, thing, or idea.', 1, 3, '1', '2022-08-14 03:50:01', '2022-08-15 04:42:50'),
+(1, 'Noun', 'A noun is a word that names something, such as a person, place, thing, or idea.', 2, 14, '1', '2022-08-14 03:50:01', '2022-09-02 18:31:07'),
 (2, 'Parts of Speech', 'The Eight Parts of Speech.', 2, 14, '1', '2022-08-14 03:51:14', '2022-09-02 14:32:58'),
 (3, 'Viva-Voice', 'Viva-Voice', 1, 3, '1', '2022-08-14 21:29:54', '2022-09-02 14:35:13'),
 (4, 'History', 'Bengali language, an eastern Indo-Aryan language · The endonym of Bengal, a geographical and ethno-linguistic region in South Asia.', NULL, 1, '1', '2022-08-15 22:27:23', '2022-08-15 22:27:23'),
@@ -465,7 +511,8 @@ INSERT INTO `topics` (`id`, `name`, `description`, `category_id`, `subcategory_i
 (10, 'Introduction of CSS', 'Introduction of CSS', 6, 8, '1', '2022-08-29 13:21:16', '2022-08-29 13:57:58'),
 (11, 'Introduction of Bootstrap', 'Introduction of Bootstrap', 6, 9, '1', '2022-08-29 13:21:30', '2022-08-29 13:57:35'),
 (12, 'Introduction of PHP', 'Introduction of PHP', 6, 12, '1', '2022-08-29 13:21:54', '2022-08-29 14:00:01'),
-(13, 'Introduction of Angular', 'Introduction of Angular', 6, 10, '1', '2022-08-29 13:39:27', '2022-08-29 14:00:55');
+(13, 'Introduction of Angular', 'Introduction of Angular', 6, 10, '1', '2022-08-29 13:39:27', '2022-08-29 14:00:55'),
+(14, 'Rational Numbers', 'Rational Numbers', NULL, 20, '1', '2022-09-02 18:43:59', '2022-09-02 18:43:59');
 
 -- --------------------------------------------------------
 
@@ -670,25 +717,25 @@ ALTER TABLE `profiles`
 -- AUTO_INCREMENT for table `quizsets`
 --
 ALTER TABLE `quizsets`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `quizzes`
 --
 ALTER TABLE `quizzes`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=116;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=151;
 
 --
 -- AUTO_INCREMENT for table `subcategories`
 --
 ALTER TABLE `subcategories`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `topics`
 --
 ALTER TABLE `topics`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `users`
