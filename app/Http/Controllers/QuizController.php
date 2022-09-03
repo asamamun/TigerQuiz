@@ -219,25 +219,29 @@ class QuizController extends Controller
 
     public function qshow(Request $request)
     {
+        $count = $request->count ?? "10";       
+        
+        $quizzes = Quiz::inRandomOrder()->limit($count)->get();
+        $categories = Category::pluck('name', 'id');
+        return view('quiz/qz.qshow', compact('quizzes','categories'));
+    }
+    public function dynamicquiz(Request $request){
         $count = $request->count ?? "10";
         $whereArray = [];
-        if ($request->category_id) {
-            $whereArray['category_id'] = $request->category_id;
+        if ($request->cid) {
+            $whereArray['category_id'] = $request->cid;
         }
-        if ($request->subcategory_id) {
-            $whereArray['subcategory_id'] = $request->subcategory_id;
+        if ($request->scid) {
+            $whereArray['subcategory_id'] = $request->scid;
         }
-        if ($request->topic_id) {
-            $whereArray['topic_id'] = $request->topic_id;
+        if ($request->tid) {
+            $whereArray['topic_id'] = $request->tid;
         }
         if (count($whereArray)) {
-            $quizzes = Quiz::where(['category_id' => 1, 'subcategory_id' => '2', 'topic_id' => 1])->inRandomOrder()->limit($count)->get();
+            $quizzes = Quiz::where($whereArray)->inRandomOrder()->limit($count)->get();
         } else {
             $quizzes = Quiz::inRandomOrder()->limit($count)->get();
         }
-
-        // dd($quizzes);
-        $categories = Category::pluck('name', 'id');
-        return view('quiz/qz.qshow', compact('quizzes','categories'));
+        return response()->json($quizzes);
     }
 }
