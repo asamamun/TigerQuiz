@@ -242,7 +242,7 @@
                 $t.closest('.quizcontainer').find('.' + $answer).toggleClass('bg-warning rounded');
                 // console.log($t.closest('.quizcontainer').find('.'+$answer));
             });
-
+            
             // for subcats as cats
             function selectscat(ob) {
                 $("#subcategory_id").html("");
@@ -271,7 +271,8 @@
             function render_quiz_questions(quizzes) {
                 let q = "";
                 quizzes.forEach(quiz => {
-                    let html = "<p class='fw-bold border rounded py-2 ps-2'>"+quiz.question +"</p>";
+                    let html = 
+                    "<li class='fw-bold border rounded py-2 ps-2'>" + quiz.question +"</li>";
                     html +=
                         `<div>
                             <div class='col-12 mb-2'>

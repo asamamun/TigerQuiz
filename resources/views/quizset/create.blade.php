@@ -118,8 +118,7 @@
                   <li class="list-group-item">Cras justo odio</li>
                 </ol> */
                 quizes.forEach(quiz => {
-                    let html = "<h5 class='m-0 font-weight-bold card-header rounded text-dark'>" + quiz
-                        .question +
+                    let html = "<h5 class='m-0 font-weight-bold card-header rounded text-dark'>" + quiz.question +
                         "</h5>";
                     html +=
                         `<div class='card-body border-bottom my-1'>
