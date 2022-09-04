@@ -73,7 +73,7 @@ class QuizController extends Controller
 
             $storagepath = Storage::path($path);
             // desired format
-            $img = Image::make($storagepath)->fit(350, 330);
+            $img = Image::make($storagepath);
             // save image
             $img->save($storagepath);
         }
@@ -157,7 +157,7 @@ class QuizController extends Controller
             // Image rename and replace the file name with desired name
             $path = $request->file('quizimage')->storeAs('public/quizimages', $quiz->qimage);
             $storagepath = Storage::path($path);
-            $img = Image::make($storagepath)->fit(350, 330);
+            $img = Image::make($storagepath);
             $img->save($storagepath);
         }
 

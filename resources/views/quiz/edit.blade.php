@@ -33,31 +33,32 @@
                 <div class="col-sm-3 mb-3">
                     {!! Form::select('category_id', $categories, null, [
                         'required',
-                        'class' => 'form-control form-control-profile',
+                        'class' => 'form-control',
                         'id' => 'category_id',
-                        'placeholder' => 'Category',
+                        'placeholder' => 'Select Category',
                     ]) !!}
 
                 </div>
-                <div class="col-sm-3 mb-3">
-                    {!! Form::select('subcategory_id', $subcategories, null, [
+                <div class="col-sm-3 mb-3 mb-sm-0">
+                    {!! Form::select('subcategory_id', [], null, [
                         'required',
-                        'class' => 'form-control form-control-profile',
+                        'class' => 'form-control ',
                         'id' => 'subcategory_id',
-                        'placeholder' => 'Subcategory',
+                        'placeholder' => 'Select Subcategory',
                     ]) !!}
 
                 </div>
-                <div class="col-sm-3 mb-3">
-                    {!! Form::select('topic_id', $topics, null, [
+                <div class="col-sm-3 mb-3 mb-sm-0">
+                    {!! Form::select('topic_id', [], null, [
                         'required',
-                        'class' => 'form-control form-control-profile',
+                        'placeholder' => 'Select Topic',
+                        'class' => 'form-control',
                         'id' => 'topic_id',
-                        'placeholder' => 'Topic',
+                        'placeholder' => 'Select Topic',
                     ]) !!}
 
                 </div>
-                <div class="col-sm-3 mb-3">
+                <div class="col-sm-3 mb-3 mb-sm-0">
                     {!! Form::select('type', ['m' => 'MCQ', 'd' => 'Descriptive', 'qi' => 'Image'], 'm', [
                         'required',
                         'class' => 'form-control form-control-profile',
@@ -135,4 +136,79 @@
             {!! Form::close() !!}
         </div>
     </div>
+@endsection
+@section('scripts')
+    <script type="text/javascript">
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        $(document).ready(function() {
+            // alert(5)
+            $("#imagecontainer").hide();
+
+            $('#type').on('change', function(e) {
+                if ($(this).val() == "qi") {
+                    $("#imagecontainer").show(100);
+                } else {
+                    $("#imagecontainer").hide(100);
+                }
+            });
+            // for subcats as cats
+            function selectscat(ob) {
+                $("#subcategory_id").html("");
+                let html = "";
+                for (const key in ob) {
+                    if (Object.hasOwnProperty.call(ob, key)) {
+                        html += "<option value='" + key + "'>" + ob[key] + "</option>";
+                    }
+                }
+                $("#subcategory_id").html(html);
+            }
+            $("#category_id").change(function() {
+                // console.log( $(this).val() )
+                let URL = "{{ url('subcats') }}";
+                $.ajax({
+                    type: "post",
+                    url: URL + '/' + $(this).val(),
+                    data: "data",
+                    dataType: "json",
+                    success: function(response) {
+                        selectscat(response);
+                    }
+                });
+            });
+
+            // for topics as subcats
+            function selecttopic(ot) {
+                $("#topic_id").html("");
+                let html = "";
+                for (const k in ot) {
+                    if (Object.hasOwnProperty.call(ot, k)) {
+
+                        html += "<option value='" + k + "'>" + ot[k] + "</option>";
+                    }
+                }
+                $("#topic_id").html(html);
+            }
+            $("#subcategory_id").change(function() {
+                // console.log( $(this).val() )
+                let URL = "{{ url('topics') }}";
+                $.ajax({
+                    type: "post",
+                    url: URL + '/' + $(this).val(),
+                    data: "data",
+                    dataType: "json",
+                    success: function(response) {
+                        selecttopic(response);
+                    }
+                });
+            });
+
+
+
+        });
+    </script>
 @endsection

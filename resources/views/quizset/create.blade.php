@@ -155,11 +155,7 @@
                 });
             });
 
-            /* $("#selectedQuizContainer").on('hover','.list-group-item',function(){
-                $(this).find('span').removeClass('d-none');
-            },function(){
-                $(this).find('span').addClass('d-none');
-            }); */
+        
             $(document).on({
                 mouseenter: function() {
                     $(this).find('span').removeClass('d-none');
