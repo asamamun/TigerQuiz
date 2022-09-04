@@ -261,4 +261,19 @@ class QuizController extends Controller
         // return response()->json($quizzes->toJson(JSON_PRETTY_PRINT));
         return response()->json($quizzes->toJson());
     }
+
+/*     public function fix(){
+        $quizs = Quiz::all();
+        foreach($quizs as $quiz){
+            
+            $request = [
+                'question' => htmlentities( $quiz->question),
+                'op1' => htmlentities( $quiz->op1),
+                'op2' => htmlentities( $quiz->op2),
+                'op3' => htmlentities( $quiz->op3),
+                'op4' => htmlentities( $quiz->op4),
+            ];
+            Quiz::where('id',$quiz->id)->update($request);
+        }
+    } */
 }

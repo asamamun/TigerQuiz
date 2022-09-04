@@ -269,12 +269,16 @@
             });
             // render_quiz_questions
             function render_quiz_questions(quizzes) {
+                console.log(quizzes);
                 let q = "";
                 quizzes.forEach(quiz => {
-                    let html = 
-                    "<li class='fw-bold border rounded py-2 ps-2'>" + quiz.question +"</li>";
+                    let html = '';
+                    if(quiz.qimage !== "" && quiz.qimage !== null){
+                        html += "<img src='{{url('/')}}/storage/quizimages/"+   quiz.qimage+"' class='img-fluid'/>";   
+                    }
+                    
                     html +=
-                        `<div>
+                        `<li class='fw-bold border rounded py-2 ps-2'>${quiz.question}</li><div>
                             <div class='quizcontainer'>
                             <div class='col-12 mb-2'>
                             <input type='radio' name="box${quiz.id}" id="one${quiz.id}" class='one'>
@@ -316,14 +320,14 @@
                         dataType: "json",
                         success: function(response) {
                             // alert(9)
-                            console.log(response);
+                            // console.log(response);
                             response = JSON.parse(response);
                             //$("#quizcontainer").html(response);
                             render_quiz_questions(response);
                         }
                     })
                     .done(function(data) {
-                        console.log(data);
+                        // console.log(data);
 
                         if (data.length != 0) {
                             //show the quiz

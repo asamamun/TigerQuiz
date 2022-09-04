@@ -98,6 +98,7 @@ Route::resource("/quizset", QuizsetController::class);
 Route::resource("/allusers", AllUsers::class);
 
 
+// Route::get('fix', [QuizController::class, "fix"]);
 Route::get('quiz/qz/qshow', [QuizController::class, "qshow"]);
 Route::post('dynamicquiz', [QuizController::class, "dynamicquiz"]);
 Route::get('playquiz', [QuizController::class, "qall"]);
