@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 03, 2022 at 05:59 PM
--- Server version: 10.4.21-MariaDB
--- PHP Version: 8.0.11
+-- Generation Time: Sep 04, 2022 at 11:11 AM
+-- Server version: 10.4.24-MariaDB
+-- PHP Version: 8.1.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -505,7 +505,13 @@ INSERT INTO `quizzes` (`id`, `question`, `type`, `op1`, `op2`, `op3`, `op4`, `an
 (218, 'যে রাষ্ট্রের মহিলাদের সামরিক কার্যক্রমে অংশগ্রহণ বাধ্যতামূলক-', 'm', 'ইসরায়েল', 'সুইজারল্যান্ড', 'সুইডেন', 'তুরস্ক', 'op1', '', 11, 11, 24, 20, '2022-09-03 06:54:54', '2022-09-03 06:54:54'),
 (219, 'কে ‘ডেজার্ট ফক্স’ নামে পরিচিত?', 'm', 'আনোয়ার সাদাত', 'কামাল আতাতুর্ক', 'মার্শাল টিটো', 'ফিল্ড মার্শাল রোমেল', 'op4', '', 11, 11, 24, 20, '2022-09-03 06:55:48', '2022-09-03 06:55:48'),
 (220, 'লিটল কর্পোরেল’ কার উপাধি?', 'm', 'লাল বাহাদুর শাস্ত্রী', 'নেপোলিয়ান বেনপোর্ট', 'সাদা বাহাদুর শাস্ত্রী', 'আল খাওয়াজমি', 'op2', '', 11, 11, 24, 20, '2022-09-03 06:56:43', '2022-09-03 06:56:43'),
-(221, 'Daughter of the Eastকাকে বলা হয়?', 'm', 'বেনজির ভুট্টো', 'অং সান সূচী', 'ইন্দিরা গান্ধি', 'সরোজিনী নাইডু', 'op1', '', 11, 11, 24, 20, '2022-09-03 06:57:38', '2022-09-03 06:57:38');
+(221, 'Daughter of the Eastকাকে বলা হয়?', 'm', 'বেনজির ভুট্টো', 'অং সান সূচী', 'ইন্দিরা গান্ধি', 'সরোজিনী নাইডু', 'op1', '', 11, 11, 24, 20, '2022-09-03 06:57:38', '2022-09-03 06:57:38'),
+(222, 'The diagram has the shape of a', 'm', 'square', 'rectangle', 'triangle', 'trapezium.', 'op2', '222.jpg', 1, 4, 20, 21, '2022-09-03 21:27:53', '2022-09-03 21:50:44'),
+(223, 'The diagram has the shape of a', 'qi', 'rectangle', 'square', 'circle', 'parallelogram.', 'op2', '223.jpg', 1, 4, 20, 14, '2022-09-03 21:53:28', '2022-09-03 21:53:28'),
+(224, 'The diagram has the shape of a', 'qi', 'circle', 'rectangle', 'square', 'triangle.', 'op4', '224.jpg', 1, 4, 20, 14, '2022-09-03 21:55:58', '2022-09-03 21:55:58'),
+(225, 'The diagram has the shape of a', 'm', 'rectangle', 'square', 'parallelogram', 'circle.', 'op3', '225.jpg', 1, 4, 20, 21, '2022-09-03 21:59:27', '2022-09-03 22:07:45'),
+(226, 'The diagram has the shape of a', 'qi', 'circle', 'square', 'rectangle', 'parallelogram.', 'op1', '226.jpg', 1, 4, 20, 21, '2022-09-03 22:10:09', '2022-09-03 22:10:09'),
+(227, 'The diagram has the shape of a', 'qi', 'circle', 'parallelogram', 'rectangle', 'trapezium.', 'op4', '227.jpg', 1, 4, 20, 21, '2022-09-03 22:11:54', '2022-09-03 22:11:54');
 
 -- --------------------------------------------------------
 
@@ -594,7 +600,8 @@ INSERT INTO `topics` (`id`, `name`, `description`, `category_id`, `subcategory_i
 (17, 'বিশ্ব ঐতিহ্য ও বাংলাদেশ', 'General Knowledge or General Awareness is an important and common section in all competitive and government recruitment examinations such as UPSC, SSC, Bank PO/Clerk, and so forth.', NULL, 23, '1', '2022-09-03 05:35:16', '2022-09-03 05:35:16'),
 (18, 'বাংলাদেশের উপজাতি ও ক্ষুদ্র-নৃতাত্বিক জনগোষ্ঠী', 'General Knowledge or General Awareness is an important and common section in all competitive and government recruitment examinations such as UPSC, SSC, Bank PO/Clerk, and so forth.', NULL, 23, '1', '2022-09-03 05:43:09', '2022-09-03 05:43:09'),
 (19, 'আন্তর্জাতিক সংস্থা ও সংগঠন', 'General Knowledge or General Awareness is an important and common section in all competitive and government recruitment examinations such as UPSC, SSC, Bank PO/Clerk, and so forth.', NULL, 24, '1', '2022-09-03 06:28:48', '2022-09-03 06:28:48'),
-(20, 'বিখ্যাত ব্যাক্তিদের উক্তি ও উপাধি', 'General Knowledge or General Awareness is an important and common section in all competitive and government recruitment examinations such as UPSC, SSC, Bank PO/Clerk, and so forth.', NULL, 24, '1', '2022-09-03 06:29:45', '2022-09-03 06:29:45');
+(20, 'বিখ্যাত ব্যাক্তিদের উক্তি ও উপাধি', 'General Knowledge or General Awareness is an important and common section in all competitive and government recruitment examinations such as UPSC, SSC, Bank PO/Clerk, and so forth.', NULL, 24, '1', '2022-09-03 06:29:45', '2022-09-03 06:29:45'),
+(21, 'Chapter 11', 'MCQ Questions for Class 8 Maths Chapter 11 Mensuration with Answers', NULL, 20, '1', '2022-09-03 21:23:18', '2022-09-03 21:23:18');
 
 -- --------------------------------------------------------
 
@@ -805,7 +812,7 @@ ALTER TABLE `quizsets`
 -- AUTO_INCREMENT for table `quizzes`
 --
 ALTER TABLE `quizzes`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=222;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=228;
 
 --
 -- AUTO_INCREMENT for table `subcategories`
@@ -817,7 +824,7 @@ ALTER TABLE `subcategories`
 -- AUTO_INCREMENT for table `topics`
 --
 ALTER TABLE `topics`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `users`
