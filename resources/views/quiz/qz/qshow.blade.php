@@ -177,7 +177,7 @@
 
                     <div class="row">
                         <span class="d-none">{{ $sl = 1 }}</span>
-                        <div class="col-12 quizcontainer" id="quizcontainer">
+                        <div class="col-12" id="quizcontainer">
 
                         
                         
@@ -237,7 +237,7 @@
             $(document).on("click", '.ansbtn', function() {
                 $t = $(this);
                 $answer = $t.data('answer');
-                // console.log($answer);
+                console.log($answer);
                 $t.next('span').toggle();
                 $t.closest('.quizcontainer').find('.' + $answer).toggleClass('bg-warning rounded');
                 // console.log($t.closest('.quizcontainer').find('.'+$answer));
@@ -275,6 +275,7 @@
                     "<li class='fw-bold border rounded py-2 ps-2'>" + quiz.question +"</li>";
                     html +=
                         `<div>
+                            <div class='quizcontainer'>
                             <div class='col-12 mb-2'>
                             <input type='radio' name="box${quiz.id}" id="one${quiz.id}" class='one'>
                             <input type='radio' name="box${quiz.id}" id="two${quiz.id}" class='two'>
@@ -292,11 +293,12 @@
                             <span id='ansbtn' data-answer='${quiz.ans}' class='ansbtn btn btn-sm btn-info my-2 px-4 fw-bold'>Answer</span>
                             <span class='ansshow btn btn-sm btn-success ms-2 my-2 px-4 fw-bold'>${quiz.ans}</span>
                             </div>
-                            <div><span class='btn btn-sm btn-info my-2 px-4 fw-bold'>Clean</span></div></div>
+                            <div><span class='btn btn-sm btn-info my-2 px-4 fw-bold'>Clean</span></div></div></div>
                         </div>`;
                     q += html;
                 });
                 $("#quizcontainer").html(q);
+                $(".ansshow").hide();
             }
             // alert(55)
 
@@ -314,7 +316,8 @@
                         dataType: "json",
                         success: function(response) {
                             // alert(9)
-                            //console.log(response);
+                            console.log(response);
+                            response = JSON.parse(response);
                             //$("#quizcontainer").html(response);
                             render_quiz_questions(response);
                         }

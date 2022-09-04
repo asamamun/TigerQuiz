@@ -81,6 +81,21 @@ class QuizController extends Controller
 
         $request = [
 
+            'question' => htmlentities( $request->question),
+            'type' => $request->type,
+            'op1' => htmlentities( $request->op1),
+            'op2' => htmlentities( $request->op2),
+            'op3' => htmlentities( $request->op3),
+            'op4' => htmlentities( $request->op4),
+            'ans' => $opt,
+            'qimage' => $filename ?? '',
+            'user_id' => $request->user_id,
+            'category_id' => $request->category_id,
+            'subcategory_id' => $request->subcategory_id,
+            'topic_id' => $request->topic_id,
+        ];
+/*         $request = [
+
             'question' => $request->question,
             'type' => $request->type,
             'op1' => $request->op1,
@@ -93,7 +108,7 @@ class QuizController extends Controller
             'category_id' => $request->category_id,
             'subcategory_id' => $request->subcategory_id,
             'topic_id' => $request->topic_id,
-        ];
+        ]; */
         // dd($data);
         $quizzes = Quiz::create($request);
         if ($quizzes) {
@@ -242,6 +257,8 @@ class QuizController extends Controller
         } else {
             $quizzes = Quiz::inRandomOrder()->limit($count)->get();
         }
-        return response()->json($quizzes);
+
+        // return response()->json($quizzes->toJson(JSON_PRETTY_PRINT));
+        return response()->json($quizzes->toJson());
     }
 }
