@@ -9,8 +9,9 @@ use App\Http\Controllers\SubcategoryController;
 use App\Http\Controllers\TopicController;
 use App\Http\Controllers\QuizController;
 use App\Http\Controllers\QuizsetController;
+use App\Http\Controllers\AnswerController;
 use App\Http\Controllers\AllUsers;
-use App\Http\Controllers\StudentController;
+use App\Http\Controllers\LeaderboardController;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
@@ -32,19 +33,6 @@ Route::get('/', [HomeController::class, "index"]);
 //     return view('welcome');
 // });
 
-// ajax request routes
-
-// Route::post('/subcat', function (Request $request) {
-
-//     $category_id = $request->id;
-
-//     $subcategories = Category::where('id', $category_id)
-//         ->with('subcategories')->get();
-
-//     return response()->json([
-//         'subcategories' => $subcategories
-//     ]);
-// })->name('subcat');
 // for subcats as cats
 Route::post('subcats/{cid}', [SubcategoryController::class, 'subcats']);
 // for topics as subcats
@@ -77,7 +65,8 @@ Route::middleware(['student', 'auth'])->group(function () {
 Route::middleware(['teacher', 'auth'])->group(function () {
     Route::get("teacher", [TeacherController::class, "index"])->name('teacher');
 });
-
+// leaderboard
+Route::get('/leaderboard/index', [LeaderboardController::class, "index"]);
 
 // profile route
 Route::resource("profile", ProfileController::class);
@@ -109,6 +98,7 @@ Route::get('playquiz/topic/{id}', [QuizController::class, "topicquiz"]);
 //showquiz
 Route::get('/showquiz', [QuizsetController::class, "showquiz"]);
 Route::post('/storequizset', [QuizsetController::class, "storeset"]);
+Route::post('/storeanswer', [AnswerController::class, "storeanswer"]);
 
 
 

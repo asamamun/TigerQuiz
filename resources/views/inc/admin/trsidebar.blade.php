@@ -195,11 +195,11 @@
                 <ul class="submenu ">
                     
                     <li>
-                        <a href="auth-login.html">Login</a>
+                        <a href="{{url('/leaderboard/index')}}">Student</a>
                     </li>
                     
                     <li>
-                        <a href="auth-register.html">Register</a>
+                        <a href="{{url('/leaderboard/index')}}">Teacher</a>
                     </li>
                     
                     <li>

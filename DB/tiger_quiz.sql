@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 04, 2022 at 02:10 PM
--- Server version: 10.4.22-MariaDB
--- PHP Version: 8.1.2
+-- Generation Time: Sep 05, 2022 at 05:41 AM
+-- Server version: 10.4.24-MariaDB
+-- PHP Version: 8.1.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -20,6 +20,23 @@ SET time_zone = "+00:00";
 --
 -- Database: `tiger_quiz`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `answers`
+--
+
+CREATE TABLE `answers` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `user_id` bigint(20) UNSIGNED NOT NULL,
+  `qid` bigint(20) UNSIGNED DEFAULT NULL,
+  `qsid` bigint(20) UNSIGNED DEFAULT NULL,
+  `gans` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `marks` bigint(20) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -123,6 +140,39 @@ CREATE TABLE `failed_jobs` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `leaderboards`
+--
+
+CREATE TABLE `leaderboards` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `user_id` bigint(20) UNSIGNED NOT NULL,
+  `quizset_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `given_ans` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `submitted_at` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `marks` bigint(20) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `leaderboards`
+--
+
+INSERT INTO `leaderboards` (`id`, `user_id`, `quizset_id`, `given_ans`, `submitted_at`, `marks`, `created_at`, `updated_at`) VALUES
+(1, 1, 1, '100/100', '(time: 10:25 minutes)', 100, '2022-09-01 01:11:48', '2022-09-01 01:11:48'),
+(11, 2, 2, '99/100', '(time: 12:01 minutes)', 99, '2022-09-06 01:11:48', '2022-09-01 01:11:48'),
+(12, 3, 2, '92/100', '(time: 11:25 minutes)', 92, '2022-09-08 01:11:48', '2022-09-01 01:11:48'),
+(13, 4, 4, '88/100', '(time: 12:25 minutes)', 88, '2022-09-09 01:11:48', '2022-09-01 01:11:48'),
+(14, 7, 3, '78/100', '(time: 11:29 minutes)', 78, '2022-09-02 01:11:48', '2022-09-01 01:11:48'),
+(15, 6, 2, '90/100', '(time: 1:25 minutes)', 90, '2022-09-01 01:11:48', '2022-09-01 01:11:48'),
+(16, 7, 1, '70/100', '(time: 1:25 minutes)', 70, '2022-09-03 01:11:48', '2022-09-01 01:11:48'),
+(17, 8, 4, '60/100', '(time: 1:25 minutes)', 60, '2022-09-02 01:11:48', '2022-09-01 01:11:48'),
+(18, 9, 2, '80/100', '(time: 1:25 minutes)', 80, '2022-09-04 01:11:48', '2022-09-01 01:11:48'),
+(19, 10, 2, '70/100', '(time: 1:25 minutes)', 70, '2022-09-03 01:11:48', '2022-09-01 01:11:48');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `migrations`
 --
 
@@ -149,7 +199,9 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (10, '2022_08_06_110828_create_quizsets_table', 1),
 (11, '2022_08_06_110844_create_blogs_table', 1),
 (12, '2022_08_06_110905_create_comments_table', 1),
-(13, '2022_08_06_111040_create_classrooms_table', 1);
+(13, '2022_08_06_111040_create_classrooms_table', 1),
+(15, '2022_09_04_071009_create_answers_table', 2),
+(18, '2022_09_05_004857_create_leaderboards_table', 3);
 
 -- --------------------------------------------------------
 
@@ -254,7 +306,9 @@ CREATE TABLE `quizsets` (
 
 INSERT INTO `quizsets` (`id`, `name`, `title`, `quizzes`, `stime`, `active`, `user_id`, `category_id`, `subcategory_id`, `created_at`, `updated_at`) VALUES
 (1, 'Rational Numbers', 'MCQ Question', '116,117,118,119,120,121,122,123,124,125,126,127,129,130,131,132,131,133,134,135', NULL, NULL, 1, 4, 20, '2022-09-02 19:49:09', '2022-09-02 19:49:09'),
-(2, 'Bootstrap MCQ', 'Class Test', '45,46,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63', NULL, NULL, 1, 6, 9, '2022-09-02 19:55:18', '2022-09-02 19:55:18');
+(2, 'Bootstrap MCQ', 'Class Test', '45,46,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63', NULL, NULL, 1, 6, 9, '2022-09-02 19:55:18', '2022-09-02 19:55:18'),
+(3, 'General Knowledge Bangladesh', 'CT', '151,152,153,154,155,153,154,155,156,157,158,159,160,161,162,163,164,165,166,167', NULL, NULL, 1, 11, 23, '2022-09-04 20:55:03', '2022-09-04 20:55:03'),
+(4, 'General Knowledge International', 'CT', '191,192,193,194,195,196,197,198,200,201,202,203,204,205,206,207,208,209,210,211', NULL, NULL, 1, 11, 24, '2022-09-04 20:56:46', '2022-09-04 20:56:46');
 
 -- --------------------------------------------------------
 
@@ -643,6 +697,15 @@ INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `role`, `passwo
 --
 
 --
+-- Indexes for table `answers`
+--
+ALTER TABLE `answers`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `answers_user_id_foreign` (`user_id`),
+  ADD KEY `answers_qid_foreign` (`qid`),
+  ADD KEY `answers_qsid_foreign` (`qsid`);
+
+--
 -- Indexes for table `blogs`
 --
 ALTER TABLE `blogs`
@@ -681,6 +744,14 @@ ALTER TABLE `comments`
 ALTER TABLE `failed_jobs`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `failed_jobs_uuid_unique` (`uuid`);
+
+--
+-- Indexes for table `leaderboards`
+--
+ALTER TABLE `leaderboards`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `leaderboards_user_id_foreign` (`user_id`),
+  ADD KEY `leaderboards_quizset_id_foreign` (`quizset_id`);
 
 --
 -- Indexes for table `migrations`
@@ -756,6 +827,12 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT for table `answers`
+--
+ALTER TABLE `answers`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `blogs`
 --
 ALTER TABLE `blogs`
@@ -786,10 +863,16 @@ ALTER TABLE `failed_jobs`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `leaderboards`
+--
+ALTER TABLE `leaderboards`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+
+--
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -807,7 +890,7 @@ ALTER TABLE `profiles`
 -- AUTO_INCREMENT for table `quizsets`
 --
 ALTER TABLE `quizsets`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `quizzes`
@@ -838,6 +921,14 @@ ALTER TABLE `users`
 --
 
 --
+-- Constraints for table `answers`
+--
+ALTER TABLE `answers`
+  ADD CONSTRAINT `answers_qid_foreign` FOREIGN KEY (`qid`) REFERENCES `quizzes` (`id`),
+  ADD CONSTRAINT `answers_qsid_foreign` FOREIGN KEY (`qsid`) REFERENCES `quizsets` (`id`),
+  ADD CONSTRAINT `answers_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
+
+--
 -- Constraints for table `blogs`
 --
 ALTER TABLE `blogs`
@@ -860,6 +951,13 @@ ALTER TABLE `classrooms`
 ALTER TABLE `comments`
   ADD CONSTRAINT `comments_blog_id_foreign` FOREIGN KEY (`blog_id`) REFERENCES `blogs` (`id`),
   ADD CONSTRAINT `comments_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
+
+--
+-- Constraints for table `leaderboards`
+--
+ALTER TABLE `leaderboards`
+  ADD CONSTRAINT `leaderboards_quizset_id_foreign` FOREIGN KEY (`quizset_id`) REFERENCES `quizsets` (`id`),
+  ADD CONSTRAINT `leaderboards_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
 
 --
 -- Constraints for table `profiles`

@@ -27,6 +27,8 @@
                 <i class="fas fa-arrow-left"></i>
             </a>
         </div>
+        @include('partial.flash')
+        @include('partial.error')
         <div class="card-body">
 
             <!doctype html>
@@ -171,6 +173,7 @@
                             <span class="btn btn-info" id="showQuizBtn"> Show Quizzes</span>
                             </a>
                         </div>
+                    </div>
                 </section>
 
                 <div class="container mb-1">
@@ -183,6 +186,13 @@
                         
                         </div>
                         <hr>
+                        <div class="card-header py-3 d-flex justify-content-between">
+                            <span class="btn btn-info">Refresh</span>
+                            <ul class="list-group d-none" id="selectedQuizContainer">
+                            </ul>
+                            <span class="btn btn-info" id="saveAnsBtn"> Submit</span>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </body>
@@ -339,6 +349,46 @@
             });
             $("#showQuizBtn").trigger('click');
             //showQuizBtn click end
+// ==============================================
+$(document).on("click", ".addToQuizsetBtn", function() {
+                // alert(5);
+                let id = $(this).data('id');
+                let ans = $(this).data('ans');
+                let html =
+                    `<li class="list-group-item d-flex justify-content-between" data-selected=${id}>${id}. <span class="d-none">${ans}</span> <span><i class="removeqbtn btn btn-sm text-danger fa-solid fa-rectangle-xmark"></i></span></li>`;
+                $("#selectedQuizContainer").append(html);
+
+            });
+            //store quizset
+            $("#saveAnsBtn").click(function(e) {
+                e.preventDefault();
+                let qArr = [];
+                $.each($("#selectedQuizContainer li"), function(indexInArray, valueOfElement) {
+                    //console.log($(this).data('selected'));
+                    qArr.push($(this).data('selected'));
+                });
+                $.ajax({
+                    type: "post",
+                    url: "{{ url('storeanswer') }}",
+                    data: {
+                        qid: $("#qid").val(),
+                        qsid: $("#qsid").val(),
+                        gans: $("#gans").val(),
+                        marks: $("#marks").val(),
+                        // quiz: qArr
+                    },
+                    dataType: "json",
+                    success: function(response) {
+                        if (response.error == "1") {
+                            alert("Something went wrong!!");
+                        } else {
+                            location.reload();
+                        }
+                    }
+                });
+
+
+            });
 
         });
     </script>

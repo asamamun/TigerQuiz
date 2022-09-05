@@ -44,11 +44,11 @@
                 <ul class="submenu ">
                     
                     <li>
-                        <a href="{{url('')}}">Your Rank</a>
+                        <a href="{{url('/leaderboard/index')}}">Your Rank</a>
                     </li>
                     
                     <li>
-                        <a href="{{url('')}}">Add Quizset</a>
+                        <a href="{{url('/leaderboard/index')}}">Add Quizset</a>
                     </li>
                     
                    

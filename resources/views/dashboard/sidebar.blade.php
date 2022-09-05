@@ -222,11 +222,11 @@
                 <ul class="submenu ">
                     
                     <li>
-                        <a href="auth-login.html">Students</a>
+                        <a href="{{url('/leaderboard/index')}}">Students</a>
                     </li>
                     
                     <li>
-                        <a href="auth-register.html">Teachers</a>
+                        <a href="{{url('/leaderboard/index')}}">Teachers</a>
                     </li>
                 </ul>
                 
