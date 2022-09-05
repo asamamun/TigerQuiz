@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 05, 2022 at 05:41 AM
+-- Generation Time: Sep 05, 2022 at 09:01 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -566,7 +566,22 @@ INSERT INTO `quizzes` (`id`, `question`, `type`, `op1`, `op2`, `op3`, `op4`, `an
 (224, 'The diagram has the shape of a', 'qi', 'circle', 'rectangle', 'square', 'triangle.', 'op4', '224.jpg', 1, 4, 20, 14, '2022-09-03 21:55:58', '2022-09-04 05:51:38'),
 (225, 'The diagram has the shape of a', 'm', 'rectangle', 'square', 'parallelogram', 'circle.', 'op3', '225.jpg', 1, 4, 20, 21, '2022-09-03 21:59:27', '2022-09-04 05:51:38'),
 (226, 'The diagram has the shape of a', 'qi', 'circle', 'square', 'rectangle', 'parallelogram.', 'op1', '226.jpg', 1, 4, 20, 21, '2022-09-03 22:10:09', '2022-09-04 05:51:38'),
-(227, 'The diagram has the shape of a', 'qi', 'circle', 'parallelogram', 'rectangle', 'trapezium.', 'op4', '227.jpg', 1, 4, 20, 21, '2022-09-03 22:11:54', '2022-09-04 05:51:38');
+(227, 'The diagram has the shape of a', 'qi', 'circle', 'parallelogram', 'rectangle', 'trapezium.', 'op4', '227.jpg', 1, 4, 20, 21, '2022-09-03 22:11:54', '2022-09-04 05:51:38'),
+(228, 'The perimeter of the figure is', 'qi', '7 cm', '14 cm', '12 cm', '24 cm.', 'op2', '228.jpg', 1, 4, 20, 21, '2022-09-05 00:22:56', '2022-09-05 00:26:34'),
+(229, 'The area of the figure is', 'qi', '8 cm&sup2;', '6 cm&sup2;', '12 cm&sup2;', '16 cm&sup2;', 'op2', '229.jpg', 1, 4, 20, 21, '2022-09-05 00:28:32', '2022-09-05 00:28:32'),
+(230, 'The perimeter of the figure is', 'qi', '5 cm', '10 cm', '4 cm', '8 cm.', 'op2', '230.jpg', 1, 4, 20, 21, '2022-09-05 00:30:30', '2022-09-05 00:30:30'),
+(231, 'The area of the figure is', 'qi', '6 cm&sup2;', '12 cm&sup2;', '5 cm&sup2;', '10 cm&sup2;', 'op1', '231.jpg', 1, 4, 20, 21, '2022-09-05 00:32:24', '2022-09-05 00:32:24'),
+(232, 'The perimeter of the figure is', 'qi', '12 cm', '24 cm', '6 cm', '60 cm.', 'op1', '232.jpg', 1, 4, 20, 21, '2022-09-05 00:34:26', '2022-09-05 00:34:26'),
+(233, 'The area of the figure is', 'qi', '9 cm&sup2;', '18 cm&sup2;', '12 cm&sup2;', '15 cm&sup2;', 'op1', '233.jpg', 1, 4, 20, 21, '2022-09-05 00:36:24', '2022-09-05 00:36:24'),
+(234, 'The perimeter of the figure is', 'qi', '4 cm', '6 cm', '8 cm', '12 cm.', 'op3', '234.jpg', 1, 4, 20, 21, '2022-09-05 00:37:45', '2022-09-05 00:37:45'),
+(235, 'The area of the figure is', 'qi', '16 cm&sup2;', '8 cm&sup2;', '4 cm&sup2;', '12 cm&sup2;', 'op1', '235.jpg', 1, 4, 20, 21, '2022-09-05 00:39:23', '2022-09-05 00:39:23'),
+(236, 'The area of the figure is', 'm', '77 cm²', '154 cm²', '38.5 cm²', 'none of these', 'op1', '236.jpg', 1, 4, 20, 21, '2022-09-05 00:40:51', '2022-09-05 00:41:33'),
+(237, 'The area of the trapezium is', 'qi', '9 cm&sup2;', '6 cm&sup2;', '7 cm&sup2;', '24 cm&sup2;', 'op1', '237.jpg', 1, 4, 20, 21, '2022-09-05 00:43:21', '2022-09-05 00:43:21'),
+(238, 'The area of the trapezium is', 'qi', '6 cm²', '4 cm²', '3 cm²', '9 cm²', 'op1', '238.jpg', 1, 4, 20, 21, '2022-09-05 00:45:12', '2022-09-05 00:46:29'),
+(239, 'The perimeter of the trapezium is', 'qi', '12 cm', '24 cm', '6 cm', '18 cm.', 'op1', '239.jpg', 1, 4, 20, 21, '2022-09-05 00:48:36', '2022-09-05 00:48:36'),
+(240, 'The area of the quadrilateral is', 'qi', '3.75 cm&sup2;', '7.5 cm&sup2;', '3 cm&sup2;', '10 cm&sup2;', 'op1', '240.jpg', 1, 4, 20, 21, '2022-09-05 00:50:07', '2022-09-05 00:50:07'),
+(241, 'The area of the quadrilateral is', 'qi', '10 cm&sup2;', '5 cm&sup2;', '20 cm&sup2;', '15 cm&sup2;', 'op1', '241.jpg', 1, 4, 20, 21, '2022-09-05 00:51:45', '2022-09-05 00:51:45'),
+(242, 'The area of the quadrilateral is', 'qi', '6 cm&sup2;', '12 cm&sup2;', '3 cm&sup2;', '8 cm&sup2;', 'op1', '242.jpg', 1, 4, 20, 21, '2022-09-05 00:53:06', '2022-09-05 00:53:06');
 
 -- --------------------------------------------------------
 
@@ -896,7 +911,7 @@ ALTER TABLE `quizsets`
 -- AUTO_INCREMENT for table `quizzes`
 --
 ALTER TABLE `quizzes`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=228;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=243;
 
 --
 -- AUTO_INCREMENT for table `subcategories`

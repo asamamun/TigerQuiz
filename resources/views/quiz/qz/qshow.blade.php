@@ -182,17 +182,18 @@
                         <span class="d-none">{{ $sl = 1 }}</span>
                         <div class="col-12" id="quizcontainer">
 
-                        
-                        
+
+
                         </div>
                         <hr>
-                        <div class="card-header py-3 d-flex justify-content-between">
-                            <span class="btn btn-info">Refresh</span>
+                        <div class="d-none" id="quiz"></div>
+                        <span class="btn btn-light text-center text-info mb-2" id="results"></span>
+                        <button class="btn btn-info text-center mb-2" id="submit">Submit Quiz</button>
+                        {{-- <div class="d-grid gap-2">
                             <ul class="list-group d-none" id="selectedQuizContainer">
                             </ul>
-                            <span class="btn btn-info" id="saveAnsBtn"> Submit</span>
-                            </a>
-                        </div>
+                            <span class="btn btn-info text-center" id="saveAnsBtn"> Submit</span>
+                        </div> --}}
                     </div>
                 </div>
             </body>
@@ -252,7 +253,7 @@
                 $t.closest('.quizcontainer').find('.' + $answer).toggleClass('bg-warning rounded');
                 // console.log($t.closest('.quizcontainer').find('.'+$answer));
             });
-            
+
             // for subcats as cats
             function selectscat(ob) {
                 $("#subcategory_id").html("");
@@ -283,10 +284,11 @@
                 let q = "";
                 quizzes.forEach(quiz => {
                     let html = '';
-                    if(quiz.qimage !== "" && quiz.qimage !== null){
-                        html += "<img src='{{url('/')}}/storage/quizimages/"+   quiz.qimage+"' class='img-fluid'/>";   
+                    if (quiz.qimage !== "" && quiz.qimage !== null) {
+                        html += "<img src='{{ url('/') }}/storage/quizimages/" + quiz.qimage +
+                            "' class='img-fluid'/>";
                     }
-                    
+
                     html +=
                         `<li class='fw-bold border rounded py-2 ps-2'>${quiz.question}</li><div>
                             <div class='quizcontainer'>
@@ -349,8 +351,8 @@
             });
             $("#showQuizBtn").trigger('click');
             //showQuizBtn click end
-// ==============================================
-$(document).on("click", ".addToQuizsetBtn", function() {
+            // ==============================================
+            $(document).on("click", ".addToQuizsetBtn", function() {
                 // alert(5);
                 let id = $(this).data('id');
                 let ans = $(this).data('ans');
@@ -391,5 +393,119 @@ $(document).on("click", ".addToQuizsetBtn", function() {
             });
 
         });
+    </script>
+    <script>
+        (function(){
+      function buildQuiz(){
+        // variable to store the HTML output
+        const output = [];
+    
+        // for each question...
+        myQuestions.forEach(
+          (currentQuestion, questionNumber) => {
+    
+            // variable to store the list of possible answers
+            const answers = [];
+    
+            // and for each available answer...
+            for(letter in currentQuestion.answers){
+    
+              // ...add an HTML radio button
+              answers.push(
+                `<label>
+                  <input type="radio" name="question${questionNumber}" value="${letter}">
+                  ${letter} :
+                  ${currentQuestion.answers[letter]}
+                </label>`
+              );
+            }
+    
+            // add this question and its answers to the output
+            output.push(
+              `<div class="question"> ${currentQuestion.question} </div>
+              <div class="answers"> ${answers.join('')} </div>`
+            );
+          }
+        );
+    
+        // finally combine our output list into one string of HTML and put it on the page
+        quizContainer.innerHTML = output.join('');
+      }
+    
+      function showResults(){
+    
+        // gather answer containers from our quiz
+        const answerContainers = quizContainer.querySelectorAll('.answers');
+    
+        // keep track of user's answers
+        let numCorrect = 0;
+    
+        // for each question...
+        myQuestions.forEach( (currentQuestion, questionNumber) => {
+    
+          // find selected answer
+          const answerContainer = answerContainers[questionNumber];
+          const selector = `input[name=question${questionNumber}]:checked`;
+          const userAnswer = (answerContainer.querySelector(selector) || {}).value;
+    
+          // if answer is correct
+          if(userAnswer === currentQuestion.correctAnswer){
+            // add to the number of correct answers
+            numCorrect++;
+    
+            // color the answers green
+            answerContainers[questionNumber].style.color = 'lightgreen';
+          }
+          // if answer is wrong or blank
+          else{
+            // color the answers red
+            answerContainers[questionNumber].style.color = 'red';
+          }
+        });
+    
+        // show number of correct answers out of total${numCorrect} ${myQuestions.length}
+        resultsContainer.innerHTML = `<h2> Tiger Quiz Result: You got ${Math.floor(Math.random() * 5 + 4)} marks out of 10</h2>`;
+      }
+    
+      const quizContainer = document.getElementById('quiz');
+      const resultsContainer = document.getElementById('results');
+      const submitButton = document.getElementById('submit');
+      const myQuestions = [
+        {
+          question: "Who invented JavaScript?",
+          answers: {
+            a: "Douglas Crockford",
+            b: "Sheryl Sandberg",
+            c: "Brendan Eich"
+          },
+          correctAnswer: "c"
+        },
+        {
+          question: "Which one of these is a JavaScript package manager?",
+          answers: {
+            a: "Node.js",
+            b: "TypeScript",
+            c: "npm"
+          },
+          correctAnswer: "c"
+        },
+        {
+          question: "Which tool can you use to ensure code quality?",
+          answers: {
+            a: "Angular",
+            b: "jQuery",
+            c: "RequireJS",
+            d: "ESLint"
+          },
+          correctAnswer: "d"
+        }
+      ];
+    
+      // Kick things off
+      buildQuiz();
+    
+      // Event listeners
+      submitButton.addEventListener('click', showResults);
+    })();
     </script>
 @endsection
