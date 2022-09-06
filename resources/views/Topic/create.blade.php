@@ -67,32 +67,7 @@
 
         $(document).ready(function() {
          
-            // for subcats as cats
-            function selectscat(ob) {
-                $("#subcategory_id").html("");
-                let html = "";
-                for (const key in ob) {
-                    if (Object.hasOwnProperty.call(ob, key)) {
-                        html += "<option value='" + key + "'>" + ob[key] + "</option>";
-                    }
-                }
-                $("#subcategory_id").html(html);
-            }
-            $("#category_id").change(function() {
-                // console.log( $(this).val() )
-                let URL = "{{ url('subcats') }}";
-                $.ajax({
-                    type: "post",
-                    url: URL + '/' + $(this).val(),
-                    data: "data",
-                    dataType: "json",
-                    success: function(response) {
-                        selectscat(response);
-                    }
-                });
-            });
-
-
+           
         });
     </script>
 @endsection

@@ -10,7 +10,6 @@
 
 @include('inc.introabt')
 @include('inc.class')
-@include('inc.faci')
 @include('inc.team')
 
     @stop

@@ -58,7 +58,7 @@
                         <td>{{ $topic->category->name ?? 'None'}}</td>
                         <td>{{ $topic->active }}</td>
                         <td>{{ $topic->description }}</td>
-                        <td class="d-flex justify-content-center">
+                        <td class="skip d-flex justify-content-center">
                             {!! Form::open(['method' => 'delete','route' => ['topic.destroy', $topic->id],'id'=>'deleteform']) !!}
                             <a href="javascript:void(0)" class="btn btn-danger btn-circle btn-sm" title="Delete" onclick="event.preventDefault();if (!confirm('Are you sure?')) return; document.getElementById('deleteform').submit();">
                                 <i class="fa-solid fa-trash-can"></i>

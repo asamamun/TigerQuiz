@@ -148,7 +148,6 @@
                         <div class="col-sm-3 mb-3 mb-sm-0">
                             {!! Form::select('topic_id', [], null, [
                                 'required',
-                                'placeholder' => 'Select Topic',
                                 'class' => 'form-control',
                                 'id' => 'topic_id',
                                 'placeholder' => 'Select Topic',
@@ -215,33 +214,6 @@
 
         $(document).ready(function() {
             // alert(5)
-
-            // for topics as subcats
-            function selecttopic(ot) {
-                $("#topic_id").html("");
-                let html = "";
-                for (const k in ot) {
-                    if (Object.hasOwnProperty.call(ot, k)) {
-
-                        html += "<option value='" + k + "'>" + ot[k] + "</option>";
-                    }
-                }
-                $("#topic_id").html(html);
-            }
-            $("#subcategory_id").change(function() {
-                // console.log( $(this).val() )
-                let URL = "{{ url('topics') }}";
-                $.ajax({
-                    type: "post",
-                    url: URL + '/' + $(this).val(),
-                    data: "data",
-                    dataType: "json",
-                    success: function(response) {
-                        selecttopic(response);
-                    }
-                });
-            });
-
             // answer btn toggle
             $(".ansshow").hide();
             $(document).on("click", '.ansbtn', function() {
@@ -255,30 +227,6 @@
             $(document).on("click", '.course', function() {
                 var params = $("input[type=radio]:checked").val();
                 alert(params);
-            });
-            // for subcats as cats
-            function selectscat(ob) {
-                $("#subcategory_id").html("");
-                let html = "";
-                for (const key in ob) {
-                    if (Object.hasOwnProperty.call(ob, key)) {
-                        html += "<option value='" + key + "'>" + ob[key] + "</option>";
-                    }
-                }
-                $("#subcategory_id").html(html);
-            }
-            $("#category_id").change(function() {
-                // console.log( $(this).val() )
-                let URL = "{{ url('subcats') }}";
-                $.ajax({
-                    type: "post",
-                    url: URL + '/' + $(this).val(),
-                    data: "data",
-                    dataType: "json",
-                    success: function(response) {
-                        selectscat(response);
-                    }
-                });
             });
             // render_quiz_questions
             function render_quiz_questions(quizzes) {

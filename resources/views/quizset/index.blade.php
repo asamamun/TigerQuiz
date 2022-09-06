@@ -31,10 +31,13 @@
                         <th>Name</th>
                         <th>Title</th>
                         <th>Quizzes</th>
-                        <th>User ID</th>
+                        <th>User</th>
                         <th>Category</th>
                         <th>Subcategory</th>
-                        {{-- <th>Topic</th> --}}
+                        <th>Topic</th>
+                        <th>Start</th>
+                        <th>End</th>
+                        <th>Active</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -44,10 +47,13 @@
                         <th>Name</th>
                         <th>Title</th>
                         <th>Quizzes</th>
-                        <th>User ID</th>
+                        <th>User</th>
                         <th>Category</th>
                         <th>Subcategory</th>
-                        {{-- <th>Topic</th> --}}
+                        <th>Topic</th>
+                        <th>Start</th>
+                        <th>End</th>
+                        <th>Active</th>
                         <th>Action</th>
                     </tr>
                 </tfoot>
@@ -60,8 +66,12 @@
                         <td>{{ $qset->quizzes}}</td>                        
                         <td>{{ $qset->user->name}}</td>
                         <td>{{ $qset->category->name}}</td>
-                        <td>{{ $qset->subcategory->name }}</td>
-                        <td class="d-flex justify-content-center">
+                        <td>{{ $qset->subcategory->name ?? "Null" }}</td>
+                        <td>{{ $qset->topic->name ?? "Null" }}</td>
+                        <td>{{ $qset->stime ?? "Null" }}</td>
+                        <td>{{ $qset->entime ?? "Null" }}</td>
+                        <td>{{ $qset->active }}</td>
+                        <td class="d-flex skip justify-content-center">
                             {!! Form::open(['method' => 'delete','route' => ['quizset.destroy', $qset->id],'id'=>'deleteform']) !!}
                             <a href="javascript:void(0)" class="btn btn-danger btn-circle btn-sm" title="Delete" onclick="event.preventDefault();if (!confirm('Are you sure?')) return; document.getElementById('deleteform').submit();">
                                 <i class="fa-solid fa-trash-can"></i>

@@ -233,58 +233,6 @@
                 $(this).parent().parent().remove();
             });
 
-
-            // for subcats as cats
-            function selectscat(ob) {
-                $("#subcategory_id").html("");
-                let html = "";
-                for (const key in ob) {
-                    if (Object.hasOwnProperty.call(ob, key)) {
-                        html += "<option value='" + key + "'>" + ob[key] + "</option>";
-                    }
-                }
-                $("#subcategory_id").html(html);
-            }
-            $("#category_id").change(function() {
-                // console.log( $(this).val() )
-                let URL = "{{ url('subcats') }}";
-                $.ajax({
-                    type: "post",
-                    url: URL + '/' + $(this).val(),
-                    data: "data",
-                    dataType: "json",
-                    success: function(response) {
-                        selectscat(response);
-                    }
-                });
-            });
-
-            // for topics as subcats
-            function selecttopic(ot) {
-                $("#topic_id").html("");
-                let html = "";
-                for (const k in ot) {
-                    if (Object.hasOwnProperty.call(ot, k)) {
-
-                        html += "<option value='" + k + "'>" + ot[k] + "</option>";
-                    }
-                }
-                $("#topic_id").html(html);
-            }
-            $("#subcategory_id").change(function() {
-                // console.log( $(this).val() )
-                let URL = "{{ url('topics') }}";
-                $.ajax({
-                    type: "post",
-                    url: URL + '/' + $(this).val(),
-                    data: "data",
-                    dataType: "json",
-                    success: function(response) {
-                        selecttopic(response);
-                    }
-                });
-            });
-
         });
     </script>
 @endsection

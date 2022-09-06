@@ -37,7 +37,7 @@
                         <th>Answer </th>
                         <th>User </th>
                         <th>Category</th>
-                        <th>Subcategory</th>
+                        <th>Subcat</th>
                         <th>Topic</th>
                         <th>Action</th>
                     </tr>
@@ -54,7 +54,7 @@
                         <th>Answer </th>
                         <th>User </th>
                         <th>Category</th>
-                        <th>Subcategory</th>
+                        <th>Subcat</th>
                         <th>Topic</th>
                         <th>Action</th>
                     </tr>
@@ -63,7 +63,7 @@
                     @foreach ($quizzes as $quiz)
                     <tr>
                         <td>{{ $quiz->id }}</td>
-                        <td>@class(['class']) {{ $quiz->question}}</td>                        
+                        <td>{{ $quiz->question}}</td>                        
                         <td>{{ $quiz->type}}</td>                        
                         <td>{{ $quiz->op1}}</td>                        
                         <td>{{ $quiz->op2}}</td>                        
@@ -74,9 +74,9 @@
                         <!-- Attempt to read property "name" on null -->
                         
                         <td>{{ $quiz->category->name}}</td>
-                        <td>{{ $quiz->subcategory->name}}</td>
-                        <td>{{ $quiz->topic->name}}</td>
-                        <td class="d-flex justify-content-center">
+                        <td>{{ $quiz->subcategory->id}}</td>
+                        <td>{{ $quiz->topic->id}}</td>
+                        <td class="skip d-flex justify-content-center">
                             {!! Form::open(['method' => 'delete','route' => ['quiz.destroy', $quiz->id],'id'=>'deleteform']) !!}
                             <a href="javascript:void(0)" class="btn btn-danger btn-circle btn-sm" title="Delete" onclick="event.preventDefault();if (!confirm('Are you sure?')) return; document.getElementById('deleteform').submit();">
                                 <i class="fa-solid fa-trash-can"></i>

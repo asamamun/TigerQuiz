@@ -20,13 +20,13 @@ class HomeController extends Controller
      * @param  \App\Http\Requests\Auth\LoginRequest  $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function qsets()
-    {
+    // public function qsets()
+    // {
         
-        $quizset = Quizset::with('category')->with('subcategory')->get();
+    //     $quizset = Quizset::with('category')->with('subcategory')->get();
         
 
-        return view("welcome", compact('quizset'))
-            ->with('user', Auth::user());
-    }
+    //     return view("welcome", compact('quizset'))
+    //         ->with('user', Auth::user());
+    // }
 }

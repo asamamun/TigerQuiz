@@ -53,7 +53,7 @@
                         <td>{{ $subcat->category->name}}</td>          
                         <td>{{ $subcat->active }}</td>
                         <td>{{ $subcat->description }}</td>
-                        <td class="d-flex justify-content-center">
+                        <td class="skip d-flex justify-content-center">
                             {{-- onclick="event.preventDefault(); document.getElementById('submit-form').submit();" --}}
                             {!! Form::open(['method' => 'delete','route' => ['subcategory.destroy', $subcat->id],'id'=>'deleteform']) !!}
                             <a href="javascript:void(0)" class="btn btn-danger btn-circle btn-sm" title="Delete" onclick="event.preventDefault();if (!confirm('Are you sure?')) return; document.getElementById('deleteform').submit();">
