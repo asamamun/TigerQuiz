@@ -21,3 +21,6 @@
 @section('footerin')
 @include('inc.footer')
     @stop
+
+    
+{{-- ['quizset'=>$quizset] --}}

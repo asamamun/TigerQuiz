@@ -13,15 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('answers', function (Blueprint $table) {
+        Schema::create('results', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users');
-            $table->bigInteger('qid')->unsigned()->nullable();
-            $table->foreign('qid')->references('id')->on('quizzes');
-            $table->bigInteger('qsid')->unsigned()->nullable();
-            $table->foreign('qsid')->references('id')->on('quizsets');
-            $table->string('gans');
+            $table->bigInteger('qset_id')->unsigned()->nullable();
+            $table->foreign('qset_id')->references('id')->on('quizsets');
             $table->bigInteger('marks');
             $table->timestamps();
         });

@@ -24,7 +24,7 @@ class QuizsetController extends Controller
      */
     public function index()
     {
-        $quizset = Quizset::all();
+        // $quizset = Quizset::all();
 
         if (Auth::user()->role == "1") {
             $quizset = Quizset::with('category')->with('subcategory')->get();
@@ -33,7 +33,6 @@ class QuizsetController extends Controller
         }
 
         return view("quizset.index", compact('quizset'))
-            ->with('quizzes', $quizset)
             ->with('user', Auth::user());
     }
 
@@ -70,22 +69,19 @@ class QuizsetController extends Controller
      * @param  \App\Models\Quizset  $quizset
      * @return \Illuminate\Http\Response
      */
-    public function show(Quizset $quizset)
+    public function show()
     {
         
         // $quizset = Quizset::all();
 
-        // if (Auth::user()->role == "1") {
-        //     $quizset = Quizset::with('category')->with('subcategory')->get();
-        // } else {
-        //     $quizset = Quizset::where('user_id', Auth::id())->with('category')->with('subcategory')->get();
-        // }
+        if (Auth::user()->role == "1") {
+            $quizset = Quizset::with('category')->with('subcategory')->get();
+        } else {
+            $quizset = Quizset::where('user_id', Auth::id())->with('category')->with('subcategory')->get();
+        }
 
-        // return view("quizset.show", compact('quizset'))
-        //     ->with('quizzes', $quizset)
-        //     ->with('user', Auth::user());
-        
-        return view('quizset.show');
+        return view('quizset.show', compact('quizset'))
+            ->with('user', Auth::user());
     }
 
     /**
@@ -138,6 +134,9 @@ class QuizsetController extends Controller
         $q->title = $request->title;
         $q->category_id = $request->cid;
         $q->subcategory_id = $request->scid;
+        $q->topic_id = $request->tid;
+        $q->stime = $request->stime;
+        $q->entime = $request->entime;
         $q->quizzes = join(",", $request->quiz);
 
         // if ($u->quizsets()->save($q)) {

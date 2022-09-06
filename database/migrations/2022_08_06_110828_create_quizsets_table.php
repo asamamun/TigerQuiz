@@ -18,14 +18,17 @@ return new class extends Migration
             $table->string('name');
             $table->string('title');
             $table->string('quizzes');
-            $table->timestamp('stime')->nullable();
-            $table->bigInteger('active')->unsigned()->nullable();
+            $table->set('active',['0','1'])->default('1');
             $table->bigInteger('user_id')->unsigned()->nullable();
             $table->foreign('user_id')->references('id')->on('users');
             $table->bigInteger('category_id')->unsigned()->nullable();
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('restrict');
             $table->bigInteger('subcategory_id')->unsigned()->nullable();
             $table->foreign('subcategory_id')->references('id')->on('subcategories')->onDelete('restrict');
+            $table->bigInteger('topic_id')->unsigned()->nullable();
+            $table->foreign('topic_id')->references('id')->on('topics')->onDelete('restrict');
+            $table->string('stime')->nullable();
+            $table->string('entime')->nullable();
             $table->timestamps();
         });
     }

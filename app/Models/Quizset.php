@@ -12,11 +12,13 @@ class Quizset extends Model
         'name',
         'title',
         'quizzes',
-        'stime',
         'active',
         'user_id',
         'category_id',
-        'subcategory_id',
+        'category_id',
+        'topic_id',
+        'stime',
+        'entime',
     ];
 
     public function user()

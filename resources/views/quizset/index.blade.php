@@ -59,8 +59,8 @@
                         <td>{{ $qset->title}}</td>                        
                         <td>{{ $qset->quizzes}}</td>                        
                         <td>{{ $qset->user_id}}</td>
-                        <td>{{ $qset->category->id}}</td>
-                        <td>{{ $qset->subcategory->id }}</td>
+                        <td>{{ $qset->category->name}}</td>
+                        <td>{{ $qset->subcategory->name }}</td>
                         <td class="d-flex justify-content-center">
                             {!! Form::open(['method' => 'delete','route' => ['quizset.destroy', $qset->id],'id'=>'deleteform']) !!}
                             <a href="javascript:void(0)" class="btn btn-danger btn-circle btn-sm" title="Delete" onclick="event.preventDefault();if (!confirm('Are you sure?')) return; document.getElementById('deleteform').submit();">

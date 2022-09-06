@@ -50,6 +50,15 @@
                     ]) !!}
 
                 </div>
+                <div class="col-sm-3 mb-3 mb-sm-0">
+                    {!! Form::select('topic_id', [], null, ['required',
+                        'placeholder' => 'Select Topic',
+                        'class' => 'form-control',
+                        'id' => 'topic_id',
+                        'placeholder' => 'Select Topic',
+                    ]) !!}
+
+                </div>
                 <div class="col-sm-3">
                     {!! Form::select('type', ['m' => 'MCQ', 'd' => 'Descriptive'], 'm', [
                         'required',
@@ -69,16 +78,24 @@
                             'placeholder' => 'User',
                         ]) !!}
                     </div>
-                    <div class="form-group">
+                </div>
+                <div class="form-group mt-1 row">
+                    <div class="col-sm-5 mb-3">
+                        <input type="datetime-local" id="stime" class="form-control" placeholder="Start Time">
+                    </div>
+                    <div class="col-sm-5 mb-3">
+                        <input type="datetime-local" id="entime" class="form-control" placeholder="End Time">
+                    </div>
+                    <div class="col-sm-2 mb-3">
                         {!! Form::button('Show <i class="fa-solid fa-arrow-down"></i>', [
                             'class' => 'btn btn-info btn-profile btn-block',
                             'id' => 'showbtn',
                         ]) !!}
                     </div>
-                    {!! Form::close() !!}
                 </div>
+                {!! Form::close() !!}
             </div>
-
+            
         </div>
     </div>
     <hr>
@@ -118,7 +135,8 @@
                   <li class="list-group-item">Cras justo odio</li>
                 </ol> */
                 quizes.forEach(quiz => {
-                    let html = "<h5 class='m-0 font-weight-bold card-header rounded text-dark'>" + quiz.question +
+                    let html = "<h5 class='m-0 font-weight-bold card-header rounded text-dark'>" + quiz
+                        .question +
                         "</h5>";
                     html +=
                         `<div class='card-body border-bottom my-1'>
@@ -154,7 +172,7 @@
                 });
             });
 
-        
+
             $(document).on({
                 mouseenter: function() {
                     $(this).find('span').removeClass('d-none');
@@ -192,6 +210,9 @@
                         title: $("#title").val(),
                         cid: $("#category_id").val(),
                         scid: $("#subcategory_id").val(),
+                        // tid: $("#topic_id").val(),
+                        stime: $("#stime").val(),
+                        enime: $("#entime").val(),
                         quiz: qArr
                     },
                     dataType: "json",
@@ -234,6 +255,32 @@
                     dataType: "json",
                     success: function(response) {
                         selectscat(response);
+                    }
+                });
+            });
+
+            // for topics as subcats
+            function selecttopic(ot) {
+                $("#topic_id").html("");
+                let html = "";
+                for (const k in ot) {
+                    if (Object.hasOwnProperty.call(ot, k)) {
+
+                        html += "<option value='" + k + "'>" + ot[k] + "</option>";
+                    }
+                }
+                $("#topic_id").html(html);
+            }
+            $("#subcategory_id").change(function() {
+                // console.log( $(this).val() )
+                let URL = "{{ url('topics') }}";
+                $.ajax({
+                    type: "post",
+                    url: URL + '/' + $(this).val(),
+                    data: "data",
+                    dataType: "json",
+                    success: function(response) {
+                        selecttopic(response);
                     }
                 });
             });

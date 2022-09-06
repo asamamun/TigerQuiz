@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Quizset;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -9,7 +10,8 @@ class HomeController extends Controller
 {
     public function index()
     {
-        return view('welcome');
+        $quizset = Quizset::with('category')->with('subcategory')->get();
+        return view('welcome',compact('quizset'));
     }
 
      /**
@@ -18,7 +20,13 @@ class HomeController extends Controller
      * @param  \App\Http\Requests\Auth\LoginRequest  $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function dashboard(Request $request){
-            $role = Auth::user()->role;              
-        }
+    public function qsets()
+    {
+        
+        $quizset = Quizset::with('category')->with('subcategory')->get();
+        
+
+        return view("welcome", compact('quizset'))
+            ->with('user', Auth::user());
+    }
 }
