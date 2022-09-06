@@ -27,8 +27,8 @@ return new class extends Migration
             $table->foreign('subcategory_id')->references('id')->on('subcategories')->onDelete('restrict');
             $table->bigInteger('topic_id')->unsigned()->nullable();
             $table->foreign('topic_id')->references('id')->on('topics')->onDelete('restrict');
-            $table->string('stime')->nullable();
-            $table->string('entime')->nullable();
+            $table->datetime('stime')->nullable();
+            $table->datetime('entime')->nullable();
             $table->timestamps();
         });
     }
