@@ -58,7 +58,7 @@
                         <td>{{ $qset->name}}</td>                        
                         <td>{{ $qset->title}}</td>                        
                         <td>{{ $qset->quizzes}}</td>                        
-                        <td>{{ $qset->user_id}}</td>
+                        <td>{{ $qset->user->name}}</td>
                         <td>{{ $qset->category->name}}</td>
                         <td>{{ $qset->subcategory->name }}</td>
                         <td class="d-flex justify-content-center">

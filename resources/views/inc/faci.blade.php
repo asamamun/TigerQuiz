@@ -16,15 +16,15 @@
                     <div class="card d-flex bg-light shadow-sm border rounded mb-3" title="{{ $qset->name }}"
                         style="padding: 30px">
                         <div class="pl-1">
-                            <h3 class="qstitle">{{ $qset->name }}</h3>
+                            <h3 class="qstitle">{{$qset->name}}</h3>
                             <p class="m-0">
                                 {{ $qset->title }}
                             </p>
                             <p class="m-0">
-                                {{ $qset->category->name }}
+                                {{ $qset->category->name}}
                             </p>
                             <p class="m-0">
-                                {{ $qset->subcategory->name }}
+                                {{ $qset->subcategory->name}}
                             </p>
                         </div>
                     </div>
