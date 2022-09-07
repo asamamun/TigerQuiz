@@ -174,21 +174,20 @@
 
                     <div class="row">
                         <span class="d-none">{{ $sl = 1 }}</span>
+                        <form action="{{url('result')}}" method="post">
+                            @csrf
                         <div class="col-12" id="quizcontainer">
 
 
 
                         </div>
+                        
                         <hr>
                         <div class="d-none" id="quiz"></div>
                         <span class="btn btn-light text-center text-info mb-2" id="results"></span>
-                        {{-- <button class="btn btn-info text-center mb-2" id="submit">Submit Quiz</button> --}}
+                        <button type="submit" class="btn btn-info text-center mb-2" id="submit">Submit Quiz</button>
                         <button onclick="returnScore()">View Results</button>
-                        {{-- <div class="d-grid gap-2">
-                            <ul class="list-group d-none" id="selectedQuizContainer">
-                            </ul>
-                            <span class="btn btn-info text-center" id="saveAnsBtn"> Submit</span>
-                        </div> --}}
+                        </form>
                     </div>
                 </div>
             </body>
@@ -227,7 +226,7 @@
             // });
             // render_quiz_questions
             function render_quiz_questions(quizzes) {
-                console.log(quizzes);
+                //console.log(quizzes);
                 let q = "";
                 quizzes.forEach(quiz => {
                     let html = '';

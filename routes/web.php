@@ -99,6 +99,8 @@ Route::get('playquiz/topic/{id}', [QuizController::class, "topicquiz"]);
 Route::get('/showquiz', [QuizsetController::class, "showquiz"]);
 Route::post('/storequizset', [QuizsetController::class, "storeset"]);
 Route::post('/storeanswer', [AnswerController::class, "storeanswer"]);
+Route::post('/result', [AnswerController::class, "result"]);
+
 
 
 

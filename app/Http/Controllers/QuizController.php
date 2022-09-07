@@ -242,15 +242,15 @@ class QuizController extends Controller
         return view('quiz/qz.qshow', compact('quizzes','categories'));
     }
     public function dynamicquiz(Request $request){
-        $count = $request->count ?? "5";
+        $count = $request->count ?? "10";
         $whereArray = [];
         if ($request->cid) {
             $whereArray['category_id'] = $request->cid;
         }
-        if ($request->scid) {
+        if ($request->scid  && $request->scid !="-1") {
             $whereArray['subcategory_id'] = $request->scid;
         }
-        if ($request->tid) {
+        if ($request->tid  && $request->tid !="-1") {
             $whereArray['topic_id'] = $request->tid;
         }
         if (count($whereArray)) {

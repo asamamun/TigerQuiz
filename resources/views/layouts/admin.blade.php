@@ -103,7 +103,7 @@
 
                 $("#topic_id").empty().append('<option value = "-1">Select Topic');
 
-                let html = "";
+                let html = "<option value='-1'>All</option>";
                 for (const key in ob) {
                     if (Object.hasOwnProperty.call(ob, key)) {
                         html += "<option value='" + key + "'>" + ob[key] + "</option>";
@@ -128,7 +128,7 @@
             // for topics as subcats
             function selecttopic(ot) {
                 // $("#topic_id").html("");
-                let html = "";
+                let html = "<option value='-1'>All</option>";
                 for (const k in ot) {
                     if (Object.hasOwnProperty.call(ot, k)) {
 
@@ -138,6 +138,10 @@
                 $("#topic_id").html(html);
             }
             $("#subcategory_id").change(function() {
+                if($(this).val() == "-1"){
+                    $("#topic_id").empty().append('<option value = "-1">Select Topic');
+                    return;
+                }
                 // console.log( $(this).val() )
                 let URL = "{{ url('topics') }}";
                 $.ajax({

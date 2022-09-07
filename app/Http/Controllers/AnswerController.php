@@ -11,6 +11,7 @@ use App\Models\User;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Arr;
 
 class AnswerController extends Controller
 {
@@ -40,5 +41,32 @@ class AnswerController extends Controller
             return response()->json(['message'=>"Error",'error'=>1]);
         }
 
+    }
+
+    
+
+    public function result(Request $request){
+        
+        
+        $answers = $request->all();
+        unset($answers['_token']);
+        $quizid = array_keys($answers);
+        $quizid = Arr::map($quizid, function ($value, $key) {
+            return substr($value,3);
+        });
+        $quizans = array_values($answers);
+        $quizzes = Quiz::whereIn('id', $quizid)->get();
+        $result = 0;
+        foreach ($quizzes as $quiz) {
+            if($quiz->ans == $answers['box'.$quiz->id]){
+                $result++;
+            }
+            //echo $quiz->id ." :". $quiz->ans. " =  User ans:" . $answers['box'.$quiz->id] . "<br>";
+        }
+        //dd($answers,$quizzes , $quizid, $quizans);
+        return view('quiz.result')
+        ->with('quizzes',$quizzes)
+        ->with('total',count($answers))
+        ->with('result',$result);
     }
 }
