@@ -263,6 +263,11 @@ class QuizController extends Controller
         return response()->json($quizzes->toJson());
     }
 
+    public function randomquestions(){
+        $q = Quiz::inRandomOrder()->limit(15)->get();
+        return response()->json($q);
+    }
+
 /*     public function fix(){
         $quizs = Quiz::all();
         foreach($quizs as $quiz){
