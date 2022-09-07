@@ -59,13 +59,13 @@ class AnswerController extends Controller
         $result = 0;
         foreach ($quizzes as $quiz) {
             if($quiz->ans == $answers['box'.$quiz->id]){
-                $result++;
-            }
+                $result++;}
             //echo $quiz->id ." :". $quiz->ans. " =  User ans:" . $answers['box'.$quiz->id] . "<br>";
         }
-        //dd($answers,$quizzes , $quizid, $quizans);
+        // dd($answers,$quizzes , $quizid, $quizans);
         return view('quiz.result')
         ->with('quizzes',$quizzes)
+        ->with('quizans',$quizans)
         ->with('total',count($answers))
         ->with('result',$result);
     }

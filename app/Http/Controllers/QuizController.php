@@ -81,12 +81,12 @@ class QuizController extends Controller
 
         $request = [
 
-            'question' => htmlentities( $request->question),
+            'question' => htmlentities($request->question),
             'type' => $request->type,
-            'op1' => htmlentities( $request->op1),
-            'op2' => htmlentities( $request->op2),
-            'op3' => htmlentities( $request->op3),
-            'op4' => htmlentities( $request->op4),
+            'op1' => htmlentities($request->op1),
+            'op2' => htmlentities($request->op2),
+            'op3' => htmlentities($request->op3),
+            'op4' => htmlentities($request->op4),
             'ans' => $opt,
             'qimage' => $filename ?? '',
             'user_id' => $request->user_id,
@@ -94,7 +94,7 @@ class QuizController extends Controller
             'subcategory_id' => $request->subcategory_id,
             'topic_id' => $request->topic_id,
         ];
-/*         $request = [
+        /*         $request = [
 
             'question' => $request->question,
             'type' => $request->type,
@@ -235,22 +235,23 @@ class QuizController extends Controller
 
     public function qshow(Request $request)
     {
-        $count = $request->count ?? "10";       
-        
+        $count = $request->count ?? "10";
+
         $quizzes = Quiz::inRandomOrder()->limit($count)->get();
         $categories = Category::pluck('name', 'id');
-        return view('quiz/qz.qshow', compact('quizzes','categories'));
+        return view('quiz/qz.qshow', compact('quizzes', 'categories'));
     }
-    public function dynamicquiz(Request $request){
+    public function dynamicquiz(Request $request)
+    {
         $count = $request->count ?? "10";
         $whereArray = [];
         if ($request->cid) {
             $whereArray['category_id'] = $request->cid;
         }
-        if ($request->scid  && $request->scid !="-1") {
+        if ($request->scid  && $request->scid != "-1") {
             $whereArray['subcategory_id'] = $request->scid;
         }
-        if ($request->tid  && $request->tid !="-1") {
+        if ($request->tid  && $request->tid != "-1") {
             $whereArray['topic_id'] = $request->tid;
         }
         if (count($whereArray)) {
@@ -265,21 +266,20 @@ class QuizController extends Controller
 
     public function randomquestions(){
         $q = Quiz::inRandomOrder()->limit(15)->get();
-        return response()->json($q);
-    }
+        return response()->json($q);}
 
-/*     public function fix(){
-        $quizs = Quiz::all();
-        foreach($quizs as $quiz){
-            
-            $request = [
-                'question' => htmlentities( $quiz->question),
-                'op1' => htmlentities( $quiz->op1),
-                'op2' => htmlentities( $quiz->op2),
-                'op3' => htmlentities( $quiz->op3),
-                'op4' => htmlentities( $quiz->op4),
-            ];
-            Quiz::where('id',$quiz->id)->update($request);
-        }
-    } */
+    // public function fix(){
+    //     $quizs = Quiz::all();
+    //     foreach($quizs as $quiz){
+
+    //         $request = [
+    //             'question' => htmlentities( $quiz->question),
+    //             'op1' => htmlentities( $quiz->op1),
+    //             'op2' => htmlentities( $quiz->op2),
+    //             'op3' => htmlentities( $quiz->op3),
+    //             'op4' => htmlentities( $quiz->op4),
+    //         ];
+    //         Quiz::where('id',$quiz->id)->update($request);
+    //     }
+    // } 
 }

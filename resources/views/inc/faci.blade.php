@@ -27,6 +27,9 @@
                                 {{ $qset->subcategory->name}}
                             </p>
                             <p class="m-0">
+                                {{ $qset->subcategory->name}}
+                            </p>
+                            <p class="m-0">
                                 {{ $qset->stime}}
                             </p>
                             <p class="m-0">
