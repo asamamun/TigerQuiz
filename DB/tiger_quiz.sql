@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 06, 2022 at 05:43 PM
+-- Generation Time: Sep 07, 2022 at 08:53 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -295,7 +295,11 @@ INSERT INTO `quizsets` (`id`, `name`, `title`, `quizzes`, `active`, `user_id`, `
 (3, 'General Knowledge Bangladesh', 'CT', '151,152,153,154,155,153,154,155,156,157,158,159,160,161,162,163,164,165,166,167', '1', 1, 11, 23, NULL, NULL, NULL, '2022-09-04 14:55:03', '2022-09-04 14:55:03'),
 (4, 'General Knowledge International', 'CT', '191,192,193,194,195,196,197,198,200,201,202,203,204,205,206,207,208,209,210,211', '1', 1, 11, 24, NULL, NULL, NULL, '2022-09-04 14:56:46', '2022-09-04 14:56:46'),
 (5, 'General Knowledge Int', 'CT', '191,192,193,194,195,196,197,198,200,201,202,203,204,205,206,207,208,209,210,211', '1', 1, 11, 24, NULL, NULL, NULL, '2022-09-04 14:56:46', '2022-09-04 14:56:46'),
-(6, 'General Knowledge Int2', 'CT', '191,192,193,194,195,196,197,198,200,201,202,203,204,205,206,207,208,209,210,211', '1', 1, 11, 24, NULL, NULL, NULL, '2022-09-04 14:56:46', '2022-09-04 14:56:46');
+(6, 'General Knowledge Int2', 'CT', '191,192,193,194,195,196,197,198,200,201,202,203,204,205,206,207,208,209,210,211', '1', 1, 11, 24, NULL, NULL, NULL, '2022-09-04 14:56:46', '2022-09-04 14:56:46'),
+(7, 'HW', 'Test', '116,117,118,119,120,121,122,123,124,125', '1', 1, 4, 20, 21, '2022-09-08 23:25:00', '2022-09-09 23:25:00', '2022-09-06 23:25:22', '2022-09-06 23:25:22'),
+(8, 'CT 2', 'MCQ', '116,117,118,119,120,121,125,126,128,129,132,133', '1', 1, 4, 20, 21, '2022-09-09 12:30:00', '2022-09-09 13:30:00', '2022-09-06 23:30:09', '2022-09-06 23:30:09'),
+(9, 'Bangladesh', 'CT', '151,153,154,155,157,158,161,160,165,164,167,168', '1', 1, 11, 23, 17, '2022-09-09 15:40:00', '2022-09-09 16:40:00', '2022-09-06 23:36:21', '2022-09-06 23:36:21'),
+(10, 'Bangladesh', 'HW', '152,151,153,154,155,157,158,159,160,162,163,164,165', '1', 1, 11, 23, 15, '2022-09-06 15:40:00', '2022-09-06 16:40:00', '2022-09-06 23:38:08', '2022-09-06 23:38:08');
 
 -- --------------------------------------------------------
 
@@ -327,9 +331,9 @@ CREATE TABLE `quizzes` (
 
 INSERT INTO `quizzes` (`id`, `question`, `type`, `op1`, `op2`, `op3`, `op4`, `ans`, `qimage`, `user_id`, `category_id`, `subcategory_id`, `topic_id`, `created_at`, `updated_at`) VALUES
 (1, 'Who is making the Web standards?', 'm', 'Google', 'Mozilla', 'The World Wide Web Consortium', 'Microsoft', 'op3', NULL, 11, 6, 6, 8, '2022-08-18 16:36:13', '2022-09-03 23:51:37'),
-(2, 'Choose the correct HTML element for the largest heading:', 'm', '&lt;h6&gt;', '&lt;h1&gt;', '&lt;heading&gt;', '&lt;head&gt;', 'null', NULL, 11, 6, 6, 8, '2022-08-18 16:50:29', '2022-09-03 23:51:37'),
-(3, 'What is the correct HTML element for inserting a line break?', 'm', '&lt;break&gt;', '&lt;ib&gt;', '&lt;br&gt;', '&lt;b&gt;', 'null', NULL, 11, 6, 6, 8, '2022-08-18 16:51:24', '2022-09-03 23:51:37'),
-(4, 'What is the correct HTML for adding a background color?', 'm', '&lt;body bg=&quot;yellow&quot;&gt;', '&lt;body style=&quot;background-color:yellow;&quot;&gt;', '&lt;background&gt;yellow&lt;/background&gt;', 'None of above', 'null', NULL, 11, 6, 6, 8, '2022-08-18 16:52:20', '2022-09-03 23:51:37'),
+(2, 'Choose the correct HTML element for the largest heading:', 'm', '<h6>', '<h1>', '<heading>', '<head>', 'op2', NULL, 11, 6, 6, 8, '2022-08-18 16:50:29', '2022-09-06 15:14:00'),
+(3, 'What is the correct HTML element for inserting a line break?', 'm', '<break>', '<ib>', '<br>', '<b>', 'op3', NULL, 11, 6, 6, 8, '2022-08-18 16:51:24', '2022-09-06 15:15:40'),
+(4, 'What is the correct HTML for adding a background color?', 'm', '<body bg=\"yellow\">', '<body style=\"background-color:yellow;\">', '<background>yellow</background>', 'None of above', 'op1', NULL, 11, 6, 6, 8, '2022-08-18 16:52:20', '2022-09-06 15:18:52'),
 (5, 'Choose the correct HTML element to define important text', 'm', '&lt;strong&gt;', '&lt;b&gt;', '&lt;i&gt;', '&lt;important&gt;', 'op1', NULL, 11, 6, 6, 8, '2022-08-18 16:53:21', '2022-09-03 23:51:37'),
 (6, 'Choose the correct HTML element to define emphasized text', 'm', '&lt;italic&gt;', '&lt;i&gt;', '&lt;em&gt;', '&lt;y&gt;', 'op3', NULL, 11, 6, 6, 8, '2022-08-18 16:57:11', '2022-09-03 23:51:37'),
 (7, 'What is the correct HTML for creating a hyperlink?', 'm', 'A. &lt;a url=&quot;http://www.w3schools.com&quot;&gt;W3Schools.com&lt;/a&gt;', 'B. &lt;a href=&quot;http://www.w3schools.com&quot;&gt;W3Schools&lt;/a&gt;', 'C. &lt;a name=&quot;http://www.w3schools.com&quot;&gt;W3Schools.com&lt;/a&gt;', 'D. &lt;a&gt;http://www.w3schools.com&lt;/a&gt;', 'op2', NULL, 11, 6, 6, 8, '2022-08-18 16:58:19', '2022-09-03 23:51:37'),
@@ -413,7 +417,7 @@ INSERT INTO `quizzes` (`id`, `question`, `type`, `op1`, `op2`, `op3`, `op4`, `an
 (85, 'Include files must have the file extension &quot;.inc&quot;', 'm', 'A. True', 'B. False', 'C.', 'D.', 'op2', NULL, 11, 6, 10, 12, '2022-08-22 01:05:51', '2022-09-03 23:51:37'),
 (86, 'What is the correct way to include the file &quot;time.inc&quot; ?', 'm', 'A. &lt;?php include &quot;time.inc&quot;; ?&gt;', 'B. &lt;!-- include file=&quot;time.inc&quot; --&gt;', 'C. &lt;?php include file=&quot;time.inc&quot;; ?&gt;', 'D. &lt;?php include:&quot;time.inc&quot;; ?&gt;', 'op1', NULL, 11, 6, 10, 12, '2022-08-22 01:06:45', '2022-09-03 23:51:37'),
 (87, 'What is the correct way to create a function in PHP?', 'm', 'A. function myFunction()', 'B. create myFunction()', 'C. new_function myFunction()', 'D.', 'op1', NULL, 11, 6, 10, 12, '2022-08-22 01:08:19', '2022-09-03 23:51:37'),
-(88, 'What is the correct way to open the file &quot;time.txt&quot; as readable?', 'm', 'A. open(&quot;time.txt&quot;,&quot;read&quot;);', 'B. fopen(&quot;time.txt&quot;,&quot;r+&quot;)', 'C. open(&quot;time.txt&quot;);', 'D. fopen(&quot;time.txt&quot;,&quot;r&quot;);', 'null', NULL, 11, 6, 10, 12, '2022-08-22 01:09:24', '2022-09-03 23:51:37'),
+(88, 'What is the correct way to open the file \"time.txt\" as readable?', 'm', 'open(\"time.txt\",\"read\");', 'fopen(\"time.txt\",\"r+\")', 'open(\"time.txt\");', 'fopen(\"time.txt\",\"r\");', 'op2', NULL, 11, 6, 7, 9, '2022-08-22 01:09:24', '2022-09-06 15:20:06'),
 (89, 'PHP allows you to send emails directly from a script', 'm', 'A. False', 'B. True', 'C.', 'D.', 'op2', NULL, 11, 6, 10, 12, '2022-08-22 01:10:13', '2022-09-03 23:51:37'),
 (90, 'Which superglobal variable holds information about headers, paths, and script locations?', 'm', 'A. $_SESSION', 'B. $_GET', 'C. $_SERVER', 'D. $GLOBALS', 'op3', NULL, 11, 6, 10, 12, '2022-08-22 01:11:14', '2022-09-03 23:51:37'),
 (91, 'What is the correct way to add 1 to the $count variable?', 'm', 'A. count++;', 'B. $count++;', 'C. $count =+1', 'D. ++count', 'op2', NULL, 11, 6, 10, 12, '2022-08-22 01:12:14', '2022-09-03 23:51:37'),
@@ -547,9 +551,9 @@ INSERT INTO `quizzes` (`id`, `question`, `type`, `op1`, `op2`, `op3`, `op4`, `an
 (219, 'কে &lsquo;ডেজার্ট ফক্স&rsquo; নামে পরিচিত?', 'm', 'আনোয়ার সাদাত', 'কামাল আতাতুর্ক', 'মার্শাল টিটো', 'ফিল্ড মার্শাল রোমেল', 'op4', '', 11, 11, 24, 20, '2022-09-03 00:55:48', '2022-09-03 23:51:38'),
 (220, 'লিটল কর্পোরেল&rsquo; কার উপাধি?', 'm', 'লাল বাহাদুর শাস্ত্রী', 'নেপোলিয়ান বেনপোর্ট', 'সাদা বাহাদুর শাস্ত্রী', 'আল খাওয়াজমি', 'op2', '', 11, 11, 24, 20, '2022-09-03 00:56:43', '2022-09-03 23:51:38'),
 (221, 'Daughter of the Eastকাকে বলা হয়?', 'm', 'বেনজির ভুট্টো', 'অং সান সূচী', 'ইন্দিরা গান্ধি', 'সরোজিনী নাইডু', 'op1', '', 11, 11, 24, 20, '2022-09-03 00:57:38', '2022-09-03 23:51:38'),
-(222, 'The diagram has the shape of a', 'm', 'square', 'rectangle', 'triangle', 'trapezium.', 'op2', '222.jpg', 1, 4, 20, 21, '2022-09-03 15:27:53', '2022-09-03 23:51:38');
+(222, 'The diagram has the shape of a', 'm', 'square', 'rectangle', 'triangle', 'trapezium.', 'op2', '222.jpg', 1, 4, 20, 21, '2022-09-03 15:27:53', '2022-09-03 23:51:38'),
+(223, 'The diagram has the shape of a', 'qi', 'rectangle', 'square', 'circle', 'parallelogram.', 'op2', '223.jpg', 1, 4, 20, 14, '2022-09-03 15:53:28', '2022-09-03 23:51:38');
 INSERT INTO `quizzes` (`id`, `question`, `type`, `op1`, `op2`, `op3`, `op4`, `ans`, `qimage`, `user_id`, `category_id`, `subcategory_id`, `topic_id`, `created_at`, `updated_at`) VALUES
-(223, 'The diagram has the shape of a', 'qi', 'rectangle', 'square', 'circle', 'parallelogram.', 'op2', '223.jpg', 1, 4, 20, 14, '2022-09-03 15:53:28', '2022-09-03 23:51:38'),
 (224, 'The diagram has the shape of a', 'qi', 'circle', 'rectangle', 'square', 'triangle.', 'op4', '224.jpg', 1, 4, 20, 14, '2022-09-03 15:55:58', '2022-09-03 23:51:38'),
 (225, 'The diagram has the shape of a', 'm', 'rectangle', 'square', 'parallelogram', 'circle.', 'op3', '225.jpg', 1, 4, 20, 21, '2022-09-03 15:59:27', '2022-09-03 23:51:38'),
 (226, 'The diagram has the shape of a', 'qi', 'circle', 'square', 'rectangle', 'parallelogram.', 'op1', '226.jpg', 1, 4, 20, 21, '2022-09-03 16:10:09', '2022-09-03 23:51:38'),
@@ -609,7 +613,7 @@ INSERT INTO `subcategories` (`id`, `name`, `description`, `category_id`, `active
 (1, 'Bangla', 'Bengali language', 1, '1', '2022-08-13 21:47:48', '2022-08-29 08:09:24'),
 (2, 'Bangla', 'Bangla', 4, '1', '2022-08-13 21:48:11', '2022-08-29 08:07:10'),
 (3, 'Mathematic', 'Karok and FT', 1, '0', '2022-08-14 15:25:49', '2022-08-14 20:28:56'),
-(4, 'Mathematic', 'Mathematic', 5, '1', '2022-08-14 15:28:44', '2022-09-02 12:42:20'),
+(4, 'Mathematic', 'Mathematic', 7, '1', '2022-08-14 15:28:44', '2022-09-06 11:20:45'),
 (5, 'Bangla', 'Bangla', 5, '1', '2022-08-15 16:29:07', '2022-08-29 08:12:09'),
 (6, 'HTML', 'IT Scholarship Programme', 6, '1', '2022-08-16 22:20:07', '2022-08-16 22:20:07'),
 (7, 'JavaScript', 'JavaScript', 6, '1', '2022-08-29 06:34:22', '2022-08-29 07:43:26'),
@@ -623,7 +627,7 @@ INSERT INTO `subcategories` (`id`, `name`, `description`, `category_id`, `active
 (15, 'Bangla', 'Bangla', 3, '1', '2022-08-29 08:04:33', '2022-08-29 08:04:33'),
 (16, 'English', 'English', 3, '1', '2022-08-29 08:04:49', '2022-08-29 08:04:49'),
 (17, 'English', 'English', 5, '1', '2022-08-29 08:07:40', '2022-09-02 12:42:43'),
-(18, 'English', 'English', 5, '1', '2022-08-29 08:12:37', '2022-08-29 08:12:37'),
+(18, 'English', 'English', 7, '1', '2022-08-29 08:12:37', '2022-09-06 11:19:43'),
 (19, 'Science', 'Science', 5, '1', '2022-08-29 08:12:55', '2022-08-29 08:12:55'),
 (20, 'Mathematic', 'Mathematic', 4, '1', '2022-09-02 12:36:59', '2022-09-02 12:36:59'),
 (21, 'English', 'English', 4, '1', '2022-09-02 12:38:14', '2022-09-02 12:38:14'),
@@ -902,7 +906,7 @@ ALTER TABLE `profiles`
 -- AUTO_INCREMENT for table `quizsets`
 --
 ALTER TABLE `quizsets`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `quizzes`

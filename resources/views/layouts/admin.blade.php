@@ -97,10 +97,12 @@
             // =========
             // for subcats as cats
             function selectscat(ob) {
-              // remove selected topic
-                $("#topic_id").find("option").remove().end().append(
-                    '<option value = "-1">Select Topic</option>');
-                
+                // remove selected topic
+                // $("#topic_id").find("option").remove().end().append(
+                //     '<option value = "-1">Select Topic</option>');
+
+                $("#topic_id").empty().append('<option value = "-1">Select Topic');
+
                 let html = "";
                 for (const key in ob) {
                     if (Object.hasOwnProperty.call(ob, key)) {

@@ -210,9 +210,9 @@
                         title: $("#title").val(),
                         cid: $("#category_id").val(),
                         scid: $("#subcategory_id").val(),
-                        // tid: $("#topic_id").val(),
+                        tid: $("#topic_id").val(),
                         stime: $("#stime").val(),
-                        enime: $("#entime").val(),
+                        entime: $("#entime").val(),
                         quiz: qArr
                     },
                     dataType: "json",

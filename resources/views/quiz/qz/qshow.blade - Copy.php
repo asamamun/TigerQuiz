@@ -68,7 +68,9 @@
                     .three:checked~label.third,
                     .four:checked~label.forth,
                     .five:checked~label.fifth,
-                    .six:checked~label.sixth{
+                    .six:checked~label.sixth,
+                    .seven:checked~label.seveth,
+                    .eight:checked~label.eighth {
                         border-color: #00FFFF
                     }
 
@@ -77,7 +79,9 @@
                     .three:checked~label.third .circle,
                     .four:checked~label.forth .circle,
                     .five:checked~label.fifth .circle,
-                    .six:checked~label.sixth .circle{
+                    .six:checked~label.sixth .circle,
+                    .seven:checked~label.seveth .circle,
+                    .eight:checked~label.eighth .circle {
                         border: 6px solid #00FFFF;
                         background-color: #fff
                     }
@@ -182,8 +186,7 @@
                         <hr>
                         <div class="d-none" id="quiz"></div>
                         <span class="btn btn-light text-center text-info mb-2" id="results"></span>
-                        {{-- <button class="btn btn-info text-center mb-2" id="submit">Submit Quiz</button> --}}
-                        <button onclick="returnScore()">View Results</button>
+                        <button class="btn btn-info text-center mb-2" id="submit">Submit Quiz</button>
                         {{-- <div class="d-grid gap-2">
                             <ul class="list-group d-none" id="selectedQuizContainer">
                             </ul>
@@ -221,31 +224,29 @@
                 // console.log($t.closest('.quizcontainer').find('.'+$answer));
             });
             
-            // $(document).on("click", '.course', function() {
-            //     var params = $("input[type=radio]:checked").val();
-            //     alert(params);
-            // });
+            $(document).on("click", '.course', function() {
+                var params = $("input[type=radio]:checked").val();
+                alert(params);
+            });
             // render_quiz_questions
             function render_quiz_questions(quizzes) {
                 console.log(quizzes);
                 let q = "";
                 quizzes.forEach(quiz => {
                     let html = '';
-                    let name = quiz.id;
                     if (quiz.qimage !== "" && quiz.qimage !== null) {
                         html += "<img src='{{ url('/') }}/storage/quizimages/" + quiz.qimage +
                             "' class='img-fluid'/>";
                     }
-                   
+
                     html +=
-                    
                         `<li class='fw-bold border rounded py-2 ps-2'>${quiz.question}</li><div>
                             <div class='quizcontainer'>
                             <div class='col-12 mb-2'>
                             <input type='radio' name="box${quiz.id}" value="op1" id="one${quiz.id}" class='one'>
                             <input type='radio' name="box${quiz.id}" value="op2" id="two${quiz.id}" class='two'>
-                            <input type='radio' name="box${quiz.id}" value="op3" id="three${quiz.id}" class='three'>
-                            <input type='radio' name="box${quiz.id}" value="op4" id="four${quiz.id}" class='four'>
+                            <input type='radio' name="box${quiz.id} "value="op3" id="three${quiz.id}" class='three'>
+                            <input type='radio' name="box${quiz.id} "value="op4" id="four${quiz.id}" class='four'>
                             <label for='one${quiz.id}' class='box first'><div class='course op1'><span class='circle'></span><span class='subject'>${quiz.op1}</span></div></label>
                             <label for='two${quiz.id}' class='box second'><div class='course op2'><span class='circle'></span><span class='subject'>${quiz.op2}</span></div></label>
                             <label for='three${quiz.id}' class='box third'><div class='course op3'><span class='circle'></span><span class='subject'>${quiz.op3}</span></div></label>
@@ -260,9 +261,7 @@
                             </div>
                             <div><span class='btn btn-sm btn-info my-2 px-4 fw-bold'>Clean</span></div></div></div>
                         </div>`;
-                    
                     q += html;
-                
                 });
                 $("#quizcontainer").html(q);
                 $(".ansshow").hide();
@@ -348,24 +347,114 @@
         });
         // 
         // =========================================================================
+        (function() {
+            function buildQuiz() {
+                // variable to store the HTML output
+                const output = [];
+                // for each question...
+                quizzes.forEach(
+                    (currentQuestion, questionNumber) => {
 
-        var answers = ["op1","op2","op3","op4"], 
-            tot = answers.length;
-        
-        function getCheckedValue(radioName){
-            var radios = document.getElementsByName( radioName ); // Get radio group by-name
-            for(var y=0; y<radios.length; y++)
-              if(radios[y].checked)  return radios[y].value; // return the checked value
-        }
-        
-        function getScore(){
-          var score = 0;
-          for (var i=0; i<tot; i++)
-            if(getCheckedValue("box"+quiz.id)===answers[i]) score += 1; // increment only
-          return score;
-        }
-        
-        function returnScore(){
-          alert("Your score is "+ getScore() +"/"+ tot);
-        }</script>
+                        // variable to store the list of possible answers
+                        const answers = [];
+
+                        // and for each available answer...
+                        for (letter in currentQuestion.answers) {
+
+                            // ...add an HTML radio button
+                            answers.push(
+                                `<label>
+                  <input type="radio" name="question${questionNumber}" value="${letter}">${letter} :
+                  ${currentQuestion.answers[letter]}
+                 </label>`);
+                        }
+
+                        // add this question and its answers to the output
+                        output.push(
+                            `<div class="question"> ${currentQuestion.question} </div>
+              <div class="answers"> ${answers.join('')} </div>`
+                        );
+                    }
+                );
+
+                // finally combine our output list into one string of HTML and put it on the page
+                quizContainer.innerHTML = output.join('');
+            }
+
+            function showResults() {
+
+                // gather answer containers from our quiz
+                const answerContainers = quizContainer.querySelectorAll('.answers');
+
+                // keep track of user's answers
+                let numCorrect = 0;
+
+                // for each question...
+                quizzes.forEach((currentQuestion, questionNumber) => {
+
+                    // find selected answer
+                    const answerContainer = answerContainers[questionNumber];
+                    const selector = `input[name=question${questionNumber}]:checked`;
+                    const userAnswer = (answerContainer.querySelector(selector) || {}).value;
+
+                    // if answer is correct
+                    if (userAnswer === currentQuestion.correctAnswer) {
+                        // add to the number of correct answers
+                        numCorrect++;
+
+                        // color the answers green
+                        answerContainers[questionNumber].style.color = 'lightgreen';
+                    }
+                    // if answer is wrong or blank
+                    else {
+                        // color the answers red
+                        answerContainers[questionNumber].style.color = 'red';
+                    }
+                });
+
+                // show number of correct answers out of total ${Math.floor(Math.random() * 5 + 4)} 
+                resultsContainer.innerHTML =
+                    `<h2> Tiger Quiz Result: You got ${numCorrect} marks out of ${quizzes.length}</h2>`;
+            }
+
+            const quizContainer = document.getElementById('quiz');
+            const resultsContainer = document.getElementById('results');
+            const submitButton = document.getElementById('submit');
+            const quizzes = [{
+                    question: "Who invented JavaScript?",
+                    answers: {
+                        a: "Douglas Crockford",
+                        b: "Sheryl Sandberg",
+                        c: "Brendan Eich"
+                    },
+                    correctAnswer: "c"
+                },
+                {
+                    question: "Which one of these is a JavaScript package manager?",
+                    answers: {
+                        a: "Node.js",
+                        b: "TypeScript",
+                        c: "npm"
+                    },
+                    correctAnswer: "c"
+                },
+                {
+                    question: "Which tool can you use to ensure code quality?",
+                    answers: {
+                        a: "Angular",
+                        b: "jQuery",
+                        c: "RequireJS",
+                        d: "ESLint"
+                    },
+                    correctAnswer: "d"
+                }
+            ];
+
+            // Kick things off
+            buildQuiz();
+
+            // Event listeners
+            submitButton.addEventListener('click', showResults);
+        })();
+    </script>
 @endsection
