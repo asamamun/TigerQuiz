@@ -183,10 +183,9 @@
                         </div>
                         
                         <hr>
-                        <div class="d-none" id="quiz"></div>
-                        <span class="btn btn-light text-center text-info mb-2" id="results"></span>
-                        <button type="submit" class="btn btn-info text-center mb-2" id="submit">Submit Quiz</button>
-                        <button onclick="returnScore()">View Results</button>
+                      <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-sm btn-info text-center mb-2" id="submit">Submit Quiz</button>
+                        </div>
                         </form>
                     </div>
                 </div>
