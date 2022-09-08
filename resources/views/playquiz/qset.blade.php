@@ -136,17 +136,23 @@
 
                         <div class="row">
                             <span class="d-none">{{ $i = 0 }}</span>
-                            @foreach ($quizzes as $q)
+                            @foreach ($qset as $q)
                                 <div class="quizcontainer">
+                                    {{-- <h5>{{ $q->quizset->name }}</h5> --}}
                                     <div class="col-12">
                                         <h5>{{ $q->question }}</h5>
                                         <div>
-                                            <input type="radio" name="radio" id="one1" class="one">
-                                            <label for="one1" class="box first">
-                                                <div class="course op1"> <span class="circle"></span> <span class="subject">
-                                                        <p>Your Answer : {{ $quizans[$i++] }}</p>
-                                                    </span> </div>
-                                            </label>
+                                            <div class='quizcontainer'>
+                                                <div class='col-12 mb-2'>
+                                                <input type='radio' name="box{{$q->id}}" value="op1" id="one{{$q->id}}" class='one'>
+                                                <input type='radio' name="box{{$q->id}}" value="op2" id="two{{$q->id}}" class='two'>
+                                                <input type='radio' name="box{{$q->id}}" value="op3" id="three{{$q->id}}" class='three'>
+                                                <input type='radio' name="box{{$q->id}}" value="op4" id="four{{$q->id}}" class='four'>
+                                                <label for='one${quiz.id}' class='box first'><div class='course op1'><span class='circle'></span><span class='subject'>{{$q->op1}}</span></div></label>
+                                                <label for='two${quiz.id}' class='box second'><div class='course op2'><span class='circle'></span><span class='subject'>{{$q->op2}}</span></div></label>
+                                                <label for='three${quiz.id}' class='box third'><div class='course op3'><span class='circle'></span><span class='subject'>{{$q->op3}}</span></div></label>
+                                                <label for='four${quiz.id}' class='box forth'><div class='course op4'><span class='circle'></span><span class='subject'>{{$q->op4}}</span></div></label>
+                                                </div>
                                         </div>
                                     </div>
                                     <div class="form-group row">
