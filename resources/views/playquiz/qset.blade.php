@@ -20,6 +20,7 @@
 @stop
 
 @section('content')
+
     <div class="card card-hover shadow mb-4">
         <div class="card-header py-3 d-flex justify-content-between">
             <h3 class="m-0 font-weight-bold text-info">Quiz Result</h3>
@@ -136,7 +137,16 @@
 
                         <div class="row">
                             <span class="d-none">{{ $i = 0 }}</span>
+                            <div class="card-header py-3 d-flex flex-row align-items-center rounded mb-2 justify-content-between">
+                                <h4 class="m-0 font-weight-bold text-dark">Name: {{$qset[1]->name}}</h4>
+                                <h4 class="m-0 font-weight-bold text-dark">Title: {{$qset[2]->title }}</h4>
+                                <h4 class="m-0 font-weight-bold text-dark">Prepared by: {{$qset[5]->user->name }}</h4>
+                                {{-- <a href="{{ url('quiz') }}" class="btn btn-info btn-circle btn-sm" title="Back to Topic List">
+                                    <i class="fas fa-arrow-left"></i>
+                                </a> --}}
+                            </div>
                             @foreach ($qset as $q)
+                            <div class="card card-hover shadow mb-4">
                                 <div class="quizcontainer">
                                     {{-- <h5>{{ $q->quizset->name }}</h5> --}}
                                     <div class="col-12">

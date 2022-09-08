@@ -147,8 +147,7 @@ class QuizsetController extends Controller
     public function showqset($id)
     {
        
-        $qset  = Quiz::with('quizset')->get();
-        // $qset = Quizset::all($id);
+        $qset = Quizset::all();
         return view('playquiz.qset', compact('qset'));
 
         //  dd($id,$qset);
