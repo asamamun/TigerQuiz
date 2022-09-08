@@ -158,10 +158,10 @@
                                                 <input type='radio' name="box{{$q->id}}" value="op2" id="two{{$q->id}}" class='two'>
                                                 <input type='radio' name="box{{$q->id}}" value="op3" id="three{{$q->id}}" class='three'>
                                                 <input type='radio' name="box{{$q->id}}" value="op4" id="four{{$q->id}}" class='four'>
-                                                <label for='one${quiz.id}' class='box first'><div class='course op1'><span class='circle'></span><span class='subject'>{{$q->op1}}</span></div></label>
-                                                <label for='two${quiz.id}' class='box second'><div class='course op2'><span class='circle'></span><span class='subject'>{{$q->op2}}</span></div></label>
-                                                <label for='three${quiz.id}' class='box third'><div class='course op3'><span class='circle'></span><span class='subject'>{{$q->op3}}</span></div></label>
-                                                <label for='four${quiz.id}' class='box forth'><div class='course op4'><span class='circle'></span><span class='subject'>{{$q->op4}}</span></div></label>
+                                                <label for='one{{$q->id}}' class='box first'><div class='course op1'><span class='circle'></span><span class='subject'>{{$q->op1}}</span></div></label>
+                                                <label for='two{{$q->id}}' class='box second'><div class='course op2'><span class='circle'></span><span class='subject'>{{$q->op2}}</span></div></label>
+                                                <label for='three{{$q->id}}' class='box third'><div class='course op3'><span class='circle'></span><span class='subject'>{{$q->op3}}</span></div></label>
+                                                <label for='four{{$q->id}}' class='box forth'><div class='course op4'><span class='circle'></span><span class='subject'>{{$q->op4}}</span></div></label>
                                                 </div>
                                         </div>
                                     </div>
