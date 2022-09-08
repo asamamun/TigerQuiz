@@ -226,8 +226,8 @@ class QuizController extends Controller
     public function topicquiz($id)
     {
 
-        $scats  = Topic::with('quizzes')->get();
-        return view('playquiz.topic', compact('cats'));
+        $topics = Topic::with('quizzes')->get();
+        return view('playquiz.topic', compact('topics'));
     }
 
 

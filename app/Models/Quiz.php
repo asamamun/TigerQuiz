@@ -39,8 +39,4 @@ class Quiz extends Model
     {
     return $this->belongsTo('App\Models\Topic');
     }
-    public function answers()
-  {
-      return $this->hasMany(Answer::class);
-  }
 }

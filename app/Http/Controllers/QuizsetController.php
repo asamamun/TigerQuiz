@@ -15,6 +15,7 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
+use PHPUnit\TextUI\XmlConfiguration\CodeCoverage\Report\Php;
 
 class QuizsetController extends Controller
 {
@@ -127,6 +128,7 @@ class QuizsetController extends Controller
         $q->stime = $request->stime;
         $q->entime = $request->entime;
         $q->quizzes = join(",", $request->quiz);
+        // $q->quizzes = $request->quiz;
 
         // if ($u->quizsets()->save($q)) {
         //     return redirect()->refresh()->with('message', 'Quizset ' . $q->id . ' has been created!');
@@ -146,11 +148,14 @@ class QuizsetController extends Controller
 
     public function showqset($id)
     {
-       
-        $qset = Quizset::all();
-        return view('playquiz.qset', compact('qset'));
+        // $qset = Quizset::with("user")->findOrFail($id);
+        $qset = Quizset::all()->where('id', $id);
+        // $quiz = Quiz::whereIn('id', array(...))->get();
+  
+        return view('playquiz.qset')
+        ->with('qset', $qset);
 
-        //  dd($id,$qset);
+        //  dd($qset);
         
 
     }

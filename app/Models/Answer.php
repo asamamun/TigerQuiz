@@ -21,12 +21,4 @@ class Answer extends Model
     return $this->belongsTo('App\Models\User');
     // return $this-> belongsTo (User :: class, 'user_id');
     }
-    public function quiz()
-    {
-    return $this->belongsTo('App\Models\Quiz');
-    }
-    public function quizset()
-    {
-    return $this->hasMany('App\Models\Quizset');
-    }
 }

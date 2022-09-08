@@ -136,23 +136,38 @@
                     <div class="container mb-1">
 
                         <div class="row">
-                            <span class="d-none">{{ $i = 0 }}</span>
-                            <div class="card-header py-3 d-flex flex-row align-items-center rounded mb-2 justify-content-between">
-                                <h4 class="m-0 font-weight-bold text-dark">Name: {{$qset[1]->name}}</h4>
-                                <h4 class="m-0 font-weight-bold text-dark">Title: {{$qset[2]->title }}</h4>
-                                <h4 class="m-0 font-weight-bold text-dark">Prepared by: {{$qset[5]->user->name }}</h4>
+                            @forelse($qset as $qs)
+                            @php
+                                $ar= (explode(",",$qs->quizzes));
+                                $qz = DB::table('quizzes')->whereIn('id', $ar)->get();
+                                //  dd($ar, $qz);
+                            @endphp
+                            @empty
+                            <td>
+                                No Information to Display
+                            </td>
+                            @endforelse
+
+                        
+                            {{-- <span class="d-none">{{ $i = 0 }}</span> --}}
+                           <div class="card-header py-3 d-flex flex-row align-items-center rounded mb-2 justify-content-between">
+                                <h4 class="m-0 font-weight-bold text-dark">Name: {{$qs->name}}</h4>
+                                <h4 class="m-0 font-weight-bold text-dark">Title: {{$qs->title }}</h4>
+                                <h4 class="m-0 font-weight-bold text-dark">Prepared by: {{$qs->user->name }}</h4>
                                 {{-- <a href="{{ url('quiz') }}" class="btn btn-info btn-circle btn-sm" title="Back to Topic List">
                                     <i class="fas fa-arrow-left"></i>
                                 </a> --}}
                             </div>
-                            @foreach ($qset as $q)
-                            <div class="card card-hover shadow mb-4">
-                                <div class="quizcontainer">
-                                    {{-- <h5>{{ $q->quizset->name }}</h5> --}}
+                   
+                            <div class="card card-hover shadow mb-1">
+                                      
+                            @foreach($qz as $q)
+                                <div class="mt-3">
+                                    <h5>{{ $q->question }}</h5>
                                     <div class="col-12">
-                                        <h5>{{ $q->question }}</h5>
+                                      
                                         <div>
-                                            <div class='quizcontainer'>
+                                            <div class='quizcontainer mt-1'>
                                                 <div class='col-12 mb-2'>
                                                 <input type='radio' name="box{{$q->id}}" value="op1" id="one{{$q->id}}" class='one'>
                                                 <input type='radio' name="box{{$q->id}}" value="op2" id="two{{$q->id}}" class='two'>
