@@ -27,14 +27,14 @@ class AnswerController extends Controller
     {
         $u = User::find(Auth::id());
         $q = new Answer();
-        $q->qid = $request->qid;
-        $q->qsid = $request->qsid;
-        $q->gans = join(",", $request->gans);
+        $q->qset_id = $request->qset_id ?? null;
+        $q->type = $request->type;
         $q->marks = $request->marks;
+        $q->tquiz = $request->tquiz;
         // $q->quizzes = join(",", $request->quiz);
 
         if($u->answers()->save($q)){
-           Session::flash('message', __('Your Answer of' . $q->id . ' has been submited!'));
+           Session::flash('message', __('Your Answer of has been submited!'));
              return response()->json(['message'=>"Created",'error'=>0]);
         }
         else{
@@ -63,10 +63,12 @@ class AnswerController extends Controller
             //echo $quiz->id ." :". $quiz->ans. " =  User ans:" . $answers['box'.$quiz->id] . "<br>";
         }
         // dd($answers,$quizzes , $quizid, $quizans);
+        
         return view('quiz.result')
         ->with('quizzes',$quizzes)
         ->with('quizans',$quizans)
         ->with('total',count($answers))
         ->with('result',$result);
+        
     }
 }

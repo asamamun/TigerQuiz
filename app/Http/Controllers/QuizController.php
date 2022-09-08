@@ -263,7 +263,7 @@ class QuizController extends Controller
         // return response()->json($quizzes->toJson(JSON_PRETTY_PRINT));
         return response()->json($quizzes->toJson());
     }
-
+        // API
     public function randomquestions(){
         $q = Quiz::inRandomOrder()->limit(15)->get();
         return response()->json($q);}

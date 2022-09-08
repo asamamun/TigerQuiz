@@ -16,7 +16,7 @@
 @stop
 <!-- end sidebar -->
 @section('navbar')
-@include('inc.admin.navbar')
+    @include('inc.admin.navbar')
 @stop
 @section('content')
     <div class="card card-hover shadow mb-4">
@@ -68,7 +68,7 @@
                     .three:checked~label.third,
                     .four:checked~label.forth,
                     .five:checked~label.fifth,
-                    .six:checked~label.sixth{
+                    .six:checked~label.sixth {
                         border-color: #00FFFF
                     }
 
@@ -77,7 +77,7 @@
                     .three:checked~label.third .circle,
                     .four:checked~label.forth .circle,
                     .five:checked~label.fifth .circle,
-                    .six:checked~label.sixth .circle{
+                    .six:checked~label.sixth .circle {
                         border: 6px solid #00FFFF;
                         background-color: #fff
                     }
@@ -174,18 +174,19 @@
 
                     <div class="row">
                         <span class="d-none">{{ $sl = 1 }}</span>
-                        <form action="{{url('result')}}" method="post">
+                        <form action="{{ url('result') }}" method="post">
                             @csrf
-                        <div class="col-12" id="quizcontainer">
+                            <div class="col-12" id="quizcontainer">
 
 
 
-                        </div>
-                        
-                        <hr>
-                      <div class="d-grid gap-2">
-                            <button type="submit" class="btn btn-sm btn-info text-center mb-2" id="submit">Submit Quiz</button>
-                        </div>
+                            </div>
+
+                            <hr>
+                            <div class="d-grid gap-2">
+                                <button type="submit" class="btn btn-sm btn-info text-center mb-2" id="submit">Submit
+                                    Quiz</button>
+                            </div>
                         </form>
                     </div>
                 </div>
@@ -218,7 +219,7 @@
                 $t.closest('.quizcontainer').find('.' + $answer).toggleClass('bg-warning rounded');
                 // console.log($t.closest('.quizcontainer').find('.'+$answer));
             });
-            
+
             // $(document).on("click", '.course', function() {
             //     var params = $("input[type=radio]:checked").val();
             //     alert(params);
@@ -234,9 +235,9 @@
                         html += "<img src='{{ url('/') }}/storage/quizimages/" + quiz.qimage +
                             "' class='img-fluid'/>";
                     }
-                   
+
                     html +=
-                    
+
                         `<li class='fw-bold border rounded py-2 ps-2'>${quiz.question}</li><div>
                             <div class='quizcontainer'>
                             <div class='col-12 mb-2'>
@@ -258,9 +259,9 @@
                             </div>
                             <div><span class='btn btn-sm btn-info my-2 px-4 fw-bold'>Clean</span></div></div></div>
                         </div>`;
-                    
+
                     q += html;
-                
+
                 });
                 $("#quizcontainer").html(q);
                 $(".ansshow").hide();
@@ -310,60 +311,29 @@
                 $("#selectedQuizContainer").append(html);
 
             });
-           
-
-            // //store quizset
-            // $("#saveAnsBtn").click(function(e) {
-            //     e.preventDefault();
-            //     let qArr = [];
-            //     $.each($("#selectedQuizContainer li"), function(indexInArray, valueOfElement) {
-            //         //console.log($(this).data('selected'));
-            //         qArr.push($(this).data('selected'));
-            //     });
-            //     $.ajax({
-            //         type: "post",
-            //         url: "{{ url('storeanswer') }}",
-            //         data: {
-            //             qid: $("#qid").val(),
-            //             qsid: $("#qsid").val(),
-            //             gans: $("#gans").val(),
-            //             marks: $("#marks").val(),
-            //             // quiz: qArr
-            //         },
-            //         dataType: "json",
-            //         success: function(response) {
-            //             if (response.error == "1") {
-            //                 alert("Something went wrong!!");
-            //             } else {
-            //                 location.reload();
-            //             }
-            //         }
-            //     });
-
-
-            // });
 
         });
         // 
         // =========================================================================
 
-        var answers = ["op1","op2","op3","op4"], 
+        var answers = ["op1", "op2", "op3", "op4"],
             tot = answers.length;
-        
-        function getCheckedValue(radioName){
-            var radios = document.getElementsByName( radioName ); // Get radio group by-name
-            for(var y=0; y<radios.length; y++)
-              if(radios[y].checked)  return radios[y].value; // return the checked value
+
+        function getCheckedValue(radioName) {
+            var radios = document.getElementsByName(radioName); // Get radio group by-name
+            for (var y = 0; y < radios.length; y++)
+                if (radios[y].checked) return radios[y].value; // return the checked value
         }
-        
-        function getScore(){
-          var score = 0;
-          for (var i=0; i<tot; i++)
-            if(getCheckedValue("box"+quiz.id)===answers[i]) score += 1; // increment only
-          return score;
+
+        function getScore() {
+            var score = 0;
+            for (var i = 0; i < tot; i++)
+                if (getCheckedValue("box" + quiz.id) === answers[i]) score += 1; // increment only
+            return score;
         }
-        
-        function returnScore(){
-          alert("Your score is "+ getScore() +"/"+ tot);
-        }</script>
+
+        function returnScore() {
+            alert("Your score is " + getScore() + "/" + tot);
+        }
+    </script>
 @endsection

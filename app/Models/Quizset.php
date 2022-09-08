@@ -33,4 +33,16 @@ class Quizset extends Model
     {
     return $this->belongsTo('App\Models\Subcategory');
     }
+    public function topic()
+    {
+    return $this->belongsTo('App\Models\Topic');
+    }
+    public function quizzes()
+    {
+        return $this->hasMany('App\Models\Quiz');
+    }
+    public function answers()
+  {
+      return $this->hasMany(Answer::class);
+  }
 }

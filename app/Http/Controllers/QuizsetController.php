@@ -107,18 +107,6 @@ class QuizsetController extends Controller
     {
         //
     }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Quizset  $quizset
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Quizset $quizset)
-    {
-        //
-    }
-
     public function showquiz(Request $request)
     {
         // echo "hello";
@@ -155,4 +143,26 @@ class QuizsetController extends Controller
         }
 
     }
+
+    public function showqset(Request $request)
+    {
+       
+        $qsets  = Quizset::all();
+        return view('playquiz.qset', compact('qsets'));
+        
+
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Models\Quizset  $quizset
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(Quizset $quizset)
+    {
+        //
+    }
+
+    
 }

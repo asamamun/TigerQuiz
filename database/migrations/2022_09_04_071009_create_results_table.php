@@ -19,7 +19,9 @@ return new class extends Migration
             $table->foreign('user_id')->references('id')->on('users');
             $table->bigInteger('qset_id')->unsigned()->nullable();
             $table->foreign('qset_id')->references('id')->on('quizsets');
+            $table->set('type',['rq','sq'])->default('sq');
             $table->bigInteger('marks');
+            $table->bigInteger('tquiz');
             $table->timestamps();
         });
     }

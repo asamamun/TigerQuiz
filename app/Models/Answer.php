@@ -10,10 +10,10 @@ class Answer extends Model
     use HasFactory;
     protected $fillable = [
         'user_id',
-        'qid',
-        'qsid',
-        'gans',
+        'qset_id',
+        'type',
         'marks',
+        'tquiz',
     ];
 
     public function user()
