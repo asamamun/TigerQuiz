@@ -10,6 +10,7 @@ use App\Http\Controllers\TopicController;
 use App\Http\Controllers\QuizController;
 use App\Http\Controllers\QuizsetController;
 use App\Http\Controllers\AnswerController;
+use App\Http\Controllers\StudentController;
 use App\Http\Controllers\AllUsers;
 use App\Http\Controllers\LeaderboardController;
 use App\Models\Category;
@@ -57,9 +58,10 @@ Route::middleware(['admin', 'auth'])->group(function () {
 });
 //student group
 Route::middleware(['student', 'auth'])->group(function () {
-    Route::get('/student', function () {
-        return view('student.index');
-    })->name('student');
+    // Route::get('/student', function () {
+    //     return view('student.index');
+    // })->name('student');
+    Route::get('student', [StudentController::class, "index"])->name('student');;
 });
 //teacher group
 Route::middleware(['teacher', 'auth'])->group(function () {

@@ -7,7 +7,8 @@
 
 {{-- main content add here --}}
 @section('include')
-
+@include('partial.flash')
+@include('partial.error')
     @include('inc.intro')
     @include('inc.faci')
     @include('inc.class')

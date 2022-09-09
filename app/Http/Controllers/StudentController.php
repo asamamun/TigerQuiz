@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Answer;
 use App\Models\Quiz;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class StudentController extends Controller
 {
@@ -14,7 +16,11 @@ class StudentController extends Controller
      */
     public function index()
     {
-        //
+        $marks = Answer::all()->where('user_id', Auth::user()->id);
+        // dd($mark);
+        return view('student/index')
+        ->with('marks', $marks)
+        ->with('user', Auth::user());
     }
 
     /**

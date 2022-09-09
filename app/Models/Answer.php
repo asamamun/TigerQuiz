@@ -18,7 +18,16 @@ class Answer extends Model
 
     public function user()
     {
-    return $this->belongsTo('App\Models\User');
-    // return $this-> belongsTo (User :: class, 'user_id');
+        return $this->belongsTo('App\Models\User');
+        // return $this-> belongsTo (User :: class, 'user_id');
+    }
+    public function quizset()
+    {
+        return $this->belongsTo('App\Models\Quizset');
+    }
+
+    public function answer()
+    {
+        return $this->belongsTo('App\Models\Answer');
     }
 }

@@ -37,4 +37,7 @@ class Quizset extends Model
     {
     return $this->belongsTo('App\Models\Topic');
     }
+    public function answer()
+    {
+    return $this->hasMany('App\Models\Answer');}
 }
