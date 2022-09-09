@@ -20,8 +20,6 @@ class AnswerController extends Controller
         // echo "hello";
         $quiz  = Quiz::where('category_id', $request->cid)->where('subcategory_id', $request->scid)->get();
         return response()->json($quiz);
-        
-
     }
     public function storeanswer(Request $request)
     {
@@ -33,42 +31,41 @@ class AnswerController extends Controller
         $q->tquiz = $request->tquiz;
         // $q->quizzes = join(",", $request->quiz);
 
-        if($u->answers()->save($q)){
-           Session::flash('message', __('Your Answer of has been submited!'));
-             return response()->json(['message'=>"Created",'error'=>0]);
+        if ($u->answers()->save($q)) {
+            Session::flash('message', __('Your Answer of has been submited!'));
+            return response()->json(['message' => "Created", 'error' => 0]);
+        } else {
+            return response()->json(['message' => "Error", 'error' => 1]);
         }
-        else{
-            return response()->json(['message'=>"Error",'error'=>1]);
-        }
-
     }
 
-    
 
-    public function result(Request $request){
-        
-        
+
+    public function result(Request $request)
+    {
+
+
         $answers = $request->all();
         unset($answers['_token']);
         $quizid = array_keys($answers);
         $quizid = Arr::map($quizid, function ($value, $key) {
-            return substr($value,3);
+            return substr($value, 3);
         });
         $quizans = array_values($answers);
         $quizzes = Quiz::whereIn('id', $quizid)->get();
         $result = 0;
         foreach ($quizzes as $quiz) {
-            if($quiz->ans == $answers['box'.$quiz->id]){
-                $result++;}
+            if ($quiz->ans == $answers['box' . $quiz->id]) {
+                $result++;
+            }
             //echo $quiz->id ." :". $quiz->ans. " =  User ans:" . $answers['box'.$quiz->id] . "<br>";
         }
         // dd($answers,$quizzes , $quizid, $quizans);
-        
+
         return view('quiz.result')
-        ->with('quizzes',$quizzes)
-        ->with('quizans',$quizans)
-        ->with('total',count($answers))
-        ->with('result',$result);
-        
+            ->with('quizzes', $quizzes)
+            ->with('quizans', $quizans)
+            ->with('total', count($answers))
+            ->with('result', $result);
     }
 }

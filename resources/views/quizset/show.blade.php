@@ -28,25 +28,25 @@
                             style="padding: 30px">
                             <div class="pl-1">
                                 <h3 class="qstitle">{{ $qset->name }}</h3>
-                                        <p class="m-0">
-                                            {{ $qset->title }}
-                                        </p>
-                                        <p class="m-0">
-                                          {{ $qset->category->name }}
-                                        </p>
-                                        <p class="m-0">
-                                        {{ $qset->subcategory->name }}
-                                        </p>
-                                        <p class="m-0">
-                                            Prepared by: {{ $qset->user->name }}
-                                        </p>
+                                <p class="m-0">
+                                    {{ $qset->title }}
+                                </p>
+                                <p class="m-0">
+                                    {{ $qset->category->name }}
+                                </p>
+                                <p class="m-0">
+                                    {{ $qset->subcategory->name }}
+                                </p>
+                                <p class="m-0">
+                                    Prepared by: {{ $qset->user->name }}
+                                </p>
                             </div>
                             <div class="d-flex justify-content-between">
                                 <span class="btn btn-sm mt-2 btn-info">Edit</span>
                                 <span class="btn btn-sm mt-2 btn-info">Active</span>
                             </div>
                         </div>
-                       
+
                     </div>
                 @endforeach
             </div>

@@ -35,7 +35,8 @@
 
                 </div>
                 <div class="col-sm-3 mb-3 mb-sm-0">
-                    {!! Form::select('subcategory_id', [], null, ['required',
+                    {!! Form::select('subcategory_id', [], null, [
+                        'required',
                         'class' => 'form-control ',
                         'id' => 'subcategory_id',
                         'placeholder' => 'Select Subcategory',
@@ -43,7 +44,8 @@
 
                 </div>
                 <div class="col-sm-3 mb-3 mb-sm-0">
-                    {!! Form::select('topic_id', [], null, ['required',
+                    {!! Form::select('topic_id', [], null, [
+                        'required',
                         'placeholder' => 'Select Topic',
                         'class' => 'form-control',
                         'id' => 'topic_id',
@@ -155,7 +157,7 @@
                     $("#imagecontainer").hide(100);
                 }
             });
-           
+
         });
     </script>
 @endsection

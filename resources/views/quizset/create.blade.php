@@ -51,7 +51,8 @@
 
                 </div>
                 <div class="col-sm-3 mb-3 mb-sm-0">
-                    {!! Form::select('topic_id', [], null, ['required',
+                    {!! Form::select('topic_id', [], null, [
+                        'required',
                         'placeholder' => 'Select Topic',
                         'class' => 'form-control',
                         'id' => 'topic_id',
@@ -95,7 +96,7 @@
                 </div>
                 {!! Form::close() !!}
             </div>
-            
+
         </div>
     </div>
     <hr>

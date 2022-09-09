@@ -23,8 +23,9 @@
     <div class="card card-hover shadow mb-4">
         <div class="card-header py-3 d-flex justify-content-between">
             <h3 class="m-0 font-weight-bold text-info">Quiz Result</h3>
-            <h3 class="m-0 font-weight-bold text-info">You got <span id ="marks">{{ $result }}</span> out of <span id="tquiz">{{ $total }}</span> </h3>
-            
+            <h3 class="m-0 font-weight-bold text-info">You got <span id="marks">{{ $result }}</span> out of <span
+                    id="tquiz">{{ $total }}</span> </h3>
+
             <a href="{{ url('quizset') }}" class="btn btn-info btn-circle btn-sm" title="Back to Chapter">
                 <i class="fas fa-arrow-left"></i>
             </a>
@@ -201,14 +202,14 @@
             });
 
             // =======================
-            
-            $( window ).load(function() {
+
+            $(window).load(function() {
 
                 $.ajax({
                     type: "post",
                     url: "{{ url('storeanswer') }}",
                     data: {
-                        marks: $("#marks").val (),
+                        marks: $("#marks").val(),
                         tquiz: $("#tquiz").val()
                     },
 

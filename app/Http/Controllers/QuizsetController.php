@@ -73,7 +73,7 @@ class QuizsetController extends Controller
      */
     public function show()
     {
-        
+
         // $quizset = Quizset::all();
 
         if (Auth::user()->role == "1") {
@@ -92,9 +92,20 @@ class QuizsetController extends Controller
      * @param  \App\Models\Quizset  $quizset
      * @return \Illuminate\Http\Response
      */
-    public function edit(Quizset $quizset)
+    public function edit($id)
     {
-        //
+    //    
+    if (Auth::user()->role == "1") {
+        $quizset = Quizset::all()->where('id', $id);
+    } else {
+        $quizset = Quizset::all()->where('user_id', Auth::id())->where('id', $id);
+    }
+   
+        // dd($quizset->id);
+        $catp = Category::pluck('name', 'id');
+        return view('quizset.edit', compact('quizset'))
+        ->with('catp', $catp)
+        ->with('user', Auth::user());
     }
 
     /**
@@ -106,7 +117,15 @@ class QuizsetController extends Controller
      */
     public function update(UpdateQuizsetRequest $request, Quizset $quizset)
     {
-        //
+        // update all into prpfile table
+        $quizset->update($request->all());
+        // replace the request filename with desired name
+       
+        if ($quizset->save()) {
+            return back()->with('message', "Update Successfully!");
+        } else {
+            return back()->with('message', "Update Failed!!!");
+        }
     }
     public function showquiz(Request $request)
     {
@@ -136,27 +155,26 @@ class QuizsetController extends Controller
         //     return redirect()->back()->with('error', 'Please select atleast one quiz');
         // }
 
-        if($u->quizsets()->save($q)){
-           Session::flash('message', __('Quizset ' . $q->id . ' has been created!'));
-             return response()->json(['message'=>"Created",'error'=>0]);
+        if ($u->quizsets()->save($q)) {
+            Session::flash('message', __('Quizset ' . $q->id . ' has been created!'));
+            return response()->json(['message' => "Created", 'error' => 0]);
+        } else {
+            return response()->json(['message' => "Error", 'error' => 1]);
         }
-        else{
-            return response()->json(['message'=>"Error",'error'=>1]);
-        }
-
     }
 
     public function showqset($id)
     {
-        // $qset = Quizset::with("user")->findOrFail($id);
+        
         $qset = Quizset::all()->where('id', $id);
-        // $quiz = Quiz::whereIn('id', array(...))->get();
-  
+        // $quiz = Quiz::all()->whereIn('id', $ar)->get();
+
+
         return view('playquiz.qset')
-        ->with('qset', $qset);
+            ->with('qset', $qset);
 
         //  dd($qset);
-        
+
 
     }
 
@@ -170,6 +188,4 @@ class QuizsetController extends Controller
     {
         //
     }
-
-    
 }
