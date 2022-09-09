@@ -23,155 +23,91 @@
     <div class="card card-hover shadow mb-4">
         <div class="card-header py-3 d-flex justify-content-between">
             <h3 class="m-0 font-weight-bold text-info">Quiz Result</h3>
-            <h3 class="m-0 font-weight-bold text-info">You got <span id="marks">{{ $result }}</span> out of <span
-                    id="tquiz">{{ $total }}</span> </h3>
-
-            <a href="{{ url('quizset') }}" class="btn btn-info btn-circle btn-sm" title="Back to Chapter">
+            <!-- Button trigger modal -->
+            <span type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#savemarks">
+                <h3 class="m-0 font-weight-bold text-light">You got <span id="marks">{{ $result }}</span> out of
+                    <span id="tquiz">{{ $total }}</span>
+                </h3>
+            </span>
+            <a href="{{ url('quiz/qz/qshow') }}" class="btn btn-info btn-sm" title="Back to Quizset">
                 <i class="fas fa-arrow-left"></i>
             </a>
         </div>
+            
         <div class="card-body">
+            @include('partial.flash')
+            @include('partial.error')
+            <section>
+                <div class="container mb-1">
 
-            <!doctype html>
-            <html lang=en>
-
-            <head>
-                <meta charset=utf-8>
-                <style>
-                    * {
-                        margin: 0;
-                        padding: 0;
-                        box-sizing: border-box;
-                        font-family: 'palatino linotype', Rupali;
-                    }
-
-                    p {
-                        margin: 0%
-                    }
-
-
-                    .container {
-                        margin: 30px auto;
-                        background: white;
-                        padding: 20px 15px
-                    }
-
-                    label.box {
-                        display: flex;
-                        margin-top: 10px;
-                        padding: 10px 12px;
-                        border-radius: 5px;
-                        cursor: pointer;
-                        border: 1px solid #ddd
-                    }
-
-                    .one:checked~label.first,
-                    .two:checked~label.second,
-                    .three:checked~label.third,
-                    .four:checked~label.forth,
-                    .five:checked~label.fifth,
-                    .six:checked~label.sixth,
-                    .seven:checked~label.seveth,
-                    .eight:checked~label.eighth {
-                        border-color: #00FFFF
-                    }
-
-                    .one:checked~label.first .circle,
-                    .two:checked~label.second .circle,
-                    .three:checked~label.third .circle,
-                    .four:checked~label.forth .circle,
-                    .five:checked~label.fifth .circle,
-                    .six:checked~label.sixth .circle,
-                    .seven:checked~label.seveth .circle,
-                    .eight:checked~label.eighth .circle {
-                        border: 6px solid #00FFFF;
-                        background-color: #fff
-                    }
-
-                    label.box:hover {
-                        background: #FFA500
-                    }
-
-                    bggreen {
-                        background: green;
-                    }
-
-                    label.box .course {
-                        display: flex;
-                        align-items: center;
-                        width: 100%
-                    }
-
-                    label.box .circle {
-                        height: 22px;
-                        width: 22px;
-                        border-radius: 50%;
-                        margin-right: 15px;
-                        border: 2px solid #ddd;
-                        display: inline-block
-                    }
-
-                    input[type="radio"] {
-                        display: none
-                    }
-
-                    .btn.btn-primary {
-                        border-radius: 25px;
-                        margin-top: 20px
-                    }
-
-                    @media(max-width: 450px) {
-                        .subject {
-                            font-size: 12px
-                        }
-                    }
-                </style>
-
-
-            </head>
-
-            <body>
-
-                <section>
-                    <div class="container mb-1">
-
-                        <div class="row">
-                            <span class="d-none">{{ $i = 0 }}</span>
-                            @foreach ($quizzes as $q)
-                                <div class="quizcontainer">
-                                    <div class="col-12">
-                                        <h5>{{ $q->question }}</h5>
-                                        <div>
-                                            <input type="radio" name="radio" id="one1" class="one">
-                                            <label for="one1" class="box first">
-                                                <div class="course op1"> <span class="circle"></span> <span class="subject">
-                                                        <p>Your Answer : {{ $quizans[$i++] }}</p>
-                                                    </span> </div>
-                                            </label>
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <div
-                                            class="col-sm-12 mb-3 mb-sm-0 d-flex justify-content-between align-self-center">
-                                            <div>
-                                                <span id="ansbtn" data-answer="{{ $q->ans }}"
-                                                    class="ansbtn btn btn-sm btn-info my-2 px-4 fw-bold">Currect
-                                                    Answer</span>
-                                                <span id="ansshow"
-                                                    class="ansshow btn btn-sm btn-success ms-2 my-2 px-4 fw-bold">{{ $q->ans }}</span>
-                                            </div>
-                                            <div> <span class="btn btn-sm btn-info my-2 px-4 fw-bold">Clean</span></div>
-                                        </div>
+                    <div class="row">
+                        <span class="d-none">{{ $i = 0 }}</span>
+                        @foreach ($quizzes as $q)
+                            <div class="quizcontainer">
+                                <div class="col-12">
+                                    <h5>{{ $q->question }}</h5>
+                                    <div>
+                                        <input type="radio" name="radio" id="one1" class="one">
+                                        <label for="one1" class="box first">
+                                            <div class="course op1"> <span class="circle"></span> <span class="subject">
+                                                    <p>Your Answer : {{ $quizans[$i++] }}</p>
+                                                </span> </div>
+                                        </label>
                                     </div>
                                 </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-12 mb-3 mb-sm-0 d-flex justify-content-between align-self-center">
+                                        <div>
+                                            <span id="ansbtn" data-answer="{{ $q->ans }}"
+                                                class="ansbtn btn btn-sm btn-info my-2 px-4 fw-bold">Currect
+                                                Answer</span>
+                                            <span id="ansshow"
+                                                class="ansshow btn btn-sm btn-success ms-2 my-2 px-4 fw-bold">{{ $q->ans }}</span>
+                                        </div>
+                                        <div> <span class="btn btn-sm btn-info my-2 px-4 fw-bold">Clean</span></div>
+                                    </div>
+                                </div>
+                            </div>
 
-                                <hr>
-                            @endforeach
+                            <hr>
+                        @endforeach
+                    </div>
+                </div>
+                <!-- Modal -->
+                <div class="modal fade" id="savemarks" tabindex="-1" aria-labelledby="quizmodal" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header bg-primary">
+
+                                <h4 class="modal-title text-center text-light" id="quizmodal">Would you like to save your
+                                    Marks?</h4>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            
+                                <div class="modal-body">
+                                    <h3 class="m-0 font-weight-bold text-info">You got <span
+                                            id="marks">{{ $result }}</span> out of <span
+                                            id="tquiz">{{ $total }}</span> </h3>
+                                </div>
+                                <form action="{{ url('/storeanswer') }}" method='post'>
+                                    @csrf
+                                    @method('post')
+                                <div class="d-none">
+                                 <input type="text" name="marks" id="marks" value="{{ $result}}">
+                                 <input type="text" name="tquiz" id="tquiz" value="{{ $result}}">
+                                 <input type="text" name="type" id="type" value="rq">
+                                </div>
+                                <div class="modal-footer small">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                                    <button type="submit" class="btn btn-info">Yes</button>
+                                </div>
+                                </form>
                         </div>
                     </div>
-            </body>
+                </div>
+                {{-- modal end --}}
 
-            </html>
         </div>
     </div>
 @endsection

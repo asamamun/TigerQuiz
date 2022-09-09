@@ -19,6 +19,7 @@
     <link rel="stylesheet" href="{{ url('assets/css/chart.min.css') }}">
     <link rel="stylesheet" href="{{ url('assets/scrollbar/perfect-scrollbar.css') }}">
     <link rel="stylesheet" href="{{ url('assets/css/tea_style.css') }}">
+    <link rel="stylesheet" href="{{ url('assets/css/quiz.css') }}">
 
     @yield('head')
     <style>
@@ -68,7 +69,7 @@
     </div>
     <!-- end div -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" crossorigin="anonymous"></script>
-    {{-- <script src={{url('assets/js/bootstrap.bundle.min.js')}}></script> --}}
+    <script src={{url('assets/js/bootstrap.bundle.min.js')}}></script>
     <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.29.0/feather.min.js" crossorigin="anonymous">
     </script>

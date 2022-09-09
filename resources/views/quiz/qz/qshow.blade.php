@@ -29,98 +29,6 @@
         @include('partial.flash')
         @include('partial.error')
         <div class="card-body">
-
-            <!doctype html>
-            <html lang=en>
-
-            <head>
-                <meta charset=utf-8>
-                <style>
-                    * {
-                        margin: 0;
-                        padding: 0;
-                        box-sizing: border-box;
-                        font-family: 'palatino linotype', Rupali;
-                    }
-
-                    p {
-                        margin: 0%
-                    }
-
-
-                    .container {
-                        margin: 30px auto;
-                        background: white;
-                        padding: 20px 15px
-                    }
-
-                    label.box {
-                        display: flex;
-                        margin-top: 10px;
-                        padding: 10px 12px;
-                        border-radius: 5px;
-                        cursor: pointer;
-                        border: 1px solid #ddd
-                    }
-
-                    .one:checked~label.first,
-                    .two:checked~label.second,
-                    .three:checked~label.third,
-                    .four:checked~label.forth,
-                    .five:checked~label.fifth,
-                    .six:checked~label.sixth {
-                        border-color: #00FFFF
-                    }
-
-                    .one:checked~label.first .circle,
-                    .two:checked~label.second .circle,
-                    .three:checked~label.third .circle,
-                    .four:checked~label.forth .circle,
-                    .five:checked~label.fifth .circle,
-                    .six:checked~label.sixth .circle {
-                        border: 6px solid #00FFFF;
-                        background-color: #fff
-                    }
-
-                    label.box:hover {
-                        background: #FFA500
-                    }
-
-                    label.box .course {
-                        display: flex;
-                        align-items: center;
-                        width: 100%
-                    }
-
-                    label.box .circle {
-                        height: 22px;
-                        width: 22px;
-                        border-radius: 50%;
-                        margin-right: 15px;
-                        border: 2px solid #ddd;
-                        display: inline-block
-                    }
-
-                    input[type="radio"] {
-                        display: none
-                    }
-
-                    .btn.btn-primary {
-                        border-radius: 25px;
-                        margin-top: 20px
-                    }
-
-                    @media(max-width: 450px) {
-                        .subject {
-                            font-size: 12px
-                        }
-                    }
-                </style>
-
-
-            </head>
-
-            <body>
                 <section>
                     <div class="form-group mt-1 row">
                         <div class="col-sm-3 mb-3">
@@ -189,9 +97,6 @@
                         </form>
                     </div>
                 </div>
-            </body>
-
-            </html>
         </div>
     </div>
 @endsection

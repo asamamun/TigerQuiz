@@ -12,6 +12,7 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Redirect;
 
 class AnswerController extends Controller
 {
@@ -32,10 +33,10 @@ class AnswerController extends Controller
         // $q->quizzes = join(",", $request->quiz);
 
         if ($u->answers()->save($q)) {
-            Session::flash('message', __('Your Answer of has been submited!'));
-            return response()->json(['message' => "Created", 'error' => 0]);
+            Session::flash('message', __('Your Answer has been submited!'));
+            return redirect()->back()->with('message', 'Your marks have been saved');
         } else {
-            return response()->json(['message' => "Error", 'error' => 1]);
+            return back()->with('message', 'Errors');
         }
     }
 
