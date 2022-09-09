@@ -21,10 +21,11 @@
 
 @section('content')
     <div class="card card-hover shadow mb-4">
+
         <div class="card-header py-3 d-flex justify-content-between">
             <h3 class="m-0 font-weight-bold text-info">Quiz Result</h3>
             <!-- Button trigger modal -->
-            <span type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#savemarks">
+            <span type="button" class="btn btn-info">
                 <h3 class="m-0 font-weight-bold text-light">You got <span id="marks">{{ $result }}</span> out of
                     <span id="tquiz">{{ $total }}</span>
                 </h3>
@@ -33,7 +34,7 @@
                 <i class="fas fa-arrow-left"></i>
             </a>
         </div>
-            
+
         <div class="card-body">
             @include('partial.flash')
             @include('partial.error')
@@ -73,6 +74,10 @@
                         @endforeach
                     </div>
                 </div>
+                <span type="button" id="savemark" class="btn btn-info d-none" data-bs-toggle="modal"
+                    data-bs-target="#savemarks">
+
+                </span>
                 <!-- Modal -->
                 <div class="modal fade" id="savemarks" tabindex="-1" aria-labelledby="quizmodal" aria-hidden="true">
                     <div class="modal-dialog">
@@ -84,25 +89,25 @@
                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                     aria-label="Close"></button>
                             </div>
-                            
-                                <div class="modal-body">
-                                    <h3 class="m-0 font-weight-bold text-info">You got <span
-                                            id="marks">{{ $result }}</span> out of <span
-                                            id="tquiz">{{ $total }}</span> </h3>
-                                </div>
-                                <form action="{{ url('/storeanswer') }}" method='post'>
-                                    @csrf
-                                    @method('post')
+
+                            <div class="modal-body">
+                                <h3 class="m-0 font-weight-bold text-info">You got <span
+                                        id="marks">{{ $result }}</span> out of <span
+                                        id="tquiz">{{ $total }}</span> </h3>
+                            </div>
+                            <form action="{{ url('/storeanswer') }}" method='post'>
+                                @csrf
+                                @method('post')
                                 <div class="d-none">
-                                 <input type="text" name="marks" id="marks" value="{{ $result}}">
-                                 <input type="text" name="tquiz" id="tquiz" value="{{ $result}}">
-                                 <input type="text" name="type" id="type" value="rq">
+                                    <input type="text" name="marks" id="marks" value="{{ $result }}">
+                                    <input type="text" name="tquiz" id="tquiz" value="{{ $result }}">
+                                    <input type="text" name="type" id="type" value="rq">
                                 </div>
                                 <div class="modal-footer small">
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
                                     <button type="submit" class="btn btn-info">Yes</button>
                                 </div>
-                                </form>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -139,20 +144,7 @@
 
             // =======================
 
-            $(window).load(function() {
 
-                $.ajax({
-                    type: "post",
-                    url: "{{ url('storeanswer') }}",
-                    data: {
-                        marks: $("#marks").val(),
-                        tquiz: $("#tquiz").val()
-                    },
-
-                });
-
-
-            });
             // =======================
 
             //   $(document).ready(function(){ $("p").toggle(
@@ -160,6 +152,8 @@
             //   function(){$("p").css({"color": "blue"});},
             //   function(){$("p").css({"color": "green"});
             //  });
+            setTimeout(function() {
+            $('#savemark').trigger('click'); },20);
         });
     </script>
 @endsection

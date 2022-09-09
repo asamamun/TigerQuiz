@@ -32,11 +32,11 @@ class AnswerController extends Controller
         $q->tquiz = $request->tquiz;
         // $q->quizzes = join(",", $request->quiz);
 
-        if ($u->answers()->save($q)) {
-            Session::flash('message', __('Your Answer has been submited!'));
-            return redirect()->back()->with('message', 'Your marks have been saved');
+        if ($u->answers()->save($q) && Auth::user()->role == "3") {
+
+            return Redirect::to('/student')->with('message', 'Your marks have been saved');
         } else {
-            return back()->with('message', 'Errors');
+            return Redirect::to('/')->with('message', 'Thanks for supports');
         }
     }
 
