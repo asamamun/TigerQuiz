@@ -94,15 +94,15 @@ class QuizsetController extends Controller
      */
     public function edit($id)
     {
-    //    
+       
     if (Auth::user()->role == "1") {
         $quizset = Quizset::all()->where('id', $id);
     } else {
         $quizset = Quizset::all()->where('user_id', Auth::id())->where('id', $id);
     }
    
-        // dd($quizset->id);
         $catp = Category::pluck('name', 'id');
+        //  dd($catp);
         return view('quizset.edit', compact('quizset'))
         ->with('catp', $catp)
         ->with('user', Auth::user());

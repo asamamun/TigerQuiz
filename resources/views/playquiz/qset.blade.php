@@ -138,6 +138,7 @@
                         <div class="row">
                             @forelse($qset as $qs)
                             @php
+
                                 $ar= (explode(",",$qs->quizzes));
                                 $qz = DB::table('quizzes')->whereIn('id', $ar)->get();
                                 //  dd($ar, $qz);
@@ -160,7 +161,8 @@
                             </div>
                    
                             <div class="card card-hover shadow mb-1">
-                                      
+                            <form action="{{ url('result') }}" method="post">
+                               @csrf     
                             @foreach($qz as $q)
                                 <div class="mt-3">
                                     <h5>{{ $q->question }}</h5>
@@ -197,6 +199,11 @@
 
                                 <hr>
                             @endforeach
+                            <div class="d-grid gap-2">
+                                <button type="submit" class="btn btn-sm btn-info text-center mb-2" id="submit">Submit
+                                    Quiz</button>
+                            </div>
+                        </form>
                         </div>
                     </div>
             </body>

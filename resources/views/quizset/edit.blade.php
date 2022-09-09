@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Add Chapter')
+@section('title', 'Edit Quizset')
 @section('sidebar')
     @include('dashboard.sidebar')
 @endsection
@@ -139,7 +139,7 @@
 @section('scripts')
     <script>
        
-
+       $(document).ready( function() ){
             //store quizset
             $("#saveQuizsetBtn").click(function(e) {
 

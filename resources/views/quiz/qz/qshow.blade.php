@@ -173,7 +173,6 @@
                 <div class="container mb-1">
 
                     <div class="row">
-                        <span class="d-none">{{ $sl = 1 }}</span>
                         <form action="{{ url('result') }}" method="post">
                             @csrf
                             <div class="col-12" id="quizcontainer">

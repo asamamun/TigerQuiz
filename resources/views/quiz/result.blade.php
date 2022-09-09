@@ -190,7 +190,7 @@
         $(document).ready(function() {
 
             // alert(5)
-            $(".ansshow").hide();
+            // $(".ansshow").hide();
             $(document).on("click", '.ansbtn', function() {
 
                 $t = $(this);
