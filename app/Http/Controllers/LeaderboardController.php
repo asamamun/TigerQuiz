@@ -11,7 +11,7 @@ class LeaderboardController extends Controller
 {
     public function index(){
         // $anpage = Answer::paginate(10);
-        $answers = Answer::orderBy("marks", "desc")->get();
+        $answers = Answer::orderBy("marks", "desc")->where('type','sq')->get();
         // dd($mark);
         return view('leaderboard.index')
         ->with('answers', $answers)

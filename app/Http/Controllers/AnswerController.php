@@ -25,19 +25,36 @@ class AnswerController extends Controller
     }
     public function storeanswer(Request $request)
     {
+        $answers = $request->all();
+        unset($answers['_token']);
+        $quizid = array_keys($answers);
+        $quizid = Arr::map($quizid, function ($value, $key) {
+            return substr($value, 3);
+        });
+        $quizans = array_values($answers);
+        $quizzes = Quiz::whereIn('id', $quizid)->get();
+        $result = 0;
+        foreach ($quizzes as $quiz) {
+            if ($quiz->ans == $answers['box' . $quiz->id]) {
+                $result++;
+            }
+            //echo $quiz->id ." :". $quiz->ans. " =  User ans:" . $answers['box'.$quiz->id] . "<br>";
+        }
+        // dd($answers,$quizzes , $quizid, $quizans);
+        
         $u = User::find(Auth::id());
         $q = new Answer();
-        $q->qset_id = $request->qset_id ?? null;
-        $q->type = $request->type;
-        $q->marks = $request->marks;
-        $q->tquiz = $request->tquiz;
-        
+        $q->qset_id = $request->qset ?? null;
+        $q->type = 'rq';
+        $q->marks = $result;
+        $q->tquiz = count($answers);
 
-        if ($u->answers()->save($q) && Auth::user()->role == "3") {
-
-            return Redirect::to('/student')->with('message', 'Your marks have been saved');
-        } else {
-            return Redirect::to('/')->with('message', 'Thanks for Your supports');
+        if($u->role == "3"){
+            $u->answers()->save($q);
+            return redirect()->back()->with('message', 'You got '. $result . ' out of ' . count($answers));
+        }
+        else{
+            return redirect('/')->with('message', 'Thanks for your Supports ');
         }
     }
 
@@ -72,6 +89,9 @@ class AnswerController extends Controller
         if($u->role == "3"){
             $u->answers()->save($q);
             return redirect()->back()->with('message', 'You got '. $result . ' out of ' . count($answers));
+        }
+        else{
+            return redirect('/')->with('message', 'Thanks for your Supports');
         }
         
     //191,192,193,194,195,196,197,198,200,201,202,203,204,205,206,207,208,209,210,211

@@ -81,7 +81,7 @@
                 <div class="container mb-1">
 
                     <div class="row">
-                        <form action="{{ url('result') }}" method="post">
+                        <form action="{{ url('storeanswer') }}" method="post">
                             @csrf
                             <div class="col-12" id="quizcontainer">
 

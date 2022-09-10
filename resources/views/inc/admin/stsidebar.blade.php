@@ -9,7 +9,7 @@
     <ul class="menu">
             <li class='sidebar-title'>Main Menu</li>
             <li class="sidebar-item active ">
-                <a href="index.html" class='sidebar-link'> 
+                <a href="{{url('/student')}}" class='sidebar-link'> 
                     <i data-feather="home" width="20"></i> 
                     <span>Student Dashboard</span>
                 </a>

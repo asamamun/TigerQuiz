@@ -63,7 +63,7 @@
                                                         <th>Quizset name</th>
                                                         <th>Marks</th>
                                                         <th>Quizzes</th>
-                                                        <th>Type</th>
+                                                        {{-- <th>Type</th> --}}
                                                         <th>By</th>
                                                         <th>Time</th>
                                                     </tr>
@@ -87,7 +87,7 @@
                                                             </td>
                                                             <td>{{ $ans->marks }}</td>
                                                             <td>{{ $ans->tquiz }}</td>
-                                                            <td>{{ $ans->type}}</td>
+                                                            {{-- <td>{{ $ans->type}}</td> --}}
                                                             <td>{{ $ans->Quizset->user->name ?? 'User' }}</td>
                                                             <td>{{ $ans->created_at }}</td>
                                                             </td>
