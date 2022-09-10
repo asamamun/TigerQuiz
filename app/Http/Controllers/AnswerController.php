@@ -52,6 +52,7 @@ class AnswerController extends Controller
         if($u->role == "3"){
             $u->answers()->save($q);
             return redirect()->back()->with('message', 'You got '. $result . ' out of ' . count($answers));
+          
         }
         else{
             return redirect('/')->with('message', 'Thanks for your Supports ');
@@ -88,7 +89,7 @@ class AnswerController extends Controller
         $q->tquiz = count($answers);
         if($u->role == "3"){
             $u->answers()->save($q);
-            return redirect()->back()->with('message', 'You got '. $result . ' out of ' . count($answers));
+            return Redirect::to('student')->with('message', 'You got '. $result . ' out of ' . count($answers));
         }
         else{
             return redirect('/')->with('message', 'Thanks for your Supports');

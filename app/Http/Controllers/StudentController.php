@@ -23,7 +23,7 @@ class StudentController extends Controller
         // dd($marks->count());
 if (!$marks->count()== 0){
  foreach ($marks as $mk) {
-            $qsid = $mk->quset_id;
+            $qsid = $mk->quizset?->name;
             $mks = $mk->marks;
             $tq = $mk->tquiz;
             break;

@@ -39,8 +39,7 @@
                     <div class="row">
                         
                             @php
-                                $qsid = $qset->id;
-                                session()->put('qsid', $qset->quizzes);
+                                session()->put('qsid', $qset->id);
                                 $ar = explode(',', $qset->quizzes);
                                 $qz = DB::table('quizzes')
                                     ->whereIn('id', $ar)

@@ -107,8 +107,12 @@
                             'min' => '0',
                         ]) !!}
                     </div>
+
+                    @php
+                    $timenow = date('Y-m-d H:i:s');                            
+                    @endphp
                     <div class="col-sm-4 mb-2 mb-sm-0">
-                        @if(!empty($qset->stime))
+                        @if(empty($qset->stime) || (strtotime($timenow) > strtotime($qset->stime)))
                         {!! Form::datetime('stime', null, ['class' => 'form-control','id' => 'stime','placeholder' => 'ST: 2022-08-30 09:30:00' ]) !!}
                         @else
                         <input type="datetime-local" id="stime"
@@ -117,7 +121,12 @@
                     </div>
             
                     <div class="col-sm-4 mb-2 mb-sm-0">
-                        @if(!empty($qset->stime))
+                      
+
+                        {{-- ((strtotime($timenow) > strtotime($qset->stime)) && (strtotime($timenow) < strtotime($qset->entime))) --}}
+
+
+                        @if(empty($qset->stime) || (strtotime($timenow) < strtotime($qset->entime)))
                         {!! Form::datetime('entime', null, ['class' => 'form-control','id' => 'entime', 'type'=>'datetime-local','placeholder' => 'ET: 2022-08-30 10:30:00' ]) !!}
                        @else
                         <input type="datetime-local" id="entime"
