@@ -99,10 +99,10 @@
                                 @csrf
                                 @method('post')
                                 <div class="d-none">
-                                    {{-- <input type="text" name="qset_id " id="qset_id " value="{{ $qs->qset_id }}"> --}}
+                                    <input type="text" name="qset_id " id="qset_id" value="{{ 'qsid'}}">
                                     <input type="text" name="marks" id="marks" value="{{ $result }}">
                                     <input type="text" name="tquiz" id="tquiz" value="{{ $total }}">
-                                    @if (!empty($q->qset_id))
+                                    @if (!empty('qsid'))
                                         <input type="text" name="type" id="type" value="sq">
                                     @else
                                         <input type="text" name="type" id="type" value="rq">

@@ -38,8 +38,9 @@
                     <div class="row">
                         @forelse($qset as $qs)
                             @php
-                                
-                                $ar = explode(',', $qs->quizzes);
+                                $qsid = $qs->id;
+                                $request->session()->put('qsid', $qs->quizzes);
+                                $ar = explode(',', );
                                 $qz = DB::table('quizzes')
                                     ->whereIn('id', $ar)
                                     ->get();
@@ -119,7 +120,7 @@
 
                                         <hr>
                                 @endforeach
-                              
+                            
                                 <div class="d-grid gap-2">
                                     <button type="submit" class="btn btn-sm btn-info text-center mb-2"
                                         id="submit">Submit
