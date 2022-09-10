@@ -18,21 +18,23 @@
         <ol class="breadcrumb mb-4">
             <li class="breadcrumb-item active">Welcome Dashboard</li>
         </ol>
-{{-- =================== --}}
-@forelse ($marks as $mk)
 
-
+{{-- ========for new user==== --}}
+@if (!$marks->count()== 0)
 
         <div class="row">
             <div class="col-xl-6 col-md-6">
                 <div class="card text-white mb-4">
                     <div class="card-header border-bottom bg-info"><h5>Latest Quizset Status</h5></div>
                     <div class="card-body bg-info">
-                    <h6 class="mt-1"> Quizset's Name: {{ $mk->name ?? 'Random Quizzes' }}</h6>
-                    <h6>Marks obtained: {{$mk->marks}}</h6>
-                    <h6>Your Posision: {{count($marks)}}</h6>
-                    <h6>Total Questions: {{$mk->tquiz}}</h6>
-
+                        
+                       
+                        <h6 class="mt-1"> Quizset's Name: {{ $qsid ?? 'Random Quizzes' }}</h6>
+                        <h6>Marks obtained: {{ $mks?? "0"}}</h6>
+                        <h6>Your Posision: {{count($marks)}}</h6>
+                        <h6>Total Questions: {{$tq ??'0'}}</h6>
+                       
+                        
                     </div>
                     <div class="card-footer bg-info d-flex align-items-center justify-content-between">
                         <a class="small text-white stretched-link" href="#">View Details</a>
@@ -126,9 +128,10 @@
                 </table>
             </div>
         </div>
-        @empty
-    No Data Available
-@endforelse
+          
+    @else
+        <h4 class="text-danger text-bold text-center">No Data Available!</h4>
+    @endif
 {{-- =================== --}}
     </div>
 @endsection

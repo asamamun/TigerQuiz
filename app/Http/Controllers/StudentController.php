@@ -18,10 +18,24 @@ class StudentController extends Controller
     {
         // $marks = Answer::all()->where('user_id', Auth::user()->id);
         $marks = Answer::orderBy("id", "desc")->get()->where('user_id', Auth::user()->id);
-        // dd($marks);
-        return view('student.index')
-        ->with('marks', $marks)
-        ->with('user', Auth::user());
+
+      
+        // dd($marks->count());
+if (!$marks->count()== 0){
+ foreach ($marks as $mk) {
+            $qsid = $mk->quset_id;
+            $mks = $mk->marks;
+            $tq = $mk->tquiz;
+            break;
+        }
+        return view('student.index', compact('marks', 'qsid', 'mks', 'tq'))
+            ->with('user', Auth::user());
+    }
+//  dd($marks, $qsid, $mks, $tq,$uid );
+     else{
+        return view('student.index', compact('marks'))
+            ->with('user', Auth::user());
+        }
     }
 
     /**
@@ -53,8 +67,6 @@ class StudentController extends Controller
      */
     public function show()
     {
-
-       
     }
 
     /**
