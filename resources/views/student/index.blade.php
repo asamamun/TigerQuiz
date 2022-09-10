@@ -11,6 +11,8 @@
 
 
 @section('content')
+        @include('partial.flash')
+        @include('partial.error')
     <div class="container-fluid px-4">
         <h2 class="mt-4">Hello, {{ Auth::user()->name }}</h2>
         <ol class="breadcrumb mb-4">
@@ -28,9 +30,10 @@
                 <div class="card text-white mb-4">
                     <div class="card-header border-bottom bg-info"><h5>Latest Quizset Status</h5></div>
                     <div class="card-body bg-info">
-                    <h6 class="mt-1"> Quizset's Name: {{ $mk?->name }}</h6>
-                    <h6>Marks obtained :{{ $mk->marks }}</h6>
-                    <h6>Your Posision : {{ count($marks) }}</h6>
+                    <h6 class="mt-1"> Quizset's Name: {{ $mk->name ?? 'Random Quizzes' }}</h6>
+                    <h6>Marks obtained: {{$mk->marks}}</h6>
+                    <h6>Your Posision: {{count($marks)}}</h6>
+                    <h6>Total Questions: {{$mk->tquiz}}</h6>
 
                     </div>
                     <div class="card-footer bg-info d-flex align-items-center justify-content-between">
@@ -87,35 +90,38 @@
                     <thead>
                         <tr>
                             <th>ID</th>
-                            <th>User Name</th>
+                            <th>User</th>
                             <th>Quizset name</th>
-                            <th>Obtain marks</th>
-                            <th>Total Marks</th>
-                            <th>Quiz Type</th>
+                            <th>Marks</th>
+                            <th>Quizzes</th>
+                            {{-- <th>Type</th> --}}
+                            <th>By</th>
                             <th>Time</th>
                         </tr>
                     </thead>
                     <tfoot>
                         <tr>
                             <th>ID</th>
-                            <th>User Name</th>
+                            <th>User</th>
                             <th>Quizset name</th>
-                            <th>Obtain marks</th>
-                            <th>Total Marks</th>
-                            <th>Quiz Type</th>
+                            <th>Marks</th>
+                            <th>Quizzes</th>
+                            {{-- <th>Type</th> --}}
+                            <th>By</th>
                             <th>Time</th>
                         </tr>
                     </tfoot>
                     @foreach ($marks as $mark)
                     <tbody>
                         <tr>
-                            <td>{{ $mark->id }}</td>
+                            <td>{{ $mark->id }}.</td>
                             <td>{{ $mark->user->name }}</td>
-                            <td>{{ $mark->qset_id}}</td>
+                            <td><a href="{{ url('/quiz/qz/qshow') }}">{{ $mark->Quizset->name ?? 'Random Quizzes' }}</a></td>
                             <td>{{ $mark->marks}}</td>
                             <td>{{ $mark->tquiz}}</td>
-                            <td>{{ $mark?->type}}</td>
-                            <td>{{ $mark?->created_at}}</td>
+                            {{-- <td>{{ $mark->type}}</td> --}}
+                            <td>{{ $mark->Quizset->user->name ?? 'Null' }}</td>
+                            <td>{{ $mark->created_at}}</td>
                         </tr>
                     </tbody>
                     @endforeach

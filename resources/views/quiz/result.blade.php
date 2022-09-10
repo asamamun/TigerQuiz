@@ -34,7 +34,6 @@
                 <i class="fas fa-arrow-left"></i>
             </a>
         </div>
-
         <div class="card-body">
             @include('partial.flash')
             @include('partial.error')
@@ -95,13 +94,19 @@
                                         id="marks">{{ $result }}</span> out of <span
                                         id="tquiz">{{ $total }}</span> </h3>
                             </div>
+                        
                             <form action="{{ url('/storeanswer') }}" method='post'>
                                 @csrf
                                 @method('post')
                                 <div class="d-none">
+                                    {{-- <input type="text" name="qset_id " id="qset_id " value="{{ $qs->qset_id }}"> --}}
                                     <input type="text" name="marks" id="marks" value="{{ $result }}">
-                                    <input type="text" name="tquiz" id="tquiz" value="{{ $result }}">
-                                    <input type="text" name="type" id="type" value="rq">
+                                    <input type="text" name="tquiz" id="tquiz" value="{{ $total }}">
+                                    @if (!empty($q->qset_id))
+                                        <input type="text" name="type" id="type" value="sq">
+                                    @else
+                                        <input type="text" name="type" id="type" value="rq">
+                                    @endif
                                 </div>
                                 <div class="modal-footer small">
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
@@ -153,7 +158,8 @@
             //   function(){$("p").css({"color": "green"});
             //  });
             setTimeout(function() {
-            $('#savemark').trigger('click'); },20);
+                $('#savemark').trigger('click');
+            }, 20);
         });
     </script>
 @endsection

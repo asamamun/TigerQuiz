@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Answer;
 use App\Models\Leaderboard;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -9,9 +10,11 @@ use Illuminate\Support\Facades\Auth;
 class LeaderboardController extends Controller
 {
     public function index(){
-        $ldbs= Leaderboard::with('user', 'quizset')->get();
-        // dd($lbs);
+        // $anpage = Answer::paginate(10);
+        $answers = Answer::orderBy("marks", "desc")->get();
+        // dd($mark);
         return view('leaderboard.index')
-        ->with('lbs', $ldbs);
+        ->with('answers', $answers)
+        ->with('user', Auth::user());
     }
 }

@@ -55,6 +55,14 @@
 
      <script src="https://code.jquery.com/jquery-3.6.0.min.js" crossorigin="anonymous"></script>
      <script src="{{url('assets/js/bootstrap.bundle.min.js')}}"></script>
+     <script>
+        $(document).ready(function() {
+             // show the alert
+             setTimeout(function() {
+                $(".alert").alert('close');
+            }, 500);
+        });
+    </script>
      <!-- ========================= -->
      @include('inc.mainjs')
         

@@ -3,11 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Answer;
-use App\Models\Quiz;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
-class StudentController extends Controller
+class DashboardController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,11 +16,12 @@ class StudentController extends Controller
      */
     public function index()
     {
-        // $marks = Answer::all()->where('user_id', Auth::user()->id);
-        $marks = Answer::orderBy("id", "desc")->get()->where('user_id', Auth::user()->id);
+        // $marks = Answer::all();
+       
+        $answers = Answer::orderBy("marks", "desc")->get();
         // dd($mark);
-        return view('student.index')
-        ->with('marks', $marks)
+        return view('dashboard.index')
+        ->with('answers', $answers)
         ->with('user', Auth::user());
     }
 
@@ -51,10 +52,9 @@ class StudentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show()
+    public function show($id)
     {
-
-       
+        //
     }
 
     /**

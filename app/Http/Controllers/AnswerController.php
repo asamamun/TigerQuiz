@@ -30,13 +30,13 @@ class AnswerController extends Controller
         $q->type = $request->type;
         $q->marks = $request->marks;
         $q->tquiz = $request->tquiz;
-        // $q->quizzes = join(",", $request->quiz);
+        
 
         if ($u->answers()->save($q) && Auth::user()->role == "3") {
 
             return Redirect::to('/student')->with('message', 'Your marks have been saved');
         } else {
-            return Redirect::to('/')->with('message', 'Thanks for supports');
+            return Redirect::to('/')->with('message', 'Thanks for Your supports');
         }
     }
 

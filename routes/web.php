@@ -13,6 +13,7 @@ use App\Http\Controllers\AnswerController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\AllUsers;
 use App\Http\Controllers\LeaderboardController;
+use App\Http\Controllers\DashboardController;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
@@ -50,10 +51,7 @@ Route::get("forgot", [TeacherController::class, "forgetpass"]);
 
 //admin group
 Route::middleware(['admin', 'auth'])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard.index');
-    })->name('dashboard');
-
+    Route::get('dashboard', [DashboardController::class, "index"])->name('dashboard');
     Route::get('dashboard/allusers', [AllUsers::class, "index"])->name('allusers');
 });
 //student group
@@ -61,7 +59,7 @@ Route::middleware(['student', 'auth'])->group(function () {
     // Route::get('/student', function () {
     //     return view('student.index');
     // })->name('student');
-    Route::get('student', [StudentController::class, "index"])->name('student');;
+    Route::get('student', [StudentController::class, "index"])->name('student');
 });
 //teacher group
 Route::middleware(['teacher', 'auth'])->group(function () {
@@ -117,9 +115,13 @@ Route::get('/class', function () {
 Route::get('/teachers', function () {
     return view('inc.teacher');
 });
-Route::get('/leaderboard', function () {
-    return view('inc.leaderboard');
-});
+// Route::get('/leaderboard', function () {
+//     return view('leaderboard.index');
+// });
+
+Route::get('leaderboard', [LeaderboardController::class, "index"])->name('leaderboard');
+
+
 Route::get('/contact', function () {
     return view('inc.contact');
 });
