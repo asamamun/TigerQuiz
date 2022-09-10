@@ -20,10 +20,8 @@
         </ol>
 {{-- =================== --}}
 @forelse ($marks as $mk)
-@empty
-    No Data Available
-@endforelse
-{{-- =================== --}}
+
+
 
         <div class="row">
             <div class="col-xl-6 col-md-6">
@@ -128,6 +126,10 @@
                 </table>
             </div>
         </div>
+        @empty
+    No Data Available
+@endforelse
+{{-- =================== --}}
     </div>
 @endsection
 

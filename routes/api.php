@@ -19,6 +19,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::middleware('auth:sanctum')->get("questions", [QuizController::class, "randomquestions"]);
+Route::get("questions", [QuizController::class, "randomquestions"]);
 // Route::get("questions/cat/{id}", [QuizController::class, "catrandomquestions"]);
 // Route::get("questions", [QuizController::class, "randomquestions"]);

@@ -18,7 +18,7 @@ class StudentController extends Controller
     {
         // $marks = Answer::all()->where('user_id', Auth::user()->id);
         $marks = Answer::orderBy("id", "desc")->get()->where('user_id', Auth::user()->id);
-        // dd($mark);
+        // dd($marks);
         return view('student.index')
         ->with('marks', $marks)
         ->with('user', Auth::user());

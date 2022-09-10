@@ -20,7 +20,8 @@
 @stop
 
 @section('content')
-
+@include('partial.flash')
+@include('partial.error')
     <div class="card card-hover shadow mb-4">
         <div class="card-header py-3 d-flex justify-content-between">
             <h3 class="m-0 font-weight-bold text-info">Quiz Result</h3>
@@ -36,37 +37,41 @@
                 <div class="container mb-1">
 
                     <div class="row">
-                        @forelse($qset as $qs)
+                        
                             @php
-                                $qsid = $qs->id;
-                                $request->session()->put('qsid', $qs->quizzes);
-                                $ar = explode(',', );
+                                $qsid = $qset->id;
+                                session()->put('qsid', $qset->quizzes);
+                                $ar = explode(',', $qset->quizzes);
                                 $qz = DB::table('quizzes')
                                     ->whereIn('id', $ar)
                                     ->get();
-                                //  dd($ar, $qz);
+                                //dd($qz);
                             @endphp
-                        @empty
-                            <td>
-                                No Information to Display
-                            </td>
-                        @endforelse
+                       
 
 
                         {{-- <span class="d-none">{{ $i = 0 }}</span> --}}
                         <div
                             class="card-header py-3 d-flex flex-row align-items-center rounded mb-2 justify-content-between">
-                            <h4 class="m-0 font-weight-bold text-dark">Name: {{ $qs->name }}</h4>
-                            <h4 class="m-0 font-weight-bold text-dark">Title: {{ $qs->title }}</h4>
-                            <h4 class="m-0 font-weight-bold text-dark">Prepared by: {{ $qs->user->name }}</h4>
+                            <h4 class="m-0 font-weight-bold text-dark">Name: {{ $qset->name }}</h4>
+                            <h4 class="m-0 font-weight-bold text-dark">Title: {{ $qset->title }}</h4>
+                            <h4 class="m-0 font-weight-bold text-dark">Prepared by: {{ $qset->user->name }}</h4>
                             {{-- <a href="{{ url('quiz') }}" class="btn btn-info btn-circle btn-sm" title="Back to Topic List">
                                     <i class="fas fa-arrow-left"></i>
                                 </a> --}}
                         </div>
 
+
+
                         <div class="card card-hover shadow mb-1">
+                            @php
+                            $timenow = date('Y-m-d H:i:s');                            
+                            @endphp
+
+                            @if((strtotime($timenow) > strtotime($qset->stime)) && (strtotime($timenow) < strtotime($qset->entime)))
                             <form action="{{ url('result') }}" method="post">
                                 @csrf
+                                <input type="hidden" name="qset" value="{{$qset->id}}">
                                 @foreach ($qz as $q)
                                     <div class="mt-3">
                                         <h5>{{ $q->question }}</h5>
@@ -127,6 +132,56 @@
                                         Quiz</button>
                                 </div>
                             </form>
+                            @else
+                            <div class="" role="alert">
+  Quiz will start at {{$qset->stime}}
+  <p id="countdown"></p>
+  <style>
+  p#countdown {
+  text-align: center;
+  font-size: 60px;
+  margin-top: 0px;
+} 
+</style>
+  <script>
+    @php
+    $dt = explode(" " , $qset->stime);
+    $dmy = explode("-",$dt[0]);
+    $hms = explode(":",$dt[1]);
+    @endphp
+// Set the date we're counting down to
+var countDownDate = new Date({{$dmy[0]}},({{$dmy[1]}}-1),{{$dmy[2]}},{{$hms[0]}},{{$hms[1]}},{{$hms[2]}},0).getTime();
+
+// Update the count down every 1 second
+var x = setInterval(function() {
+
+  // Get today's date and time
+  var now = new Date().getTime();
+    
+  // Find the distance between now and the count down date
+  var distance = countDownDate - now;
+    
+  // Time calculations for days, hours, minutes and seconds
+  var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    
+  // Output the result in an element with id="demo"
+  document.getElementById("countdown").innerHTML = days + "d " + hours + "h "
+  + minutes + "m " + seconds + "s ";
+    
+  // If the count down is over, write some text 
+  if (distance < 0) {
+    clearInterval(x);
+    document.getElementById("countdown").innerHTML = "You can start now. Reload the page please. <button>Reload</button>";
+  }
+}, 1000);
+</script>
+</div>
+                            @endif
+
+
                         </div>
                     </div>
                 </div>

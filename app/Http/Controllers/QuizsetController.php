@@ -166,7 +166,8 @@ class QuizsetController extends Controller
     public function showqset($id)
     {
         
-        $qset = Quizset::all()->where('id', $id);
+        $qset = Quizset::find($id);
+        // dd($qset);
         // $quiz = Quiz::all()->whereIn('id', $ar)->get();
 
 
