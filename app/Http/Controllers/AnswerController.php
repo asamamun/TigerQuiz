@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Answer;
 use App\Http\Requests\StoreQuizsetRequest;
 use App\Http\Requests\UpdateQuizsetRequest;
+use App\Models\Quizset;
 use App\Models\User;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Auth;
@@ -62,7 +63,7 @@ class AnswerController extends Controller
             //echo $quiz->id ." :". $quiz->ans. " =  User ans:" . $answers['box'.$quiz->id] . "<br>";
         }
         // dd($answers,$quizzes , $quizid, $quizans);
-
+        
         return view('quiz.result')
             ->with('quizzes', $quizzes)
             ->with('quizans', $quizans)

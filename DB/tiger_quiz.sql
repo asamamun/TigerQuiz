@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 09, 2022 at 07:50 AM
+-- Generation Time: Sep 10, 2022 at 02:59 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -20,6 +20,99 @@ SET time_zone = "+00:00";
 --
 -- Database: `tiger_quiz`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `answers`
+--
+
+CREATE TABLE `answers` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `user_id` bigint(20) UNSIGNED NOT NULL,
+  `qset_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `type` set('rq','sq') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'sq',
+  `marks` bigint(20) NOT NULL,
+  `tquiz` bigint(20) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `answers`
+--
+
+INSERT INTO `answers` (`id`, `user_id`, `qset_id`, `type`, `marks`, `tquiz`, `created_at`, `updated_at`) VALUES
+(1, 3, 1, 'sq', 9, 9, '2022-09-09 05:53:30', '2022-09-09 05:53:30'),
+(2, 3, 2, 'sq', 9, 9, '2022-09-09 05:56:44', '2022-09-09 05:56:44'),
+(3, 1, NULL, 'rq', 9, 9, '2022-09-09 05:57:13', '2022-09-09 05:57:13'),
+(4, 3, 3, 'sq', 9, 9, '2022-09-09 06:07:09', '2022-09-09 06:07:09'),
+(5, 3, NULL, 'rq', 9, 9, '2022-09-09 06:08:16', '2022-09-09 06:08:16'),
+(6, 5, NULL, 'rq', 9, 9, '2022-09-09 06:12:10', '2022-09-09 06:12:10'),
+(7, 3, NULL, 'rq', 10, 10, '2022-09-09 06:18:14', '2022-09-09 06:18:14'),
+(8, 1, NULL, 'rq', 10, 10, '2022-09-09 06:19:27', '2022-09-09 06:19:27'),
+(9, 4, NULL, 'rq', 10, 10, '2022-09-09 06:28:38', '2022-09-09 06:28:38'),
+(10, 1, NULL, 'rq', 10, 10, '2022-09-09 06:33:32', '2022-09-09 06:33:32'),
+(11, 3, NULL, 'rq', 10, 10, '2022-09-09 06:38:38', '2022-09-09 06:38:38'),
+(12, 1, NULL, 'rq', 4, 4, '2022-09-09 06:47:49', '2022-09-09 06:47:49'),
+(13, 6, 4, 'sq', 4, 4, '2022-09-09 06:49:15', '2022-09-09 06:49:15'),
+(14, 1, NULL, 'rq', 4, 4, '2022-09-09 06:53:58', '2022-09-09 06:53:58'),
+(15, 1, NULL, 'rq', 2, 2, '2022-09-09 07:07:48', '2022-09-09 07:07:48'),
+(16, 2, NULL, 'rq', 9, 2, '2022-09-09 07:09:21', '2022-09-09 07:09:21'),
+(17, 1, NULL, 'rq', 8, 10, '2022-09-09 07:14:38', '2022-09-09 07:14:38'),
+(18, 1, NULL, 'rq', 2, 2, '2022-09-09 07:20:34', '2022-09-09 07:20:34'),
+(19, 3, NULL, 'rq', 2, 2, '2022-09-09 07:25:38', '2022-09-09 07:25:38'),
+(20, 3, 1, 'sq', 8, 2, '2022-09-09 07:27:07', '2022-09-09 07:27:07'),
+(21, 1, NULL, 'rq', 2, 2, '2022-09-09 07:27:23', '2022-09-09 07:27:23'),
+(22, 1, NULL, 'rq', 2, 2, '2022-09-09 07:27:31', '2022-09-09 07:27:31'),
+(23, 1, NULL, 'rq', 2, 2, '2022-09-09 07:27:42', '2022-09-09 07:27:42'),
+(24, 1, NULL, 'rq', 2, 2, '2022-09-09 07:28:26', '2022-09-09 07:28:26'),
+(25, 1, NULL, 'rq', 8, 2, '2022-09-09 07:29:22', '2022-09-09 07:29:22'),
+(26, 1, NULL, 'rq', 2, 2, '2022-09-09 07:31:59', '2022-09-09 07:31:59'),
+(27, 1, NULL, 'rq', 2, 2, '2022-09-09 07:35:58', '2022-09-09 07:35:58'),
+(28, 1, NULL, 'rq', 2, 2, '2022-09-09 07:37:12', '2022-09-09 07:37:12'),
+(29, 1, NULL, 'rq', 2, 2, '2022-09-09 07:37:57', '2022-09-09 07:37:57'),
+(30, 1, NULL, 'rq', 2, 2, '2022-09-09 07:38:35', '2022-09-09 07:38:35'),
+(31, 1, NULL, 'rq', 2, 2, '2022-09-09 07:39:01', '2022-09-09 07:39:01'),
+(32, 1, NULL, 'rq', 2, 2, '2022-09-09 07:39:42', '2022-09-09 07:39:42'),
+(33, 1, NULL, 'rq', 2, 2, '2022-09-09 07:43:01', '2022-09-09 07:43:01'),
+(34, 1, NULL, 'rq', 2, 2, '2022-09-09 07:43:40', '2022-09-09 07:43:40'),
+(35, 1, NULL, 'rq', 2, 2, '2022-09-09 07:45:54', '2022-09-09 07:45:54'),
+(36, 1, NULL, 'rq', 2, 2, '2022-09-09 07:46:38', '2022-09-09 07:46:38'),
+(37, 1, NULL, 'rq', 2, 2, '2022-09-09 07:47:22', '2022-09-09 07:47:22'),
+(38, 1, NULL, 'rq', 2, 2, '2022-09-09 07:50:35', '2022-09-09 07:50:35'),
+(39, 1, NULL, 'rq', 2, 2, '2022-09-09 08:07:41', '2022-09-09 08:07:41'),
+(40, 1, NULL, 'rq', 2, 2, '2022-09-09 08:10:28', '2022-09-09 08:10:28'),
+(41, 1, NULL, 'rq', 1, 1, '2022-09-09 08:13:05', '2022-09-09 08:13:05'),
+(42, 1, NULL, 'rq', 1, 1, '2022-09-09 08:17:32', '2022-09-09 08:17:32'),
+(43, 1, NULL, 'rq', 1, 1, '2022-09-09 08:19:02', '2022-09-09 08:19:02'),
+(44, 1, NULL, 'rq', 1, 1, '2022-09-09 08:31:29', '2022-09-09 08:31:29'),
+(45, 1, NULL, 'rq', 1, 1, '2022-09-09 08:33:29', '2022-09-09 08:33:29'),
+(46, 1, NULL, 'rq', 1, 1, '2022-09-09 08:36:04', '2022-09-09 08:36:04'),
+(47, 1, NULL, 'rq', 1, 1, '2022-09-09 08:36:13', '2022-09-09 08:36:13'),
+(48, 1, NULL, 'rq', 1, 1, '2022-09-09 08:37:06', '2022-09-09 08:37:06'),
+(49, 1, NULL, 'rq', 1, 1, '2022-09-09 08:37:17', '2022-09-09 08:37:17'),
+(50, 1, NULL, 'rq', 1, 1, '2022-09-09 08:37:23', '2022-09-09 08:37:23'),
+(51, 1, NULL, 'rq', 1, 1, '2022-09-09 08:37:41', '2022-09-09 08:37:41'),
+(52, 1, NULL, 'rq', 1, 1, '2022-09-09 08:38:43', '2022-09-09 08:38:43'),
+(53, 1, NULL, 'rq', 3, 3, '2022-09-09 08:48:12', '2022-09-09 08:48:12'),
+(54, 1, NULL, 'rq', 2, 2, '2022-09-09 08:52:26', '2022-09-09 08:52:26'),
+(55, 1, NULL, 'rq', 2, 2, '2022-09-09 08:52:40', '2022-09-09 08:52:40'),
+(56, 1, NULL, 'rq', 1, 1, '2022-09-09 08:56:04', '2022-09-09 08:56:04'),
+(57, 1, NULL, 'rq', 1, 1, '2022-09-09 08:58:04', '2022-09-09 08:58:04'),
+(58, 1, NULL, 'rq', 1, 1, '2022-09-09 08:59:55', '2022-09-09 08:59:55'),
+(59, 1, NULL, 'rq', 5, 5, '2022-09-09 09:06:01', '2022-09-09 09:06:01'),
+(60, 3, NULL, 'rq', 5, 5, '2022-09-09 09:07:59', '2022-09-09 09:07:59'),
+(61, 3, NULL, 'rq', 4, 4, '2022-09-09 21:13:13', '2022-09-09 21:13:13'),
+(62, 3, NULL, 'rq', 9, 10, '2022-09-09 21:15:36', '2022-09-09 21:15:36'),
+(63, 3, NULL, 'rq', 10, 10, '2022-09-09 21:30:26', '2022-09-09 21:30:26'),
+(64, 1, NULL, 'rq', 2, 2, '2022-09-10 00:33:21', '2022-09-10 00:33:21'),
+(65, 1, NULL, 'rq', 4, 4, '2022-09-10 00:41:31', '2022-09-10 00:41:31'),
+(66, 1, NULL, 'rq', 3, 3, '2022-09-10 00:44:13', '2022-09-10 00:44:13'),
+(67, 1, NULL, 'rq', 6, 6, '2022-09-10 00:46:46', '2022-09-10 00:46:46'),
+(68, 1, NULL, 'rq', 3, 19, '2022-09-10 01:17:37', '2022-09-10 01:17:37'),
+(69, 1, NULL, 'rq', 2, 9, '2022-09-10 01:37:00', '2022-09-10 01:37:00'),
+(70, 1, NULL, 'rq', 2, 9, '2022-09-10 01:37:01', '2022-09-10 01:37:01');
 
 -- --------------------------------------------------------
 
@@ -183,8 +276,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (11, '2022_08_06_110844_create_blogs_table', 1),
 (12, '2022_08_06_110905_create_comments_table', 1),
 (13, '2022_08_06_111040_create_classrooms_table', 1),
-(14, '2022_09_04_071009_create_results_table', 1),
-(15, '2022_09_05_004857_create_leaderboards_table', 1);
+(15, '2022_09_05_004857_create_leaderboards_table', 1),
+(17, '2022_09_04_071009_create_results_table', 2);
 
 -- --------------------------------------------------------
 
@@ -293,7 +386,7 @@ INSERT INTO `quizsets` (`id`, `name`, `title`, `quizzes`, `active`, `user_id`, `
 (1, 'Rational Numbers', 'MCQ Question', '116,117,118,119,120,121,122,123,124,125,126,127,129,130,131,132,131,133,134,135', '1', 1, 4, 20, 14, '2022-09-10 10:30:00', '2022-09-10 11:30:00', '2022-09-02 13:49:09', '2022-09-08 23:23:38'),
 (2, 'General Knowledge International', 'CT', '191,192,193,194,195,196,197,198,200,201,202,203,204,205,206,207,208,209,210,211', '1', 1, 11, 24, 15, '2022-09-10 15:40:00', '2022-09-10 16:40:00', '2022-09-04 14:56:46', '2022-09-08 23:38:23'),
 (3, 'General Knowledge Bangladesh', 'CT', '151,152,153,154,155,153,154,155,156,157,158,159,160,161,162,163,164,165,166,167', '1', 1, 11, 23, 19, '2022-09-10 13:45:00', '2022-09-10 12:45:00', '2022-09-04 14:55:03', '2022-09-08 23:43:19'),
-(4, 'General Knowledge International', 'CT', '191,192,193,194,195,196,197,198,200,201,202,203,204,205,206,207,208,209,210,211', '1', 1, 11, 24, NULL, NULL, NULL, '2022-09-04 14:56:46', '2022-09-04 14:56:46'),
+(4, 'General Knowledge International', 'CT', '191,192,193,194,195,196,197,198,200,201,202,203,204,205,206,207,208,209,210,211', '1', 1, 11, 24, 15, '2022-09-06 04:20:00', '2022-09-06 05:20:00', '2022-09-04 14:56:46', '2022-09-09 00:17:30'),
 (5, 'General Knowledge Int', 'CT', '191,192,193,194,195,196,197,198,200,201,202,203,204,205,206,207,208,209,210,211', '1', 1, 11, 24, NULL, NULL, NULL, '2022-09-04 14:56:46', '2022-09-04 14:56:46'),
 (6, 'General Knowledge Int2', 'CT', '191,192,193,194,195,196,197,198,200,201,202,203,204,205,206,207,208,209,210,211', '1', 1, 11, 24, NULL, NULL, NULL, '2022-09-04 14:56:46', '2022-09-04 14:56:46'),
 (7, 'HW', 'Test', '116,117,118,119,120,121,122,123,124,125', '1', 2, 4, 20, 21, '2022-09-08 23:25:00', '2022-09-09 23:25:00', '2022-09-06 23:25:22', '2022-09-06 23:25:22'),
@@ -541,7 +634,7 @@ INSERT INTO `quizzes` (`id`, `question`, `type`, `op1`, `op2`, `op3`, `op4`, `an
 (208, 'ভারতের প্রেসিডেন্ট আবুল পাকির জয়নুল আবেদীন আবদুল কালাম কি নামে বহুল পরিচিত?', 'm', 'গোল্ডেন ম্যান', 'মিসাইল ম্যান', 'হিরু অফ ইন্ডিয়া', 'ভারতরত্ন', 'op2', '', 11, 11, 24, 20, '2022-09-03 00:46:11', '2022-09-03 23:51:38'),
 (209, 'Man is the measure of all things, উক্তিটি কার?', 'm', 'জর্জিয়াস', 'স্বামী বিবেকানন্দ', 'প্রোটাগোরাস', 'আল্লামা ইকবাল', 'op3', '', 11, 11, 24, 20, '2022-09-03 00:47:01', '2022-09-03 23:51:38'),
 (210, '&lsquo;দোলনা থেকে কবর পর্যন্ত জ্ঞান অন্বেষণ কর&rdquo; উক্তিটি-', 'm', 'হযরত মুহম্মদের (সাঃ)', 'হযরত আলীর (রাঃ)', 'লোকমান হাকিমের', 'হযরত শেখ সাদীর (রাঃ)', 'op1', '', 11, 11, 24, 20, '2022-09-03 00:47:53', '2022-09-03 23:51:38'),
-(211, '&quot;Man is a political animal&quot; - who said this?', 'm', 'Dante', 'Plato', 'Aristotle', 'Socrates', 'null', '', 11, 11, 24, 20, '2022-09-03 00:48:46', '2022-09-03 23:51:38'),
+(211, '&quot;Man is a political animal&quot; - who said this?', 'm', 'Dante', 'Plato', 'Aristotle', 'Socrates', 'op3', '', 11, 11, 24, 20, '2022-09-03 00:48:46', '2022-09-03 23:51:38'),
 (212, 'Who is known as the &#039;Lady of the lamp&#039;?/&lsquo;লেডী উইথ দি ল্যাপ&rsquo; কে?', 'm', 'Sorojini Naidu', 'Florence Nightingale', 'Hellen Killer', 'Madame Teresa', 'op2', '', 11, 11, 24, 20, '2022-09-03 00:49:36', '2022-09-03 23:51:38'),
 (213, '&lsquo;আরবের নাইটিঙ্গেল&rsquo; বলা হয়-', 'm', 'উম্মে কুলসুম', 'উম্মে হাফিজা', 'উম্মে সাদিয়া', 'উম্মে মারিয়ম', 'op1', '', 11, 11, 24, 20, '2022-09-03 00:50:28', '2022-09-03 23:51:38'),
 (214, 'Man is born free, but is everywhere in chains-কার উক্তি?', 'm', 'ভলতেয়ার', 'কাল মার্কস', 'জেএসমিল', 'রুশো', 'op4', '', 11, 11, 24, 20, '2022-09-03 00:51:21', '2022-09-03 23:51:38'),
@@ -574,21 +667,6 @@ INSERT INTO `quizzes` (`id`, `question`, `type`, `op1`, `op2`, `op3`, `op4`, `an
 (240, 'The area of the quadrilateral is', 'qi', '3.75 cm&sup2;', '7.5 cm&sup2;', '3 cm&sup2;', '10 cm&sup2;', 'op1', '240.jpg', 1, 4, 20, 21, '2022-09-04 18:50:07', '2022-09-04 18:50:07'),
 (241, 'The area of the quadrilateral is', 'qi', '10 cm&sup2;', '5 cm&sup2;', '20 cm&sup2;', '15 cm&sup2;', 'op1', '241.jpg', 1, 4, 20, 21, '2022-09-04 18:51:45', '2022-09-04 18:51:45'),
 (242, 'The area of the quadrilateral is', 'qi', '6 cm&sup2;', '12 cm&sup2;', '3 cm&sup2;', '8 cm&sup2;', 'op1', '242.jpg', 1, 4, 20, 21, '2022-09-04 18:53:06', '2022-09-04 18:53:06');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `results`
---
-
-CREATE TABLE `results` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `user_id` bigint(20) UNSIGNED NOT NULL,
-  `qset_id` bigint(20) UNSIGNED DEFAULT NULL,
-  `marks` bigint(20) NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -720,6 +798,14 @@ INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `role`, `passwo
 --
 
 --
+-- Indexes for table `answers`
+--
+ALTER TABLE `answers`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `answers_user_id_foreign` (`user_id`),
+  ADD KEY `answers_qset_id_foreign` (`qset_id`);
+
+--
 -- Indexes for table `blogs`
 --
 ALTER TABLE `blogs`
@@ -816,14 +902,6 @@ ALTER TABLE `quizzes`
   ADD KEY `quizzes_topic_id_foreign` (`topic_id`);
 
 --
--- Indexes for table `results`
---
-ALTER TABLE `results`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `results_user_id_foreign` (`user_id`),
-  ADD KEY `results_qset_id_foreign` (`qset_id`);
-
---
 -- Indexes for table `subcategories`
 --
 ALTER TABLE `subcategories`
@@ -848,6 +926,12 @@ ALTER TABLE `users`
 --
 -- AUTO_INCREMENT for dumped tables
 --
+
+--
+-- AUTO_INCREMENT for table `answers`
+--
+ALTER TABLE `answers`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
 
 --
 -- AUTO_INCREMENT for table `blogs`
@@ -889,7 +973,7 @@ ALTER TABLE `leaderboards`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -916,12 +1000,6 @@ ALTER TABLE `quizzes`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=243;
 
 --
--- AUTO_INCREMENT for table `results`
---
-ALTER TABLE `results`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT for table `subcategories`
 --
 ALTER TABLE `subcategories`
@@ -942,6 +1020,13 @@ ALTER TABLE `users`
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `answers`
+--
+ALTER TABLE `answers`
+  ADD CONSTRAINT `answers_qset_id_foreign` FOREIGN KEY (`qset_id`) REFERENCES `quizsets` (`id`),
+  ADD CONSTRAINT `answers_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
 
 --
 -- Constraints for table `blogs`
@@ -998,13 +1083,6 @@ ALTER TABLE `quizzes`
   ADD CONSTRAINT `quizzes_subcategory_id_foreign` FOREIGN KEY (`subcategory_id`) REFERENCES `subcategories` (`id`),
   ADD CONSTRAINT `quizzes_topic_id_foreign` FOREIGN KEY (`topic_id`) REFERENCES `topics` (`id`),
   ADD CONSTRAINT `quizzes_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
-
---
--- Constraints for table `results`
---
-ALTER TABLE `results`
-  ADD CONSTRAINT `results_qset_id_foreign` FOREIGN KEY (`qset_id`) REFERENCES `quizsets` (`id`),
-  ADD CONSTRAINT `results_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
 
 --
 -- Constraints for table `subcategories`
