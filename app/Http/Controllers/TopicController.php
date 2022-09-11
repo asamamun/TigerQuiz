@@ -65,7 +65,7 @@ class TopicController extends Controller
         $sc = Subcategory::find($request->subcategory_id);
         // dd($sc);
         if($sc->topics()->save($tp)){
-            return back()->with('message','Subject ' .$tp->id. ' has been created successfully!');
+            return back()->with('message','Subject ' .$tp->id. ' has been created successfully!')->withInput($request->input());
         }
         else{
             return back()->with('message','Subject not created!');

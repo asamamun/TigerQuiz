@@ -42,7 +42,7 @@
 
                 </div>
                 <div class="col-sm-3">
-                    {!! Form::select('subcategory_id', $subcategories, null, [
+                    {!! Form::select('subcategory_id', [], null, [
                         'required',
                         'class' => 'form-control form-control-profile',
                         'id' => 'subcategory_id',

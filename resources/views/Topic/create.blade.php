@@ -33,7 +33,7 @@
                     ]) !!}
                 </div>
                 <div class="col-sm-4">
-                    {!! Form::select('subcategory_id', $subcategories, null, [
+                    {!! Form::select('subcategory_id', [], null, [
                         'placeholder' => 'Select Subject',
                         'id' => 'subcategory_id',
                         'class' => 'form-control',

@@ -6,6 +6,7 @@ use App\Models\Answer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class DashboardController extends Controller
 {
@@ -17,8 +18,7 @@ class DashboardController extends Controller
     public function index()
     {
         // $marks = Answer::all();
-       
-        $answers = Answer::orderBy("marks", "desc")->get();
+        $answers = Answer::orderBy("marks", "desc")->paginate(10);
         // dd($mark);
         return view('dashboard.index')
         ->with('answers', $answers)

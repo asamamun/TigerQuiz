@@ -13,11 +13,11 @@
         <div class="row">
             @foreach ($quizset as $qset)
                 <div class="col-lg-4 col-md-6 pb-1">
-                    <div class="card d-flex bg-light shadow-sm border rounded mb-3" title="{{ $qset->name }}"
-                        style="padding: 30px">
+                    <div class="card header d-flex bg-light shadow-sm border p-4 rounded mb-3" title="{{ $qset->name }}">
+                        {{-- style="padding: 15px" --}}
                         <div class="pl-1">
                             <h3 class="qstitle"><a href="{{ url('playquiz/qset/' . $qset->id) }}">{{$qset->name}}</a></h3>
-                            <p class="m-0">
+                            <p class="m-0 text-dark fw-bold">
                                 {{ $qset->title }}
                             </p>
                             <p class="m-0">
@@ -35,10 +35,15 @@
                             <p class="m-0">
                                 {{$qset->entime}}
                             </p>
+                           
                         </div>
                     </div>
                 </div>
             @endforeach
+        </div>
+         {{-- Pagination --}}
+         <div class="d-flex justify-content-center">
+            {!! $quizset->links() !!}
         </div>
     </div>
 </div>

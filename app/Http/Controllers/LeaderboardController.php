@@ -10,8 +10,7 @@ use Illuminate\Support\Facades\Auth;
 class LeaderboardController extends Controller
 {
     public function index(){
-        // $anpage = Answer::paginate(10);
-        $answers = Answer::orderBy("marks", "desc")->orderBy('created_at')->where('type','sq')->get();
+        $answers = Answer::orderBy("marks", "desc")->orderBy('created_at')->where('type','sq')->paginate(15);
         // dd($mark);
         return view('leaderboard.index')
         ->with('answers', $answers)

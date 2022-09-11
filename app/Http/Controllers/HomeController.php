@@ -11,7 +11,8 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $quizset = Quizset::orderBy("id", "desc")->orderBy('created_at')->get();
+                
+        $quizset = Quizset::orderBy("id", "desc")->orderBy('created_at')->paginate(6);
         return view('welcome',compact('quizset'));
     }
 

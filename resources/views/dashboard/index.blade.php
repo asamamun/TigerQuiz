@@ -31,7 +31,7 @@
                             </div>
                             <div class="col-3 col-sm-2 col-xl-2 pl-0 text-center">
                                 <span>
-                                    <a href="#" target="_blank" class="btn text-warning">Add here</a>
+                                    <a href="{{ url('/quizset/create') }}" target="_blank" class="btn text-warning">Add here</a>
                                 </span>
                             </div>
                         </div>
@@ -47,7 +47,7 @@
                             <div class="col-9">
                                 <div class="d-flex align-items-center align-self-start">
                                     <h3 class="mb-0">{{ $quizzes = DB::table('quizzes')->count() }}</h3>
-                                    <p class="text-light ml-2 mb-0 font-weight-medium">&nbsp; 35%</p>
+                                    {{-- <p class="text-light ml-2 mb-0 font-weight-medium">&nbsp; 35%</p> --}}
                                 </div>
                             </div>
                             <div class="col-3">
@@ -67,7 +67,7 @@
                             <div class="col-9">
                                 <div class="d-flex align-items-center align-self-start">
                                     <h3 class="mb-0">{{ $quizsets = DB::table('quizsets')->count() }}</h3>
-                                    <p class="text-light ml-2 mb-0 font-weight-medium">&nbsp; 11%</p>
+                                    {{-- <p class="text-light ml-2 mb-0 font-weight-medium">&nbsp; 11%</p> --}}
                                 </div>
                             </div>
                             <div class="col-3">
@@ -87,7 +87,7 @@
                             <div class="col-9">
                                 <div class="d-flex align-items-center align-self-start">
                                     <h3 class="mb-0">{{ DB::table('users')->where('role', '=', '3')->count() }}</h3>
-                                    <p class="text-light ml-2 mb-0 font-weight-medium">&nbsp;24%</p>
+                                    {{-- <p class="text-light ml-2 mb-0 font-weight-medium">&nbsp;24%</p> --}}
                                 </div>
                             </div>
                             <div class="col-3">
@@ -109,7 +109,7 @@
                                     <h3 class="mb-0">
                                         {{ $teachers = DB::table('users')->where('role', '=', '2')->count() }}
                                     </h3>
-                                    <p class="text-light ml-2 mb-0 font-weight-medium">&nbsp;35%</p>
+                                    {{-- <p class="text-light ml-2 mb-0 font-weight-medium">&nbsp;35%</p> --}}
                                 </div>
                             </div>
                             <div class="col-3">
@@ -133,9 +133,9 @@
                             <div class="col-8 col-sm-12 col-xl-8 my-auto">
                                 <div class="d-flex d-sm-block d-md-flex align-items-center">
                                     <h2 class="mb-0">{{ $cats = DB::table('categories')->count() }}</h2>
-                                    <p class="text-light ml-2 mb-0 font-weight-medium">+3.5%</p>
+                                    {{-- <p class="text-light ml-2 mb-0 font-weight-medium">+3.5%</p> --}}
                                 </div>
-                                <h6 class="text-muted font-weight-normal">11.38% </h6>
+                                {{-- <h6 class="text-muted font-weight-normal">11.38% </h6> --}}
                             </div>
                             <div class="col-4 col-sm-12 col-xl-4 text-center text-xl-right">
                                 <i class="icon-lg mdi mdi-codepen text-primary ml-auto"></i>
@@ -152,9 +152,9 @@
                             <div class="col-8 col-sm-12 col-xl-8 my-auto">
                                 <div class="d-flex d-sm-block d-md-flex align-items-center">
                                     <h2 class="mb-0">{{ $subcats = DB::table('subcategories')->count() }}</h2>
-                                    <p class="text-light ml-2 mb-0 font-weight-medium">+8.3%</p>
+                                    {{-- <p class="text-light ml-2 mb-0 font-weight-medium">+8.3%</p> --}}
                                 </div>
-                                <h6 class="text-info font-weight-normal"> 9.61%</h6>
+                                {{-- <h6 class="text-info font-weight-normal"> 9.61%</h6> --}}
                             </div>
                             <div class="col-4 col-sm-12 col-xl-4 text-center text-xl-right">
                                 <i class="icon-lg mdi mdi-wallet-travel text-danger ml-auto"></i>
@@ -171,9 +171,9 @@
                             <div class="col-8 col-sm-12 col-xl-8 my-auto">
                                 <div class="d-flex d-sm-block d-md-flex align-items-center">
                                     <h2 class="mb-0">{{ $topics = DB::table('topics')->count() }}</h2>
-                                    <p class="text-danger ml-2 mb-0 font-weight-medium">-2.1% </p>
+                                    {{-- <p class="text-danger ml-2 mb-0 font-weight-medium">-2.1% </p> --}}
                                 </div>
-                                <h6 class="text-muted font-weight-normal">2.27%</h6>
+                                {{-- <h6 class="text-muted font-weight-normal">2.27%</h6> --}}
                             </div>
                             <div class="col-4 col-sm-12 col-xl-4 text-center text-xl-right">
                                 <i class="icon-lg mdi mdi-monitor text-light ml-auto"></i>
@@ -244,24 +244,24 @@
                                         <option value="3">Quiz: General Knowledge International</option>
                                     </select>
                                 </div>
-                                <table class="table">
+                                <table class="table table-bordered mb-5">
                                     <thead>
-                                        <tr>
-                                            <th>
+                                        <tr class="table-success">
+                                            <th scope="col">
                                                 <div class="form-check form-check-muted m-0">
                                                     <label class="form-check-label">
                                                         <input type="checkbox" class="form-check-input">
                                                     </label>
                                                 </div>
                                             </th>
-                                            {{-- <th>ID</th> --}}
-                                            <th>User</th>
-                                            <th>Quizset name</th>
-                                            <th>Marks</th>
-                                            <th>Quizzes</th>
-                                            <th>Type</th>
-                                            <th>By</th>
-                                            <th>Time</th>
+                                            <th>ID</th>
+                                            <th scope="col">User</th>
+                                            <th scope="col">Quizset name</th>
+                                            <th scope="col">Marks</th>
+                                            <th scope="col">Quizzes</th>
+                                            <th scope="col">Type</th>
+                                            <th scope="col">By</th>
+                                            <th scope="col">Time</th>
                                         </tr>
                                     </thead>
                                     @foreach ($answers as $ans)
@@ -274,16 +274,17 @@
                                                         </label>
                                                     </div>
                                                 </td>
-                                                {{-- <td>{{ $ans->id }}.</td> --}}
+                                                <td scope="row">{{ $ans->id }}.</td>
                                                 <td>
                                                     {{-- <img src="assets/images/faces/face1.jpg" alt="image" /> --}}
                                                     <span class="pl-2">{{ $ans->user->name }}</span>
                                                 </td>
-                                                <td><a href="{{ url('/quiz/qz/qshow') }}">{{ $ans->Quizset->name ?? 'Random Quizzes' }}</a>
+                                                <td><a
+                                                        href="{{ url('/quiz/qz/qshow') }}">{{ $ans->Quizset->name ?? 'Random Quizzes' }}</a>
                                                 </td>
                                                 <td>{{ $ans->marks }}</td>
                                                 <td>{{ $ans->tquiz }}</td>
-                                                <td>{{ $ans->type}}</td>
+                                                <td>{{ $ans->type }}</td>
                                                 <td>{{ $ans->Quizset->user->name ?? 'User' }}</td>
                                                 <td>{{ $ans->created_at }}</td>
                                                 </td>
@@ -291,11 +292,18 @@
 
                                         </tbody>
                                     @endforeach
+
                                 </table>
+                                {{-- Pagination --}}
+                                <div class="d-flex justify-content-center">
+                                    {!! $answers->links() !!}
+                                </div>
                             </div>
+
                         </div>
                     </div>
                 </div>
+
             </div>
 
             <div class="row">

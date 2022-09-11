@@ -112,7 +112,7 @@ class QuizController extends Controller
         // dd($data);
         $quizzes = Quiz::create($request);
         if ($quizzes) {
-            return back()->with('message', 'Quiz ' . $quizzes->id . ' has been created Successfully!');
+            return back()->with('message', 'Quiz ' . $quizzes->id . ' has been created Successfully!')->withinput(array('category_id' =>  $quizzes->category_id));
         }
     }
 

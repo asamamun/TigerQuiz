@@ -83,7 +83,8 @@
                                                                 {{-- <img src="assets/images/faces/face1.jpg" alt="image" /> --}}
                                                                 <span class="pl-2">{{ $ans->user->name }}</span>
                                                             </td>
-                                                            <td><a href="{{ url('/quiz/qz/qshow') }}">{{ $ans->Quizset->name ?? 'Random Quizzes' }}</a>
+                                                            <td><a
+                                                                    href="{{ url('/quiz/qz/qshow') }}">{{ $ans->Quizset->name ?? 'Random Quizzes' }}</a>
                                                             </td>
                                                             <td>{{ $ans->marks }}</td>
                                                             <td>{{ $ans->tquiz }}</td>
@@ -92,10 +93,14 @@
                                                             <td>{{ $ans->created_at }}</td>
                                                             </td>
                                                         </tr>
-            
+
                                                     </tbody>
                                                 @endforeach
                                             </table>
+                                            {{-- Pagination --}}
+                                            <div class="d-flex justify-content-center">
+                                                {!! $answers->links() !!}
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

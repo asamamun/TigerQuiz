@@ -162,7 +162,7 @@ class QuizsetController extends Controller
 
         if ($u->quizsets()->save($q)) {
             Session::flash('message', __('Quizset ' . $q->id . ' has been created!'));
-            return response()->json(['message' => "Created", 'error' => 0]);
+            return response()->json(['message' => "Created", 'error' => 0])->withInput($request->input());
         } else {
             return response()->json(['message' => "Error", 'error' => 1]);
         }
@@ -194,4 +194,7 @@ class QuizsetController extends Controller
     {
         //
     }
+
+    // ->withInput($request->input())
+    // ->withErrors($errors, $this->errorBag());
 }

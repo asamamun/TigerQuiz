@@ -141,6 +141,10 @@
                             </tbody>
                         @endforeach
                     </table>
+                     {{-- Pagination --}}
+                     <div class="d-flex justify-content-center">
+                        {!! $marks->links() !!}
+                    </div>
                 </div>
             </div>
         @else

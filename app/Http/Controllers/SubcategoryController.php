@@ -58,7 +58,7 @@ class SubcategoryController extends Controller
         $sc->description = $request->description;
         $c = Category::find($request->category_id);
         if ($c->subcategories()->save($sc)) {
-            return back()->with('message', 'Subject ' . $sc->id . ' has been created successfully!');
+            return back()->with('message', 'Subject ' . $sc->id . ' has been created successfully!')->withInput($request->input());
         } else {
             return back()->with('message', 'Error!!');
         }

@@ -17,7 +17,7 @@ class StudentController extends Controller
     public function index()
     {
         // $marks = Answer::all()->where('user_id', Auth::user()->id);
-        $marks = Answer::orderBy("id", "desc")->get()->where('user_id', Auth::user()->id);
+        $marks = Answer::orderBy("id", "desc")->where('user_id', Auth::user()->id)->paginate(10);
         
         // $wl = Answer::whereIn('marks', ['W', 'L'])->count();
         // $total = Answer::count();
