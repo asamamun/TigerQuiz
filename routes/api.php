@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\QuizController;
+use App\Http\Controllers\AnswerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,5 +21,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get("questions", [QuizController::class, "randomquestions"]);
+Route::post("answers", [AnswerController::class, "apianswers"]);
 // Route::get("questions/cat/{id}", [QuizController::class, "catrandomquestions"]);
 // Route::get("questions", [QuizController::class, "randomquestions"]);

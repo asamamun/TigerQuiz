@@ -64,9 +64,11 @@
 
                         <div class="card card-hover shadow mb-1">
                             @php
-                                $timenow = date('Y-m-d H:i:sa');
+                                $timenow = date('Y-m-d H:i:s');
                             @endphp
-
+<!-- <p>A:  {{strtotime($timenow)}} </p>
+<p>B: {{strtotime($qset->stime)}} </p>
+<p>C:  {{strtotime($qset->entime)}} </p> -->
                             @if (strtotime($timenow) > strtotime($qset->stime) && strtotime($timenow) < strtotime($qset->entime))
                                 <form action="{{ url('result') }}" method="post">
                                     @csrf

@@ -63,8 +63,6 @@ class AnswerController extends Controller
 
     public function result(Request $request)
     {
-
-
         $answers = $request->all();
         unset($answers['_token']);
         $quizid = array_keys($answers);
@@ -103,5 +101,42 @@ class AnswerController extends Controller
             ->with('quizans', $quizans)
             ->with('total', count($answers))
             ->with('result', $result); */
+    }
+
+    public function apianswers(Request $request)
+    {
+        
+        $answers = $request->all();
+        unset($answers['_token']);
+        return response()->json($answers);
+        exit;
+        $quizid = array_keys($answers);
+        $quizid = Arr::map($quizid, function ($value, $key) {
+            return substr($value, 3);
+        });
+        $quizans = array_values($answers);
+        $quizzes = Quiz::whereIn('id', $quizid)->get();
+        $result = 0;
+        foreach ($quizzes as $quiz) {
+            if ($quiz->ans == $answers['box' . $quiz->id]) {
+                $result++;
+            }
+            //echo $quiz->id ." :". $quiz->ans. " =  User ans:" . $answers['box'.$quiz->id] . "<br>";
+        }
+        // dd($answers,$quizzes , $quizid, $quizans);
+        $u = User::find(Auth::id());
+        $q = new Answer();
+        $q->qset_id = $request->qset ?? null;
+        $q->type = 'sq';
+        $q->marks = $result;
+        $q->tquiz = count($answers);
+        if($u->role == "3"){
+            $u->answers()->save($q);
+            return Redirect::to('student')->with('message', 'You got '. $result . ' out of ' . count($answers));
+        }
+        else{
+            return redirect('/')->with('message', 'Thanks for your Supports');
+        }
+        
     }
 }
