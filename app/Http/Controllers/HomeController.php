@@ -11,7 +11,7 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $quizset = Quizset::with('category')->with('subcategory')->get();
+        $quizset = Quizset::orderBy("id", "desc")->get();
         return view('welcome',compact('quizset'));
     }
 
