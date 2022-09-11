@@ -102,9 +102,13 @@ class QuizsetController extends Controller
     }
    
         $catp = Category::pluck('name', 'id');
+        $subcat = Subcategory::pluck('name', 'id');
+        $topics = Topic::pluck('name', 'id');
         //  dd($catp);
         return view('quizset.edit', compact('quizset'))
         ->with('catp', $catp)
+        ->with('subcat', $subcat)
+        ->with('topics', $topics)
         ->with('user', Auth::user());
     }
 
@@ -119,6 +123,7 @@ class QuizsetController extends Controller
     {
         // update all into prpfile table
         $quizset->update($request->all());
+        // dd($request->all());
         // replace the request filename with desired name
        
         if ($quizset->save()) {

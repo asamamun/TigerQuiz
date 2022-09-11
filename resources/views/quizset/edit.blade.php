@@ -38,6 +38,7 @@
 
             <div class="form-group mt-1 row">
                 <div class="col-sm-3 mb-2">
+                    {!! Form::select('category_id', $catp, null, [ 'disabled', 'class' => 'form-control btn btn-sm mb-1' ]) !!}
                     {!! Form::select('category_id', $catp, null, [
                         'required',
                         'class' => 'form-control',
@@ -47,6 +48,7 @@
 
                 </div>
                 <div class="col-sm-3 mb-2 mb-sm-0">
+                    {!! Form::select('subcategory_id', $subcat, null, [ 'disabled', 'class' => 'form-control btn btn-sm mb-1' ]) !!}
                     {!! Form::select('subcategory_id', [], null, [
                         'required',
                         'class' => 'form-control ',
@@ -56,6 +58,7 @@
 
                 </div>
                 <div class="col-sm-3 mb-2 mb-sm-0">
+                    {!! Form::select('topic_id', $topics, null, [ 'disabled', 'class' => 'form-control btn btn-sm mb-1' ]) !!}
                     {!! Form::select('topic_id', [], null, [
                         'required',
                         'placeholder' => 'Select Topic',
@@ -66,6 +69,7 @@
 
                 </div>
                 <div class="col-sm-3 mb-2 mb-sm-0">
+                    {{-- {!! Form::select('subcategory_id', 'MCQ, null, [ 'disabled', 'class' => 'form-control btn btn-sm mb-1' ]) !!} --}}
                     {!! Form::select('type', ['m' => 'MCQ', 'd' => 'Descriptive', 'qi' => 'Image'], 'm', [
                         'required',
                         'class' => 'form-control form-control-profile',
@@ -108,16 +112,16 @@
                         ]) !!}
                     </div>
 
-                    @php
+                    {{-- @php
                     $timenow = date('Y-m-d H:i:s');                            
-                    @endphp
+                    @endphp --}}
                     <div class="col-sm-4 mb-2 mb-sm-0">
                         @if(!empty($qset->stime))
-                        {!! Form::datetime('stime', null, ['disabled','class' => 'form-control mb-1 btn btn-sm','id' => 'stime','placeholder' => 'ST: 2022-08-30 09:30:00' ]) !!}
-                        <input type="datetime-local" id="entime" name="entime" class='form-control'>
+                        {!! Form::datetime('stime', null, ['disabled','class' => 'form-control mb-1 btn btn-sm','placeholder' => 'ST: 2022-08-30 09:30:00' ]) !!}
+                       
+                        <input type="datetime-local" name="stime" id="stime" class='form-control' required>
                         @else
-                        <input type="datetime-local" id="stime"
-                        name="stime" class='form-control'required>
+                        <input type="datetime-local"  name="stime" id="stime" class='form-control'required>
                         @endif
                     </div>
             
@@ -127,12 +131,12 @@
                         {{-- ((strtotime($timenow) > strtotime($qset->stime)) && (strtotime($timenow) < strtotime($qset->entime))) --}}
 
 
-                        @if(!empty($qset->stime))
-                        {!! Form::datetime('entime', null, [ 'disabled','class' => 'form-control mb-1 btn btn-sm','id' => 'entime', 'type'=>'datetime-local','placeholder' => 'ET: 2022-08-30 10:30:00' ]) !!}
-                        <input type="datetime-local" id="entime"
-                        name="entime" class='form-control'required>
+                        @if(!empty($qset->entime))
+                        {!! Form::datetime('entime', null, [ 'disabled','class' => 'form-control mb-1 btn btn-sm','placeholder' => 'ET: 2022-08-30 10:30:00' ]) !!}
+                        
+                        <input type="datetime-local" name="entime" id="entime" class='form-control'required>
                        @else
-                        <input type="datetime-local"  id="entime" name="entime" class='form-control '>
+                        <input type="datetime-local" name="entime" id="entime" class='form-control 'required>
                         @endif
                     </div>
                     <div class="col-sm-2">
