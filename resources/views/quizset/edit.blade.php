@@ -112,11 +112,12 @@
                     $timenow = date('Y-m-d H:i:s');                            
                     @endphp
                     <div class="col-sm-4 mb-2 mb-sm-0">
-                        @if(empty($qset->stime) || (strtotime($timenow) > strtotime($qset->stime)))
-                        {!! Form::datetime('stime', null, ['class' => 'form-control','id' => 'stime','placeholder' => 'ST: 2022-08-30 09:30:00' ]) !!}
+                        @if(!empty($qset->stime))
+                        {!! Form::datetime('stime', null, ['disabled','class' => 'form-control mb-1 btn btn-sm','id' => 'stime','placeholder' => 'ST: 2022-08-30 09:30:00' ]) !!}
+                        <input type="datetime-local" id="entime" name="entime" class='form-control'>
                         @else
                         <input type="datetime-local" id="stime"
-                        name="stime" class='form-control'>
+                        name="stime" class='form-control'required>
                         @endif
                     </div>
             
@@ -126,11 +127,12 @@
                         {{-- ((strtotime($timenow) > strtotime($qset->stime)) && (strtotime($timenow) < strtotime($qset->entime))) --}}
 
 
-                        @if(empty($qset->stime) || (strtotime($timenow) < strtotime($qset->entime)))
-                        {!! Form::datetime('entime', null, ['class' => 'form-control','id' => 'entime', 'type'=>'datetime-local','placeholder' => 'ET: 2022-08-30 10:30:00' ]) !!}
-                       @else
+                        @if(!empty($qset->stime))
+                        {!! Form::datetime('entime', null, [ 'disabled','class' => 'form-control mb-1 btn btn-sm','id' => 'entime', 'type'=>'datetime-local','placeholder' => 'ET: 2022-08-30 10:30:00' ]) !!}
                         <input type="datetime-local" id="entime"
-                        name="entime" class='form-control'>
+                        name="entime" class='form-control'required>
+                       @else
+                        <input type="datetime-local"  id="entime" name="entime" class='form-control '>
                         @endif
                     </div>
                     <div class="col-sm-2">

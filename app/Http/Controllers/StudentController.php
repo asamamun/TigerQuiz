@@ -18,23 +18,26 @@ class StudentController extends Controller
     {
         // $marks = Answer::all()->where('user_id', Auth::user()->id);
         $marks = Answer::orderBy("id", "desc")->get()->where('user_id', Auth::user()->id);
+        
+        // $wl = Answer::whereIn('marks', ['W', 'L'])->count();
+        // $total = Answer::count();
+        // $percent = $wl / $total * 100;
 
-      
-        // dd($marks->count());
-if (!$marks->count()== 0){
- foreach ($marks as $mk) {
-            $qsid = $mk->quizset?->name;
-            $mks = $mk->marks;
-            $tq = $mk->tquiz;
-            break;
+        // dd($marks);
+        if (!$marks->count() == 0) {
+            foreach ($marks as $mk) {
+                $qsid = $mk->quizset?->name;
+                $mks = $mk->marks;
+                $tq = $mk->tquiz;
+                break;
+            }
+            return view('student.index', compact('marks', 'qsid', 'mks', 'tq'))
+                ->with('user', Auth::user());
         }
-        return view('student.index', compact('marks', 'qsid', 'mks', 'tq'))
-            ->with('user', Auth::user());
-    }
-//  dd($marks, $qsid, $mks, $tq,$uid );
-     else{
-        return view('student.index', compact('marks'))
-            ->with('user', Auth::user());
+        //  dd($marks, $qsid, $mks, $tq,$uid );
+        else {
+            return view('student.index', compact('marks'))
+                ->with('user', Auth::user());
         }
     }
 
