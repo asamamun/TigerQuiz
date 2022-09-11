@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 10, 2022 at 02:59 PM
+-- Generation Time: Sep 11, 2022 at 11:51 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -666,7 +666,47 @@ INSERT INTO `quizzes` (`id`, `question`, `type`, `op1`, `op2`, `op3`, `op4`, `an
 (239, 'The perimeter of the trapezium is', 'qi', '12 cm', '24 cm', '6 cm', '18 cm.', 'op1', '239.jpg', 1, 4, 20, 21, '2022-09-04 18:48:36', '2022-09-04 18:48:36'),
 (240, 'The area of the quadrilateral is', 'qi', '3.75 cm&sup2;', '7.5 cm&sup2;', '3 cm&sup2;', '10 cm&sup2;', 'op1', '240.jpg', 1, 4, 20, 21, '2022-09-04 18:50:07', '2022-09-04 18:50:07'),
 (241, 'The area of the quadrilateral is', 'qi', '10 cm&sup2;', '5 cm&sup2;', '20 cm&sup2;', '15 cm&sup2;', 'op1', '241.jpg', 1, 4, 20, 21, '2022-09-04 18:51:45', '2022-09-04 18:51:45'),
-(242, 'The area of the quadrilateral is', 'qi', '6 cm&sup2;', '12 cm&sup2;', '3 cm&sup2;', '8 cm&sup2;', 'op1', '242.jpg', 1, 4, 20, 21, '2022-09-04 18:53:06', '2022-09-04 18:53:06');
+(242, 'The area of the quadrilateral is', 'qi', '6 cm&sup2;', '12 cm&sup2;', '3 cm&sup2;', '8 cm&sup2;', 'op1', '242.jpg', 1, 4, 20, 21, '2022-09-04 18:53:06', '2022-09-04 18:53:06'),
+(243, 'ভারতীয় গণিতের যুবরাজ হিসেবে কে পরিচিত?', 'm', 'শ্রীনিবাস রামানুজন', 'পিথাগোরাস', 'আর্কিমিডিস', 'কোনটি না', 'op1', '', 1, 1, 1, 4, '2022-09-11 08:43:52', '2022-09-11 08:43:52'),
+(244, 'চিরস্থায়ী বন্দোবস্ত চালু করেন -', 'm', 'হেস্টিংস', 'কর্ণওয়ালিস', 'ডালহৌসি', 'কোনটি না', 'op2', '', 1, 1, 1, 4, '2022-09-11 08:49:28', '2022-09-11 08:49:28'),
+(245, 'মহলওয়ারি ব্যবস্থা চালু হয়েছিল -', 'm', 'বাংলায়', 'উত্তর ভারতে', 'দক্ষিণ ভারতে', 'কোনটি না', 'null', '', 1, 1, 1, 4, '2022-09-11 08:50:53', '2022-09-11 08:50:53'),
+(246, 'Everything in React is a _____________', 'm', 'Module', 'Component', 'Package', 'Class', 'op2', '', 1, 6, 25, 22, '2022-09-11 08:59:32', '2022-09-11 09:02:20'),
+(247, 'In which directory React Components are saved?', 'm', 'Inside js/components/', 'Inside vendor/components/', 'Inside vendor/', 'Inside vendor/', 'op1', '', 1, 6, 25, 22, '2022-09-11 09:01:41', '2022-09-11 09:01:41'),
+(248, 'How many elements does a react component return?', 'm', '2 Elements', '1 Element', 'Multiple Elements', 'None of These', 'op3', '', 1, 6, 25, 22, '2022-09-11 09:03:19', '2022-09-11 09:03:19'),
+(249, 'What is state in React?', 'm', 'A persistant storage.', 'An internal data store (object) of a component.', 'Transpiles all the Javascript down into one file', 'Runs react local development server.', 'op2', '', 1, 6, 25, 22, '2022-09-11 09:05:11', '2022-09-11 09:05:11'),
+(250, 'What is Babel?', 'm', 'A transpiler.', 'An interpreter', 'A Compiler', 'Both Compiler and Transpilar', 'op4', '', 1, 6, 25, 22, '2022-09-11 09:06:32', '2022-09-11 09:06:32'),
+(251, 'What does the &quot;webpack&quot; command do?', 'm', 'Transpiles all the Javascript down into one file', 'Runs react local development server.', 'A module bundler', 'None', 'op3', '', 1, 6, 25, 22, '2022-09-11 09:07:24', '2022-09-11 09:07:24'),
+(252, 'What port is the default where the webpack-dev-server will run?', 'm', '3000', '8080', '3306', 'None', 'op2', '', 1, 6, 25, 22, '2022-09-11 09:08:30', '2022-09-11 09:08:30'),
+(253, 'What is ReactJS?', 'm', 'Server side Framework', 'User-interface framework', 'A Library for building interaction interfaces', 'None of These', 'op3', '', 1, 6, 25, 22, '2022-09-11 09:09:38', '2022-09-11 09:09:38'),
+(254, 'What are the two ways that data gets handled in React?', 'm', 'state &amp; props', 'services &amp; components', 'setState', 'render with arguments', 'op1', '', 1, 6, 25, 22, '2022-09-11 09:11:24', '2022-09-11 09:11:24'),
+(255, 'In React what is used to pass data to a component from outside?', 'm', 'setState', 'render with arguments', 'props', 'PropTypes', 'op3', '', 1, 6, 25, 22, '2022-09-11 09:12:41', '2022-09-11 09:12:41'),
+(256, 'How can you access the state of a component from inside of a member function?', 'm', 'this.getState()', 'this.values', 'this.prototype.stateValue', 'this.state', 'op2', '', 1, 6, 25, 22, '2022-09-11 09:13:38', '2022-09-11 09:13:38'),
+(257, 'Props are __________ into other components', 'm', 'Methods', 'Injected', 'Both 1 &amp; 2', 'All of the above', 'op1', '', 1, 6, 25, 22, '2022-09-11 09:15:00', '2022-09-11 09:15:00'),
+(258, 'What is a react.js in MVC?', 'm', 'Middleware', 'Controller', 'Model', 'Router', 'op2', '', 1, 6, 25, 22, '2022-09-11 09:16:00', '2022-09-11 09:16:00'),
+(259, 'ReactJS uses _____ to increase performance', 'm', 'Original DOM', 'Virtual DOM', 'Both 1 &amp; 2', 'None of above', 'op2', '', 1, 6, 25, 22, '2022-09-11 09:17:19', '2022-09-11 09:17:19'),
+(260, 'Keys are given to a list of elements in react. These keys should be &ndash;', 'm', 'Do not requires to be unique', 'Unique in the DOM', 'Unique among the siblings only', 'All of the above', 'op3', '', 1, 6, 25, 22, '2022-09-11 09:19:17', '2022-09-11 09:19:17'),
+(261, 'Which of the following is the correct data flow sequence of flux concept?', 'm', 'Dispatcher-&gt;Action-&gt;Store-&gt;View', 'Action-&gt;Dispatcher-&gt;View-&gt;Store', 'Action-&gt;Dispatcher-&gt;Store-&gt;View', 'Action-&gt;Store-&gt;Dispatcher-&gt;View', 'op3', '', 1, 6, 25, 22, '2022-09-11 09:20:18', '2022-09-11 09:20:18'),
+(262, 'What is the name of React.js Developer ?', 'm', 'Jordan mike', 'Jordan Lee', 'Jordan Walke', 'Tim Lee', 'op3', '', 1, 6, 25, 22, '2022-09-11 09:21:49', '2022-09-11 09:21:49'),
+(263, 'Who Develop React.js?', 'm', 'Apple', 'Facebook', 'Twitter', 'Google', 'op2', '', 1, 6, 25, 22, '2022-09-11 09:22:31', '2022-09-11 09:22:31'),
+(264, '.............. helps react for keeping their data unidirectional.', 'm', 'JSX', 'Flux', 'Dom', 'Props', 'op2', '', 1, 6, 25, 22, '2022-09-11 09:23:18', '2022-09-11 09:23:18'),
+(265, 'We can go for keys when there is possibility that our user could change the data', 'm', 'Keys', 'ref', 'both', 'none of above', 'op1', '', 1, 6, 25, 22, '2022-09-11 09:24:01', '2022-09-11 09:24:01'),
+(266, 'React merges the object you provide into the current state using __________.', 'm', 'setState()', 'State()', 'Keys', 'Props', 'op1', '', 1, 6, 25, 22, '2022-09-11 09:25:37', '2022-09-11 09:25:37'),
+(267, '_________ can be done while more than one element needs to be returned from a component.', 'm', 'Abstraction', 'Packing', 'Insulation', 'Wrapping', 'op4', '', 1, 6, 25, 22, '2022-09-11 09:26:20', '2022-09-11 09:26:20'),
+(268, 'Lifecycle methods are mainly used ___________.', 'm', 'To keep track of event history', 'to enhance components', 'freeup resources', 'none of the options', 'op3', '', 1, 6, 25, 22, '2022-09-11 09:27:20', '2022-09-11 09:27:20'),
+(269, 'Ref is used to refer an element / component returned by _______________.', 'm', 'React ()', 'Render ()', 'Reduce ()', 'Refer ()', 'op2', '', 1, 6, 25, 22, '2022-09-11 09:28:16', '2022-09-11 09:28:16'),
+(270, 'In JSX most of the errors can be caught during _________.', 'm', 'Interpretation', 'Execution', 'Compilation', 'Build', 'op3', '', 1, 6, 25, 22, '2022-09-11 09:29:43', '2022-09-11 09:29:43'),
+(271, 'JSX is faster because it performs ____________ while compiling code to JavaScript', 'm', 'Modification', 'Compression', 'Optimization', 'Encryption', 'op3', '', 1, 6, 25, 22, '2022-09-11 09:30:42', '2022-09-11 09:30:42'),
+(272, 'What is the smallest building block of ReactJS?', 'm', 'components', 'props', 'elements', 'none of the options', 'op3', '', 1, 6, 25, 22, '2022-09-11 09:32:21', '2022-09-11 09:32:21'),
+(273, 'React considers everything as _______.', 'm', 'User interface', 'elements', 'components', 'Objects', 'op3', '', 1, 6, 25, 22, '2022-09-11 09:33:46', '2022-09-11 09:33:46'),
+(274, 'React keeps track of what items have changed, been added, or been removed from a list using ________.', 'm', 'state', 'props', 'keys', 'ref', 'op3', '', 1, 6, 25, 22, '2022-09-11 09:35:10', '2022-09-11 09:35:10'),
+(275, 'React is mainly for building _____________.', 'm', 'Database', 'Connectivity', 'User interface', 'Design platform', 'op3', '', 1, 6, 25, 22, '2022-09-11 09:36:23', '2022-09-11 09:36:23'),
+(276, 'React supports all the syntax of _________________.', 'm', 'ES6', 'Redux', 'None of options', 'Native Java', 'op1', '', 1, 6, 25, 22, '2022-09-11 09:38:02', '2022-09-11 09:38:02'),
+(277, 'In React state can be accessed using ________.', 'm', 'current', 'state', 'current()', 'state()', 'op2', '', 1, 6, 25, 22, '2022-09-11 09:42:13', '2022-09-11 09:42:13'),
+(278, 'How can we prevent default behavior in React?', 'm', 'using avoidDefault()', 'using revokeDefault()', 'Using preventDefault()', 'None of the options', 'op3', '', 1, 6, 25, 22, '2022-09-11 09:43:11', '2022-09-11 09:43:11'),
+(279, 'Invoked once, only on the client, after rendering occurs', 'm', 'componentWillUnmount', 'shouldComponentUpdate', 'componentWillMount', 'componentDidMount', 'op4', '', 1, 6, 25, 22, '2022-09-11 09:44:11', '2022-09-11 09:44:11'),
+(280, 'Life cycle methods of a components fall under following categories?', 'm', 'Mounting, Updating, Unmounting', 'Mounting, Unmounting', 'Mounting, Updating', 'None of these', 'op1', '', 1, 6, 25, 22, '2022-09-11 09:45:03', '2022-09-11 09:45:03'),
+(281, 'Which is used to pass the data from parent to child?', 'm', 'render', 'Components', 'props', 'state', 'op3', '', 1, 6, 25, 22, '2022-09-11 09:46:28', '2022-09-11 09:46:28'),
+(282, 'Which is used to update the state?', 'm', 'setInitialnumber', 'setState', 'setnumber', 'setNewnumber', 'op2', '', 1, 6, 25, 22, '2022-09-11 09:47:45', '2022-09-11 09:47:45');
 
 -- --------------------------------------------------------
 
@@ -712,7 +752,8 @@ INSERT INTO `subcategories` (`id`, `name`, `description`, `category_id`, `active
 (21, 'English', 'English', 4, '1', '2022-09-02 12:38:14', '2022-09-02 12:38:14'),
 (22, 'Mathematic', 'Mathematic', 5, '1', '2022-09-02 12:38:36', '2022-09-02 12:43:05'),
 (23, 'Banglaedesh', 'General Knowledge or General Awareness is an important and common section in all competitive and government recruitment examinations such as UPSC, SSC, Bank PO/Clerk, and so forth.', 11, '1', '2022-09-02 23:05:40', '2022-09-02 23:05:40'),
-(24, 'International', 'General Knowledge or General Awareness is an important and common section in all competitive and government recruitment examinations such as UPSC, SSC, Bank PO/Clerk, and so forth.', 11, '1', '2022-09-02 23:12:15', '2022-09-02 23:12:15');
+(24, 'International', 'General Knowledge or General Awareness is an important and common section in all competitive and government recruitment examinations such as UPSC, SSC, Bank PO/Clerk, and so forth.', 11, '1', '2022-09-02 23:12:15', '2022-09-02 23:12:15'),
+(25, 'React', 'React MCQ', 6, '1', '2022-09-11 08:53:37', '2022-09-11 08:53:37');
 
 -- --------------------------------------------------------
 
@@ -756,7 +797,8 @@ INSERT INTO `topics` (`id`, `name`, `description`, `category_id`, `subcategory_i
 (18, 'বাংলাদেশের উপজাতি ও ক্ষুদ্র-নৃতাত্বিক জনগোষ্ঠী', 'General Knowledge or General Awareness is an important and common section in all competitive and government recruitment examinations such as UPSC, SSC, Bank PO/Clerk, and so forth.', NULL, 23, '1', '2022-09-02 23:43:09', '2022-09-02 23:43:09'),
 (19, 'আন্তর্জাতিক সংস্থা ও সংগঠন', 'General Knowledge or General Awareness is an important and common section in all competitive and government recruitment examinations such as UPSC, SSC, Bank PO/Clerk, and so forth.', NULL, 24, '1', '2022-09-03 00:28:48', '2022-09-03 00:28:48'),
 (20, 'বিখ্যাত ব্যাক্তিদের উক্তি ও উপাধি', 'General Knowledge or General Awareness is an important and common section in all competitive and government recruitment examinations such as UPSC, SSC, Bank PO/Clerk, and so forth.', NULL, 24, '1', '2022-09-03 00:29:45', '2022-09-03 00:29:45'),
-(21, 'Chapter 11', 'MCQ Questions for Class 8 Maths Chapter 11 Mensuration with Answers', NULL, 20, '1', '2022-09-03 15:23:18', '2022-09-03 15:23:18');
+(21, 'Chapter 11', 'MCQ Questions for Class 8 Maths Chapter 11 Mensuration with Answers', NULL, 20, '1', '2022-09-03 15:23:18', '2022-09-03 15:23:18'),
+(22, 'Introduction of React', 'Intro', NULL, 25, '1', '2022-09-11 08:54:15', '2022-09-11 08:54:15');
 
 -- --------------------------------------------------------
 
@@ -997,19 +1039,19 @@ ALTER TABLE `quizsets`
 -- AUTO_INCREMENT for table `quizzes`
 --
 ALTER TABLE `quizzes`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=243;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=283;
 
 --
 -- AUTO_INCREMENT for table `subcategories`
 --
 ALTER TABLE `subcategories`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT for table `topics`
 --
 ALTER TABLE `topics`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `users`
