@@ -41,7 +41,7 @@
 
                             <h6 class="mt-1"> Name: {{ $qsid ?? 'Random Quizzes' }}</h6>
                             <h6>Marks obtained: {{ $mks ?? '0' }}</h6>
-                            <h6>Percentage: {{ ceil($mks / count($marks)* 100) }}%</h6>
+                            <h6>Percentage: {{ ceil(($mks*100/count($marks))) }}%</h6>
                             {{-- <h6>Your Posision: {{ count($marks) }}</h6> --}}
                             <h6>Total Questions: {{ $tq ?? '0' }}</h6>
 
