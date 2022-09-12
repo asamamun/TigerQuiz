@@ -5,15 +5,16 @@
 
 @endsection
 @section('sidebar')
-    {{-- sidebar as user role --}}
-    @if (Auth::user()->role == '1')
+    <!-- sidebar as user role -->
+    @if (Auth::check() && Auth::user()->role == '1')
         @include('dashboard.sidebar')
-    @elseif (Auth::user()->role == '2')
+    @elseif (Auth::check() &&  Auth::user()->role == '2')
         @include('inc.admin.trsidebar')
     @else
         @include('inc.admin.stsidebar')
     @endif
 @stop
+
 <!-- end sidebar -->
 @section('navbar')
     @include('inc.admin.navbar')

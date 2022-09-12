@@ -48,15 +48,20 @@ class AnswerController extends Controller
         $q->type = 'rq';
         $q->marks = $result;
         $q->tquiz = count($answers);
-
-        if($u->role == "3"){
-            $u->answers()->save($q);
-            return redirect()->back()->with('message', 'You got '. $result . ' out of ' . count($answers));
+       
+        $rl = collect([1, 2, 3]);  // for guest user
+        if (!$rl) {
+            if($u->role == "3"){
+                $u->answers()->save($q);
+                return Redirect::to('student')->with('message', 'You got '. $result . ' out of ' . count($answers));
+            }
+            else{
+                return redirect('/')->with('message', 'Thanks for your Supports');
+            }
+          } else {
+            return redirect('/')->with('message', 'You got '. $result . ' out of ' . count($answers));
+          }
           
-        }
-        else{
-            return redirect('/')->with('message', 'Thanks for your Supports ');
-        }
     }
 
 

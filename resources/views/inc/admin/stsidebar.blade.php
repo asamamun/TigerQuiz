@@ -6,6 +6,9 @@
     <span class="logo-title text-warning">Tiger</span>&nbsp;<span class="logo-title text-info">Quiz</span>
  </div></a>
  <div class="sidebar-menu">
+    @if (Auth::check() &&  Auth::user()->role == '3')
+        
+   
     <ul class="menu">
             <li class='sidebar-title'>Main Menu</li>
             <li class="sidebar-item active ">
@@ -69,7 +72,7 @@
                     </li>
                     
                     <li>
-                        <a href="{{url('assets/img/logo/tiger_logo.png')}}">All Quiz Result</a>
+                        <a href="{{url('/')}}">All Quiz Result</a>
                     </li>
                     
                    
@@ -79,6 +82,13 @@
             </li>
             <hr>
     </ul>
+    @else
+       <ul class="bg-info">
+        
+        <a href="{{route('register')}}">Resigter here</a>
+       </ul>
+       
+    @endif
 </div>
 <button class="sidebar-toggler btn x"><i data-feather="x"></i></button>
 </div>
