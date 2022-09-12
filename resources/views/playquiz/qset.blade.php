@@ -6,9 +6,9 @@
 @endsection
 @section('sidebar')
     <!-- sidebar as user role -->
-    @if (Auth::user()->role == '1')
+    @if (Auth::check() && Auth::user()->role == '1')
         @include('dashboard.sidebar')
-    @elseif (Auth::user()->role == '2')
+    @elseif (Auth::check() &&  Auth::user()->role == '2')
         @include('inc.admin.trsidebar')
     @else
         @include('inc.admin.stsidebar')
@@ -31,6 +31,7 @@
                 <i class="fas fa-arrow-left"></i>
             </a>
         </div>
+        @auth
         <div class="card-body">
 
             <section>
@@ -135,9 +136,13 @@
                                             Quiz</button>
                                     </div>
                                 </form>
+                            @elseif(strtotime($timenow) > strtotime($qset->entime))
+                            <div class="alert alert-primary" role="alert">
+                                    Quiz Ended
+                            </div>
                             @else
                                 <div class="" role="alert">
-                                    Quiz will start at {{ $qset->stime }}
+                                    Quiz will start at {{ $qset->stime }} (GMT +06:00)
                                     <p id="countdown"></p>
                                     <style>
                                         p#countdown {
@@ -191,6 +196,13 @@
                     </div>
                 </div>
         </div>
+        @endauth
+        @guest
+        <div>
+        <a href="{{route('login')}}">Login</a> or <a href="{{route('register')}}">Register</a> to play Quiz
+        </div>
+        @endguest
+
     @endsection
     @section('footer')
         @include('inc.admin.footer')

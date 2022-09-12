@@ -42,19 +42,20 @@
                        
                     </div>
                 </li>
+                @auth
                 <li class="dropdown">
                     <a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user">
                         <div class="avatar mr-1">
                             <!--if  profile or default avatar is not exists in db -->
-                            @if (!(Auth::user()->profile) || (Auth::user()->profile->image == '' ))
-                            <picture><img src="{{url('assets/img/profile/default2.png')}}" alt="{{auth()->user()->name}}" class="profile"/></picture> 
+                            @if (!(Auth::user()?->profile) || (Auth::user()?->profile->image == '' ))
+                            <picture><img src="{{url('assets/img/profile/default2.png')}}" alt="{{auth()->user()?->name}}" class="profile"/></picture> 
                             @else
-                                <picture><img src="{{url(Storage::url('public/profiles/'.Auth::user()->profile->image))}}" alt="{{auth()->user()->name}}" class="profile"/></picture>
+                                <picture><img src="{{url(Storage::url('public/profiles/'.Auth::user()->profile->image))}}" alt="{{auth()->user()?->name}}" class="profile"/></picture>
                             @endif
                             <!--end if -->
                             
                         </div>
-                        <div class="d-none d-md-block d-lg-inline-block">Hi, <span class="sidebar-user__title">{{ Auth::user()->name}}</span></div>
+                        <div class="d-none d-md-block d-lg-inline-block">Hi, <span class="sidebar-user__title">{{ Auth::user()?->name}}</span></div>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right">
                         <span><a class="dropdown-item" href="{{url('profile')}}"><i class="fa-solid fa-user"></i> Profile</a></span>
@@ -69,6 +70,26 @@
                         </form>
                     </div>
                 </li>
+                @endauth
+                @guest
+                <li class="dropdown">
+                    <a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user">
+                        <div class="avatar mr-1">
+                            <!--if  profile or default avatar is not exists in db -->
+                            
+                            <picture><img src="{{url('assets/img/profile/default2.png')}}" alt="" class="profile"/></picture> 
+                           
+                            
+                        </div>
+                        <div class="d-none d-md-block d-lg-inline-block">Hi, <span class="sidebar-user__title">Guest</span></div>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right">
+                        <span><a class="dropdown-item" href="{{route('login')}}"><i class="fa-solid fa-user"></i> Login</a></span>
+                        <span><a class="dropdown-item" href="{{route('register')}}"><i class="fa-solid fa-user"></i> Register</a></span>
+                     
+                    </div>
+                </li>
+                @endguest
             </ul>
         </div>
         <hr>
