@@ -82,7 +82,7 @@
                 <div class="container mb-1">
 
                     <div class="row">
-                        <form action="{{ url('storeanswer') }}" method="post">
+                        <form action="{{ url('result') }}" method="post">
                             @csrf
                             <div class="col-12" id="quizcontainer">
 
@@ -112,7 +112,7 @@
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
-
+        $('.navbar-toggler-icon').trigger('click');
         $(document).ready(function() {
             // alert(5)
             // answer btn toggle

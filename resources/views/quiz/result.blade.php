@@ -23,13 +23,7 @@
     <div class="card card-hover shadow mb-4">
 
         <div class="card-header py-3 d-flex justify-content-between">
-            <h3 class="m-0 font-weight-bold text-info">Quiz Result</h3>
-            <!-- Button trigger modal -->
-            <span type="button" class="btn btn-info">
-                <h3 class="m-0 font-weight-bold text-light">You got <span id="marks">{{ $result }}</span> out of
-                    <span id="tquiz">{{ $total }}</span>
-                </h3>
-            </span>
+            <h3 class="m-0 font-weight-bold text-info">Quiz Result : {{ $result }}/{{ $total }}.</h3>
             <a href="{{ url('quiz/qz/qshow') }}" class="btn btn-info btn-sm" title="Back to Quizset">
                 <i class="fas fa-arrow-left"></i>
             </a>
@@ -82,9 +76,12 @@
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header bg-primary">
-
+                                @if( Auth::check() && Auth::user()->role == "3")
                                 <h4 class="modal-title text-center text-light" id="quizmodal">Would you like to save your
                                     Marks?</h4>
+                                @else
+                                <h4 class="modal-title text-center text-light" id="quizmodal">Congratulations!</h4>
+                                @endif
                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                     aria-label="Close"></button>
                             </div>
@@ -105,8 +102,10 @@
                                         <input type="text" name="type" id="type" value="rq">
                                 </div>
                                 <div class="modal-footer small">
+                                    @if( Auth::check() && Auth::user()->role == "3")
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
                                     <button type="submit" class="btn btn-info">Yes</button>
+                                   @endif
                                 </div>
                             </form>
                         </div>

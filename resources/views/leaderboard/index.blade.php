@@ -5,10 +5,10 @@
 
 @endsection
 @section('sidebar')
-    {{-- sidebar as user role --}}
-    @if (Auth::user()->role == '1')
+    <!-- sidebar as user role -->
+    @if (Auth::check() && Auth::user()->role == '1')
         @include('dashboard.sidebar')
-    @elseif (Auth::user()->role == '2')
+    @elseif (Auth::check() && Auth::user()->role == '2')
         @include('inc.admin.trsidebar')
     @else
         @include('inc.admin.stsidebar')
@@ -22,11 +22,12 @@
 
 @section('content')
     <div class="container-fluid px-0">
-        <h2 class="mt-1 ms-2">Hello, {{ Auth::user()->name }}</h2>
+        <h2 class="mt-1 ms-2">Hello, {{ Auth::user()->name ?? 'Guest' }}</h2>
         <ol class="breadcrumb mb-4">
-            <li class="breadcrumb-item ms-2 active">Welcome To Leaderboard</li>
+            <li class="breadcrumb-item ms-2 active">Welcome to Leaderboard</li>
         </ol>
         <div class="row">
+
             <main class="c-main" id="app">
 
                 <div class="container-fluid">
@@ -34,8 +35,50 @@
                         <div class="row ">
                             <div class="col-12 grid-margin">
                                 <div class="card">
+                                    <div class="card-header py-3 mb-1 d-flex justify-content-between">
+                                        <h3 class="m-0 font-weight-bold text-info">Participants' Positions</h3>
+                                        <a href="{{ url('quiz/qz/qshow') }}" class="btn btn-info btn-sm"
+                                            title="Back to Quizset">
+                                            <i class="fas fa-arrow-left"></i>
+                                        </a>
+                                    </div>
                                     <div class="card-body">
-                                        <h4 class="card-title">Quiz Test Status</h4>
+                                        <div class="row">
+                                            @foreach ($answers as $ans)
+                                                <div class="col-3">
+                                                    <div class="card text-white">
+                                                  {{-- profile pics load with defult if not exists --}}
+                                                        @if ($ans->user->profile?->image == null || $ans->user->profile?->image == '')
+                                                            <img class="ms-0"
+                                                                src="{{ url(Storage::url('public/profiles/default2.png')) }}"
+                                                                alt="{{ $user?->name }}" width='90px'
+                                                                class="rounded d-block float-start me-4 mt-2 mb-2">
+                                                        @else
+                                                            <img class="ms-0"
+                                                                src="{{ url(Storage::url('public/profiles/' . $ans->user->profile->image)) }}"
+                                                                alt="{{ $user?->name }}" width='90px'
+                                                                class="rounded d-block float-start me-4 mt-2 mb-2">
+                                                        @endif
+                                                        <div class="card-body bg-info">
+                                                            <h6 class="mt-1"> {{ $ans->user->name }}</h6>
+                                                            <h6>Marks obtained: {{ $ans->marks }}</h6>
+                                                            <h6>Percentage:
+                                                                {{ ceil(($ans->marks * 100) / count($answers)) }}%
+                                                            </h6>
+                                                            <h6>Total Questions: {{ count($answers) }}</h6>
+
+
+                                                        </div>
+                                                        <div
+                                                            class="card-footer bg-info d-flex align-items-center justify-content-between">
+                                                            <a class="small text-white stretched-link" href="#">View
+                                                                Details</a>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            @endforeach
+                                        </div>
                                         <div class="table-responsive">
                                             <div class="form-group">
                                                 <select name="quiz_id"

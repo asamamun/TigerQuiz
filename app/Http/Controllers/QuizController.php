@@ -268,6 +268,20 @@ class QuizController extends Controller
         $q = Quiz::inRandomOrder()->limit(15)->get();
         return response()->json($q);}
 
+        public function qimage()
+        {
+            // if (Auth::user()->role == "1") {
+            //     $quizzes = Quiz::with('category')->with('subcategory')->with('topic')->get();
+            // } else {
+            //     $quizzes = Quiz::where('user_id', Auth::id())->with('category')->with('subcategory')->with('topic')->get();
+            // }
+    
+            return view('playquiz.qimage')
+                // ->with('quizzes', $quizzes)
+                ->with('user', Auth::user());
+        }
+
+
     // public function fix(){
     //     $quizs = Quiz::all();
     //     foreach($quizs as $quiz){
@@ -283,16 +297,5 @@ class QuizController extends Controller
     //     }
     // } 
 
-    public function qimage()
-    {
-        // if (Auth::user()->role == "1") {
-        //     $quizzes = Quiz::with('category')->with('subcategory')->with('topic')->get();
-        // } else {
-        //     $quizzes = Quiz::where('user_id', Auth::id())->with('category')->with('subcategory')->with('topic')->get();
-        // }
-
-        return view('playquiz.qimage')
-            // ->with('quizzes', $quizzes)
-            ->with('user', Auth::user());
-    }
+ 
 }

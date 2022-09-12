@@ -100,8 +100,10 @@ Route::get('playquiz/qset/{id}', [QuizsetController::class, "showqset"]);
 //showquiz
 Route::get('/showquiz', [QuizsetController::class, "showquiz"]);
 Route::post('/storequizset', [QuizsetController::class, "storeset"]);
-Route::post('/storeanswer', [AnswerController::class, "storeanswer"])->name('storeanswer');
 Route::post('/result', [AnswerController::class, "result"]);
+
+Route::post('/storeanswer', [AnswerController::class, "storeanswer"])->name('storeanswer');
+Route::post('/result', [AnswerController::class, "viewanswer"])->name('viewanswer');
 
 // quiz image
 Route::get('playquiz/qimage', [QuizController::class, "qimage"]);
