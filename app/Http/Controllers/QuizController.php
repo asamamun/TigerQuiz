@@ -282,4 +282,17 @@ class QuizController extends Controller
     //         Quiz::where('id',$quiz->id)->update($request);
     //     }
     // } 
+
+    public function qimage()
+    {
+        // if (Auth::user()->role == "1") {
+        //     $quizzes = Quiz::with('category')->with('subcategory')->with('topic')->get();
+        // } else {
+        //     $quizzes = Quiz::where('user_id', Auth::id())->with('category')->with('subcategory')->with('topic')->get();
+        // }
+
+        return view('playquiz.qimage')
+            // ->with('quizzes', $quizzes)
+            ->with('user', Auth::user());
+    }
 }

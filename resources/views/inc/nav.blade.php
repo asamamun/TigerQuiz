@@ -35,6 +35,7 @@
             <div class="dropdown-menu rounded-0 m-0">
               <a href="{{url('/playquiz')}}" class="dropdown-item">MCQ</a>
               <a href="single.html" class="dropdown-item">Descriptive</a>
+              <a href="{{url('/playquiz/qimage')}}" class="dropdown-item">Image</a>
             </div>
           </div>
           <a href="./contact" class="nav-item nav-link">Blog</a>

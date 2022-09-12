@@ -44,7 +44,7 @@
                             $qz = DB::table('quizzes')
                                 ->whereIn('id', $ar)
                                 ->get();
-                            //dd($qz);
+                            // dd($qz);
                         @endphp
 
 

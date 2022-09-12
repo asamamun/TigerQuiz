@@ -11,6 +11,7 @@
 @include('partial.error')
     @include('inc.intro')
     @include('inc.faci')
+   
     @include('inc.class')
     @include('inc.blog')
     @include('inc.reg')

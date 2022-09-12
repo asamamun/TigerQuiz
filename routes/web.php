@@ -96,13 +96,15 @@ Route::get('playquiz/subcat/{id}', [QuizController::class, "subcatquiz"]);
 Route::get('playquiz/topic/{id}', [QuizController::class, "topicquiz"]);
 Route::get('playquiz/qset/{id}', [QuizsetController::class, "showqset"]);
 
+
 //showquiz
 Route::get('/showquiz', [QuizsetController::class, "showquiz"]);
 Route::post('/storequizset', [QuizsetController::class, "storeset"]);
 Route::post('/storeanswer', [AnswerController::class, "storeanswer"])->name('storeanswer');
 Route::post('/result', [AnswerController::class, "result"]);
 
-
+// quiz image
+Route::get('playquiz/qimage', [QuizController::class, "qimage"]);
 
 
 // front  pages routes
