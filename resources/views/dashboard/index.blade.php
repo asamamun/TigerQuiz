@@ -244,7 +244,7 @@
                                         <option value="3">Quiz: General Knowledge International</option>
                                     </select>
                                 </div>
-                                <table class="table table-bordered mb-5">
+                                <table class="table table-bordered mb-5" id="myTable">
                                     <thead>
                                         <tr class="table-success">
                                             <th scope="col">
@@ -295,9 +295,9 @@
 
                                 </table>
                                 {{-- Pagination --}}
-                                <div class="d-flex justify-content-center">
+                                {{-- <div class="d-flex justify-content-center">
                                     {!! $answers->links() !!}
-                                </div>
+                                </div> --}}
                             </div>
 
                         </div>

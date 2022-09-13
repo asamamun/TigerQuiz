@@ -79,7 +79,7 @@
                                                 </div>
                                             @endforeach
                                         </div>
-                                        <div class="table-responsive">
+                                        <div class="table-responsive" >
                                             <div class="form-group">
                                                 <select name="quiz_id"
                                                     onchange="javascript: window.open('/leaderboard?quiz_id=' + this.value, '_self')"
@@ -91,7 +91,7 @@
                                                     <option value="3">Quiz: General Knowledge International</option>
                                                 </select>
                                             </div>
-                                            <table class="table">
+                                            <table class="table" id="myTable">
                                                 <thead>
                                                     <tr>
                                                         <th>

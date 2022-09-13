@@ -13,7 +13,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
         crossorigin="anonymous">
     <script src="https://use.fontawesome.com/releases/v6.1.2/js/all.js" crossorigin="anonymous"></script>
-    <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
+    <link href="//cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css" rel="stylesheet" />
     <!-- page css-->
     {{-- <link rel="stylesheet" href="assets/css/bootstrap.css"> --}}
     <link rel="stylesheet" href="{{ url('assets/css/chart.min.css') }}">
@@ -71,7 +71,7 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" crossorigin="anonymous"></script>
     <script src={{url('assets/js/bootstrap.bundle.min.js')}}></script>
     <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.29.0/feather.min.js" crossorigin="anonymous">
+    <script src="//cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js" crossorigin="anonymous">
     </script>
     <!-- ==================== -->
     {{-- <script src="assets/js/feather.min.js"></script> --}}
@@ -90,7 +90,13 @@
     </script>
     @yield('scripts')
     <script>
+        $(document).ready( function () {
+    $('#myTable').DataTable();
+} );
+    </script>
+    <script>
         $(document).ready(function() {
+            
             // show the alert
             setTimeout(function() {
                 $(".alert").alert('close');

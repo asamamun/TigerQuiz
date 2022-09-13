@@ -99,7 +99,7 @@
                     Previous Quiz Results
                 </div>
                 <div class="card-body">
-                    <table id="datatablesSimple">
+                    <table id="myTable" class="table responsive">
                         <thead>
                             <tr>
                                 <th>ID</th>
@@ -142,9 +142,9 @@
                         @endforeach
                     </table>
                      {{-- Pagination --}}
-                     <div class="d-flex justify-content-center">
+                     {{-- <div class="d-flex justify-content-center">
                         {!! $marks->links() !!}
-                    </div>
+                    </div> --}}
                 </div>
             </div>
         @else
