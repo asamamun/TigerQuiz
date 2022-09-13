@@ -50,10 +50,7 @@
                 <div class="col-sm-3 mb-2 mb-sm-0">
                     {!! Form::select('subcategory_id', $subcat, null, [ 'disabled', 'class' => 'form-control btn btn-sm mb-1' ]) !!}
                     {!! Form::select('subcategory_id', [], null, [
-                        'required',
-                        'class' => 'form-control ',
-                        'id' => 'subcategory_id',
-                        'placeholder' => 'Select Subcategory',
+                        'required', 'class' => 'form-control ', 'id' => 'subcategory_id', 'placeholder' => 'Select Subcategory',
                     ]) !!}
 
                 </div>
@@ -69,7 +66,6 @@
 
                 </div>
                 <div class="col-sm-3 mb-2 mb-sm-0">
-                    {{-- {!! Form::select('subcategory_id', 'MCQ, null, [ 'disabled', 'class' => 'form-control btn btn-sm mb-1' ]) !!} --}}
                     {!! Form::select('type', ['m' => 'MCQ', 'd' => 'Descriptive', 'qi' => 'Image'], 'm', [
                         'required',
                         'class' => 'form-control form-control-profile',

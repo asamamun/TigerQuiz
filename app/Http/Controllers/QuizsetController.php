@@ -92,25 +92,7 @@ class QuizsetController extends Controller
      * @param  \App\Models\Quizset  $quizset
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
-       
-    if (Auth::user()->role == "1") {
-        $quizset = Quizset::all()->where('id', $id);
-    } else {
-        $quizset = Quizset::all()->where('user_id', Auth::id())->where('id', $id);
-    }
    
-        $catp = Category::pluck('name', 'id');
-        $subcat = Subcategory::pluck('name', 'id');
-        $topics = Topic::pluck('name', 'id');
-        //  dd($catp);
-        return view('quizset.edit', compact('quizset'))
-        ->with('catp', $catp)
-        ->with('subcat', $subcat)
-        ->with('topics', $topics)
-        ->with('user', Auth::user());
-    }
 
     /**
      * Update the specified resource in storage.
@@ -119,19 +101,7 @@ class QuizsetController extends Controller
      * @param  \App\Models\Quizset  $quizset
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateQuizsetRequest $request, Quizset $quizset)
-    {
-        // update all into prpfile table
-        $quizset->update($request->all());
-        // dd($request->all());
-        // replace the request filename with desired name
-       
-        if ($quizset->save()) {
-            return back()->with('message', "Update Successfully!");
-        } else {
-            return back()->with('message', "Update Failed!!!");
-        }
-    }
+  
     public function showquiz(Request $request)
     {
         // echo "hello";
@@ -154,12 +124,6 @@ class QuizsetController extends Controller
         $q->quizzes = join(",", $request->quiz);
         // $q->quizzes = $request->quiz;
 
-        // if ($u->quizsets()->save($q)) {
-        //     return redirect()->refresh()->with('message', 'Quizset ' . $q->id . ' has been created!');
-        // } else {
-        //     return redirect()->back()->with('error', 'Please select atleast one quiz');
-        // }
-
         if ($u->quizsets()->save($q)) {
             Session::flash('message', __('Quizset ' . $q->id . ' has been created!'));
             return response()->json(['message' => "Created", 'error' => 0])->withInput($request->input());
@@ -167,15 +131,45 @@ class QuizsetController extends Controller
             return response()->json(['message' => "Error", 'error' => 1]);
         }
     }
+    public function edit($id)
+    {
+       
+    if (Auth::user()->role == "1") {
+        $quizset = Quizset::all()->where('id', $id);
+    } else {
+        $quizset = Quizset::all()->where('user_id', Auth::id())->where('id', $id);
+    }
+   
+        $catp = Category::pluck('name', 'id');
+        $subcat = Subcategory::pluck('name', 'id');
+        $topics = Topic::pluck('name', 'id');
+        //  dd($catp);
+        return view('quizset.edit', compact('quizset'))
+        ->with('catp', $catp)
+        ->with('subcat', $subcat)
+        ->with('topics', $topics)
+        ->with('user', Auth::user());
+    }
 
+    public function update(UpdateQuizsetRequest $request, Quizset $quizset)
+    {
+        $q = new Quizset();
+        // update all into prpfile table
+        $quizset->update($request->all());
+        // $q->subcategory_id = $request->subcategory_id;
+        // dd($request->all(), $request->subcategory_id);
+       
+        if ($quizset->save()) {
+            return back()->with('message', "Update Successfully!");
+        } else {
+            return back()->with('message', "Update Failed!!!");
+        }
+    }
     public function showqset($id)
     {
         
         $qset = Quizset::find($id);
-        // dd($qset);
-        // $quiz = Quiz::all()->whereIn('id', $ar)->get();
-
-
+        
         return view('playquiz.qset')
             ->with('qset', $qset);
 

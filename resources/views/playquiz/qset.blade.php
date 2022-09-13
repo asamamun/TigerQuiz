@@ -24,7 +24,7 @@
     @include('partial.error')
     <div class="card card-hover shadow mb-4">
         <div class="card-header py-3 d-flex justify-content-between">
-            <h3 class="m-0 font-weight-bold text-info">Quizset Schedule</h3>
+            <h3 class="m-0 font-weight-bold">Quizset Schedule</h3>
             {{-- <h3 class="m-0 font-weight-bold text-info">You got <span id ="marks">{{ $result }}</span> out of <span id="tquiz">{{ $total }}</span> </h3> --}}
 
             <a href="{{ url('quizset') }}" class="btn btn-info btn-circle btn-sm" title="Back to Chapter">
@@ -59,8 +59,6 @@
                                     <i class="fas fa-arrow-left"></i>
                                 </a> --}}
                             </div>
-
-
 
                             <div class="card card-hover shadow mb-1">
                                 @php
@@ -130,7 +128,7 @@
                                         @endforeach
 
                                         <div class="d-grid gap-2">
-                                            <button type="submit" class="btn btn-sm btn-info text-center mb-2"
+                                            <button type="submit" class="btn btn-info text-center text-bold mb-2"
                                                 id="submit">Submit
                                                 Quiz</button>
                                         </div>
@@ -140,14 +138,23 @@
                                         <h4>Quiz Ended</h4>
                                     </div>
                                 @else
-                                    <div class=" border-info" role="alert">
-                                        <h3 class="btn btn-primary"> Quiz will start at {{ $qset->stime }} (GMT +06:00)</h3>
+                                    <div class="border-info" role="alert">
+                                        <h3 class="btn btn-primary"> Quizset will start at {{ $qset->stime }} (GMT +06:00)</h3>
                                         <p id="countdown"></p>
                                         <style>
                                             p#countdown {
                                                 text-align: center;
-                                                font-size: 90px;
+                                                font-size: 50px;
                                                 margin-top: 10px;
+                                               background-color: aqua;
+                                               border-radius: 3px;
+                                              margin-bottom: 5px;
+                                            }
+                                            .tfn{
+                                                font-size: 25px;
+                                            }
+                                            .tf{
+                                                font-size: 35px; 
                                             }
                                         </style>
                                         <script>
@@ -176,14 +183,15 @@
                                                 var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
                                                 // Output the result in an element with id="demo"
+                                               
                                                 document.getElementById('countdown').innerHTML = days + 'd ' + hours + 'h ' +
-                                                    minutes + 'm ' + seconds + 's';
+                                                    minutes + 'm ' + seconds + 's';  
 
                                                 // If the count down is over, write some text 
                                                 if (distance < 0) {
                                                     clearInterval(x);
                                                     document.getElementById("countdown").innerHTML =
-                                                        "You can start now. Reload the page please. <button onClick='window.location.reload();'>Reload</button>";
+                                                        "<span  class='tf'>You Can</span> <span class='btn btn btn-primary mb-3 tfn' onClick='window.location.reload();'>Start Now</span>";
                                                 }
                                             }, 1000);
                                         </script>
