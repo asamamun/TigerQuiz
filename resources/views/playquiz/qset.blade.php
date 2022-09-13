@@ -24,7 +24,7 @@
     @include('partial.error')
     <div class="card card-hover shadow mb-4">
         <div class="card-header py-3 d-flex justify-content-between">
-            <h3 class="m-0 font-weight-bold">Quizset Schedule</h3>
+            <h3 class="m-0 font-weight-bold text-info">Quizset Schedule</h3>
             {{-- <h3 class="m-0 font-weight-bold text-info">You got <span id ="marks">{{ $result }}</span> out of <span id="tquiz">{{ $total }}</span> </h3> --}}
 
             <a href="{{ url('quizset') }}" class="btn btn-info btn-circle btn-sm" title="Back to Chapter">
@@ -206,7 +206,7 @@
         @endauth
         @guest
             <div>
-                <a href="{{ route('login') }}">Login</a> or <a href="{{ route('register') }}">Register</a> to play Quiz
+                <span class="btn ms-2 mb-2 border-info bg-warning"><a class="text-info" href="{{ route('login') }}">Login</a> or <a href="{{ route('register') }}">Register</a> to play Quizsets<span>
             </div>
         @endguest
 

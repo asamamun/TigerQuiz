@@ -44,7 +44,7 @@
                                     </div>
                                     <div class="card-body">
                                         <div class="row">
-                                            @foreach ($answers as $ans)
+                                            @foreach ($anslim as $ans)
                                                 <div class="col-3">
                                                     <div class="card text-white">
                                                   {{-- profile pics load with defult if not exists --}}
