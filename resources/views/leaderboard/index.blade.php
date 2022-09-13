@@ -37,7 +37,7 @@
                                 <div class="card">
                                     <div class="card-header py-3 mb-1 d-flex justify-content-between">
                                         <h3 class="m-0 font-weight-bold text-info">Participants' Positions</h3>
-                                        <a href="{{ url('quiz/qz/qshow') }}" class="btn btn-info btn-sm"
+                                        <a href="{{ url('quiz/qz/qshow')}}" class="btn btn-info btn-sm"
                                             title="Back to Quizset">
                                             <i class="fas fa-arrow-left"></i>
                                         </a>
@@ -48,19 +48,25 @@
                                                 <div class="col-3">
                                                     <div class="card text-white">
                                                   {{-- profile pics load with defult if not exists --}}
+                                                       <span class="d-flex justify-content-start">
                                                         @if ($ans->user->profile?->image == null || $ans->user->profile?->image == '')
-                                                            <img class="ms-0"
-                                                                src="{{ url(Storage::url('public/profiles/default2.png')) }}"
-                                                                alt="{{ $user?->name }}" width='90px'
-                                                                class="rounded d-block float-start me-4 mt-2 mb-2">
-                                                        @else
-                                                            <img class="ms-0"
-                                                                src="{{ url(Storage::url('public/profiles/' . $ans->user->profile->image)) }}"
-                                                                alt="{{ $user?->name }}" width='90px'
-                                                                class="rounded d-block float-start me-4 mt-2 mb-2">
-                                                        @endif
+                                                        <img class="ms-0"
+                                                            src="{{ url(Storage::url('public/profiles/default2.png')) }}"
+                                                            alt="{{ $user?->name }}" width='90px'
+                                                            class="rounded d-block float-start me-4 mt-2 mb-2">
+                                                    @else
+                                                        <img class="ms-0"
+                                                            src="{{ url(Storage::url('public/profiles/' . $ans->user->profile->image)) }}"
+                                                            alt="{{ $user?->name }}" width='90px'
+                                                            class="rounded d-block float-start me-4 mt-2 mb-2">
+                                                    @endif
+                                                    <span>
+                                                    <h5 class="mt-3 text-info ms-2"> {{ $ans->user->profile->fullname ?? $ans->user->name }}</h5>
+                                                    <p class="text-info ms-2"> {{ $ans->user->email }}</p>
+                                                    </span>
+                                                    </span>
                                                         <div class="card-body bg-info">
-                                                            <h6 class="mt-1"> {{ $ans->user->name }}</h6>
+                                                            {{-- <h6 class="mt-1"> {{ $ans->user->name }}</h6> --}}
                                                             <h6>Marks obtained: {{ $ans->marks }}</h6>
                                                             <h6>Percentage:
                                                                 {{ ceil(($ans->marks * 100) / count($answers)) }}%
