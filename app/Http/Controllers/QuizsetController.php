@@ -153,11 +153,15 @@ class QuizsetController extends Controller
 
     public function update(UpdateQuizsetRequest $request, Quizset $quizset)
     {
-        $q = new Quizset();
-        // update all into prpfile table
-        $quizset->update($request->all());
-        // $q->subcategory_id = $request->subcategory_id;
-        // dd($request->all(), $request->subcategory_id);
+ $quizset->name = $request->name;       
+ $quizset->title = $request->title;       
+ $quizset->quizzes = $request->quizzes;       
+ $quizset->active = $request->active;       
+ $quizset->stime = $request->stime;       
+ $quizset->entime = $request->entime;       
+$quizset->category_id = $request->category_id == "-1"? NULL : $request->category_id;
+$quizset->subcategory_id = $request->subcategory_id == "-1"? NULL : $request->subcategory_id;
+$quizset->topic_id = $request->topic_id == "-1"? NULL : $request->topic_id;
        
         if ($quizset->save()) {
             return back()->with('message', "Update Successfully!");

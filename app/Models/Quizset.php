@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 
 class Quizset extends Model
 {
@@ -15,7 +16,7 @@ class Quizset extends Model
         'active',
         'user_id',
         'category_id',
-        'category_id',
+        'subcategory_id',
         'topic_id',
         'stime',
         'entime',
@@ -40,4 +41,24 @@ class Quizset extends Model
     public function answer()
     {
     return $this->hasMany('App\Models\Answer');}
+
+    //mutator
+/*     protected function category_id(): Attribute
+    {
+        return Attribute::make(            
+            set: fn ($value) => $value=="-1"?null:$value,
+        );
+    }
+    protected function subcategory_id(): Attribute
+    {
+        return Attribute::make(            
+            set: fn ($value) => $value=="-1"?null:$value,
+        );
+    }
+    protected function topic_id(): Attribute
+    {
+        return Attribute::make(            
+            set: fn ($value) => $value=="-1"?null:$value,
+        );
+    } */
 }
