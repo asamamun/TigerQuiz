@@ -177,18 +177,18 @@ class QuizController extends Controller
             $img = Image::make($storagepath);
             $img->save($storagepath);
         }
-
+           // Input
         if (!$request->subcategory_id || $request->topic_id == '0') {
             $quiz->update(); //$request->only($request)
         } else {
             $quiz->update($request->except('ans'));
         }
-        if (!$request->ans == Null) {
-            $quiz->ans =  $quiz->ans;
-        } else {
-            $quiz->ans = $opt;
-        }
-
+           
+         $quiz->ans = $opt ?? $quiz->ans;
+        //  dd($quiz->ans);
+        
+        
+       
 
         if ($quiz->update()) {
             return back()->with('message', "Update Successfully!");
