@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Answer;
 use App\Models\Leaderboard;
+use App\Models\Quizset;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -17,5 +18,18 @@ class LeaderboardController extends Controller
         ->with('anslim', $anslim)
         ->with('answers', $answers)
         ->with('user', Auth::user());
+    }
+
+    public function show($id){
+        // dd($id);
+        $quizset = Quizset::find($id);
+        $leaders = Answer::where('qset_id',$id)
+        ->orderBy('marks','desc')
+        ->orderBy('created_at')        
+        ->get();
+        //paginate
+        return view("leaderboard.show")
+        ->with('quizset',$quizset)
+        ->with('leaders',$leaders);
     }
 }

@@ -209,6 +209,15 @@
                 <span class="btn ms-2 mb-2 border-info bg-warning"><a class="text-info" href="{{ route('login') }}">Login</a> or <a href="{{ route('register') }}">Register</a> to play Quizsets<span>
             </div>
         @endguest
+<hr>
+<h3>Top Performers: </h3>
+        @if(count($leaders))
+        
+        @foreach($leaders as $leader)
+        <li> <a href="{{route('profile.show',$leader->user_id)}}"> {{$leader->user->name}} : {{$leader->marks}}</a></li>
+        @endforeach
+        @endif
+        <a class="btn btn-primary" href="{{url('leaderboard/'.$qset->id)}}">Total Leaderboard</a>
 
     @endsection
     @section('footer')

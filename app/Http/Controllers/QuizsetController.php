@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Quizset;
 use App\Http\Requests\StoreQuizsetRequest;
 use App\Http\Requests\UpdateQuizsetRequest;
+use App\Models\Answer;
 use App\Models\Category;
+use App\Models\Leaderboard;
 use App\Models\Quiz;
 use App\Models\Subcategory;
 use App\Models\Topic;
@@ -184,9 +186,17 @@ class QuizsetController extends Controller
     {
 
         $qset = Quizset::find($id);
+        $leaders = Answer::where('qset_id',$id)
+        ->orderBy('marks','desc')
+        ->orderBy('created_at')
+        ->limit(5)
+        ->get();
+        // echo "hi";
+        // dd($leaders);
 
         return view('playquiz.qset')
-            ->with('qset', $qset);
+            ->with('qset', $qset)
+            ->with('leaders', $leaders);
 
         //  dd($qset);
 

@@ -67,6 +67,7 @@ Route::middleware(['teacher', 'auth'])->group(function () {
 });
 // leaderboard
 Route::get('/leaderboard/index', [LeaderboardController::class, "index"]);
+Route::get('/leaderboard/{id}', [LeaderboardController::class, "show"]);
 
 // profile route
 Route::resource("profile", ProfileController::class);
