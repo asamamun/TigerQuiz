@@ -183,9 +183,10 @@ class QuizController extends Controller
         } else {
             $quiz->update($request->except('ans'));
         }
+          
+            $quiz->ans = !$request->ans ? $quiz->ans : $opt;
            
-         $quiz->ans = $opt ?? $quiz->ans;
-        //  dd($quiz->ans);
+         dd($request->ans,  $quiz->ans,$opt);
         
         
        

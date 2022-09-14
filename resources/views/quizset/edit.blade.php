@@ -38,8 +38,8 @@
 
             <div class="form-group mt-1 row">
                 <div class="col-sm-3 mb-2">
-                    {!! Form::select('category_id', $catp, null, ['disabled', 'class' => 'form-control btn btn-sm mb-1']) !!}
-                    {!! Form::select('category_id', $catp, null, [
+                    {!! Form::select('category_id', $cat, null, ['disabled', 'class' => 'form-control btn btn-sm mb-1']) !!}
+                    {!! Form::select('category_id', $cat, null, [
                         'required',
                         'class' => 'form-control',
                         'id' => 'category_id',
@@ -54,7 +54,7 @@
                         <input type="text" disabled value='All' class='form-control btn btn-sm mb-1'>
                     @endif
                     {!! Form::select('subcategory_id', [], null, [
-                        'required',
+                        // 'required',
                         'class' => 'form-control ',
                         'id' => 'subcategory_id',
                         'placeholder' => 'Select Subcategory',
@@ -68,7 +68,7 @@
                         <input type="text" disabled value='All' class='form-control btn btn-sm mb-1'>
                     @endif
                     {!! Form::select('topic_id', [], null, [
-                        'required',
+                        // 'required',
                         'placeholder' => 'Select Topic',
                         'class' => 'form-control',
                         'id' => 'topic_id',
