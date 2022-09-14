@@ -141,11 +141,12 @@ class QuizController extends Controller
      */
     public function edit(Quiz $quiz)
     {
-        $categories = Category::pluck('name', 'id');
-        $subcategories = Subcategory::pluck('name', 'id');
+        $cat = Category::pluck('name', 'id');
+        $subcat = Subcategory::pluck('name', 'id');
         $topics = Topic::pluck('name', 'id');
-        return view('quiz.edit', compact('quiz'))->with('categories', $categories)
-            ->with('subcategories', $subcategories)
+        return view('quiz.edit', compact('quiz'))
+            ->with('cat', $cat)
+            ->with('subcat', $subcat)
             ->with('topics', $topics)
             ->with('user', Auth::user());
     }
@@ -177,10 +178,19 @@ class QuizController extends Controller
             $img->save($storagepath);
         }
 
+        if (!$request->subcategory_id || $request->topic_id == '0') {
+            $quiz->update(); //$request->only($request)
+        } else {
+            $quiz->update($request->except('ans'));
+        }
+        if (!$request->ans == Null) {
+            $quiz->ans =  $quiz->ans;
+        } else {
+            $quiz->ans = $opt;
+        }
 
-        $quiz->update($request->all());
-        $quiz->ans = $opt;
-        if ($quiz->save()) {
+
+        if ($quiz->update()) {
             return back()->with('message', "Update Successfully!");
         } else {
             return back()->with('message', "Update Failed!");
@@ -263,23 +273,25 @@ class QuizController extends Controller
         // return response()->json($quizzes->toJson(JSON_PRETTY_PRINT));
         return response()->json($quizzes->toJson());
     }
-        // API
-    public function randomquestions(){
+    // API
+    public function randomquestions()
+    {
         $q = Quiz::inRandomOrder()->limit(15)->get();
-        return response()->json($q);}
+        return response()->json($q);
+    }
 
-        public function qimage()
-        {
-            // if (Auth::user()->role == "1") {
-            //     $quizzes = Quiz::with('category')->with('subcategory')->with('topic')->get();
-            // } else {
-            //     $quizzes = Quiz::where('user_id', Auth::id())->with('category')->with('subcategory')->with('topic')->get();
-            // }
-    
-            return view('playquiz.qimage')
-                // ->with('quizzes', $quizzes)
-                ->with('user', Auth::user());
-        }
+    public function qimage()
+    {
+        // if (Auth::user()->role == "1") {
+        //     $quizzes = Quiz::with('category')->with('subcategory')->with('topic')->get();
+        // } else {
+        //     $quizzes = Quiz::where('user_id', Auth::id())->with('category')->with('subcategory')->with('topic')->get();
+        // }
+
+        return view('playquiz.qimage')
+            // ->with('quizzes', $quizzes)
+            ->with('user', Auth::user());
+    }
 
 
     // public function fix(){
@@ -297,5 +309,5 @@ class QuizController extends Controller
     //     }
     // } 
 
- 
+
 }

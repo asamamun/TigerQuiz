@@ -30,8 +30,9 @@
 
 
             <div class="form-group mt-1 row">
-                <div class="col-sm-3 mb-3">
-                    {!! Form::select('category_id', $categories, null, [
+                <div class="col-sm-3 mb-2">
+                    {!! Form::select('category_id', $cat, null, ['disabled', 'class' => 'form-control btn btn-sm mb-1']) !!}
+                    {!! Form::select('category_id', $cat, null, [
                         'required',
                         'class' => 'form-control',
                         'id' => 'category_id',
@@ -39,18 +40,28 @@
                     ]) !!}
 
                 </div>
-                <div class="col-sm-3 mb-3 mb-sm-0">
+                <div class="col-sm-3 mb-2 mb-sm-0">
+                    @if (!$quiz->subcategory_id == '0')
+                        {!! Form::select('subcategory_id', $subcat, null, ['disabled', 'class' => 'form-control btn btn-sm mb-1']) !!}
+                    @else
+                        <input type="text" disabled value='Null' class='form-control btn btn-sm mb-1'>
+                    @endif
                     {!! Form::select('subcategory_id', [], null, [
-                        'required',
+                        // 'required',
                         'class' => 'form-control ',
                         'id' => 'subcategory_id',
                         'placeholder' => 'Select Subcategory',
                     ]) !!}
 
                 </div>
-                <div class="col-sm-3 mb-3 mb-sm-0">
+                <div class="col-sm-3 mb-2 mb-sm-0">
+                    @if (!$quiz->topic_id == '0')
+                        {!! Form::select('topic_id', $topics, null, ['disabled', 'class' => 'form-control btn btn-sm mb-1']) !!}
+                    @else
+                        <input type="text" disabled value='Null' class='form-control btn btn-sm mb-1'>
+                    @endif
                     {!! Form::select('topic_id', [], null, [
-                        'required',
+                        // 'required',
                         'placeholder' => 'Select Topic',
                         'class' => 'form-control',
                         'id' => 'topic_id',
@@ -58,7 +69,7 @@
                     ]) !!}
 
                 </div>
-                <div class="col-sm-3 mb-3 mb-sm-0">
+                <div class="col-sm-3 mb-2 mb-sm-0">
                     {!! Form::select('type', ['m' => 'MCQ', 'd' => 'Descriptive', 'qi' => 'Image'], 'm', [
                         'required',
                         'class' => 'form-control form-control-profile',

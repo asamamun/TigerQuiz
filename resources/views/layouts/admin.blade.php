@@ -108,9 +108,9 @@
                 // $("#topic_id").find("option").remove().end().append(
                 //     '<option value = "-1">Select Topic</option>');
 
-                $("#topic_id").empty().append('<option value = "-1">Select Topic');
+                $("#topic_id").empty().append('<option value = "0">All');
 
-                let html = "<option value='-1'>All</option>";
+                let html = "<option value='0'>All</option>";
                 for (const key in ob) {
                     if (Object.hasOwnProperty.call(ob, key)) {
                         html += "<option value='" + key + "'>" + ob[key] + "</option>";
@@ -135,7 +135,7 @@
             // for topics as subcats
             function selecttopic(ot) {
                 // $("#topic_id").html("");
-                let html = "<option value='-1'>All</option>";
+                let html = "<option value='0'>All</option>";
                 for (const k in ot) {
                     if (Object.hasOwnProperty.call(ot, k)) {
 
@@ -145,8 +145,8 @@
                 $("#topic_id").html(html);
             }
             $("#subcategory_id").change(function() {
-                if($(this).val() == "-1"){
-                    $("#topic_id").empty().append('<option value = "-1">Select Topic');
+                if($(this).val() == "null"){
+                    $("#topic_id").empty().append('<option value = "0">All');
                     return;
                 }
                 // console.log( $(this).val() )

@@ -92,7 +92,7 @@ class QuizsetController extends Controller
      * @param  \App\Models\Quizset  $quizset
      * @return \Illuminate\Http\Response
      */
-   
+
 
     /**
      * Update the specified resource in storage.
@@ -101,7 +101,7 @@ class QuizsetController extends Controller
      * @param  \App\Models\Quizset  $quizset
      * @return \Illuminate\Http\Response
      */
-  
+
     public function showquiz(Request $request)
     {
         // echo "hello";
@@ -133,37 +133,48 @@ class QuizsetController extends Controller
     }
     public function edit($id)
     {
-       
-    if (Auth::user()->role == "1") {
-        $quizset = Quizset::all()->where('id', $id);
-    } else {
-        $quizset = Quizset::all()->where('user_id', Auth::id())->where('id', $id);
-    }
-   
-        $catp = Category::pluck('name', 'id');
+
+        if (Auth::user()->role == "1") {
+            $quizset = Quizset::all()->where('id', $id);
+        } else {
+            $quizset = Quizset::all()->where('user_id', Auth::id())->where('id', $id);
+        }
+
+        $cat = Category::pluck('name', 'id');
         $subcat = Subcategory::pluck('name', 'id');
         $topics = Topic::pluck('name', 'id');
         //  dd($catp);
         return view('quizset.edit', compact('quizset'))
-        ->with('catp', $catp)
-        ->with('subcat', $subcat)
-        ->with('topics', $topics)
-        ->with('user', Auth::user());
+            ->with('cat', $cat)
+            ->with('subcat', $subcat)
+            ->with('topics', $topics)
+            ->with('user', Auth::user());
     }
 
     public function update(UpdateQuizsetRequest $request, Quizset $quizset)
     {
- $quizset->name = $request->name;       
- $quizset->title = $request->title;       
- $quizset->quizzes = $request->quizzes;       
- $quizset->active = $request->active;       
- $quizset->stime = $request->stime;       
- $quizset->entime = $request->entime;       
-$quizset->category_id = $request->category_id == "-1"? NULL : $request->category_id;
-$quizset->subcategory_id = $request->subcategory_id == "-1"? NULL : $request->subcategory_id;
-$quizset->topic_id = $request->topic_id == "-1"? NULL : $request->topic_id;
-       
-        if ($quizset->save()) {
+        //  $quizset->name = $request->name;       
+        //  $quizset->title = $request->title;
+        //  $quizset->quizzes = $request->quizzes;       
+        //  $quizset->active = $request->active;       
+        //  $quizset->stime = $request->stime;       
+        //  $quizset->entime = $request->entime;
+        // $quizset->update($request->all());
+        // $quizset->category_id = $request->category_id == "0" ? NULL : $request->category_id;
+        // $quizset->subcategory_id = ($request->subcategory_id) == "0" ? NULL : $request->subcategory_id;
+        // $quizset->topic_id = ($request->topic_id =="0") ? NULL : $request->topic_id;
+
+        if ($request->input('subcategory_id') == "0" || $request->input('topic_id') == "0") {
+
+            $quizset->update($request->except('subcategory_id', 'topic_id'));
+            $quizset->subcategory_id = $request->input('subcategory_id') == "0" ? NULL : $request->subcategory_id;
+            $quizset->topic_id = NULL;
+            // ($quizset->update());
+        } else {
+            $quizset->update($request->all());
+        }
+
+        if ($quizset->update()) {
             return back()->with('message', "Update Successfully!");
         } else {
             return back()->with('message', "Update Failed!!!");
@@ -171,9 +182,9 @@ $quizset->topic_id = $request->topic_id == "-1"? NULL : $request->topic_id;
     }
     public function showqset($id)
     {
-        
+
         $qset = Quizset::find($id);
-        
+
         return view('playquiz.qset')
             ->with('qset', $qset);
 
