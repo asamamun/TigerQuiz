@@ -120,7 +120,11 @@ class QuizsetController extends Controller
         $q->title = $request->title;
         $q->category_id = $request->cid;
         $q->subcategory_id = $request->scid;
-        $q->topic_id = $request->tid;
+        if ($request->tid =='0') {
+            $q->topic_id = null;
+        } else {
+            $q->topic_id = $request->tid;
+        }
         $q->stime = $request->stime;
         $q->entime = $request->entime;
         $q->quizzes = join(",", $request->quiz);
