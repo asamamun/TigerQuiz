@@ -128,7 +128,7 @@ class QuizsetController extends Controller
 
         if ($u->quizsets()->save($q)) {
             Session::flash('message', __('Quizset ' . $q->id . ' has been created!'));
-            return response()->json(['message' => "Created", 'error' => 0])->withInput($request->input());
+            return response()->json(['message' => "Created", 'error' => 0]);
         } else {
             return response()->json(['message' => "Error", 'error' => 1]);
         }
@@ -189,7 +189,7 @@ class QuizsetController extends Controller
         $leaders = Answer::where('qset_id',$id)
         ->orderBy('marks','desc')
         ->orderBy('created_at')
-        ->limit(5)
+        ->limit(4)
         ->get();
         // echo "hi";
         // dd($leaders);

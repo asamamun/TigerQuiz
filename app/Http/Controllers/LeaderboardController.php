@@ -25,8 +25,8 @@ class LeaderboardController extends Controller
         $quizset = Quizset::find($id);
         $leaders = Answer::where('qset_id',$id)
         ->orderBy('marks','desc')
-        ->orderBy('created_at')        
-        ->get();
+        ->orderBy('created_at')
+        ->paginate(4);
         //paginate
         return view("leaderboard.show")
         ->with('quizset',$quizset)
