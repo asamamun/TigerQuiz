@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Show Result')
+@section('title', 'Quizset Page')
 @section('head')
 
 @endsection
@@ -24,12 +24,21 @@
     @include('partial.error')
     <div class="card card-hover shadow mb-4">
         <div class="card-header py-3 d-flex justify-content-between">
-            <h3 class="m-0 font-weight-bold text-info">Quizset Schedule</h3>
+            <h3 class="m-0 font-weight-bold text-info">{{$qset->name }}</h3>
             {{-- <h3 class="m-0 font-weight-bold text-info">You got <span id ="marks">{{ $result }}</span> out of <span id="tquiz">{{ $total }}</span> </h3> --}}
+@guest
+<a class="btn btn-primary" href="{{ url('leaderboard/' . $qset->id) }}">Total
+    Leaderboard</a>
+@endguest
+@auth
 
-            <a href="{{ url('quizset') }}" class="btn btn-info btn-circle btn-sm" title="Back to Chapter">
-                <i class="fas fa-arrow-left"></i>
-            </a>
+<a class="btn btn-sm btn-primary" href="{{ url('leaderboard/' . $qset->id) }}">Total
+    Leaderboard</a>
+    
+<a href="{{ url('/playquiz/endqset/'.$qset->id) }}" class="btn btn-info btn-sm" title="Back to Chapter">
+    <i class="fas fa-arrow-left"></i>
+</a>
+@endauth
         </div>
         @auth
             <div class="card-body">
@@ -51,7 +60,8 @@
 
 
                             {{-- <span class="d-none">{{ $i = 0 }}</span> --}}
-                            <div class="card-header text-light bg-info py-3 d-flex flex-row align-items-center rounded mb-2 justify-content-between">
+                            <div
+                                class="card-header text-light bg-info py-3 d-flex flex-row align-items-center rounded mb-2 justify-content-between">
                                 <h4 class="m-0 font-weight-bold ">Name: {{ $qset->name }}</h4>
                                 <h4 class="m-0 font-weight-bold ">Title: {{ $qset->title }}</h4>
                                 <h4 class="m-0 font-weight-bold ">Prepared by: {{ $qset->user->name }}</h4>
@@ -64,9 +74,9 @@
                                 @php
                                     $timenow = date('Y-m-d H:i:s');
                                 @endphp
-                                <!-- <p>A:  {{ strtotime($timenow) }} </p>
-        <p>B: {{ strtotime($qset->stime) }} </p>
-        <p>C:  {{ strtotime($qset->entime) }} </p> -->
+                                <!-- <p>A:  {{strtotime($timenow) }} </p>
+                <p>B: {{ strtotime($qset->stime) }} </p>
+                <p>C:  {{ strtotime($qset->entime) }} </p> -->
                                 @if (strtotime($timenow) > strtotime($qset->stime) && strtotime($timenow) < strtotime($qset->entime))
                                     <form action="{{ url('result') }}" method="post">
                                         @csrf
@@ -139,22 +149,25 @@
                                     </div>
                                 @else
                                     <div class="border-info" role="alert">
-                                        <h3 class="btn btn-primary"> Quizset will start at {{ $qset->stime }} (GMT +06:00)</h3>
+                                        <h3 class="btn btn-primary"> Quizset will start at {{ $qset->stime }} (GMT +06:00)
+                                        </h3>
                                         <p id="countdown"></p>
                                         <style>
                                             p#countdown {
                                                 text-align: center;
                                                 font-size: 50px;
                                                 margin-top: 10px;
-                                               background-color: aqua;
-                                               border-radius: 3px;
-                                              margin-bottom: 5px;
+                                                background-color: aqua;
+                                                border-radius: 3px;
+                                                margin-bottom: 5px;
                                             }
-                                            .tfn{
+
+                                            .tfn {
                                                 font-size: 25px;
                                             }
-                                            .tf{
-                                                font-size: 35px; 
+
+                                            .tf {
+                                                font-size: 35px;
                                             }
                                         </style>
                                         <script>
@@ -183,9 +196,9 @@
                                                 var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
                                                 // Output the result in an element with id="demo"
-                                               
+
                                                 document.getElementById('countdown').innerHTML = days + 'd ' + hours + 'h ' +
-                                                    minutes + 'm ' + seconds + 's';  
+                                                    minutes + 'm ' + seconds + 's';
 
                                                 // If the count down is over, write some text 
                                                 if (distance < 0) {
@@ -206,20 +219,129 @@
         @endauth
         @guest
             <div>
-                <span class="btn ms-2 mb-2 border-info bg-warning"><a class="text-info" href="{{ route('login') }}">Login</a> or <a href="{{ route('register') }}">Register</a> to play Quizsets<span>
+                <span class="btn ms-2 mb-2 border-info bg-warning"><a class="text-info" href="{{ route('login') }}">Login</a>
+                    or <a href="{{ route('register') }}">Register</a> to play Quizsets<span>
             </div>
-        @endguest
-<hr>
-<h3>Top Performers: </h3>
-        @if(count($leaders))
         
-        @foreach($leaders as $leader)
-        <li> <a href="{{route('profile.show',$leader->user_id)}}"> {{$leader->user->name}} : {{$leader->marks}}</a></li>
-        @endforeach
-        @endif
-        <a class="btn btn-primary" href="{{url('leaderboard/'.$qset->id)}}">Total Leaderboard</a>
+       
+        <div class="row ">
+        <div class="col-12 grid-margin">
+            <div class="card">
+                <div class="card-header py-3 mb-1 d-flex justify-content-between">
+                    <h3 class="m-0 font-weight-bold text-info">Participants' Positions</h3>
+                    <a href="{{ url('quiz/qz/qshow') }}" class="btn btn-info btn-sm" title="Back to Quizset">
+                        <i class="fas fa-arrow-left"></i>
+                    </a>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        @if (count($leaders))
+                            @foreach ($leaders as $ans)
+                                <div class="col-3">
+                                    <div class="card text-white">
+                                        {{-- profile pics load with defult if not exists --}}
+                                        <span class="d-flex justify-content-start">
+                                            @if ($ans->user->profile?->image == null || $ans->user->profile?->image == '')
+                                                <img class="ms-0"
+                                                    src="{{ url(Storage::url('public/profiles/default2.png')) }}"
+                                                    alt="{{ $user?->name }}" width='90px'
+                                                    class="rounded d-block float-start me-4 mt-2 mb-2">
+                                            @else
+                                                <img class="ms-0"
+                                                    src="{{ url(Storage::url('public/profiles/' . $ans->user->profile->image)) }}"
+                                                    alt="{{ $user?->name }}" width='90px'
+                                                    class="rounded d-block float-start me-4 mt-2 mb-2">
+                                            @endif
+                                            <span>
+                                                <h5 class="mt-3 text-info ms-2">
+                                                    <a href="{{ route('profile.show', $ans->user_id) }}"> {{ $ans->user->name }} :
+                        {{ $ans->marks }}</a></h5>
+                                                {{-- <p class="text-info ms-2"> {{ $ans->user->email }}</p> --}}
+                                            </span>
+                                        </span>
+                                        <div class="card-body bg-info">
+                                            {{-- <h6 class="mt-1"> {{ $ans->user->name }}</h6> --}}
+                                            <h6>Marks obtained: {{ $ans->marks }}</h6>
+                                            <h6>Percentage:
+                                                {{ ceil(($ans->marks * 100) / count($answers)) }}%
+                                            </h6>
+                                            <h6>Total Questions: {{ count($answers) }}</h6>
 
-    @endsection
+
+                                        </div>
+                                        <div
+                                            class="card-footer bg-info d-flex align-items-center justify-content-between">
+                                            <a class="small text-white stretched-link" href="#">View
+                                                Details</a>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            @endforeach
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table" id="myTable">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        <div class="form-check form-check-muted m-0">
+                                            <label class="form-check-label">
+                                                <input type="checkbox" class="form-check-input">
+                                            </label>
+                                        </div>
+                                    </th>
+                                    {{-- <th>ID</th> --}}
+                                    <th>User</th>
+                                    <th>Quizset name</th>
+                                    <th>Marks</th>
+                                    <th>Quizzes</th>
+                                    {{-- <th>Type</th> --}}
+                                    <th>By</th>
+                                    <th>Time</th>
+                                </tr>
+                            </thead>
+                            @foreach ($leaders as $ans)
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <div class="form-check form-check-muted m-0">
+                                                <label class="form-check-label">
+                                                    <input type="checkbox" class="form-check-input">
+                                                </label>
+                                            </div>
+                                        </td>
+                                        {{-- <td>{{ $ans->id }}.</td> --}}
+                                        <td>
+                                            {{-- <img src="assets/images/faces/face1.jpg" alt="image" /> --}}
+                                            <span class="pl-2">{{ $ans->user->name }}</span>
+                                        </td>
+                                        <td><a
+                                                href="{{ url('/quiz/qz/qshow') }}">{{ $ans->Quizset->name ?? 'Random Quizzes' }}</a>
+                                        </td>
+                                        <td>{{ $ans->marks }}</td>
+                                        <td>{{ $ans->tquiz }}</td>
+                                        {{-- <td>{{ $ans->type}}</td> --}}
+                                        <td>{{ $ans->Quizset->user->name ?? 'User' }}</td>
+                                        <td>{{ $ans->created_at }}</td>
+                                        </td>
+                                    </tr>
+
+                                </tbody>
+                                @endforeach
+                            @endif
+                        </table>
+                        {{-- Pagination --}}
+                        <div class="d-flex justify-content-center">
+                            {!! $answers->links() !!}
+                        </div>
+                    </div>
+                    @endguest
+                </div>
+            </div>
+        </div>
+    </div>
+        @endsection
+    
     @section('footer')
         @include('inc.admin.footer')
     @endsection

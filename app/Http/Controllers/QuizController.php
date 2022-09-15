@@ -177,19 +177,16 @@ class QuizController extends Controller
             $img = Image::make($storagepath);
             $img->save($storagepath);
         }
-           // Input
+        // Input
         if (!$request->subcategory_id || $request->topic_id == '0') {
             $quiz->update(); //$request->only($request)
         } else {
             $quiz->update($request->except('ans'));
         }
-          
-            $quiz->ans = !$request->ans ? $quiz->ans : $opt;
-           
-         dd($request->ans,  $quiz->ans,$opt);
-        
-        
-       
+        $quiz->ans = $opt;
+
+        //  dd($request->ans,  $quiz->ans,$opt);
+
 
         if ($quiz->update()) {
             return back()->with('message', "Update Successfully!");
@@ -310,5 +307,7 @@ class QuizController extends Controller
     //     }
     // } 
 
-
+    // Schema::table('flights', function (Blueprint $table) {
+    //     $table->softDeletes();
+    // });
 }

@@ -193,11 +193,36 @@ class QuizsetController extends Controller
         ->get();
         // echo "hi";
         // dd($leaders);
-
+        $answers = Answer::orderBy("marks", "desc")->orderBy('created_at')->where('type','sq')->paginate(15);
+        $anslim = Answer::orderBy("marks", "desc")->orderBy('created_at')->where('type','sq')->paginate(4);
+        // dd($mark);
+        
         return view('playquiz.qset')
             ->with('qset', $qset)
-            ->with('leaders', $leaders);
+            ->with('leaders', $leaders)
+            ->with('anslim', $anslim)
+            ->with('answers', $answers)
+            ->with('user', Auth::user());
+        //  dd($qset);
 
+
+    }
+    public function showendqset($id)
+    {
+
+        $qset = Quizset::find($id);
+        $leaders = Answer::where('qset_id',$id)
+        ->orderBy('marks','desc')
+        ->orderBy('created_at')
+        ->limit(5)
+        ->get();
+        // echo "hi";
+        // dd($leaders);
+        
+        return view('playquiz.endqset')
+            ->with('qset', $qset)
+            ->with('leaders', $leaders)
+            ->with('user', Auth::user());
         //  dd($qset);
 
 

@@ -19,7 +19,7 @@ class RouteServiceProvider extends ServiceProvider
      */
     public const HOME = '/dashboard';
     public const TEACHER = '/teacher';
-    public const STUDENT = '/student';
+    public const STUDENT = '/';
 
     /**
      * Define your route model bindings, pattern filters, and other route configuration.

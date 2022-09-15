@@ -57,7 +57,7 @@
                 @endif
                 @if ($r == '3')
                     <li class="nav-item ms-5 auth-nav"><a href="{{ url('/student') }}"
-                            class="text-sm text-gray dark:text-gray">Dashboard</a></li>
+                            class="text-sm text-gray dark:text-gray">Hello, {{ Auth::user()->name; }}</a></li>
                 @endif
             @else
                 <li class="nav-item ms-4 auth-nav "> <a class="nav-link btn btn-sm btn-success"

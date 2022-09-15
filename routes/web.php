@@ -96,6 +96,7 @@ Route::get('playquiz/cat/{id}', [QuizController::class, "catquiz"]);
 Route::get('playquiz/subcat/{id}', [QuizController::class, "subcatquiz"]);
 Route::get('playquiz/topic/{id}', [QuizController::class, "topicquiz"]);
 Route::get('playquiz/qset/{id}', [QuizsetController::class, "showqset"]);
+Route::get('playquiz/endqset/{id}', [QuizsetController::class, "showendqset"]);
 
 
 //showquiz

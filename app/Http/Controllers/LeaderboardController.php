@@ -13,7 +13,7 @@ class LeaderboardController extends Controller
     public function index(){
         $answers = Answer::orderBy("marks", "desc")->orderBy('created_at')->where('type','sq')->paginate(15);
         $anslim = Answer::orderBy("marks", "desc")->orderBy('created_at')->where('type','sq')->paginate(4);
-        // dd($mark);
+        // dd($answers);
         return view('leaderboard.index')
         ->with('anslim', $anslim)
         ->with('answers', $answers)
@@ -30,6 +30,7 @@ class LeaderboardController extends Controller
         //paginate
         return view("leaderboard.show")
         ->with('quizset',$quizset)
-        ->with('leaders',$leaders);
+        ->with('leaders',$leaders)
+        ->with('user', Auth::user());
     }
 }

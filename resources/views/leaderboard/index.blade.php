@@ -62,7 +62,7 @@
                                                     @endif
                                                     <span>
                                                     <h5 class="mt-3 text-info ms-2"> {{ $ans->user->profile->fullname ?? $ans->user->name }}</h5>
-                                                    <p class="text-info ms-2"> {{ $ans->user->email }}</p>
+                                                    {{-- <p class="text-info ms-2"> {{ $ans->user->email }}</p> --}}
                                                     </span>
                                                     </span>
                                                         <div class="card-body bg-info">
