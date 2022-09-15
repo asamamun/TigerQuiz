@@ -18,6 +18,10 @@
             </a>
         </div>
         <div class="card-body">
+            @php
+$ans = explode(",", $quiz->ans);
+
+            @endphp
             {!! Form::model($quiz, [
                 'method' => 'put',
                 'enctype' => 'multipart/form-data',
@@ -92,18 +96,18 @@
             </div>
             <div class="form-group row">
                 <div class="col-sm-6 mb-3 mb-sm-0 d-flex align-self-center">
-                    <span class='btn border me-1'>{!! Form::checkbox('ques[]', 'op1', null, ['id' => 'ques1']) !!}</span>
-                    {!! Form::text('op1', null, ['placeholder' => 'Option 1', 'id' => 'op1', 'class' => 'form-control']) !!}
+                    <span class='btn border me-1'>{!! Form::checkbox('ques[]', 'op1', in_array("op1",$ans), ['id' => 'ques1']) !!}</span>
+                    {!! Form::text('op1', null, ['placeholder' => 'Option 1', 'id' => 'op1', 'class' => 'form-control','checked']) !!}
                 </div>
                 <div class="col-sm-6 d-flex align-self-center">
-                    <span class='btn border me-1'>{!! Form::checkbox('ques[]', 'op2', null, ['id' => 'ques2']) !!}</span>
+                    <span class='btn border me-1'>{!! Form::checkbox('ques[]', 'op2', in_array("op2",$ans), ['id' => 'ques2']) !!}</span>
                     {!! Form::text('op2', null, ['placeholder' => 'Option 2', 'id' => 'op2', 'class' => 'form-control']) !!}
                 </div>
             </div>
 
             <div class="form-group row">
                 <div class="col-sm-6 mb-3 mb-sm-0 d-flex align-self-center">
-                    <span class='btn border me-1'>{!! Form::checkbox('ques[]', 'op3', null, ['id' => 'ques3']) !!}</span>
+                    <span class='btn border me-1'>{!! Form::checkbox('ques[]', 'op3',in_array("op3",$ans), ['id' => 'ques3']) !!}</span>
                     {!! Form::text('op3', null, [
                         'required',
                         'class' => 'form-control',
@@ -115,7 +119,7 @@
                 </div>
 
                 <div class="col-sm-6 d-flex align-self-center">
-                    <span class='btn border me-1'>{!! Form::checkbox('ques[]', 'op4', null, ['id' => 'ques4']) !!}</span>
+                    <span class='btn border me-1'>{!! Form::checkbox('ques[]', 'op4', in_array("op4",$ans), ['id' => 'ques4']) !!}</span>
                     {!! Form::text('op4', null, ['required', 'class' => 'form-control', 'id' => 'op4', 'placeholder' => 'Option 4']) !!}
                 </div>
             </div>
