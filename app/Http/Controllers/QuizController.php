@@ -163,6 +163,7 @@ class QuizController extends Controller
         //upload
         $request->ques = json_encode($request->ques);
         $opt = str_replace('"', '', trim($request->ques, '[]'));
+        // dd($opt);
 
 
         if ($request->file('quizimage')) {
@@ -178,10 +179,12 @@ class QuizController extends Controller
             $img->save($storagepath);
         }
         // Input
-        if (!$request->subcategory_id || $request->topic_id == '0') {
-            $quiz->update(); //$request->only($request)
+        if ($request->subcategory_id=='0' || $request->topic_id == '0') {
+            $quiz->subcategory_id = $request->subcategory_id=='0'? null : $request->subcategory_id;
+            $quiz->topic_id = $request->topic_id=='0'? null : $request->topic_id;
+            //$quiz->update(); //$request->only($request)
         } else {
-            $quiz->update($request->except('ans'));
+            //$quiz->update($request->except('ans'));
         }
         $quiz->ans = $opt;
 
@@ -256,10 +259,10 @@ class QuizController extends Controller
         if ($request->cid) {
             $whereArray['category_id'] = $request->cid;
         }
-        if ($request->scid  && $request->scid != "-1") {
+        if ($request->scid  && $request->scid != "0") {
             $whereArray['subcategory_id'] = $request->scid;
         }
-        if ($request->tid  && $request->tid != "-1") {
+        if ($request->tid  && $request->tid != "0") {
             $whereArray['topic_id'] = $request->tid;
         }
         if (count($whereArray)) {
@@ -269,7 +272,7 @@ class QuizController extends Controller
         }
 
         // return response()->json($quizzes->toJson(JSON_PRETTY_PRINT));
-        return response()->json($quizzes->toJson());
+        return response()->json($quizzes);
     }
     // API
     public function randomquestions()

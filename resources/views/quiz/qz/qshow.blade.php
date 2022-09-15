@@ -188,7 +188,7 @@
                         success: function(response) {
                             // alert(9)
                             // console.log(response);
-                            response = JSON.parse(response);
+                            // response = JSON.parse(response);
                             //$("#quizcontainer").html(response);
                             render_quiz_questions(response);
                         }

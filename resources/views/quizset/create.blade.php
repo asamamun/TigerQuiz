@@ -68,7 +68,9 @@
                         'rows' => '1',
                         'placeholder' => 'Type',
                     ]) !!}
+                    <input type="number" value="10" id="count">
                 </div>
+
                 <div class="col-sm-3">
                     <div class=" mb-3 mb-sm-0">
                         {!! Form::hidden('user_id', Auth::user()->id, null, [
@@ -161,6 +163,8 @@
                     data: {
                         cid: $("#category_id").val(),
                         scid: $("#subcategory_id").val(),
+                        tid: $("#topic_id").val(),
+                        count: $("#count").val(),
                         page: "1",
                     },
                     dataType: "json",

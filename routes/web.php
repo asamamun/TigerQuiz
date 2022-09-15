@@ -100,7 +100,7 @@ Route::get('playquiz/endqset/{id}', [QuizsetController::class, "showendqset"]);
 
 
 //showquiz
-Route::get('/showquiz', [QuizsetController::class, "showquiz"]);
+Route::get('/showquiz', [QuizController::class, "dynamicquiz"]);
 Route::post('/storequizset', [QuizsetController::class, "storeset"]);
 Route::post('/result', [AnswerController::class, "result"]);
 
