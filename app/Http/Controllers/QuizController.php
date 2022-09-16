@@ -160,6 +160,7 @@ class QuizController extends Controller
      */
     public function update(UpdateQuizRequest $request, Quiz $quiz)
     {
+        // dd($request->type);
         //upload
         $request->ques = json_encode($request->ques);
         $opt = str_replace('"', '', trim($request->ques, '[]'));
@@ -179,13 +180,14 @@ class QuizController extends Controller
             $img->save($storagepath);
         }
         // Input
-        if ($request->subcategory_id=='0' || $request->topic_id == '0') {
-            $quiz->subcategory_id = $request->subcategory_id=='0'? null : $request->subcategory_id;
-            $quiz->topic_id = $request->topic_id=='0'? null : $request->topic_id;
-            //$quiz->update(); //$request->only($request)
-        } else {
-            //$quiz->update($request->except('ans'));
-        }
+        // if ($request->subcategory_id=='0' || $request->topic_id == '0') {
+        //     $quiz->subcategory_id = $request->subcategory_id=='0'? null : $request->subcategory_id;
+        //     $quiz->topic_id = $request->topic_id=='0'? null : $request->topic_id;
+        //     // $quiz->update($request->only($request)); //$request->only($request)  
+        // } 
+        $quiz->update($request->except('ans','subcategory_id','topic_id'));
+        $quiz->subcategory_id = $request->subcategory_id=='0'? null : $request->subcategory_id;
+        $quiz->topic_id = $request->topic_id=='0'? null : $request->topic_id;
         $quiz->ans = $opt;
 
         //  dd($request->ans,  $quiz->ans,$opt);
