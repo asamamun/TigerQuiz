@@ -17,11 +17,11 @@
 
                 <span class="text-primary">Tiger Quiz</span></a>
         </div>
-        <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+        <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
             <i class="fa-solid fa-bars"></i>
         </button>
 
-        <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+        <div class="collapse ms-auto me-auto navbar-collapse justify-content-between" id="navbarCollapse">
             <div class="navbar-nav font-weight-bold mx-auto py-0">
                 <a href="./" class="nav-item nav-link active">Home</a>
                 <a href="./about" class="nav-item nav-link">About</a>
@@ -30,7 +30,7 @@
                 <a href="./leaderboard" class="nav-item nav-link">Leaderboard</a>
                 <!-- <a href="gallery.html" class="nav-item nav-link">Gallery</a> -->
                 <div class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Quizzes</a>
+                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Quizzes</a>
                     <div class="dropdown-menu rounded-0 m-0">
                         <a href="{{ url('/playquiz') }}" class="dropdown-item">MCQ</a>
                         <a href="single.html" class="dropdown-item">Descriptive</a>
@@ -60,11 +60,11 @@
                             class="text-sm text-gray dark:text-gray">Hello, {{ Auth::user()->name; }}</a></li>
                 @endif
             @else
-                <li class="nav-item ms-4 auth-nav "> <a class="nav-link btn btn-sm btn-success"
+                <li class="nav-item"> <a class="nav-link btn btn-sm btn-success ms-2 my-2"
                         href="{{ route('login') }}">Login</a></li>
                 {{-- &nbsp; --}}
                 @if (Route::has('register'))
-                    <li class="nav-item"> <a class="nav-link btn btn-sm btn-info ms-1"
+                    <li class="nav-item"> <a class="nav-link btn btn-sm btn-info ms-1 "
                             href="{{ route('register') }}">Register</a></li>
                 @endif
             @endauth

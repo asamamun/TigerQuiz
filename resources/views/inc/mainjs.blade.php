@@ -1,6 +1,8 @@
 <!-- JavaScript Libraries -->
 
-<script src="{{ url('assets/js/bootstrap.bundle.min.js') }}"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+{{-- <script src="{{ url('assets/js/bootstrap.bundle.min.js') }}"></script> --}}
+<script src="{{ url('assets/js/bootstrap.min.js') }}"></script>
 <script src="{{ url('assets/lib/easing/easing.min.js') }}"></script>
 <script src="{{ url('assets/lib/owlcarousel/owl.carousel.min.js') }}"></script>
 <script src="{{ url('assets/lib/isotope/isotope.pkgd.min.js') }}"></script>
