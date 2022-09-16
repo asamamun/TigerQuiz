@@ -12,7 +12,7 @@
 @section('content')
     <div class="card card-hover shadow mb-4">
         <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-            <h6 class="m-0 font-weight-bold text-info">Add Quiz</h6>
+            <h4 class="m-0 font-weight-bold text-info">Add Quiz</h4>
             <a href="{{ url('quizset') }}" class="btn btn-info btn-circle btn-sm" title="Back to Topic List">
                 <i class="fas fa-arrow-left"></i>
             </a>
@@ -63,12 +63,11 @@
                 <div class="col-sm-3">
                     {!! Form::select('type', ['m' => 'MCQ', 'd' => 'Descriptive'], 'm', [
                         'required',
-                        'class' => 'form-control form-control-profile',
+                        'class' => 'form-control',
                         'id' => 'type',
                         'rows' => '1',
                         'placeholder' => 'Type',
                     ]) !!}
-                    <input type="number" value="10" id="count">
                 </div>
 
                 <div class="col-sm-3">
@@ -83,15 +82,19 @@
                     </div>
                 </div>
                 <div class="form-group mt-1 row">
-                    <div class="col-sm-5 mb-3">
+
+                    <div class="col-sm-2 mb-3">
+                        <input class="form-control" type="number" value="10" min="1" id="count">
+                    </div>
+                    <div class="col-sm-4 mb-3">
                         <input type="datetime-local" id="stime" class="form-control" placeholder="Start Time">
                     </div>
-                    <div class="col-sm-5 mb-3">
+                    <div class="col-sm-4 mb-3">
                         <input type="datetime-local" id="entime" class="form-control" placeholder="End Time">
                     </div>
-                    <div class="col-sm-2 mb-3">
+                    <div class="col-sm-2 mb-3 clearfix">
                         {!! Form::button('Show <i class="fa-solid fa-arrow-down"></i>', [
-                            'class' => 'btn btn-info btn-profile btn-block',
+                            'class' => 'btn showbtn btn-info d-flex float-right ms-2 px-5',
                             'id' => 'showbtn',
                         ]) !!}
                     </div>
@@ -148,7 +151,7 @@
         <li class='list-group-item'>${quiz.op2}</li>
         <li class='list-group-item'>${quiz.op3}</li>
         <li class='list-group-item'>${quiz.op4}</li> 
-       </ol><span role='button' class='addToQuizsetBtn mt-1 btn btn-info text-center' data-id='${quiz.id}' data-q="${quiz.question.replace(/\"/g, "'")}"> Add this to Quizset</span></div>
+       </ol><span role='button' class='addToQuizsetBtn mt-1 btn btn-sm border-info btn-info text-center' data-id='${quiz.id}' data-q="${quiz.question.replace(/\"/g, "'")}"> Add to Quizset</span></div>
        `;
                     q += html;
                 });
@@ -230,14 +233,23 @@
                     }
                 });
 
-
+                // $('#addToQuizsetBtn').click(function() {
+                //     $(this).find('.btn-info').removeClass().this();
+                //     $(this).css('background-color', '#ff0000');
+                // });
+               
             });
+            //btn-primary after adding to quizset
+            $(document).on("click", ".addToQuizsetBtn", function() {
+                    $(this).removeClass('btn-info');
+                    $(this).toggleClass('btn-primary');
+                });
 
             //remove quiz from list
             $(document).on("click", ".removeqbtn", function() {
                 $(this).parent().parent().remove();
             });
-
+            
         });
     </script>
 @endsection
