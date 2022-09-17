@@ -17,11 +17,17 @@
 
                 <span class="text-primary">Tiger Quiz</span></a>
         </div>
-        <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+        {{-- <button type="button" id="navbar-toggler" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
             <i class="fa-solid fa-bars"></i>
-        </button>
+        </button> --}}
+        <a class="nav-link" (click)="onClick()"><button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <i class="fa-solid fa-bars"></i>
+            </button></a>
 
-        <div class="collapse ms-auto me-auto navbar-collapse justify-content-between" id="navbarCollapse">
+
+        <div class="collapse navbar-collapse justify-content-between navbarCollapse" id="navbarCollapse">
             <div class="navbar-nav font-weight-bold mx-auto py-0">
                 <a href="./" class="nav-item nav-link active">Home</a>
                 <a href="./about" class="nav-item nav-link">About</a>
@@ -57,10 +63,10 @@
                 @endif
                 @if ($r == '3')
                     <li class="nav-item ms-5 auth-nav"><a href="{{ url('/student') }}"
-                            class="text-sm text-gray dark:text-gray">Hello, {{ Auth::user()->name; }}</a></li>
+                            class="text-sm text-gray dark:text-gray">Hello, {{ Auth::user()->name }}</a></li>
                 @endif
             @else
-                <li class="nav-item"> <a class="nav-link btn btn-sm btn-success ms-2 my-2"
+                <li class="nav-item"> <a class="nav-link btn btn-sm btn-success ms-1 my-2"
                         href="{{ route('login') }}">Login</a></li>
                 {{-- &nbsp; --}}
                 @if (Route::has('register'))
@@ -75,3 +81,20 @@
 </nav>
 </div>
 <!-- Navbar End -->
+<script>
+$(document).ready(function(){
+  $('a[data-bs-toggle="collapse"]').mouseup(function(){
+    var expanded = $(this).attr('aria-expanded');
+    if(expanded=="true"){
+      setTimeout(() => {
+        hide_collapse(this);
+      }, 100);
+    }
+  })
+  function hide_collapse(element){
+    var aria_control = $(element).attr('aria-controls');
+    $("#"+aria_control).removeClass("show");
+    $(element).attr('aria-expanded',"false");
+  }
+});
+</script>

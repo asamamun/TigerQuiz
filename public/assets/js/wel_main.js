@@ -3,6 +3,15 @@
     
     // Dropdown on mouse hover
     $(document).ready(function () {
+        // $('button.navbar-toggler').click(function() {
+        //     // $('#navbarCollapse').toggle();
+        //     $("#navbarCollapse").toggleClass("hide");
+
+     $('.navbar-toggler').on('click', function (e) {
+          $('#navbarCollapse').toggleClass('opened');
+        });
+         
+        })
         function toggleNavbarMethod() {
             if ($(window).width() > 992) {
                 $('.navbar .dropdown').on('mouseover', function () {
@@ -97,6 +106,12 @@
             }
         }
     });
+    $(document).ready(function(){
+            $('button.navbar-toggler').click(function() {
+              $('#navbarCollapse').toggle();
+           
+          })
+      });
     
 })(jQuery);
 

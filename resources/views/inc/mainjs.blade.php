@@ -1,6 +1,7 @@
 <!-- JavaScript Libraries -->
 
-<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 {{-- <script src="{{ url('assets/js/bootstrap.bundle.min.js') }}"></script> --}}
 <script src="{{ url('assets/js/bootstrap.min.js') }}"></script>
 <script src="{{ url('assets/lib/easing/easing.min.js') }}"></script>
