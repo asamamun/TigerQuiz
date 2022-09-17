@@ -33,10 +33,10 @@
                                 {{ $qset->title }} 
                             </h3>
                             <span title="Category" class="tex-tleft ps-3 m-0 fw-bold mb-1 btn-block btn btn-sm btn-outline-primary">
-                                {{ $qset->category->name}}
+                                {{ $qset->category?->name}}
                             </span>
                             <span title="Subcategory" class="tex-tleft ps-3 m-0 fw-bold mb-1 btn-block btn btn-sm btn-outline-primary">
-                                {{ $qset->subcategory->name}}
+                                {{ $qset->subcategory?->name}}
                             </span>
                             {{-- <p class="m-0">
                                 {{ $qset->quizzes}}
