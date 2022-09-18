@@ -349,4 +349,11 @@ class QuizController extends Controller
         // questions/6/6/8
         return response()->json($qz);
     }
+
+    public function apicatquiz($id)
+    {
+        $catz  = Category::with("subcategories.topics")->find($id);
+        //    dd($cats);
+        return response()->json($catz);
+    }
 }

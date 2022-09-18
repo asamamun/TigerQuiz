@@ -28,6 +28,8 @@ Route::get("categories", [CategoryController::class, "apicat"]);
 Route::get("subcategories/{cid}", [CategoryController::class, "apisubcat"]);
 Route::get("topic/{scid}", [CategoryController::class, "apitopic"]);
 Route::get("questions/{cid}/{scid}/{tid}", [QuizController::class, "loadquestions"]);
+// all quizzes
+Route::get("catquiz/{id}", [QuizController::class, "apicatquiz"]);
 
 Route::post("answers", [AnswerController::class, "apianswers"]);
 // Route::get("questions/cat/{id}", [QuizController::class, "catrandomquestions"]);
