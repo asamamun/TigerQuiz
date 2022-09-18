@@ -1,10 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Http\Requests\StoreCategoryRequest;
 use App\Http\Requests\UpdateCategoryRequest;
+use App\Models\Subcategory;
+use App\Models\Topic;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -108,4 +110,27 @@ class CategoryController extends Controller
             return back()->with('message','Delete Failed!');
         }
     }
+    // ======================
+    // API categories
+    public function apicat()
+    {
+        $cat = Category::all();
+        return response()->json($cat);
+    }
+    
+      // ======================
+    // API subcategories
+    public function apisubcat($cid)
+    {
+        $scat  = Subcategory::where('category_id', $cid)->get();
+        // dd($id);
+        return response()->json($scat);
+    }
+       // API topics
+       public function apitopic($scid)
+       {
+           $topic  = Topic::where('subcategory_id', $scid)->get();
+        //    dd($id);
+           return response()->json($topic);
+       }
 }

@@ -17,17 +17,26 @@
 
                 <span class="text-primary">Tiger Quiz</span></a>
         </div>
-        {{-- <button type="button" id="navbar-toggler" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
-            <i class="fa-solid fa-bars"></i>
-        </button> --}}
-        <a class="nav-link" (click)="onClick()"><button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+        {{-- <button type="button" id="navbar-toggler" class="navbar-toggler">
+            <i class="fa-solid fa-bars"></i> --}}
+        </button>
+        {{-- <a class="nav-link"><button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false"
                 aria-label="Toggle navigation">
                 <i class="fa-solid fa-bars"></i>
-            </button></a>
-
-
-        <div class="collapse navbar-collapse justify-content-between navbarCollapse" id="navbarCollapse">
+            </button></a> --}}
+            <button
+            type="button"
+            class="navbar-toggler"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarCollapse"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div
+            class="collapse navbar-collapse justify-content-between"
+            id="navbarCollapse"
+          >
             <div class="navbar-nav font-weight-bold mx-auto py-0">
                 <a href="./" class="nav-item nav-link active">Home</a>
                 <a href="./about" class="nav-item nav-link">About</a>
@@ -82,19 +91,8 @@
 </div>
 <!-- Navbar End -->
 <script>
-$(document).ready(function(){
-  $('a[data-bs-toggle="collapse"]').mouseup(function(){
-    var expanded = $(this).attr('aria-expanded');
-    if(expanded=="true"){
-      setTimeout(() => {
-        hide_collapse(this);
-      }, 100);
-    }
-  })
-  function hide_collapse(element){
-    var aria_control = $(element).attr('aria-controls');
-    $("#"+aria_control).removeClass("show");
-    $(element).attr('aria-expanded',"false");
-  }
-});
+    $("#navbar-toggler").click(function(){
+    // $("#navbarCollapse").hide();
+    $("#navbarCollapse").show();
+})
 </script>

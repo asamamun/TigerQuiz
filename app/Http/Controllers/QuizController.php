@@ -276,13 +276,7 @@ class QuizController extends Controller
         // return response()->json($quizzes->toJson(JSON_PRETTY_PRINT));
         return response()->json($quizzes);
     }
-    // API
-    public function randomquestions()
-    {
-        $q = Quiz::inRandomOrder()->limit(15)->get();
-        return response()->json($q);
-    }
-
+    
     public function qimage()
     {
         // if (Auth::user()->role == "1") {
@@ -315,4 +309,44 @@ class QuizController extends Controller
     // Schema::table('flights', function (Blueprint $table) {
     //     $table->softDeletes();
     // });
+
+    // ============================
+    // API
+    public function randomquestions()
+    {
+        $q = Quiz::inRandomOrder()->limit(15)->get();
+        return response()->json($q);
+    }
+    
+    public function apiaddquiz(Request $request){
+        //return response()->json($request->all());
+        $request = [
+
+            'question' => htmlentities($request->question),
+            // 'type' => $request->type,
+            'op1' => htmlentities($request->op1),
+            'op2' => htmlentities($request->op2),
+            'op3' => htmlentities($request->op3),
+            'op4' => htmlentities($request->op4),
+            'ans' => $request->ans,
+            // 'qimage' => $filename ?? '',
+            // 'user_id' => $request->user_id,
+            // 'category_id' => $request->category_id,
+            // 'subcategory_id' => $request->subcategory_id,
+            // 'topic_id' => $request->topic_id,
+        ];
+        $quizzes = Quiz::create($request);
+        return response()->json(['message'=>"Quiz Created"]);
+    }
+
+    public function loadquestions($cid,$scid,$tid)
+    {
+        $qz = Quiz::where('category_id', $cid)
+        ->where('category_id', $scid)
+        ->where('topic_id', $tid)
+        ->limit(15)->get();
+        //  dd($cid,$scid,$tid );
+        // questions/6/6/8
+        return response()->json($qz);
+    }
 }

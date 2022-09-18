@@ -7,6 +7,7 @@ use App\Http\Requests\StoreSubcategoryRequest;
 use App\Http\Requests\UpdateSubcategoryRequest;
 use App\Models\Category;
 use App\Models\Subcategory;
+use App\Models\Topic;
 use Illuminate\Support\Facades\Auth;
 
 class SubcategoryController extends Controller
@@ -124,4 +125,5 @@ class SubcategoryController extends Controller
             return back()->with('message', $subcategory->id . ' Deleted!!!!');
         }
     }
+ 
 }

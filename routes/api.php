@@ -2,6 +2,8 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\subcategoryController;
 use App\Http\Controllers\QuizController;
 use App\Http\Controllers\AnswerController;
 
@@ -21,6 +23,13 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get("questions", [QuizController::class, "randomquestions"]);
+
+Route::get("categories", [CategoryController::class, "apicat"]);
+Route::get("subcategories/{cid}", [CategoryController::class, "apisubcat"]);
+Route::get("topic/{scid}", [CategoryController::class, "apitopic"]);
+Route::get("questions/{cid}/{scid}/{tid}", [QuizController::class, "loadquestions"]);
+
 Route::post("answers", [AnswerController::class, "apianswers"]);
 // Route::get("questions/cat/{id}", [QuizController::class, "catrandomquestions"]);
 // Route::get("questions", [QuizController::class, "randomquestions"]);
+Route::post("addquestion",[QuizController::class, "apiaddquiz"]);
