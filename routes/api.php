@@ -30,6 +30,8 @@ Route::get("topic/{scid}", [CategoryController::class, "apitopic"]);
 Route::get("questions/{cid}/{scid}/{tid}", [QuizController::class, "loadquestions"]);
 // all quizzes
 Route::get("catquiz/{id}", [QuizController::class, "apicatquiz"]);
+Route::get("quizset/{id}", [QuizsetController::class, "quizsetquerstions"]);
+
 
 Route::post("answers", [AnswerController::class, "apianswers"]);
 // Route::get("questions/cat/{id}", [QuizController::class, "catrandomquestions"]);
