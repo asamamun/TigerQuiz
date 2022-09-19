@@ -242,4 +242,14 @@ class QuizsetController extends Controller
 
     // ->withInput($request->input())
     // ->withErrors($errors, $this->errorBag());
+
+    public function quizsetquerstions($id)
+    {
+        $qset = Quizset::find($id);
+        $setquiz = Quiz::whereIn('id', explode(',', $qset->quizzes))->get();
+        return response()->json($setquiz);
+       
+
+
+    }
 }
